@@ -1,0 +1,12 @@
+How to update documentation:
+
+go to QhX1 directory
+if needed to uninstall old version
+pip uninstall QhX
+
+then install in edit mode QhX in order to  produce relevant egg info
+pip install -e .
+
+then go to source
+make clean
+make html

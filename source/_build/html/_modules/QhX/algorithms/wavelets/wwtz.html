@@ -1,0 +1,393 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>QhX.algorithms.wavelets.wwtz &mdash; QhX 0.1.0 documentation</title>
+      <link rel="stylesheet" href="../../../../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../../../../_static/css/theme.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="../../../../_static/jquery.js?v=5d32c60e"></script>
+        <script src="../../../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script src="../../../../_static/documentation_options.js?v=01f34227"></script>
+        <script src="../../../../_static/doctools.js?v=888ff710"></script>
+        <script src="../../../../_static/sphinx_highlight.js?v=dc90522c"></script>
+        <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+        <script src="https://unpkg.com/@jupyter-widgets/html-manager@^0.20.0/dist/embed-amd.js"></script>
+    <script src="../../../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search"  style="background: white" >
+
+          
+          
+          <a href="../../../../index.html" class="icon icon-home">
+            QhX
+          </a>
+              <div class="version">
+                0.1.0
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../../introduction.html">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../installation.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../quick_start.html">Quick Start</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../examples.html">examples</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../calculation.html">calculation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../data_manager.html">data_manager</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../detection.html">detection</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../light_curve.html">light_curve</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../output.html">output</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../reg.html">reg</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../superlet.html">superlet module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../superlets.html">superlets</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../correlation.html">correlation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../interactive_plt.html">interactive_plt</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../test_integrated.html">test_integrated</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../mock_lc.html">mock_lc</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../wwtz.html">wwtz</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../faq.html">Frequently Asked Questions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../license.html">License</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu"  style="background: white" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../../index.html">QhX</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../../../index.html">Module code</a></li>
+      <li class="breadcrumb-item active">QhX.algorithms.wavelets.wwtz</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <h1>Source code for QhX.algorithms.wavelets.wwtz</h1><div class="highlight"><pre>
+<span></span><span class="kn">from</span> <span class="nn">libwwz</span> <span class="kn">import</span> <span class="n">wwt</span> <span class="k">as</span> <span class="n">libwwz_wwt</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">from</span> <span class="nn">QhX.utils.correlation</span> <span class="kn">import</span> <span class="n">correlation_nd</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="kn">from</span> <span class="nn">sklearn.utils</span> <span class="kn">import</span> <span class="n">shuffle</span>
+<span class="kn">import</span> <span class="nn">sys</span>
+<span class="kn">import</span> <span class="nn">io</span>
+<span class="kn">from</span> <span class="nn">traitlets.traitlets</span> <span class="kn">import</span> <span class="n">Integer</span>
+
+
+
+
+<div class="viewcode-block" id="compute_frequency_grid">
+<a class="viewcode-back" href="../../../../wwtz.html#QhX.algorithms.wavelets.wwtz.compute_frequency_grid">[docs]</a>
+<span class="k">def</span> <span class="nf">compute_frequency_grid</span><span class="p">(</span><span class="n">Nn</span><span class="p">,</span> <span class="n">minfq</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">maxfq</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Computes the frequency grid for wavelet analysis given the periodis corresponding to  minimum and maximum frequencies.</span>
+
+<span class="sd">    Parameters:</span>
+<span class="sd">    -----------</span>
+<span class="sd">    - Nn (int): Number of grid points for the frequency axis.</span>
+<span class="sd">    - minfq (float, optional): period correspoding to the Minimum frequency value. If None, a default value should be defined elsewhere.</span>
+<span class="sd">    - maxfq (float, optional): period corresponding to the Maximum frequency value. If None, a default value should be defined elsewhere.</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">    --------</span>
+<span class="sd">    tuple: Contains the frequency step (df), minimum frequency (fmin), and maximum frequency (fmax) for the grid.</span>
+
+<span class="sd">    Note:</span>
+<span class="sd">    -----</span>
+<span class="sd">    - The function assumes the input periods are in days so that freqeuncies are in days ^-1 (1/days).</span>
+<span class="sd">    - If minfq or maxfq is None, ensure default values are set or passed to this function.</span>
+<span class="sd">    - The function returns frequencies in the same units as periods corresponding to the minfq and maxfq.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="c1"># Ensure minfq and maxfq are not None. If None, default values should be used.</span>
+    <span class="k">if</span> <span class="n">minfq</span> <span class="ow">is</span> <span class="kc">None</span> <span class="ow">or</span> <span class="n">maxfq</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;Minimum and maximum frequencies (minfq, maxfq) must be provided.&quot;</span><span class="p">)</span>
+
+    <span class="c1"># Convert frequency bounds to periods (in days).</span>
+    <span class="n">fmin</span> <span class="o">=</span> <span class="mi">1</span> <span class="o">/</span> <span class="n">minfq</span>  <span class="c1"># Minimum period (maximum frequency converted to period)</span>
+    <span class="n">fmax</span> <span class="o">=</span> <span class="mi">1</span> <span class="o">/</span> <span class="n">maxfq</span>  <span class="c1"># Maximum period (minimum frequency converted to period)</span>
+
+    <span class="c1"># Calculate the frequency step for the grid.</span>
+    <span class="n">df</span> <span class="o">=</span> <span class="p">(</span><span class="n">fmax</span> <span class="o">-</span> <span class="n">fmin</span><span class="p">)</span> <span class="o">/</span> <span class="n">Nn</span>  <span class="c1"># Step size between each frequency on the grid</span>
+
+    <span class="k">return</span> <span class="n">df</span><span class="p">,</span> <span class="n">fmin</span><span class="p">,</span> <span class="n">fmax</span></div>
+
+
+<span class="c1"># Example usage:</span>
+<span class="c1"># df, fmin, fmax = compute_frequency_grid(1000, minfq=0.001, maxfq=0.01)</span>
+<span class="c1"># This will compute the frequency grid for a given number of points and frequency range.</span>
+
+
+
+<div class="viewcode-block" id="estimate_wavelet_periods">
+<a class="viewcode-back" href="../../../../wwtz.html#QhX.algorithms.wavelets.wwtz.estimate_wavelet_periods">[docs]</a>
+<span class="k">def</span> <span class="nf">estimate_wavelet_periods</span><span class="p">(</span><span class="n">time_series</span><span class="p">,</span>  <span class="n">ngrid</span><span class="p">,</span> <span class="n">known_period</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Estimate minimum and maximum periods for wavelet analysis.</span>
+
+<span class="sd">    Parameters:</span>
+<span class="sd">    -----------</span>
+<span class="sd">    - time_series (array): Array of time points in your data.</span>
+<span class="sd">    - sampling_rate (float): The sampling rate of your data (data points per time unit).</span>
+<span class="sd">    - known_period (float, optional): A known period in your data, if any.</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">    --------</span>
+<span class="sd">    tuple: (min_period, max_period) estimated periods for analysis.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">sampling_rate</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">diff</span><span class="p">(</span><span class="n">time_series</span><span class="p">))</span>
+    <span class="n">total_duration</span> <span class="o">=</span> <span class="nb">max</span><span class="p">(</span><span class="n">time_series</span><span class="p">)</span> <span class="o">-</span> <span class="nb">min</span><span class="p">(</span><span class="n">time_series</span><span class="p">)</span>  <span class="c1"># Total duration of your data</span>
+
+    <span class="c1"># Estimate minimum period based on Nyquist frequency</span>
+    <span class="n">nyquist_period</span> <span class="o">=</span> <span class="mi">1</span> <span class="o">/</span> <span class="p">(</span><span class="mf">0.5</span> <span class="o">*</span> <span class="n">sampling_rate</span><span class="p">)</span>
+    <span class="n">min_period</span> <span class="o">=</span> <span class="nb">max</span><span class="p">(</span><span class="mi">2</span> <span class="o">*</span> <span class="n">nyquist_period</span><span class="p">,</span> <span class="mf">0.1</span> <span class="o">*</span> <span class="n">total_duration</span><span class="p">)</span>  <span class="c1"># At least twice the Nyquist limit</span>
+
+    <span class="c1"># Estimate maximum period</span>
+    <span class="n">max_period</span> <span class="o">=</span> <span class="mf">0.5</span> <span class="o">*</span> <span class="n">total_duration</span>  <span class="c1"># Typically half the total duration</span>
+
+    <span class="c1"># If there&#39;s a known period, adjust min or max period accordingly</span>
+    <span class="k">if</span> <span class="n">known_period</span><span class="p">:</span>
+        <span class="n">min_period</span> <span class="o">=</span> <span class="nb">min</span><span class="p">(</span><span class="n">min_period</span><span class="p">,</span> <span class="n">known_period</span> <span class="o">/</span> <span class="mi">2</span><span class="p">)</span>
+        <span class="n">max_period</span> <span class="o">=</span> <span class="nb">max</span><span class="p">(</span><span class="n">max_period</span><span class="p">,</span> <span class="n">known_period</span> <span class="o">*</span> <span class="mi">2</span><span class="p">)</span>
+    <span class="n">dp</span> <span class="o">=</span> <span class="p">(</span><span class="n">max_period</span> <span class="o">-</span> <span class="n">min_period</span><span class="p">)</span> <span class="o">/</span> <span class="n">ngrid</span>
+
+    <span class="k">return</span> <span class="mi">1</span><span class="o">/</span><span class="n">dp</span><span class="p">,</span> <span class="mi">1</span><span class="o">/</span><span class="n">max_period</span><span class="p">,</span> <span class="mi">1</span><span class="o">/</span><span class="n">min_period</span></div>
+
+
+
+
+<div class="viewcode-block" id="inp_param">
+<a class="viewcode-back" href="../../../../wwtz.html#QhX.algorithms.wavelets.wwtz.inp_param">[docs]</a>
+<span class="k">def</span> <span class="nf">inp_param</span><span class="p">(</span><span class="n">ntau</span><span class="p">,</span> <span class="n">ngrid</span><span class="p">,</span> <span class="n">minfq</span><span class="p">,</span> <span class="n">maxfq</span><span class="p">,</span> <span class="n">f</span><span class="o">=</span><span class="mi">2</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Calculate the input parameters for WWZ (Weighted Wavelet Z-transform) analysis.</span>
+
+<span class="sd">    Parameters:</span>
+<span class="sd">    -----------</span>
+<span class="sd">    - ntau (int): Number of time delays to use in the wavelet analysis.</span>
+<span class="sd">    - ngrid (int): Number of grid points for frequency analysis.</span>
+<span class="sd">    - minfq (float): period corresponding to the Minimum frequency for analysis.</span>
+<span class="sd">    - maxfq (float): period corresponding to the Maximum frequency for analysis.</span>
+<span class="sd">    - f (float): Frequency multiplier for calculating the decay constant. Default is 2.</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">    --------</span>
+<span class="sd">    - ntau (int): Number of time delays.</span>
+<span class="sd">    - frequency_parameters (list): List containing frequency parameters [freq_low, freq_high, freq_step, override].</span>
+<span class="sd">    - decay_constant (float): Decay constant for the wavelet.</span>
+<span class="sd">    - parallel (bool): Flag to enable parallel processing.</span>
+
+<span class="sd">    Note:</span>
+<span class="sd">    -----</span>
+<span class="sd">    - The decay constant is calculated based on the frequency &#39;f&#39; and is used to define the shape of the analyzing wavelet.</span>
+<span class="sd">    - The function assumes parallel processing is desired. Set &#39;parallel&#39; to False to disable it.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="c1"># Compute frequency grid parameters</span>
+    <span class="n">df</span><span class="p">,</span> <span class="n">fmin</span><span class="p">,</span> <span class="n">fmax</span> <span class="o">=</span> <span class="n">compute_frequency_grid</span><span class="p">(</span><span class="n">ngrid</span><span class="p">,</span> <span class="n">minfq</span><span class="p">,</span> <span class="n">maxfq</span><span class="p">)</span>
+    
+    <span class="c1"># Set frequency bounds and step for the analysis</span>
+    <span class="n">frequency_low</span> <span class="o">=</span> <span class="n">fmin</span>  <span class="c1"># Lower bound of frequency range</span>
+    <span class="n">frequency_high</span> <span class="o">=</span> <span class="n">fmax</span>  <span class="c1"># Upper bound of frequency range</span>
+    <span class="n">frequency_steps</span> <span class="o">=</span> <span class="n">df</span>   <span class="c1"># Step size between each frequency value</span>
+
+    <span class="c1"># Flag to override frequency bounds (default False). Setting to True will ignore the low and high frequency limitations</span>
+    <span class="n">override</span> <span class="o">=</span> <span class="kc">False</span>
+
+    <span class="c1"># Combine frequency parameters into a list</span>
+    <span class="n">frequency_parameters</span> <span class="o">=</span> <span class="p">[</span><span class="n">frequency_low</span><span class="p">,</span> <span class="n">frequency_high</span><span class="p">,</span> <span class="n">frequency_steps</span><span class="p">,</span> <span class="n">override</span><span class="p">]</span>
+
+    <span class="c1"># Calculate decay constant for the analyzing wavelet</span>
+    <span class="n">w</span> <span class="o">=</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">pi</span> <span class="o">*</span> <span class="n">f</span>  <span class="c1"># Angular frequency</span>
+    <span class="n">decay_constant</span> <span class="o">=</span> <span class="mi">1</span> <span class="o">/</span> <span class="p">(</span><span class="mi">2</span> <span class="o">*</span> <span class="n">w</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span>  <span class="c1"># Decay constant for the wavelet</span>
+
+    <span class="c1"># Set parallel processing flag (recommend True for faster computation)</span>
+    <span class="n">parallel</span> <span class="o">=</span> <span class="kc">True</span>
+
+    <span class="k">return</span> <span class="n">ntau</span><span class="p">,</span> <span class="n">frequency_parameters</span><span class="p">,</span> <span class="n">decay_constant</span><span class="p">,</span> <span class="n">parallel</span></div>
+
+
+<span class="c1"># Example usage:</span>
+<span class="c1"># ntau, freq_params, decay_const, parallel = inp_param(80, 800, 0.001, 0.1)</span>
+<span class="c1"># This will set up parameters for WWZ analysis with specified values.</span>
+
+
+<div class="viewcode-block" id="wwt1">
+<a class="viewcode-back" href="../../../../wwtz.html#QhX.algorithms.wavelets.wwtz.wwt1">[docs]</a>
+<span class="k">def</span> <span class="nf">wwt1</span><span class="p">(</span><span class="n">tt</span><span class="p">,</span> <span class="n">mag</span><span class="p">,</span> <span class="n">ntau</span><span class="p">,</span> <span class="n">ngrid</span><span class="p">,</span> <span class="n">minfq</span><span class="p">,</span> <span class="n">maxfq</span><span class="p">,</span> <span class="n">f</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">method</span><span class="o">=</span><span class="s1">&#39;linear&#39;</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Calculate the Weighted Wavelet Z-transform (WWZ) of a given time series signal.</span>
+
+<span class="sd">    Parameters:</span>
+<span class="sd">    -----------</span>
+<span class="sd">    - tt (list): List of time data points.</span>
+<span class="sd">    - mag (list): List of magnitude values corresponding to time points in &#39;tt&#39;.</span>
+<span class="sd">    - ntau (int): Number of time divisions for WWZ analysis.</span>
+<span class="sd">    - ngrid (int): Grid size for frequency analysis in WWZ.</span>
+<span class="sd">    - minfq (float): period corresponidng to the Minimum frequency for WWZ analysis.</span>
+<span class="sd">    - maxfq (float): period corresponidng to the maximum frequency for WWZ analysis.</span>
+<span class="sd">    - f (float): Frequency multiplier for calculating the decay constant in WWZ. Default is 2.</span>
+<span class="sd">    - method (str): Method for frequency analysis, either &#39;linear&#39; or &#39;octave&#39;. Default is &#39;linear&#39;.</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">    --------</span>
+<span class="sd">    - WWZ  matrix coefficients: The result of WWZ analysis as provided by the &#39;libwwz&#39; library.</span>
+
+<span class="sd">    Notes:</span>
+<span class="sd">    ------</span>
+<span class="sd">     - The &#39;method&#39; parameter allows selection between linear and octave frequency scaling.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="c1"># Compute input parameters for WWZ analysis</span>
+    <span class="n">ntau</span><span class="p">,</span> <span class="n">params</span><span class="p">,</span> <span class="n">decay_constant</span><span class="p">,</span> <span class="n">parallel</span> <span class="o">=</span> <span class="n">inp_param</span><span class="p">(</span><span class="n">ntau</span><span class="p">,</span> <span class="n">ngrid</span><span class="p">,</span> <span class="n">minfq</span><span class="p">,</span> <span class="n">maxfq</span><span class="p">,</span> <span class="n">f</span><span class="p">)</span>
+
+    <span class="c1"># Perform WWZ analysis using libwwz library</span>
+    <span class="k">return</span> <span class="n">libwwz_wwt</span><span class="p">(</span><span class="n">timestamps</span><span class="o">=</span><span class="n">tt</span><span class="p">,</span> <span class="n">magnitudes</span><span class="o">=</span><span class="n">mag</span><span class="p">,</span>
+                      <span class="n">time_divisions</span><span class="o">=</span><span class="n">ntau</span><span class="p">,</span>
+                      <span class="n">freq_params</span><span class="o">=</span><span class="n">params</span><span class="p">,</span>
+                      <span class="n">decay_constant</span><span class="o">=</span><span class="n">decay_constant</span><span class="p">,</span>
+                      <span class="n">method</span><span class="o">=</span><span class="n">method</span><span class="p">,</span>
+                      <span class="n">parallel</span><span class="o">=</span><span class="n">parallel</span><span class="p">)</span></div>
+
+
+<span class="c1"># Example usage:</span>
+<span class="c1"># tt and mag are lists of time and magnitude data points.</span>
+<span class="c1"># result = wwt(tt, mag, 80, 800, 0.001, 0.1)</span>
+<span class="c1"># This performs WWZ analysis on the provided time series data.</span>
+
+
+<div class="viewcode-block" id="hybrid2d">
+<a class="viewcode-back" href="../../../../wwtz.html#QhX.algorithms.wavelets.wwtz.hybrid2d">[docs]</a>
+<span class="k">def</span> <span class="nf">hybrid2d</span><span class="p">(</span><span class="n">tt</span><span class="p">,</span> <span class="n">mag</span><span class="p">,</span> <span class="n">ntau</span><span class="p">,</span> <span class="n">ngrid</span><span class="p">,</span> <span class="n">minfq</span><span class="p">,</span> <span class="n">maxfq</span><span class="p">,</span> <span class="n">f</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">method</span><span class="o">=</span><span class="s1">&#39;linear&#39;</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Perform a hybrid 2D analysis involving WWZ (Weighted Wavelet Z-transform) and auto-correlation on light curve data.</span>
+
+<span class="sd">    This function computes the WWZ transformation of the input light curve data and then performs an auto-correlation analysis on the result. </span>
+<span class="sd">    The frequency range for the analysis can be specified, as well as the decay constant and interpolation method for WWZ.</span>
+
+<span class="sd">    Parameters:</span>
+<span class="sd">    -----------</span>
+<span class="sd">    - tt: array_like</span>
+<span class="sd">        Array of time data for the light curve.</span>
+<span class="sd">    - mag: array_like</span>
+<span class="sd">        Array of magnitude values corresponding to the time data.</span>
+<span class="sd">    - ntau: int</span>
+<span class="sd">        Number of time divisions for the WWZ analysis.</span>
+<span class="sd">    - ngrid: int</span>
+<span class="sd">        Number of grid points (frequency resolution) for the WWZ analysis.</span>
+<span class="sd">    - minfq: float</span>
+<span class="sd">        Minimum frequency (or corresponding period) for WWZ analysis.</span>
+<span class="sd">    - maxfq: float</span>
+<span class="sd">        Maximum frequency (or corresponding period) for WWZ analysis.</span>
+<span class="sd">    - f: float, optional</span>
+<span class="sd">        Decay constant for the analyzing wavelet in WWZ, by default 2.</span>
+<span class="sd">    - method: str, optional</span>
+<span class="sd">        Interpolation method used in WWZ (&#39;linear&#39; or &#39;octave&#39;), by default &#39;linear&#39;.</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">    --------</span>
+<span class="sd">    A tuple containing:</span>
+<span class="sd">    </span>
+<span class="sd">    - WWZ matrix: The WWZ analysis result.</span>
+<span class="sd">    - Auto-correlation matrix: The result of auto-correlation analysis.</span>
+<span class="sd">    - Frequency range extent: The extent of the frequency range for plotting.</span>
+
+<span class="sd">    Examples:</span>
+<span class="sd">    ---------</span>
+<span class="sd">    &gt;&gt;&gt; tt = [0, 1, 2, 3, 4]</span>
+<span class="sd">    &gt;&gt;&gt; mag = [10, 11, 12, 13, 14]</span>
+<span class="sd">    &gt;&gt;&gt; wwz_result, acorr_result, freq_extent = hybrid2d(tt, mag, 100, 50, 0.1, 1.0)</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="c1"># Function implementation</span>
+    <span class="c1"># ...</span>
+
+    <span class="c1"># Perform WWZ analysis on the data using the wwt function</span>
+    <span class="n">wwz_matrix</span> <span class="o">=</span> <span class="n">wwt1</span><span class="p">(</span><span class="n">tt</span><span class="p">,</span> <span class="n">mag</span><span class="p">,</span> <span class="n">ntau</span><span class="p">,</span> <span class="n">ngrid</span><span class="p">,</span> <span class="n">minfq</span><span class="p">,</span> <span class="n">maxfq</span><span class="p">,</span> <span class="n">f</span><span class="p">,</span> <span class="n">method</span><span class="p">)</span>
+
+    <span class="c1"># Auto-correlate the WWZ matrix</span>
+    <span class="c1"># np.rot90 rotates the matrix by 90 degrees to align time and frequency axes as needed</span>
+    <span class="n">corr</span> <span class="o">=</span> <span class="n">correlation_nd</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">rot90</span><span class="p">(</span><span class="n">wwz_matrix</span><span class="p">[</span><span class="mi">2</span><span class="p">]),</span> <span class="n">np</span><span class="o">.</span><span class="n">rot90</span><span class="p">(</span><span class="n">wwz_matrix</span><span class="p">[</span><span class="mi">2</span><span class="p">]))</span>
+
+    <span class="c1"># Determine the extent (range) of the frequency axis for plotting purposes</span>
+    <span class="n">extent_min</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">min</span><span class="p">(</span><span class="n">wwz_matrix</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>  <span class="c1"># Minimum frequency from the WWZ result</span>
+    <span class="n">extent_max</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">max</span><span class="p">(</span><span class="n">wwz_matrix</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>  <span class="c1"># Maximum frequency from the WWZ result</span>
+    <span class="n">extent</span> <span class="o">=</span> <span class="p">[</span><span class="n">extent_min</span><span class="p">,</span> <span class="n">extent_max</span><span class="p">,</span> <span class="n">extent_min</span><span class="p">,</span> <span class="n">extent_max</span><span class="p">]</span>
+
+    <span class="c1"># Return the WWZ matrix, auto-correlation matrix, and the extent of frequency range</span>
+    <span class="k">return</span> <span class="n">wwz_matrix</span><span class="p">,</span> <span class="n">corr</span><span class="p">,</span> <span class="n">extent</span></div>
+
+
+
+
+
+
+</pre></div>
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2023, Andjelka Kovacevic.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+    <!-- Theme Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'G-XXXXXXXXXX', {
+          'anonymize_ip': false,
+      });
+    </script> 
+
+</body>
+</html>

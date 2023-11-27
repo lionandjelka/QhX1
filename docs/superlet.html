@@ -1,0 +1,390 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>superlet module &mdash; QhX 0.1.0 documentation</title>
+      <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="_static/jquery.js?v=5d32c60e"></script>
+        <script src="_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script src="_static/documentation_options.js?v=01f34227"></script>
+        <script src="_static/doctools.js?v=888ff710"></script>
+        <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+        <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+        <script src="https://unpkg.com/@jupyter-widgets/html-manager@^0.20.0/dist/embed-amd.js"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="superlets" href="superlets.html" />
+    <link rel="prev" title="reg" href="reg.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search"  style="background: white" >
+
+          
+          
+          <a href="index.html" class="icon icon-home">
+            QhX
+          </a>
+              <div class="version">
+                0.1.0
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="introduction.html">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="installation.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="quick_start.html">Quick Start</a></li>
+<li class="toctree-l1"><a class="reference internal" href="examples.html">examples</a></li>
+<li class="toctree-l1"><a class="reference internal" href="calculation.html">calculation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="data_manager.html">data_manager</a></li>
+<li class="toctree-l1"><a class="reference internal" href="detection.html">detection</a></li>
+<li class="toctree-l1"><a class="reference internal" href="light_curve.html">light_curve</a></li>
+<li class="toctree-l1"><a class="reference internal" href="output.html">output</a></li>
+<li class="toctree-l1"><a class="reference internal" href="reg.html">reg</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">superlet module</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#QhX.algorithms.superlets.superlet.FASLT"><code class="docutils literal notranslate"><span class="pre">FASLT()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#QhX.algorithms.superlets.superlet.MorletSL"><code class="docutils literal notranslate"><span class="pre">MorletSL</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#QhX.algorithms.superlets.superlet.MorletSL.time"><code class="docutils literal notranslate"><span class="pre">MorletSL.time()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#QhX.algorithms.superlets.superlet.compute_adaptive_order"><code class="docutils literal notranslate"><span class="pre">compute_adaptive_order()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#QhX.algorithms.superlets.superlet.cwtSL"><code class="docutils literal notranslate"><span class="pre">cwtSL()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#QhX.algorithms.superlets.superlet.fourier_period"><code class="docutils literal notranslate"><span class="pre">fourier_period()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#QhX.algorithms.superlets.superlet.gen_superlet_testdata"><code class="docutils literal notranslate"><span class="pre">gen_superlet_testdata()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#QhX.algorithms.superlets.superlet.multiplicativeSLT"><code class="docutils literal notranslate"><span class="pre">multiplicativeSLT()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#QhX.algorithms.superlets.superlet.scale_from_period"><code class="docutils literal notranslate"><span class="pre">scale_from_period()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#QhX.algorithms.superlets.superlet.superlet"><code class="docutils literal notranslate"><span class="pre">superlet()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="superlets.html">superlets</a></li>
+<li class="toctree-l1"><a class="reference internal" href="correlation.html">correlation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="interactive_plt.html">interactive_plt</a></li>
+<li class="toctree-l1"><a class="reference internal" href="test_integrated.html">test_integrated</a></li>
+<li class="toctree-l1"><a class="reference internal" href="mock_lc.html">mock_lc</a></li>
+<li class="toctree-l1"><a class="reference internal" href="wwtz.html">wwtz</a></li>
+<li class="toctree-l1"><a class="reference internal" href="faq.html">Frequently Asked Questions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="license.html">License</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu"  style="background: white" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">QhX</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">superlet module</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="_sources/superlet.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="module-QhX.algorithms.superlets.superlet">
+<span id="superlet-module"></span><h1>superlet module<a class="headerlink" href="#module-QhX.algorithms.superlets.superlet" title="Link to this heading"></a></h1>
+<dl class="py function">
+<dt class="sig sig-object py" id="QhX.algorithms.superlets.superlet.FASLT">
+<span class="sig-prename descclassname"><span class="pre">QhX.algorithms.superlets.superlet.</span></span><span class="sig-name descname"><span class="pre">FASLT</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data_arr</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">samplerate</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">scales</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">order_max</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">order_min</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">c_1</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">3</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/QhX/algorithms/superlets/superlet.html#FASLT"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#QhX.algorithms.superlets.superlet.FASLT" title="Link to this definition"></a></dt>
+<dd><p>Performs a Fractional Adaptive Superlet Transform (FASLT) on time-series data.</p>
+<p>FASLT computes a time-frequency representation using a set of Morlet wavelets with fractional
+orders. The order of wavelets increases linearly with frequency, allowing for a more adaptive
+analysis across a range of frequencies.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>data_arr</strong> (<em>ndarray</em>) – Time-series data for analysis.</p></li>
+<li><p><strong>samplerate</strong> (<em>float</em>) – Sampling rate of the data in Hz.</p></li>
+<li><p><strong>scales</strong> (<em>ndarray</em>) – Array of scales for the wavelet transform.</p></li>
+<li><p><strong>order_max</strong> (<em>int</em>) – Maximum order of the superlet set.</p></li>
+<li><p><strong>order_min</strong> (<em>int</em><em>, </em><em>optional</em>) – Minimum order of the superlet set, default is 1.</p></li>
+<li><p><strong>c_1</strong> (<em>int</em><em>, </em><em>optional</em>) – Number of cycles for the base Morlet wavelet, default is 3.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>ndarray</strong></p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Result of the Fractional Adaptive Superlet Transform.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="QhX.algorithms.superlets.superlet.MorletSL">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">QhX.algorithms.superlets.superlet.</span></span><span class="sig-name descname"><span class="pre">MorletSL</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">c_i</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">3</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">k_sd</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">5</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/QhX/algorithms/superlets/superlet.html#MorletSL"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#QhX.algorithms.superlets.superlet.MorletSL" title="Link to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<dl class="py method">
+<dt class="sig sig-object py" id="QhX.algorithms.superlets.superlet.MorletSL.time">
+<span class="sig-name descname"><span class="pre">time</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">t</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">s</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1.0</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/QhX/algorithms/superlets/superlet.html#MorletSL.time"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#QhX.algorithms.superlets.superlet.MorletSL.time" title="Link to this definition"></a></dt>
+<dd><p>Computes the complex Morlet wavelet at a given time and scale.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>(</strong><strong>float</strong><strong>)</strong> (<em>-t</em>) – </p></li>
+<li><p><strong>(</strong><strong>float</strong> (<em>-s</em>) – </p></li>
+<li><p><strong>optional</strong><strong>)</strong> (<em>Scale variable</em><em>, </em><em>default is 1.0.</em>) – </p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>complex</strong></p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Value of the Morlet wavelet at the given time and scale.</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="QhX.algorithms.superlets.superlet.compute_adaptive_order">
+<span class="sig-prename descclassname"><span class="pre">QhX.algorithms.superlets.superlet.</span></span><span class="sig-name descname"><span class="pre">compute_adaptive_order</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">freq</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">order_min</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">order_max</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/QhX/algorithms/superlets/superlet.html#compute_adaptive_order"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#QhX.algorithms.superlets.superlet.compute_adaptive_order" title="Link to this definition"></a></dt>
+<dd><p>Computes the superlet order for given frequencies in the Fractional Adaptive SLT.</p>
+<p>This is a linear mapping between the minimal and maximal order onto the
+respective minimal and maximal frequencies.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>(</strong><strong>ndarray</strong><strong>)</strong> (<em>- freq</em>) – Array of frequencies of interest.</p></li>
+<li><p><strong>(</strong><strong>int</strong><strong>)</strong> (<em>- order_max</em>) – Minimal order in the superlet set.</p></li>
+<li><p><strong>(</strong><strong>int</strong><strong>)</strong> – Maximal order in the superlet set.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>ndarray</strong></p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Array of computed orders for the given frequencies.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="QhX.algorithms.superlets.superlet.cwtSL">
+<span class="sig-prename descclassname"><span class="pre">QhX.algorithms.superlets.superlet.</span></span><span class="sig-name descname"><span class="pre">cwtSL</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">wavelet</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">scales</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dt</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/QhX/algorithms/superlets/superlet.html#cwtSL"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#QhX.algorithms.superlets.superlet.cwtSL" title="Link to this definition"></a></dt>
+<dd><p>Performs Continuous Wavelet Transform using a specified wavelet and scales.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>data</strong> (<em>-</em>) – Time-series data for analysis.</p></li>
+<li><p><strong>wavelet</strong> (<em>-</em>) – Morlet wavelet object used for the transform.</p></li>
+<li><p><strong>scales</strong> (<em>-</em>) – Array of scales for the wavelet transform.</p></li>
+<li><p><strong>dt</strong> (<em>-</em>) – Time step of the data.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>ndarray</strong></p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Continuous wavelet transform of the input data.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="QhX.algorithms.superlets.superlet.fourier_period">
+<span class="sig-prename descclassname"><span class="pre">QhX.algorithms.superlets.superlet.</span></span><span class="sig-name descname"><span class="pre">fourier_period</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">scale</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/QhX/algorithms/superlets/superlet.html#fourier_period"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#QhX.algorithms.superlets.superlet.fourier_period" title="Link to this definition"></a></dt>
+<dd><p>Calculates the approximate Fourier period for a given scale using Morlet wavelet.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>(</strong><strong>float</strong><strong>)</strong> (<em>-scale</em>) – </p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p><ul class="simple">
+<li><p><em>float</em></p></li>
+<li><p><em>Approximate Fourier period corresponding to the given scale.</em></p></li>
+</ul>
+</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="QhX.algorithms.superlets.superlet.gen_superlet_testdata">
+<span class="sig-prename descclassname"><span class="pre">QhX.algorithms.superlets.superlet.</span></span><span class="sig-name descname"><span class="pre">gen_superlet_testdata</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">freqs</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">[20,</span> <span class="pre">40,</span> <span class="pre">60]</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">cycles</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">11</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">fs</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1000</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">eps</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/QhX/algorithms/superlets/superlet.html#gen_superlet_testdata"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#QhX.algorithms.superlets.superlet.gen_superlet_testdata" title="Link to this definition"></a></dt>
+<dd><p>Generates test data for superlet analysis, consisting of harmonic superpositions.</p>
+<p>This function creates a signal composed of multiple oscillations with specified
+frequencies. Each oscillation is a few-cycle harmonic with an optional addition
+of white noise. It is useful for demonstrating and testing superlet transform
+functionality.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>float</strong> (<em>- freqs</em><em> (</em><em>list of</em>) – Frequencies of the oscillations to be included in the signal.
+Default is [20, 40, 60] Hz.</p></li>
+<li><p><strong>optional</strong><strong>)</strong> – Frequencies of the oscillations to be included in the signal.
+Default is [20, 40, 60] Hz.</p></li>
+<li><p><strong>(</strong><strong>int</strong> (<em>- fs</em>) – Number of cycles for each oscillation. Default is 11.</p></li>
+<li><p><strong>optional</strong><strong>)</strong> – Number of cycles for each oscillation. Default is 11.</p></li>
+<li><p><strong>(</strong><strong>int</strong> – Sampling frequency in Hz. Default is 1000 Hz.</p></li>
+<li><p><strong>optional</strong><strong>)</strong> – Sampling frequency in Hz. Default is 1000 Hz.</p></li>
+<li><p><strong>(</strong><strong>float</strong> (<em>- eps</em>) – Standard deviation of additive white noise. Default is 0 (no noise).</p></li>
+<li><p><strong>optional</strong><strong>)</strong> – Standard deviation of additive white noise. Default is 0 (no noise).</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>ndarray</strong></p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Generated 1D signal array containing harmonic superpositions with optional noise.</p>
+</dd>
+</dl>
+<p class="rubric">Examples</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">mymodule</span> <span class="kn">import</span> <span class="n">gen_superlet_testdata</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">signal</span> <span class="o">=</span> <span class="n">gen_superlet_testdata</span><span class="p">(</span><span class="n">freqs</span><span class="o">=</span><span class="p">[</span><span class="mi">20</span><span class="p">,</span> <span class="mi">40</span><span class="p">,</span> <span class="mi">60</span><span class="p">],</span> <span class="n">cycles</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">fs</span><span class="o">=</span><span class="mi">1000</span><span class="p">,</span> <span class="n">eps</span><span class="o">=</span><span class="mf">0.1</span><span class="p">)</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="QhX.algorithms.superlets.superlet.multiplicativeSLT">
+<span class="sig-prename descclassname"><span class="pre">QhX.algorithms.superlets.superlet.</span></span><span class="sig-name descname"><span class="pre">multiplicativeSLT</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data_arr</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">samplerate</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">scales</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">order_max</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">order_min</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">c_1</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">3</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/QhX/algorithms/superlets/superlet.html#multiplicativeSLT"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#QhX.algorithms.superlets.superlet.multiplicativeSLT" title="Link to this definition"></a></dt>
+<dd><p>Performs a multiplicative Superlet Transform on time-series data.</p>
+<p>This function computes the multiplicative Superlet Transform by combining Morlet wavelets
+with increasing cycles, resulting in a super-resolution time-frequency representation.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>data_arr</strong> (<em>ndarray</em>) – Time-series data for analysis.</p></li>
+<li><p><strong>samplerate</strong> (<em>float</em>) – Sampling rate of the data in Hz.</p></li>
+<li><p><strong>scales</strong> (<em>ndarray</em>) – Array of scales for the wavelet transform.</p></li>
+<li><p><strong>order_max</strong> (<em>int</em>) – Maximum order of the superlet set.</p></li>
+<li><p><strong>order_min</strong> (<em>int</em><em>, </em><em>optional</em>) – Minimum order of the superlet set, default is 1.</p></li>
+<li><p><strong>c_1</strong> (<em>int</em><em>, </em><em>optional</em>) – Number of cycles for the base Morlet wavelet, default is 3.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>ndarray</strong></p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Result of the multiplicative Superlet Transform.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="QhX.algorithms.superlets.superlet.scale_from_period">
+<span class="sig-prename descclassname"><span class="pre">QhX.algorithms.superlets.superlet.</span></span><span class="sig-name descname"><span class="pre">scale_from_period</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">period</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/QhX/algorithms/superlets/superlet.html#scale_from_period"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#QhX.algorithms.superlets.superlet.scale_from_period" title="Link to this definition"></a></dt>
+<dd><p>Determines the scale corresponding to a given Fourier period using Morlet wavelet.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>(</strong><strong>float</strong><strong>)</strong> (<em>-period</em>) – </p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>float</strong></p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Scale corresponding to the given Fourier period.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="QhX.algorithms.superlets.superlet.superlet">
+<span class="sig-prename descclassname"><span class="pre">QhX.algorithms.superlets.superlet.</span></span><span class="sig-name descname"><span class="pre">superlet</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data_arr</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">samplerate</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">scales</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">order_max</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">order_min</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">c_1</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">3</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">adaptive</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/QhX/algorithms/superlets/superlet.html#superlet"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#QhX.algorithms.superlets.superlet.superlet" title="Link to this definition"></a></dt>
+<dd><p>Performs Superlet Transform (SLT) on time-series data.</p>
+<p>This function computes either a multiplicative SLT or a fractional adaptive SLT (FASLT),
+based on the ‘adaptive’ flag. Multiplicative SLT is recommended for analysis within a narrow
+frequency band, while FASLT is suitable for a broader range of frequencies. The transform
+combines multiple Morlet wavelets with varying cycles to achieve super-resolution in
+time-frequency analysis.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>data_arr</strong> (<em>ndarray</em>) – Uniformly sampled time-series data. The first dimension is treated as the time axis.</p></li>
+<li><p><strong>samplerate</strong> (<em>float</em>) – Sampling rate of the time-series data in Hz.</p></li>
+<li><p><strong>scales</strong> (<em>ndarray</em>) – Array of scales for the wavelet transform, ordered from high to low for <cite>adaptive=True</cite>.</p></li>
+<li><p><strong>order_max</strong> (<em>int</em>) – Maximum order for the superlet set, dictating the highest number of cycles.</p></li>
+<li><p><strong>order_min</strong> (<em>int</em><em>, </em><em>optional</em>) – Minimum order for the superlet set, default is 1.</p></li>
+<li><p><strong>c_1</strong> (<em>int</em><em>, </em><em>optional</em>) – Base number of cycles for the lowest-order Morlet wavelet, default is 3.</p></li>
+<li><p><strong>adaptive</strong> (<em>bool</em><em>, </em><em>optional</em>) – Flag to choose between multiplicative SLT and FASLT, default is False.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>ndarray</strong></p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Geometric mean of the complex time-frequency representation of the input data.</p>
+</dd>
+</dl>
+<p class="rubric">References</p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://www.nature.com/articles/s41467-020-20539-9">Moca, Vasile V., et al. 2021,Time-frequency super-resolution with superlets, Nat. Comm. 12.1, 1-18</a>.</p></li>
+</ul>
+</dd></dl>
+
+<p>This module provides a suite of functions for time-frequency analysis using superlet transforms. Functions include methods for generating test data, scaling from periods, performing the superlet transform, and other related utilities.</p>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="reg.html" class="btn btn-neutral float-left" title="reg" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="superlets.html" class="btn btn-neutral float-right" title="superlets" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2023, Andjelka Kovacevic.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+    <!-- Theme Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'G-XXXXXXXXXX', {
+          'anonymize_ip': false,
+      });
+    </script> 
+
+</body>
+</html>

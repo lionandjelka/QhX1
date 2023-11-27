@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>detection &mdash; QhX 0.1.0 documentation</title>
+      <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="_static/jquery.js?v=5d32c60e"></script>
+        <script src="_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script src="_static/documentation_options.js?v=01f34227"></script>
+        <script src="_static/doctools.js?v=888ff710"></script>
+        <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+        <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+        <script src="https://unpkg.com/@jupyter-widgets/html-manager@^0.20.0/dist/embed-amd.js"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="light_curve" href="light_curve.html" />
+    <link rel="prev" title="data_manager" href="data_manager.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search"  style="background: white" >
+
+          
+          
+          <a href="index.html" class="icon icon-home">
+            QhX
+          </a>
+              <div class="version">
+                0.1.0
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="introduction.html">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="installation.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="quick_start.html">Quick Start</a></li>
+<li class="toctree-l1"><a class="reference internal" href="examples.html">examples</a></li>
+<li class="toctree-l1"><a class="reference internal" href="calculation.html">calculation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="data_manager.html">data_manager</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">detection</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#QhX.detection.process1"><code class="docutils literal notranslate"><span class="pre">process1()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#QhX.detection.process1_new"><code class="docutils literal notranslate"><span class="pre">process1_new()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#QhX.detection.process1tiktok"><code class="docutils literal notranslate"><span class="pre">process1tiktok()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#QhX.detection.same_periods"><code class="docutils literal notranslate"><span class="pre">same_periods()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="light_curve.html">light_curve</a></li>
+<li class="toctree-l1"><a class="reference internal" href="output.html">output</a></li>
+<li class="toctree-l1"><a class="reference internal" href="reg.html">reg</a></li>
+<li class="toctree-l1"><a class="reference internal" href="superlet.html">superlet module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="superlets.html">superlets</a></li>
+<li class="toctree-l1"><a class="reference internal" href="correlation.html">correlation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="interactive_plt.html">interactive_plt</a></li>
+<li class="toctree-l1"><a class="reference internal" href="test_integrated.html">test_integrated</a></li>
+<li class="toctree-l1"><a class="reference internal" href="mock_lc.html">mock_lc</a></li>
+<li class="toctree-l1"><a class="reference internal" href="wwtz.html">wwtz</a></li>
+<li class="toctree-l1"><a class="reference internal" href="faq.html">Frequently Asked Questions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="license.html">License</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu"  style="background: white" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">QhX</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">detection</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="_sources/detection.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="module-QhX.detection">
+<span id="detection"></span><h1>detection<a class="headerlink" href="#module-QhX.detection" title="Link to this heading"></a></h1>
+<dl class="py function">
+<dt class="sig sig-object py" id="QhX.detection.process1">
+<span class="sig-prename descclassname"><span class="pre">QhX.detection.</span></span><span class="sig-name descname"><span class="pre">process1</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data_manager</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">set1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ntau</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ngrid</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">provided_minfq</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">provided_maxfq</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">include_errors</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/QhX/detection.html#process1"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#QhX.detection.process1" title="Link to this definition"></a></dt>
+<dd><p>Processes and analyzes data related to light curves of a single object to detect common periods across different light curves.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>set1</strong> (<em>int</em>) – Identifier representing the dataset to be processed.</p></li>
+<li><p><strong>ntau</strong> (<em>int</em><em>, </em><em>optional</em>) – Number of time delays in the wavelet analysis.</p></li>
+<li><p><strong>ngrid</strong> (<em>int</em><em>, </em><em>optional</em>) – Number of grid points in the wavelet analysis.</p></li>
+<li><p><strong>provided_minfq</strong> (<em>float</em><em>, </em><em>optional</em>) – Period corresponding to the Minimum frequency for analysis, default is calculated from data.</p></li>
+<li><p><strong>provided_maxfq</strong> (<em>float</em><em>, </em><em>optional</em>) – Period corresponding to the Maximum frequency for analysis, default is calculated from data.</p></li>
+<li><p><strong>include_errors</strong> (<em>bool</em><em>, </em><em>optional</em>) – Flag to include magnitude errors in analysis, defaults to True.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>An array containing common periods and related data across light curves. This includes information on the periods detected in multiple bands, their errors, and significance levels. The focus is on identifying periods that do not differ more than 10% when detected in different bands, with emphasis on numerical values of periods, errors, and significance for a baseline band for comparison.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>np.ndarray</p>
+</dd>
+</dl>
+<p class="rubric">Notes</p>
+<p>The function involves several steps:</p>
+<ul class="simple">
+<li><p>Verifying the existence of the dataset.</p></li>
+<li><p>Retrieving and processing light curve data from different bands.</p></li>
+<li><p>Applying hybrid wavelet techniques to each band’s data.</p></li>
+<li><p>Comparing periods detected in different bands to find common periods, ensuring they do not differ more than 10%.</p></li>
+<li><p>Compiling results into a structured format, including periods, errors, and significance for the baseline comparison band.</p></li>
+</ul>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="QhX.detection.process1_new">
+<span class="sig-prename descclassname"><span class="pre">QhX.detection.</span></span><span class="sig-name descname"><span class="pre">process1_new</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data_manager</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">set1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ntau</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ngrid</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">provided_minfq</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">provided_maxfq</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">include_errors</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/QhX/detection.html#process1_new"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#QhX.detection.process1_new" title="Link to this definition"></a></dt>
+<dd><p>Processes and analyzes light curve data from a single object to detect common periods across different bands.</p>
+<p>The process involves:</p>
+<ul class="simple">
+<li><p>Verifying the existence of the dataset.</p></li>
+<li><p>Retrieving and processing light curve data for different bands.</p></li>
+<li><p>Applying hybrid wavelet techniques to each band’s light curve data.</p></li>
+<li><p>Comparing periods detected in different bands to find common periods, if they do not differ more than 10%.</p></li>
+<li><p>Compiling the results, including period values, errors, and significance, into a structured format.</p></li>
+</ul>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>set1</strong> (<em>int</em>) – An identifier representing the dataset to be processed.</p></li>
+<li><p><strong>ntau</strong> (<em>int</em><em>, </em><em>optional</em>) – Number of time delays in the wavelet analysis.</p></li>
+<li><p><strong>ngrid</strong> (<em>int</em><em>, </em><em>optional</em>) – Number of grid points in the wavelet analysis.</p></li>
+<li><p><strong>provided_minfq</strong> (<em>float</em><em>, </em><em>optional</em>) – Period correspondig to the Minimum frequency for analysis, default is calculated from data.</p></li>
+<li><p><strong>provided_maxfq</strong> (<em>float</em><em>, </em><em>optional</em>) – Period corresponding to the Maximum frequency for analysis, default is calculated from data.</p></li>
+<li><p><strong>include_errors</strong> (<em>bool</em><em>, </em><em>optional</em>) – Include magnitude errors in analysis. Defaults to True.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p><ul class="simple">
+<li><p><em>A list of dictionaries representing the results of the analysis performed on light curve data. Each dictionary contains</em> –</p>
+<ul>
+<li><p>objectid (int): Identifier of the object ID.</p></li>
+<li><p>sampling_i (float): Mean sampling rate in the first band of the pair where a common period is detected.</p></li>
+<li><p>sampling_j (float): Mean sampling rate in the second band in the pair.</p></li>
+<li><p>period (float): Detected common period between the two bands. NaN if no period is detected.</p></li>
+<li><p>upper_error (float): Upper error of the detected period. NaN if no period is detected.</p></li>
+<li><p>lower_error (float): Lower error of the detected period. NaN if no period is detected.</p></li>
+<li><p>significance (float): Measure of the statistical significance of the detected period. NaN if no period is detected.</p></li>
+<li><p>label (str): Label identifying the pair of bands where the period was detected (e.g., ‘0-1’, ‘1-2’).</p></li>
+</ul>
+</li>
+<li><p><em>Example Usage</em></p></li>
+<li><p><em>————-</em></p></li>
+<li><p><em># results = process1_new(data_manager, ‘1384142’, ntau=80, ngrid=800, provided_minfq=2000, provided_maxfq=10, include_errors=False)</em></p></li>
+<li><p><em># df = pd.DataFrame(results)</em></p></li>
+<li><p><em># df.to_csv(‘light_curve_analysis.csv’, index=False)</em></p></li>
+</ul>
+</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="QhX.detection.process1tiktok">
+<span class="sig-prename descclassname"><span class="pre">QhX.detection.</span></span><span class="sig-name descname"><span class="pre">process1tiktok</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data_manager</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">set1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">initial_period</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">damping_factor_amplitude</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">damping_factor_frequency</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">snr</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">inject_signal</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ntau</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ngrid</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">minfq</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">maxfq</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/QhX/detection.html#process1tiktok"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#QhX.detection.process1tiktok" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="QhX.detection.same_periods">
+<span class="sig-prename descclassname"><span class="pre">QhX.detection.</span></span><span class="sig-name descname"><span class="pre">same_periods</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">r_periods0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">r_periods1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">up0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">low0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">up1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">low1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">peaks0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">hh0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">tt0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">yy0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">peaks1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">hh1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">tt1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">yy1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ntau</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ngrid</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">minfq</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">maxfq</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/QhX/detection.html#same_periods"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#QhX.detection.same_periods" title="Link to this definition"></a></dt>
+<dd><p>Analyzes and identifies common periods between two sets of light curve data,
+assessing their consistency and statistical significance based on a relative tolerance.
+Compares detected periods from two different light curve datasets to identify periods
+consistently observed in both, using a specified relative tolerance level for similarity judgment.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>r_periods0</strong> (<em>list</em>) – Arrays of detected periods from the first light curve dataset.</p></li>
+<li><p><strong>r_periods1</strong> (<em>list</em>) – Arrays of detected periods from the second light curve dataset.</p></li>
+<li><p><strong>up0</strong> (<em>list</em>) – Arrays of upper error bounds for detected periods in the first dataset.</p></li>
+<li><p><strong>low0</strong> (<em>list</em>) – Arrays of lower error bounds for detected periods in the first dataset.</p></li>
+<li><p><strong>up1</strong> (<em>list</em>) – Arrays of upper error bounds for detected periods in the second dataset.</p></li>
+<li><p><strong>low1</strong> (<em>list</em>) – Arrays of lower error bounds for detected periods in the second dataset.</p></li>
+<li><p><strong>peaks0</strong> (<em>list</em>) – Supplementary data including peak information, correlation matrices, and time and magnitude arrays for the first dataset.</p></li>
+<li><p><strong>hh0</strong> (<em>list</em>) – Supplementary data including peak information, correlation matrices, and time and magnitude arrays for the first dataset.</p></li>
+<li><p><strong>tt0</strong> (<em>list</em>) – Supplementary data including peak information, correlation matrices, and time and magnitude arrays for the first dataset.</p></li>
+<li><p><strong>yy0</strong> (<em>list</em>) – Supplementary data including peak information, correlation matrices, and time and magnitude arrays for the first dataset.</p></li>
+<li><p><strong>peaks1</strong> (<em>list</em>) – Supplementary data including peak information, correlation matrices, and time and magnitude arrays for the second dataset.</p></li>
+<li><p><strong>hh1</strong> (<em>list</em>) – Supplementary data including peak information, correlation matrices, and time and magnitude arrays for the second dataset.</p></li>
+<li><p><strong>tt1</strong> (<em>list</em>) – Supplementary data including peak information, correlation matrices, and time and magnitude arrays for the second dataset.</p></li>
+<li><p><strong>yy1</strong> (<em>list</em>) – Supplementary data including peak information, correlation matrices, and time and magnitude arrays for the second dataset.</p></li>
+<li><p><strong>ntau</strong> (<em>int</em>) – Number of time divisions for wavelet analysis.</p></li>
+<li><p><strong>ngrid</strong> (<em>int</em>) – Grid size (frequency resolution) for the analysis.</p></li>
+<li><p><strong>minfq</strong> (<em>float</em>) – Minimum frequency for the analysis.</p></li>
+<li><p><strong>maxfq</strong> (<em>float</em>) – Maximum frequency for the analysis.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p><ul class="simple">
+<li><p>r_periods_common (np.ndarray): Detected periods common to both datasets, determined within a 10% relative tolerance.</p></li>
+<li><p>up_common, low_common (np.ndarray): Upper and lower error bounds for these common periods, indicating uncertainty ranges.</p></li>
+<li><p>sig_common (np.ndarray): Significance values for each common period, assessed against shuffled data.</p></li>
+</ul>
+</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>A tuple containing arrays of common periods and their associated statistical data</p>
+</dd>
+</dl>
+<p class="rubric">Notes</p>
+<p>The function compares each period in one dataset against periods in the other dataset, using a relative tolerance of 10%.
+This tolerance level allows for minor variations in period detection between datasets. The significance of each common period
+is evaluated to determine if it is an intrinsic feature of the astronomical object or a result of random fluctuations.</p>
+</dd></dl>
+
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="data_manager.html" class="btn btn-neutral float-left" title="data_manager" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="light_curve.html" class="btn btn-neutral float-right" title="light_curve" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2023, Andjelka Kovacevic.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+    <!-- Theme Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'G-XXXXXXXXXX', {
+          'anonymize_ip': false,
+      });
+    </script> 
+
+</body>
+</html>

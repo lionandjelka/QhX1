@@ -1,0 +1,476 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>QhX.detection &mdash; QhX 0.1.0 documentation</title>
+      <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="../../_static/jquery.js?v=5d32c60e"></script>
+        <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script src="../../_static/documentation_options.js?v=01f34227"></script>
+        <script src="../../_static/doctools.js?v=888ff710"></script>
+        <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+        <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+        <script src="https://unpkg.com/@jupyter-widgets/html-manager@^0.20.0/dist/embed-amd.js"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search"  style="background: white" >
+
+          
+          
+          <a href="../../index.html" class="icon icon-home">
+            QhX
+          </a>
+              <div class="version">
+                0.1.0
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../introduction.html">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../installation.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../quick_start.html">Quick Start</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../examples.html">examples</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../calculation.html">calculation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../data_manager.html">data_manager</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../detection.html">detection</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../light_curve.html">light_curve</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../output.html">output</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../reg.html">reg</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../superlet.html">superlet module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../superlets.html">superlets</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../correlation.html">correlation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../interactive_plt.html">interactive_plt</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../test_integrated.html">test_integrated</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../mock_lc.html">mock_lc</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../wwtz.html">wwtz</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../faq.html">Frequently Asked Questions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../license.html">License</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu"  style="background: white" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">QhX</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../index.html">Module code</a></li>
+      <li class="breadcrumb-item active">QhX.detection</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <h1>Source code for QhX.detection</h1><div class="highlight"><pre>
+<span></span><span class="c1"># detection.py</span>
+
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">from</span> <span class="nn">QhX.light_curve</span> <span class="kn">import</span> <span class="n">get_lctiktok</span><span class="p">,</span> <span class="n">get_lc22</span>
+<span class="c1"># Ensure to import or define other necessary functions like hybrid2d, periods, same_periods, etc.</span>
+<span class="kn">from</span> <span class="nn">QhX.algorithms.wavelets.wwtz</span> <span class="kn">import</span> <span class="o">*</span>
+<span class="kn">from</span> <span class="nn">QhX.calculation</span> <span class="kn">import</span> <span class="o">*</span>
+
+
+
+<span class="c1">#from QhX.algorithms.wavelets.wwt import estimate_wavelet_periods</span>
+
+<div class="viewcode-block" id="process1tiktok">
+<a class="viewcode-back" href="../../detection.html#QhX.detection.process1tiktok">[docs]</a>
+<span class="k">def</span> <span class="nf">process1tiktok</span><span class="p">(</span><span class="n">data_manager</span><span class="p">,</span><span class="n">set1</span><span class="p">,</span> <span class="n">initial_period</span><span class="p">,</span> <span class="n">damping_factor_amplitude</span><span class="p">,</span> <span class="n">damping_factor_frequency</span><span class="p">,</span> <span class="n">snr</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">inject_signal</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">ntau</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">ngrid</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">minfq</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">maxfq</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+    <span class="k">if</span> <span class="n">set1</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">data_manager</span><span class="o">.</span><span class="n">fs_gp</span><span class="o">.</span><span class="n">groups</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Set ID </span><span class="si">{</span><span class="n">set1</span><span class="si">}</span><span class="s2"> not found.&quot;</span><span class="p">)</span>
+        <span class="k">return</span> <span class="kc">None</span>
+
+    <span class="n">det_periods</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="n">tt0</span><span class="p">,</span> <span class="n">yy0</span><span class="p">,</span> <span class="n">tt1</span><span class="p">,</span> <span class="n">yy1</span><span class="p">,</span> <span class="n">tt2</span><span class="p">,</span> <span class="n">yy2</span><span class="p">,</span> <span class="n">tt3</span><span class="p">,</span> <span class="n">yy3</span><span class="p">,</span> <span class="n">sampling0</span><span class="p">,</span> <span class="n">sampling1</span><span class="p">,</span> <span class="n">sampling2</span><span class="p">,</span> <span class="n">sampling3</span><span class="p">,</span> <span class="n">tik0</span><span class="p">,</span> <span class="n">tik1</span><span class="p">,</span> <span class="n">tik2</span><span class="p">,</span> <span class="n">tik3</span> <span class="o">=</span> <span class="n">get_lctiktok</span><span class="p">(</span><span class="n">data_manager</span><span class="p">,</span><span class="n">set1</span><span class="p">,</span> <span class="n">initial_period</span><span class="p">,</span> <span class="n">damping_factor_amplitude</span><span class="p">,</span> <span class="n">damping_factor_frequency</span><span class="p">,</span> <span class="n">snr</span><span class="p">,</span> <span class="n">inject_signal</span><span class="p">)</span>
+    <span class="n">wwz_matrx0</span><span class="p">,</span> <span class="n">corr0</span><span class="p">,</span> <span class="n">extent0</span> <span class="o">=</span> <span class="n">hybrid2d</span><span class="p">(</span><span class="n">tt0</span><span class="p">,</span> <span class="n">yy0</span><span class="p">,</span> <span class="mi">120</span><span class="p">,</span> <span class="mi">3200</span><span class="p">,</span> <span class="n">minfq</span><span class="o">=</span><span class="mf">1500.</span><span class="p">,</span> <span class="n">maxfq</span><span class="o">=</span><span class="mf">10.</span><span class="p">)</span>
+    <span class="n">peaks0</span><span class="p">,</span> <span class="n">hh0</span><span class="p">,</span> <span class="n">r_periods0</span><span class="p">,</span> <span class="n">up0</span><span class="p">,</span> <span class="n">low0</span> <span class="o">=</span> <span class="n">periods</span><span class="p">(</span><span class="nb">int</span><span class="p">(</span><span class="n">set1</span><span class="p">),</span> <span class="n">corr0</span><span class="p">,</span> <span class="mi">3200</span><span class="p">,</span> <span class="n">plot</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+    <span class="n">wwzmatrx1</span><span class="p">,</span> <span class="n">corr1</span><span class="p">,</span> <span class="n">extent1</span> <span class="o">=</span> <span class="n">hybrid2d</span><span class="p">(</span><span class="n">tt1</span><span class="p">,</span> <span class="n">yy1</span><span class="p">,</span> <span class="mi">120</span><span class="p">,</span> <span class="mi">3200</span><span class="p">,</span> <span class="n">minfq</span><span class="o">=</span><span class="mf">1500.</span><span class="p">,</span> <span class="n">maxfq</span><span class="o">=</span><span class="mf">10.</span><span class="p">)</span>
+    <span class="n">peaks1</span><span class="p">,</span> <span class="n">hh1</span><span class="p">,</span> <span class="n">r_periods1</span><span class="p">,</span> <span class="n">up1</span><span class="p">,</span> <span class="n">low1</span> <span class="o">=</span> <span class="n">periods</span><span class="p">(</span><span class="nb">int</span><span class="p">(</span><span class="n">set1</span><span class="p">),</span> <span class="n">corr1</span><span class="p">,</span> <span class="mi">3200</span><span class="p">,</span> <span class="n">plot</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+    <span class="n">wwz_matrx2</span><span class="p">,</span> <span class="n">corr2</span><span class="p">,</span> <span class="n">extent2</span> <span class="o">=</span> <span class="n">hybrid2d</span><span class="p">(</span><span class="n">tt2</span><span class="p">,</span> <span class="n">yy2</span><span class="p">,</span> <span class="mi">120</span><span class="p">,</span> <span class="mi">3200</span><span class="p">,</span> <span class="n">minfq</span><span class="o">=</span><span class="mf">1500.</span><span class="p">,</span> <span class="n">maxfq</span><span class="o">=</span><span class="mf">10.</span><span class="p">)</span>
+    <span class="n">peaks2</span><span class="p">,</span> <span class="n">hh2</span><span class="p">,</span> <span class="n">r_periods2</span><span class="p">,</span> <span class="n">up2</span><span class="p">,</span> <span class="n">low2</span> <span class="o">=</span> <span class="n">periods</span><span class="p">(</span><span class="nb">int</span><span class="p">(</span><span class="n">set1</span><span class="p">),</span> <span class="n">corr2</span><span class="p">,</span> <span class="mi">3200</span><span class="p">,</span> <span class="n">plot</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+    <span class="n">wwzmatrx3</span><span class="p">,</span> <span class="n">corr3</span><span class="p">,</span> <span class="n">extent3</span> <span class="o">=</span> <span class="n">hybrid2d</span><span class="p">(</span><span class="n">tt3</span><span class="p">,</span> <span class="n">yy3</span><span class="p">,</span> <span class="mi">120</span><span class="p">,</span> <span class="mi">3200</span><span class="p">,</span> <span class="n">minfq</span><span class="o">=</span><span class="mf">1500.</span><span class="p">,</span> <span class="n">maxfq</span><span class="o">=</span><span class="mf">10.</span><span class="p">)</span>
+    <span class="n">peaks3</span><span class="p">,</span> <span class="n">hh3</span><span class="p">,</span> <span class="n">r_periods3</span><span class="p">,</span> <span class="n">up3</span><span class="p">,</span> <span class="n">low3</span> <span class="o">=</span> <span class="n">periods</span><span class="p">(</span><span class="nb">int</span><span class="p">(</span><span class="n">set1</span><span class="p">),</span> <span class="n">corr3</span><span class="p">,</span> <span class="mi">3200</span><span class="p">,</span> <span class="n">plot</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+    <span class="n">r_periods01</span><span class="p">,</span> <span class="n">u01</span><span class="p">,</span> <span class="n">low01</span><span class="p">,</span> <span class="n">sig01</span> <span class="o">=</span> <span class="n">same_periods</span><span class="p">(</span><span class="n">r_periods0</span><span class="p">,</span> <span class="n">r_periods1</span><span class="p">,</span> <span class="n">up0</span><span class="p">,</span> <span class="n">low0</span><span class="p">,</span> <span class="n">up1</span><span class="p">,</span> <span class="n">low1</span><span class="p">,</span> <span class="n">peaks0</span><span class="p">,</span> <span class="n">hh0</span><span class="p">,</span> <span class="n">tt0</span><span class="p">,</span> <span class="n">yy0</span><span class="p">,</span> <span class="n">peaks1</span><span class="p">,</span> <span class="n">hh1</span><span class="p">,</span> <span class="n">tt1</span><span class="p">,</span> <span class="n">yy1</span><span class="p">,</span> <span class="n">ntau</span><span class="o">=</span><span class="n">ntau</span><span class="p">,</span> <span class="n">ngrid</span><span class="o">=</span><span class="n">ngrid</span><span class="p">,</span> <span class="n">minfq</span><span class="o">=</span><span class="n">minfq</span><span class="p">,</span> <span class="n">maxfq</span><span class="o">=</span><span class="n">maxfq</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">set1</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">r_periods01</span><span class="o">.</span><span class="n">size</span> <span class="o">&gt;</span> <span class="mi">0</span> <span class="ow">and</span> <span class="n">u01</span><span class="o">.</span><span class="n">size</span> <span class="o">&gt;</span> <span class="mi">0</span> <span class="ow">and</span> <span class="n">low01</span><span class="o">.</span><span class="n">size</span> <span class="o">&gt;</span> <span class="mi">0</span> <span class="ow">and</span> <span class="n">sig01</span><span class="o">.</span><span class="n">size</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span> 
+        <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">r_periods01</span><span class="o">.</span><span class="n">ravel</span><span class="p">())):</span>
+            <span class="n">det_periods</span><span class="o">.</span><span class="n">append</span><span class="p">([</span><span class="nb">int</span><span class="p">(</span><span class="n">set1</span><span class="p">),</span> <span class="n">sampling0</span><span class="p">,</span> <span class="n">sampling1</span><span class="p">,</span> <span class="n">r_periods01</span><span class="p">[</span><span class="n">j</span><span class="p">],</span> <span class="n">u01</span><span class="p">[</span><span class="n">j</span><span class="p">],</span> <span class="n">low01</span><span class="p">[</span><span class="n">j</span><span class="p">],</span> <span class="n">sig01</span><span class="p">[</span><span class="n">j</span><span class="p">],</span> <span class="mi">12</span><span class="p">])</span>
+    <span class="k">elif</span> <span class="n">r_periods01</span><span class="o">.</span><span class="n">size</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+        <span class="n">det_periods</span><span class="o">.</span><span class="n">append</span><span class="p">([</span><span class="nb">int</span><span class="p">(</span><span class="n">set1</span><span class="p">),</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">12</span><span class="p">])</span>
+   
+    <span class="n">r_periods02</span><span class="p">,</span> <span class="n">u02</span><span class="p">,</span> <span class="n">low02</span><span class="p">,</span> <span class="n">sig02</span> <span class="o">=</span> <span class="n">same_periods</span><span class="p">(</span><span class="n">r_periods0</span><span class="p">,</span> <span class="n">r_periods2</span><span class="p">,</span> <span class="n">up0</span><span class="p">,</span> <span class="n">low0</span><span class="p">,</span> <span class="n">up2</span><span class="p">,</span> <span class="n">low2</span><span class="p">,</span> <span class="n">peaks0</span><span class="p">,</span> <span class="n">hh0</span><span class="p">,</span> <span class="n">tt0</span><span class="p">,</span> <span class="n">yy0</span><span class="p">,</span> <span class="n">peaks2</span><span class="p">,</span> <span class="n">hh2</span><span class="p">,</span> <span class="n">tt2</span><span class="p">,</span> <span class="n">yy2</span><span class="p">,</span> <span class="n">ntau</span><span class="o">=</span><span class="n">ntau</span><span class="p">,</span> <span class="n">ngrid</span><span class="o">=</span><span class="n">ngrid</span><span class="p">,</span> <span class="n">minfq</span><span class="o">=</span><span class="n">minfq</span><span class="p">,</span> <span class="n">maxfq</span><span class="o">=</span><span class="n">maxfq</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">r_periods02</span><span class="o">.</span><span class="n">size</span> <span class="o">&gt;</span> <span class="mi">0</span> <span class="ow">and</span> <span class="n">u02</span><span class="o">.</span><span class="n">size</span> <span class="o">&gt;</span> <span class="mi">0</span> <span class="ow">and</span> <span class="n">low02</span><span class="o">.</span><span class="n">size</span> <span class="o">&gt;</span> <span class="mi">0</span> <span class="ow">and</span> <span class="n">sig02</span><span class="o">.</span><span class="n">size</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
+        <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">r_periods02</span><span class="o">.</span><span class="n">ravel</span><span class="p">())):</span>
+            <span class="n">det_periods</span><span class="o">.</span><span class="n">append</span><span class="p">([</span><span class="nb">int</span><span class="p">(</span><span class="n">set1</span><span class="p">),</span> <span class="n">sampling0</span><span class="p">,</span> <span class="n">sampling2</span><span class="p">,</span> <span class="n">r_periods02</span><span class="p">[</span><span class="n">j</span><span class="p">],</span> <span class="n">u02</span><span class="p">[</span><span class="n">j</span><span class="p">],</span> <span class="n">low02</span><span class="p">[</span><span class="n">j</span><span class="p">],</span> <span class="n">sig02</span><span class="p">[</span><span class="n">j</span><span class="p">],</span> <span class="mi">13</span><span class="p">])</span>
+    <span class="k">elif</span> <span class="n">r_periods02</span><span class="o">.</span><span class="n">size</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+        <span class="n">det_periods</span><span class="o">.</span><span class="n">append</span><span class="p">([</span><span class="nb">int</span><span class="p">(</span><span class="n">set1</span><span class="p">),</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">13</span><span class="p">])</span>
+    <span class="n">r_periods03</span><span class="p">,</span> <span class="n">u03</span><span class="p">,</span> <span class="n">low03</span><span class="p">,</span> <span class="n">sig03</span> <span class="o">=</span> <span class="n">same_periods</span><span class="p">(</span><span class="n">r_periods0</span><span class="p">,</span> <span class="n">r_periods3</span><span class="p">,</span> <span class="n">up0</span><span class="p">,</span> <span class="n">low0</span><span class="p">,</span> <span class="n">up3</span><span class="p">,</span> <span class="n">low3</span><span class="p">,</span> <span class="n">peaks0</span><span class="p">,</span> <span class="n">hh0</span><span class="p">,</span> <span class="n">tt0</span><span class="p">,</span> <span class="n">yy0</span><span class="p">,</span> <span class="n">peaks3</span><span class="p">,</span> <span class="n">hh3</span><span class="p">,</span> <span class="n">tt3</span><span class="p">,</span> <span class="n">yy3</span><span class="p">,</span> <span class="n">ntau</span><span class="o">=</span><span class="n">ntau</span><span class="p">,</span> <span class="n">ngrid</span><span class="o">=</span><span class="n">ngrid</span><span class="p">,</span> <span class="n">minfq</span><span class="o">=</span><span class="n">minfq</span><span class="p">,</span> <span class="n">maxfq</span><span class="o">=</span><span class="n">maxfq</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">r_periods03</span><span class="o">.</span><span class="n">size</span> <span class="o">&gt;</span> <span class="mi">0</span> <span class="ow">and</span> <span class="n">u03</span><span class="o">.</span><span class="n">size</span> <span class="o">&gt;</span> <span class="mi">0</span> <span class="ow">and</span> <span class="n">low03</span><span class="o">.</span><span class="n">size</span> <span class="o">&gt;</span> <span class="mi">0</span> <span class="ow">and</span> <span class="n">sig03</span><span class="o">.</span><span class="n">size</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
+        <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">r_periods03</span><span class="o">.</span><span class="n">ravel</span><span class="p">())):</span>
+            <span class="n">det_periods</span><span class="o">.</span><span class="n">append</span><span class="p">([</span><span class="nb">int</span><span class="p">(</span><span class="n">set1</span><span class="p">),</span> <span class="n">sampling0</span><span class="p">,</span> <span class="n">sampling3</span><span class="p">,</span> <span class="n">r_periods03</span><span class="p">[</span><span class="n">j</span><span class="p">],</span> <span class="n">u03</span><span class="p">[</span><span class="n">j</span><span class="p">],</span> <span class="n">low03</span><span class="p">[</span><span class="n">j</span><span class="p">],</span> <span class="n">sig03</span><span class="p">[</span><span class="n">j</span><span class="p">],</span> <span class="mi">14</span><span class="p">])</span> 
+    <span class="k">elif</span> <span class="n">r_periods03</span><span class="o">.</span><span class="n">size</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+        <span class="n">det_periods</span><span class="o">.</span><span class="n">append</span><span class="p">([</span><span class="nb">int</span><span class="p">(</span><span class="n">set1</span><span class="p">),</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">14</span><span class="p">])</span>
+    <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">det_periods</span><span class="p">)</span></div>
+
+
+
+
+<div class="viewcode-block" id="process1_new">
+<a class="viewcode-back" href="../../detection.html#QhX.detection.process1_new">[docs]</a>
+<span class="k">def</span> <span class="nf">process1_new</span><span class="p">(</span><span class="n">data_manager</span><span class="p">,</span> <span class="n">set1</span><span class="p">,</span> <span class="n">ntau</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">ngrid</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">provided_minfq</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">provided_maxfq</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">include_errors</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Processes and analyzes light curve data from a single object to detect common periods across different bands.</span>
+
+<span class="sd">    The process involves:</span>
+<span class="sd">    </span>
+<span class="sd">    - Verifying the existence of the dataset.</span>
+<span class="sd">    - Retrieving and processing light curve data for different bands.</span>
+<span class="sd">    - Applying hybrid wavelet techniques to each band&#39;s light curve data.</span>
+<span class="sd">    - Comparing periods detected in different bands to find common periods, if they do not differ more than 10%.</span>
+<span class="sd">    - Compiling the results, including period values, errors, and significance, into a structured format.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    set1 : int</span>
+<span class="sd">        An identifier representing the dataset to be processed.</span>
+<span class="sd">    ntau : int, optional</span>
+<span class="sd">        Number of time delays in the wavelet analysis.</span>
+<span class="sd">    ngrid : int, optional</span>
+<span class="sd">        Number of grid points in the wavelet analysis.</span>
+<span class="sd">    provided_minfq : float, optional</span>
+<span class="sd">        Period correspondig to the Minimum frequency for analysis, default is calculated from data.</span>
+<span class="sd">    provided_maxfq : float, optional</span>
+<span class="sd">        Period corresponding to the Maximum frequency for analysis, default is calculated from data.</span>
+<span class="sd">    include_errors : bool, optional</span>
+<span class="sd">        Include magnitude errors in analysis. Defaults to True.</span>
+<span class="sd"> </span>
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    A list of dictionaries representing the results of the analysis performed on light curve data. Each dictionary contains:</span>
+<span class="sd">    </span>
+<span class="sd">        - objectid (int): Identifier of the object ID.</span>
+<span class="sd">        - sampling_i (float): Mean sampling rate in the first band of the pair where a common period is detected.</span>
+<span class="sd">        - sampling_j (float): Mean sampling rate in the second band in the pair.</span>
+<span class="sd">        - period (float): Detected common period between the two bands. NaN if no period is detected.</span>
+<span class="sd">        - upper_error (float): Upper error of the detected period. NaN if no period is detected.</span>
+<span class="sd">        - lower_error (float): Lower error of the detected period. NaN if no period is detected.</span>
+<span class="sd">        - significance (float): Measure of the statistical significance of the detected period. NaN if no period is detected.</span>
+<span class="sd">        - label (str): Label identifying the pair of bands where the period was detected (e.g., &#39;0-1&#39;, &#39;1-2&#39;).</span>
+
+<span class="sd">    Example Usage</span>
+<span class="sd">    -------------</span>
+<span class="sd">    # results = process1_new(data_manager, &#39;1384142&#39;, ntau=80, ngrid=800, provided_minfq=2000, provided_maxfq=10, include_errors=False)</span>
+<span class="sd">    # df = pd.DataFrame(results)</span>
+<span class="sd">    # df.to_csv(&#39;light_curve_analysis.csv&#39;, index=False)</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    
+    <span class="k">if</span> <span class="n">set1</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">data_manager</span><span class="o">.</span><span class="n">fs_gp</span><span class="o">.</span><span class="n">groups</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Set ID </span><span class="si">{</span><span class="n">set1</span><span class="si">}</span><span class="s2"> not found.&quot;</span><span class="p">)</span>
+        <span class="k">return</span> <span class="kc">None</span>
+
+    <span class="n">light_curves_data</span> <span class="o">=</span> <span class="n">get_lc22</span><span class="p">(</span><span class="n">data_manager</span><span class="p">,</span> <span class="n">set1</span><span class="p">,</span> <span class="n">include_errors</span><span class="p">)</span>
+    <span class="k">if</span> <span class="nb">any</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">data</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span> <span class="k">for</span> <span class="n">data</span> <span class="ow">in</span> <span class="n">light_curves_data</span> <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">)):</span>
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Insufficient data for set ID </span><span class="si">{</span><span class="n">set1</span><span class="si">}</span><span class="s2">.&quot;</span><span class="p">)</span>
+        <span class="k">return</span> <span class="kc">None</span>
+
+    <span class="n">tt0</span><span class="p">,</span> <span class="n">yy0</span><span class="p">,</span> <span class="n">tt1</span><span class="p">,</span> <span class="n">yy1</span><span class="p">,</span> <span class="n">tt2</span><span class="p">,</span> <span class="n">yy2</span><span class="p">,</span> <span class="n">tt3</span><span class="p">,</span> <span class="n">yy3</span><span class="p">,</span> <span class="n">sampling0</span><span class="p">,</span> <span class="n">sampling1</span><span class="p">,</span> <span class="n">sampling2</span><span class="p">,</span> <span class="n">sampling3</span> <span class="o">=</span> <span class="n">light_curves_data</span>
+    <span class="n">results</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="k">for</span> <span class="n">tt</span><span class="p">,</span> <span class="n">yy</span> <span class="ow">in</span> <span class="p">[(</span><span class="n">tt0</span><span class="p">,</span> <span class="n">yy0</span><span class="p">),</span> <span class="p">(</span><span class="n">tt1</span><span class="p">,</span> <span class="n">yy1</span><span class="p">),</span> <span class="p">(</span><span class="n">tt2</span><span class="p">,</span> <span class="n">yy2</span><span class="p">),</span> <span class="p">(</span><span class="n">tt3</span><span class="p">,</span> <span class="n">yy3</span><span class="p">)]:</span>
+        <span class="n">wwz_matrix</span><span class="p">,</span> <span class="n">corr</span><span class="p">,</span> <span class="n">extent</span> <span class="o">=</span> <span class="n">hybrid2d</span><span class="p">(</span><span class="n">tt</span><span class="p">,</span> <span class="n">yy</span><span class="p">,</span> <span class="n">ntau</span><span class="o">=</span><span class="n">ntau</span><span class="p">,</span> <span class="n">ngrid</span><span class="o">=</span><span class="n">ngrid</span><span class="p">,</span> <span class="n">minfq</span><span class="o">=</span><span class="n">provided_minfq</span><span class="p">,</span> <span class="n">maxfq</span><span class="o">=</span><span class="n">provided_maxfq</span><span class="p">)</span>
+        <span class="n">peaks</span><span class="p">,</span> <span class="n">hh</span><span class="p">,</span> <span class="n">r_periods</span><span class="p">,</span> <span class="n">up</span><span class="p">,</span> <span class="n">low</span> <span class="o">=</span> <span class="n">periods</span><span class="p">(</span><span class="n">set1</span><span class="p">,</span> <span class="n">corr</span><span class="p">,</span> <span class="n">ngrid</span><span class="o">=</span><span class="n">ngrid</span><span class="p">,</span> <span class="n">plot</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">minfq</span><span class="o">=</span><span class="n">provided_minfq</span><span class="p">,</span> <span class="n">maxfq</span><span class="o">=</span><span class="n">provided_maxfq</span><span class="p">)</span>
+        <span class="n">results</span><span class="o">.</span><span class="n">append</span><span class="p">((</span><span class="n">r_periods</span><span class="p">,</span> <span class="n">up</span><span class="p">,</span> <span class="n">low</span><span class="p">,</span> <span class="n">peaks</span><span class="p">,</span> <span class="n">hh</span><span class="p">))</span>
+
+    <span class="n">sampling_rates</span> <span class="o">=</span> <span class="p">[</span><span class="n">sampling0</span><span class="p">,</span> <span class="n">sampling1</span><span class="p">,</span> <span class="n">sampling2</span><span class="p">,</span> <span class="n">sampling3</span><span class="p">]</span>
+    <span class="n">light_curve_labels</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;0&#39;</span><span class="p">,</span> <span class="s1">&#39;1&#39;</span><span class="p">,</span> <span class="s1">&#39;2&#39;</span><span class="p">,</span> <span class="s1">&#39;3&#39;</span><span class="p">]</span>
+
+    <span class="n">det_periods</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">results</span><span class="p">)):</span>
+        <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">i</span> <span class="o">+</span> <span class="mi">1</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">results</span><span class="p">)):</span>
+            <span class="n">r_periods_i</span><span class="p">,</span> <span class="n">up_i</span><span class="p">,</span> <span class="n">low_i</span><span class="p">,</span> <span class="n">peaks_i</span><span class="p">,</span> <span class="n">hh_i</span> <span class="o">=</span> <span class="n">results</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
+            <span class="n">r_periods_j</span><span class="p">,</span> <span class="n">up_j</span><span class="p">,</span> <span class="n">low_j</span><span class="p">,</span> <span class="n">peaks_j</span><span class="p">,</span> <span class="n">hh_j</span> <span class="o">=</span> <span class="n">results</span><span class="p">[</span><span class="n">j</span><span class="p">]</span>
+
+            <span class="n">r_periods_common</span><span class="p">,</span> <span class="n">u_common</span><span class="p">,</span> <span class="n">low_common</span><span class="p">,</span> <span class="n">sig_common</span> <span class="o">=</span> <span class="n">same_periods</span><span class="p">(</span>
+                <span class="n">r_periods_i</span><span class="p">,</span> <span class="n">r_periods_j</span><span class="p">,</span> <span class="n">up_i</span><span class="p">,</span> <span class="n">low_i</span><span class="p">,</span> <span class="n">up_j</span><span class="p">,</span> <span class="n">low_j</span><span class="p">,</span> <span class="n">peaks_i</span><span class="p">,</span> <span class="n">hh_i</span><span class="p">,</span> <span class="n">tt0</span><span class="p">,</span> <span class="n">yy0</span><span class="p">,</span> <span class="n">peaks_j</span><span class="p">,</span> <span class="n">hh_j</span><span class="p">,</span> <span class="n">tt1</span><span class="p">,</span> <span class="n">yy1</span><span class="p">,</span>
+                <span class="n">ntau</span><span class="o">=</span><span class="n">ntau</span><span class="p">,</span> <span class="n">ngrid</span><span class="o">=</span><span class="n">ngrid</span><span class="p">,</span> <span class="n">minfq</span><span class="o">=</span><span class="n">provided_minfq</span><span class="p">,</span> <span class="n">maxfq</span><span class="o">=</span><span class="n">provided_maxfq</span>
+            <span class="p">)</span>
+
+            <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">r_periods_common</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+                <span class="n">det_periods</span><span class="o">.</span><span class="n">append</span><span class="p">({</span>
+                    <span class="s2">&quot;objectid&quot;</span><span class="p">:</span> <span class="n">set1</span><span class="p">,</span>
+                    <span class="s2">&quot;sampling_i&quot;</span><span class="p">:</span> <span class="n">sampling_rates</span><span class="p">[</span><span class="n">i</span><span class="p">],</span>
+                    <span class="s2">&quot;sampling_j&quot;</span><span class="p">:</span> <span class="n">sampling_rates</span><span class="p">[</span><span class="n">j</span><span class="p">],</span>
+                    <span class="s2">&quot;period&quot;</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">nan</span><span class="p">,</span>
+                    <span class="s2">&quot;upper_error&quot;</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">nan</span><span class="p">,</span>
+                    <span class="s2">&quot;lower_error&quot;</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">nan</span><span class="p">,</span>
+                    <span class="s2">&quot;significance&quot;</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">nan</span><span class="p">,</span>
+                    <span class="s2">&quot;label&quot;</span><span class="p">:</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">light_curve_labels</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="si">}</span><span class="s2">-</span><span class="si">{</span><span class="n">light_curve_labels</span><span class="p">[</span><span class="n">j</span><span class="p">]</span><span class="si">}</span><span class="s2">&quot;</span>
+                <span class="p">})</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">r_periods_common</span><span class="p">)):</span>
+                    <span class="n">det_periods</span><span class="o">.</span><span class="n">append</span><span class="p">({</span>
+                        <span class="s2">&quot;objectid&quot;</span><span class="p">:</span> <span class="n">set1</span><span class="p">,</span>
+                        <span class="s2">&quot;sampling_i&quot;</span><span class="p">:</span> <span class="n">sampling_rates</span><span class="p">[</span><span class="n">i</span><span class="p">],</span>
+                        <span class="s2">&quot;sampling_j&quot;</span><span class="p">:</span> <span class="n">sampling_rates</span><span class="p">[</span><span class="n">j</span><span class="p">],</span>
+                        <span class="s2">&quot;period&quot;</span><span class="p">:</span> <span class="n">r_periods_common</span><span class="p">[</span><span class="n">k</span><span class="p">],</span>
+                        <span class="s2">&quot;upper_error&quot;</span><span class="p">:</span> <span class="n">u_common</span><span class="p">[</span><span class="n">k</span><span class="p">],</span>
+                        <span class="s2">&quot;lower_error&quot;</span><span class="p">:</span> <span class="n">low_common</span><span class="p">[</span><span class="n">k</span><span class="p">],</span>
+                        <span class="s2">&quot;significance&quot;</span><span class="p">:</span> <span class="n">sig_common</span><span class="p">[</span><span class="n">k</span><span class="p">],</span>
+                        <span class="s2">&quot;label&quot;</span><span class="p">:</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">light_curve_labels</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="si">}</span><span class="s2">-</span><span class="si">{</span><span class="n">light_curve_labels</span><span class="p">[</span><span class="n">j</span><span class="p">]</span><span class="si">}</span><span class="s2">&quot;</span>
+                    <span class="p">})</span>
+
+    <span class="k">return</span> <span class="n">det_periods</span></div>
+
+
+
+
+
+
+
+<div class="viewcode-block" id="process1">
+<a class="viewcode-back" href="../../detection.html#QhX.detection.process1">[docs]</a>
+<span class="k">def</span> <span class="nf">process1</span><span class="p">(</span><span class="n">data_manager</span><span class="p">,</span> <span class="n">set1</span><span class="p">,</span> <span class="n">ntau</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">ngrid</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">provided_minfq</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">provided_maxfq</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">include_errors</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Processes and analyzes data related to light curves of a single object to detect common periods across different light curves.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    set1 : int</span>
+<span class="sd">        Identifier representing the dataset to be processed.</span>
+<span class="sd">    ntau : int, optional</span>
+<span class="sd">        Number of time delays in the wavelet analysis.</span>
+<span class="sd">    ngrid : int, optional</span>
+<span class="sd">        Number of grid points in the wavelet analysis.</span>
+<span class="sd">    provided_minfq : float, optional</span>
+<span class="sd">        Period corresponding to the Minimum frequency for analysis, default is calculated from data.</span>
+<span class="sd">    provided_maxfq : float, optional</span>
+<span class="sd">        Period corresponding to the Maximum frequency for analysis, default is calculated from data.</span>
+<span class="sd">    include_errors : bool, optional</span>
+<span class="sd">        Flag to include magnitude errors in analysis, defaults to True.</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    np.ndarray</span>
+<span class="sd">        An array containing common periods and related data across light curves. This includes information on the periods detected in multiple bands, their errors, and significance levels. The focus is on identifying periods that do not differ more than 10% when detected in different bands, with emphasis on numerical values of periods, errors, and significance for a baseline band for comparison.</span>
+
+<span class="sd">    Notes</span>
+<span class="sd">    -----</span>
+<span class="sd">    The function involves several steps:</span>
+<span class="sd">    </span>
+<span class="sd">    - Verifying the existence of the dataset.</span>
+<span class="sd">    - Retrieving and processing light curve data from different bands.</span>
+<span class="sd">    - Applying hybrid wavelet techniques to each band&#39;s data.</span>
+<span class="sd">    - Comparing periods detected in different bands to find common periods, ensuring they do not differ more than 10%.</span>
+<span class="sd">    - Compiling results into a structured format, including periods, errors, and significance for the baseline comparison band.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">if</span> <span class="n">set1</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">data_manager</span><span class="o">.</span><span class="n">fs_gp</span><span class="o">.</span><span class="n">groups</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Set ID </span><span class="si">{</span><span class="n">set1</span><span class="si">}</span><span class="s2"> not found.&quot;</span><span class="p">)</span>
+        <span class="k">return</span> <span class="kc">None</span>
+
+    <span class="n">light_curves_data</span> <span class="o">=</span> <span class="n">get_lc22</span><span class="p">(</span><span class="n">data_manager</span><span class="p">,</span> <span class="n">set1</span><span class="p">,</span> <span class="n">include_errors</span><span class="p">)</span>
+    <span class="c1"># Check if each array in light_curves_data is non-empty</span>
+    <span class="k">if</span> <span class="nb">any</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">data</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span> <span class="k">for</span> <span class="n">data</span> <span class="ow">in</span> <span class="n">light_curves_data</span> <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">)):</span>
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Insufficient data for set ID </span><span class="si">{</span><span class="n">set1</span><span class="si">}</span><span class="s2">.&quot;</span><span class="p">)</span>
+        <span class="k">return</span> <span class="kc">None</span>
+
+    <span class="n">tt0</span><span class="p">,</span> <span class="n">yy0</span><span class="p">,</span> <span class="n">tt1</span><span class="p">,</span> <span class="n">yy1</span><span class="p">,</span> <span class="n">tt2</span><span class="p">,</span> <span class="n">yy2</span><span class="p">,</span> <span class="n">tt3</span><span class="p">,</span> <span class="n">yy3</span><span class="p">,</span> <span class="n">sampling0</span><span class="p">,</span> <span class="n">sampling1</span><span class="p">,</span> <span class="n">sampling2</span><span class="p">,</span> <span class="n">sampling3</span> <span class="o">=</span> <span class="n">light_curves_data</span>
+    <span class="n">det_periods</span> <span class="o">=</span> <span class="p">[]</span>
+
+ <span class="c1">#   # TODO CHECK THIS FUNCTION AS IT IS NOT USED YETFunction to get or calculate minfq and maxfq</span>
+ <span class="c1">#   def get_or_estimate_freq(tt, known_minfq, known_maxfq):</span>
+ <span class="c1">#       if known_minfq is None or known_maxfq is None:</span>
+ <span class="c1">#           _, fmin, fmax = estimate_wavelet_periods(tt, ngrid)</span>
+ <span class="c1">#           return 1/fmax, 1/fmin</span>
+ <span class="c1">#       return known_minfq, known_maxfq</span>
+
+    <span class="c1"># Analyze each light curve</span>
+    <span class="n">results</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="k">for</span> <span class="n">tt</span><span class="p">,</span> <span class="n">yy</span> <span class="ow">in</span> <span class="p">[(</span><span class="n">tt0</span><span class="p">,</span> <span class="n">yy0</span><span class="p">),</span> <span class="p">(</span><span class="n">tt1</span><span class="p">,</span> <span class="n">yy1</span><span class="p">),</span> <span class="p">(</span><span class="n">tt2</span><span class="p">,</span> <span class="n">yy2</span><span class="p">),</span> <span class="p">(</span><span class="n">tt3</span><span class="p">,</span> <span class="n">yy3</span><span class="p">)]:</span>
+      <span class="c1">#  local_minfq, local_maxfq = get_or_estimate_freq(tt, provided_minfq, provided_maxfq)</span>
+        <span class="n">wwz_matrix</span><span class="p">,</span> <span class="n">corr</span><span class="p">,</span> <span class="n">extent</span> <span class="o">=</span> <span class="n">hybrid2d</span><span class="p">(</span><span class="n">tt</span><span class="p">,</span> <span class="n">yy</span><span class="p">,</span> <span class="n">ntau</span><span class="o">=</span><span class="n">ntau</span><span class="p">,</span> <span class="n">ngrid</span><span class="o">=</span><span class="n">ngrid</span><span class="p">,</span> <span class="n">minfq</span><span class="o">=</span><span class="n">provided_minfq</span><span class="p">,</span> <span class="n">maxfq</span><span class="o">=</span><span class="n">provided_maxfq</span><span class="p">)</span>
+        <span class="n">peaks</span><span class="p">,</span> <span class="n">hh</span><span class="p">,</span> <span class="n">r_periods</span><span class="p">,</span> <span class="n">up</span><span class="p">,</span> <span class="n">low</span> <span class="o">=</span> <span class="n">periods</span><span class="p">(</span><span class="n">set1</span><span class="p">,</span> <span class="n">corr</span><span class="p">,</span> <span class="n">ngrid</span><span class="o">=</span><span class="n">ngrid</span><span class="p">,</span> <span class="n">plot</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">minfq</span><span class="o">=</span><span class="n">provided_minfq</span><span class="p">,</span> <span class="n">maxfq</span><span class="o">=</span><span class="n">provided_maxfq</span><span class="p">)</span>
+        <span class="n">results</span><span class="o">.</span><span class="n">append</span><span class="p">((</span><span class="n">r_periods</span><span class="p">,</span> <span class="n">up</span><span class="p">,</span> <span class="n">low</span><span class="p">,</span> <span class="n">peaks</span><span class="p">,</span> <span class="n">hh</span><span class="p">))</span>
+
+    <span class="c1"># Light curve labels (for clarity)</span>
+    <span class="n">light_curve_labels</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;0&#39;</span><span class="p">,</span> <span class="s1">&#39;1&#39;</span><span class="p">,</span> <span class="s1">&#39;2&#39;</span><span class="p">,</span> <span class="s1">&#39;3&#39;</span><span class="p">]</span>
+
+    <span class="c1"># Compare periods within the light curves of the same object</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">results</span><span class="p">)):</span>
+        <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">i</span> <span class="o">+</span> <span class="mi">1</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">results</span><span class="p">)):</span>
+            <span class="n">r_periods_i</span><span class="p">,</span> <span class="n">up_i</span><span class="p">,</span> <span class="n">low_i</span><span class="p">,</span> <span class="n">peaks_i</span><span class="p">,</span> <span class="n">hh_i</span> <span class="o">=</span> <span class="n">results</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
+            <span class="n">r_periods_j</span><span class="p">,</span> <span class="n">up_j</span><span class="p">,</span> <span class="n">low_j</span><span class="p">,</span> <span class="n">peaks_j</span><span class="p">,</span> <span class="n">hh_j</span> <span class="o">=</span> <span class="n">results</span><span class="p">[</span><span class="n">j</span><span class="p">]</span>
+
+            <span class="n">r_periods_common</span><span class="p">,</span> <span class="n">u_common</span><span class="p">,</span> <span class="n">low_common</span><span class="p">,</span> <span class="n">sig_common</span> <span class="o">=</span> <span class="n">same_periods</span><span class="p">(</span>
+                <span class="n">r_periods_i</span><span class="p">,</span> <span class="n">r_periods_j</span><span class="p">,</span> <span class="n">up_i</span><span class="p">,</span> <span class="n">low_i</span><span class="p">,</span> <span class="n">up_j</span><span class="p">,</span> <span class="n">low_j</span><span class="p">,</span> <span class="n">peaks_i</span><span class="p">,</span> <span class="n">hh_i</span><span class="p">,</span> <span class="n">tt0</span><span class="p">,</span> <span class="n">yy0</span><span class="p">,</span> <span class="n">peaks_j</span><span class="p">,</span> <span class="n">hh_j</span><span class="p">,</span> <span class="n">tt1</span><span class="p">,</span> <span class="n">yy1</span><span class="p">,</span>
+                <span class="n">ntau</span><span class="o">=</span><span class="n">ntau</span><span class="p">,</span> <span class="n">ngrid</span><span class="o">=</span><span class="n">ngrid</span><span class="p">,</span> <span class="n">minfq</span><span class="o">=</span><span class="n">provided_minfq</span><span class="p">,</span> <span class="n">maxfq</span><span class="o">=</span><span class="n">provided_maxfq</span>
+            <span class="p">)</span>
+
+            <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">r_periods_common</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
+                <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">r_periods_common</span><span class="p">)):</span>
+                    <span class="n">det_periods</span><span class="o">.</span><span class="n">append</span><span class="p">([</span>
+                        <span class="n">set1</span><span class="p">,</span> <span class="n">r_periods_common</span><span class="p">[</span><span class="n">k</span><span class="p">],</span> <span class="n">u_common</span><span class="p">[</span><span class="n">k</span><span class="p">],</span> <span class="n">low_common</span><span class="p">[</span><span class="n">k</span><span class="p">],</span> <span class="n">sig_common</span><span class="p">[</span><span class="n">k</span><span class="p">],</span> 
+                        <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">light_curve_labels</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="si">}</span><span class="s2">-</span><span class="si">{</span><span class="n">light_curve_labels</span><span class="p">[</span><span class="n">j</span><span class="p">]</span><span class="si">}</span><span class="s2">&quot;</span>
+                    <span class="p">])</span>
+
+    <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">det_periods</span><span class="p">)</span></div>
+
+
+
+
+
+<div class="viewcode-block" id="same_periods">
+<a class="viewcode-back" href="../../detection.html#QhX.detection.same_periods">[docs]</a>
+<span class="k">def</span> <span class="nf">same_periods</span><span class="p">(</span><span class="n">r_periods0</span><span class="p">,</span> <span class="n">r_periods1</span><span class="p">,</span> <span class="n">up0</span><span class="p">,</span> <span class="n">low0</span><span class="p">,</span> <span class="n">up1</span><span class="p">,</span> <span class="n">low1</span><span class="p">,</span> <span class="n">peaks0</span><span class="p">,</span> <span class="n">hh0</span><span class="p">,</span> <span class="n">tt0</span><span class="p">,</span> <span class="n">yy0</span><span class="p">,</span> <span class="n">peaks1</span><span class="p">,</span> <span class="n">hh1</span><span class="p">,</span> <span class="n">tt1</span><span class="p">,</span> <span class="n">yy1</span><span class="p">,</span> <span class="n">ntau</span><span class="p">,</span> <span class="n">ngrid</span><span class="p">,</span><span class="n">minfq</span><span class="p">,</span><span class="n">maxfq</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Analyzes and identifies common periods between two sets of light curve data, </span>
+<span class="sd">    assessing their consistency and statistical significance based on a relative tolerance.</span>
+<span class="sd">    Compares detected periods from two different light curve datasets to identify periods </span>
+<span class="sd">    consistently observed in both, using a specified relative tolerance level for similarity judgment.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    r_periods0 : list</span>
+<span class="sd">        Arrays of detected periods from the first light curve dataset.</span>
+<span class="sd">    r_periods1 : list</span>
+<span class="sd">        Arrays of detected periods from the second light curve dataset.</span>
+<span class="sd">    up0 : list</span>
+<span class="sd">        Arrays of upper error bounds for detected periods in the first dataset.</span>
+<span class="sd">    low0 : list</span>
+<span class="sd">        Arrays of lower error bounds for detected periods in the first dataset.</span>
+<span class="sd">    up1 : list</span>
+<span class="sd">        Arrays of upper error bounds for detected periods in the second dataset.</span>
+<span class="sd">    low1 : list</span>
+<span class="sd">        Arrays of lower error bounds for detected periods in the second dataset.</span>
+<span class="sd">    peaks0, hh0, tt0, yy0 : list</span>
+<span class="sd">        Supplementary data including peak information, correlation matrices, and time and magnitude arrays for the first dataset.</span>
+<span class="sd">    peaks1, hh1, tt1, yy1 : list</span>
+<span class="sd">        Supplementary data including peak information, correlation matrices, and time and magnitude arrays for the second dataset.</span>
+<span class="sd">    ntau : int</span>
+<span class="sd">        Number of time divisions for wavelet analysis.</span>
+<span class="sd">    ngrid : int</span>
+<span class="sd">        Grid size (frequency resolution) for the analysis.</span>
+<span class="sd">    minfq : float</span>
+<span class="sd">        Minimum frequency for the analysis.</span>
+<span class="sd">    maxfq : float</span>
+<span class="sd">        Maximum frequency for the analysis.</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    A tuple containing arrays of common periods and their associated statistical data:</span>
+
+<span class="sd">        - r_periods_common (np.ndarray): Detected periods common to both datasets, determined within a 10% relative tolerance.</span>
+<span class="sd">        - up_common, low_common (np.ndarray): Upper and lower error bounds for these common periods, indicating uncertainty ranges.</span>
+<span class="sd">        - sig_common (np.ndarray): Significance values for each common period, assessed against shuffled data.</span>
+
+<span class="sd">    Notes</span>
+<span class="sd">    -----</span>
+<span class="sd">    The function compares each period in one dataset against periods in the other dataset, using a relative tolerance of 10%. </span>
+<span class="sd">    This tolerance level allows for minor variations in period detection between datasets. The significance of each common period </span>
+<span class="sd">    is evaluated to determine if it is an intrinsic feature of the astronomical object or a result of random fluctuations.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+        <span class="c1"># Convert inputs to numpy arrays for efficient computation</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="n">r_periods0</span><span class="p">,</span> <span class="n">r_periods1</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">r_periods0</span><span class="p">),</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">r_periods1</span><span class="p">)</span>
+        <span class="n">up0</span><span class="p">,</span> <span class="n">low0</span><span class="p">,</span> <span class="n">up1</span><span class="p">,</span> <span class="n">low1</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">up0</span><span class="p">),</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">low0</span><span class="p">),</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">up1</span><span class="p">),</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">low1</span><span class="p">)</span>
+    <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Error converting inputs to numpy arrays: </span><span class="si">{</span><span class="n">e</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+    <span class="n">number_of_lcs</span> <span class="o">=</span> <span class="mi">50</span>  <span class="c1"># Number of LCs used for a simulation</span>
+
+    <span class="c1"># Function to find common periods and calculate significance</span>
+    <span class="k">def</span> <span class="nf">find_common_periods_and_significance</span><span class="p">(</span><span class="n">rp0</span><span class="p">,</span> <span class="n">rp1</span><span class="p">,</span> <span class="n">up</span><span class="p">,</span> <span class="n">low</span><span class="p">,</span> <span class="n">peaks</span><span class="p">,</span> <span class="n">hh</span><span class="p">,</span> <span class="n">tt</span><span class="p">,</span> <span class="n">yy</span><span class="p">,</span> <span class="n">ntau</span><span class="p">,</span> <span class="n">ngrid</span><span class="p">,</span> <span class="n">minfq</span><span class="p">,</span><span class="n">maxfq</span><span class="p">):</span>
+        <span class="n">common_indices</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">isclose</span><span class="p">(</span><span class="n">rp0</span><span class="p">,</span> <span class="n">rp1</span><span class="p">,</span> <span class="n">rtol</span><span class="o">=</span><span class="mf">1e-01</span><span class="p">))[</span><span class="mi">0</span><span class="p">]</span>
+        <span class="n">r_periods</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">take</span><span class="p">(</span><span class="n">rp0</span><span class="p">,</span> <span class="n">common_indices</span><span class="p">)</span>
+        <span class="n">up</span><span class="p">,</span> <span class="n">low</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">take</span><span class="p">(</span><span class="n">up</span><span class="p">,</span> <span class="n">common_indices</span><span class="p">),</span> <span class="n">np</span><span class="o">.</span><span class="n">take</span><span class="p">(</span><span class="n">low</span><span class="p">,</span> <span class="n">common_indices</span><span class="p">)</span>
+        <span class="n">sig</span> <span class="o">=</span> <span class="p">[]</span>
+
+        <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">r_periods</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="k">for</span> <span class="n">peak_of_interest</span> <span class="ow">in</span> <span class="n">common_indices</span><span class="p">:</span>
+                <span class="k">try</span><span class="p">:</span>
+                    <span class="n">_</span><span class="p">,</span> <span class="n">_</span><span class="p">,</span> <span class="n">_</span><span class="p">,</span> <span class="n">siger</span> <span class="o">=</span> <span class="n">signif_johnson</span><span class="p">(</span><span class="n">number_of_lcs</span><span class="p">,</span> <span class="n">peak_of_interest</span><span class="p">,</span> <span class="n">peaks</span><span class="p">,</span> <span class="n">hh</span><span class="p">,</span> <span class="n">tt</span><span class="p">,</span> <span class="n">yy</span><span class="p">,</span> <span class="n">ntau</span><span class="o">=</span><span class="n">ntau</span><span class="p">,</span> <span class="n">ngrid</span><span class="o">=</span><span class="n">ngrid</span><span class="p">,</span> <span class="n">f</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">peakHeight</span><span class="o">=</span><span class="mf">0.6</span><span class="p">,</span> <span class="n">minfq</span><span class="o">=</span><span class="n">minfq</span><span class="p">,</span> <span class="n">maxfq</span><span class="o">=</span><span class="n">maxfq</span><span class="p">)</span>
+                    <span class="n">sig</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="mf">1.</span> <span class="o">-</span> <span class="n">siger</span><span class="p">)</span>
+                <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+                    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Error in significance calculation: </span><span class="si">{</span><span class="n">e</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+                    <span class="n">sig</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">nan</span><span class="p">)</span>  <span class="c1"># Append NaN to indicate a failed calculation</span>
+
+        <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">r_periods</span><span class="p">),</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">up</span><span class="p">),</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">low</span><span class="p">),</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">sig</span><span class="p">)</span>
+
+    <span class="c1"># Ensure the return values from the function are numpy arrays</span>
+    <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">r_periods0</span><span class="p">)</span> <span class="o">==</span> <span class="nb">len</span><span class="p">(</span><span class="n">r_periods1</span><span class="p">):</span>
+        <span class="k">return</span> <span class="n">find_common_periods_and_significance</span><span class="p">(</span><span class="n">r_periods0</span><span class="p">,</span> <span class="n">r_periods1</span><span class="p">,</span> <span class="n">up0</span><span class="p">,</span> <span class="n">low0</span><span class="p">,</span> <span class="n">peaks0</span><span class="p">,</span> <span class="n">hh0</span><span class="p">,</span> <span class="n">tt0</span><span class="p">,</span> <span class="n">yy0</span><span class="p">,</span> <span class="n">ntau</span><span class="p">,</span> <span class="n">ngrid</span><span class="p">,</span> <span class="n">minfq</span><span class="p">,</span><span class="n">maxfq</span><span class="p">)</span>
+    <span class="k">elif</span> <span class="nb">len</span><span class="p">(</span><span class="n">r_periods0</span><span class="p">)</span> <span class="o">&lt;</span> <span class="nb">len</span><span class="p">(</span><span class="n">r_periods1</span><span class="p">):</span>
+        <span class="k">return</span> <span class="n">find_common_periods_and_significance</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">resize</span><span class="p">(</span><span class="n">r_periods0</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">r_periods1</span><span class="p">)),</span> <span class="n">r_periods1</span><span class="p">,</span> <span class="n">up1</span><span class="p">,</span> <span class="n">low1</span><span class="p">,</span> <span class="n">peaks1</span><span class="p">,</span> <span class="n">hh1</span><span class="p">,</span> <span class="n">tt1</span><span class="p">,</span> <span class="n">yy1</span><span class="p">,</span> <span class="n">ntau</span><span class="p">,</span> <span class="n">ngrid</span><span class="p">,</span> <span class="n">minfq</span><span class="p">,</span><span class="n">maxfq</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">find_common_periods_and_significance</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">resize</span><span class="p">(</span><span class="n">r_periods1</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">r_periods0</span><span class="p">)),</span> <span class="n">r_periods0</span><span class="p">,</span> <span class="n">up0</span><span class="p">,</span> <span class="n">low0</span><span class="p">,</span> <span class="n">peaks0</span><span class="p">,</span> <span class="n">hh0</span><span class="p">,</span> <span class="n">tt0</span><span class="p">,</span> <span class="n">yy0</span><span class="p">,</span> <span class="n">ntau</span><span class="p">,</span> <span class="n">ngrid</span><span class="p">,</span> <span class="n">minfq</span><span class="p">,</span><span class="n">maxfq</span><span class="p">)</span></div>
+
+</pre></div>
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2023, Andjelka Kovacevic.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+    <!-- Theme Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'G-XXXXXXXXXX', {
+          'anonymize_ip': false,
+      });
+    </script> 
+
+</body>
+</html>
