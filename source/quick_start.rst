@@ -1,5 +1,5 @@
-Quick Start
-===========
+Quick Start Tutorial
+====================
 
 Getting started with QhX is simple. Follow the steps below to begin analyzing quasar light curves.
 

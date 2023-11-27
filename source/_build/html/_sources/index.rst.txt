@@ -9,19 +9,7 @@ Welcome to Quasar harmonic eXplorer (QhX's) documentation!
    installation
    quick_start
    examples
-   calculation
-   data_manager
-   detection
-   light_curve
-   output
-   reg
-   superlet
-   superlets
-   correlation
-   interactive_plt
-   test_integrated
-   mock_lc
-   wwtz
+   package
    faq
    license
 
