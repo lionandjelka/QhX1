@@ -19,8 +19,7 @@ def flatten_detected_periods(detected_periods):
 
 def classify_periods(detected_periods):
     """
-    Classify detected periods by calculating IoU and other metrics for each quasar ID.
-    This function processes structured data and classifies periods based on provided criteria.
+    Calculates IoU and compile other metrics (low errors,  upper errors, significance of detected period, and band pairs) for each quasar ID.
     It computes Intersection Over Union (IoU) and other relevant metrics for each quasar ID based
     on detected periods in different band pairs, while preserving NaN values.
 
@@ -117,7 +116,7 @@ def classify_period(row):
     """
     Classify the detected period as 'reliable', 'medium reliable', 'poor', or 'NAN'
     based on the significance of the detected period, the relative lower and upper errors,
-    and the IoU of the error circles.
+    and the IoU of the error circles provided in function classify_periods.
 
     Parameters:
     -----------

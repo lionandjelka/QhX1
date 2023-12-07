@@ -32,6 +32,7 @@
           
           <a href="../../index.html" class="icon icon-home">
             QhX
+              <img src="../../_static/logo.png" class="logo" alt="Logo"/>
           </a>
               <div class="version">
                 0.1.0
@@ -106,8 +107,7 @@
 <a class="viewcode-back" href="../../output.html#QhX.output.classify_periods">[docs]</a>
 <span class="k">def</span> <span class="nf">classify_periods</span><span class="p">(</span><span class="n">detected_periods</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    Classify detected periods by calculating IoU and other metrics for each quasar ID.</span>
-<span class="sd">    This function processes structured data and classifies periods based on provided criteria.</span>
+<span class="sd">    Calculates IoU and compile other metrics (low errors,  upper errors, significance of detected period, and band pairs) for each quasar ID.</span>
 <span class="sd">    It computes Intersection Over Union (IoU) and other relevant metrics for each quasar ID based</span>
 <span class="sd">    on detected periods in different band pairs, while preserving NaN values.</span>
 
@@ -207,7 +207,7 @@
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Classify the detected period as &#39;reliable&#39;, &#39;medium reliable&#39;, &#39;poor&#39;, or &#39;NAN&#39;</span>
 <span class="sd">    based on the significance of the detected period, the relative lower and upper errors,</span>
-<span class="sd">    and the IoU of the error circles.</span>
+<span class="sd">    and the IoU of the error circles provided in function classify_periods.</span>
 
 <span class="sd">    Parameters:</span>
 <span class="sd">    -----------</span>

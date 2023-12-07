@@ -76,5 +76,6 @@ html_theme_options = {
     'includehidden': True,
     'titles_only': False
 }
+html_logo = '_static/logo.png'
 
 html_static_path = ['_static']
