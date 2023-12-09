@@ -96,7 +96,7 @@
 <section id="SIMPLE-TUTORIAL-WITH-MOCK-LIGHT-CURVE">
 <h1>SIMPLE TUTORIAL WITH MOCK LIGHT CURVE<a class="headerlink" href="#SIMPLE-TUTORIAL-WITH-MOCK-LIGHT-CURVE" title="Link to this heading"></a></h1>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[2]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[1]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">!</span>mkdir<span class="w"> </span>period
@@ -112,7 +112,7 @@ mkdir: period: File exists
 </pre></div></div>
 </div>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[3]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[2]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="k">cd</span> period
@@ -124,12 +124,12 @@ mkdir: period: File exists
 </div>
 <div class="output_area docutils container">
 <div class="highlight"><pre>
-/Users/andjelka/Documents/QhX1/Examples/period
+/Users/andjelka/Documents/QhX12/source/examples/period
 </pre></div></div>
 </div>
 <p><strong>Import libraries and create artifical LC to test the module</strong></p>
 <div class="nbinput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[5]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[6]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">QhX</span>
@@ -137,7 +137,7 @@ mkdir: period: File exists
 </div>
 </div>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[6]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[7]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">!</span>pwd
@@ -149,7 +149,7 @@ mkdir: period: File exists
 </div>
 <div class="output_area docutils container">
 <div class="highlight"><pre>
-/Users/andjelka/Documents/QhX1/Examples/period
+/Users/andjelka/Documents/QhX12/source/examples/period
 </pre></div></div>
 </div>
 <div class="nbinput nblast docutils container">
@@ -215,7 +215,7 @@ mkdir: period: File exists
 </div>
 </div>
 <div class="nbinput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[14]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[13]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">QhX.utils</span> <span class="kn">import</span> <span class="o">*</span>
@@ -223,17 +223,14 @@ mkdir: period: File exists
 </div>
 </div>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[15]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[14]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Creating of a mock signal LC with frequency of 100 days, amplitude of 0.3</span>
 <span class="c1"># Plot is created using functions in the utils subpackage</span>
-<span class="n">period</span> <span class="o">=</span> <span class="mi">100</span>  <span class="c1">#days</span>
+<span class="n">period</span> <span class="o">=</span> <span class="mi">100</span>  <span class="c1"># days</span>
 <span class="n">amplitude</span> <span class="o">=</span> <span class="mf">0.3</span>
-
-<span class="c1"># Functions uses time interval in years, number of points, period, ampltude as main arguments</span>
-<span class="n">tt</span><span class="p">,</span> <span class="n">yy</span> <span class="o">=</span> <span class="n">simple_mock_lc</span><span class="p">(</span><span class="n">time_interval</span> <span class="o">=</span> <span class="mi">10</span><span class="p">,</span> <span class="n">num_points</span> <span class="o">=</span> <span class="mi">1000</span><span class="p">,</span>
-                                    <span class="n">frequency</span> <span class="o">=</span> <span class="n">period</span><span class="p">,</span> <span class="n">amplitude</span> <span class="o">=</span> <span class="n">amplitude</span><span class="p">,</span> <span class="n">percent</span> <span class="o">=</span> <span class="mf">0.2</span><span class="p">,</span> <span class="n">magnitude</span> <span class="o">=</span> <span class="mi">22</span><span class="p">)</span>
+<span class="n">tt</span><span class="p">,</span> <span class="n">yy</span> <span class="o">=</span> <span class="n">simple_mock_lc</span><span class="p">(</span><span class="n">time_interval</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">num_points</span><span class="o">=</span><span class="mi">1000</span><span class="p">,</span> <span class="n">frequency</span><span class="o">=</span><span class="n">period</span><span class="p">,</span> <span class="n">amplitude</span><span class="o">=</span><span class="n">amplitude</span><span class="p">,</span> <span class="n">percent</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span> <span class="n">magnitude</span><span class="o">=</span><span class="mi">22</span><span class="p">)</span>
 <span class="n">plots</span><span class="o">.</span><span class="n">fig_plot</span><span class="p">(</span><span class="n">tt</span><span class="p">,</span> <span class="n">yy</span><span class="p">)</span>
 </pre></div>
 </div>
@@ -252,7 +249,7 @@ mkdir: period: File exists
 <p>Tuning constant used to adjust the width of the window can be , as originally proposed in Foster (1996), for improved time resolution on shorter segments of the data. Second, c can have values up to 0.005, used for the entire data set to improve frequency resolution. This translates to the wavelet decaying by in ∼1.4 cycles in the first case and ∼2.4 cycles in the second case. The values can be compared to e.g. c = 0.001 used in Templeton, Mattei &amp; Willson (2005) and Young et al. (2012), for
 longer data sets than the one used here.</p>
 <div class="nbinput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[18]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[15]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">QhX.algorithms.wavelets.wwtz</span> <span class="kn">import</span> <span class="o">*</span>
@@ -260,14 +257,15 @@ longer data sets than the one used here.</p>
 </div>
 </div>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[21]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[16]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># In order to perform our analysis we need to apply hybrid2d method</span>
 <span class="c1"># Input parametars are time data, magnitude data and parameteres for WWZ transformation, ntau, ngrid - grid size</span>
 <span class="c1"># As output main products are wwz matrix and autocorrelation matrix of wwz</span>
+
 <span class="n">wwz_matrix</span><span class="p">,</span> <span class="n">corr</span><span class="p">,</span> <span class="n">extent</span> <span class="o">=</span> <span class="n">hybrid2d</span><span class="p">(</span><span class="n">tt</span><span class="p">,</span> <span class="n">yy</span><span class="p">,</span> <span class="mi">80</span><span class="p">,</span> <span class="mi">800</span><span class="p">,</span> <span class="n">minfq</span><span class="o">=</span><span class="mi">2000</span><span class="p">,</span><span class="n">maxfq</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
-</pre></div>
+<br/></pre></div>
 </div>
 </div>
 <div class="nboutput nblast docutils container">
@@ -277,14 +275,14 @@ longer data sets than the one used here.</p>
 <div class="highlight"><pre>
 *** Starting Weighted Wavelet Z-transform ***
 
-Pseudo sample frequency (median) is  0.314
-largest tau window is  46.144
-12.97 seconds has passed to complete Weighted Wavelet Z-transform
+Pseudo sample frequency (median) is  0.203
+largest tau window is  46.124
+8.13 seconds has passed to complete Weighted Wavelet Z-transform
 
 </pre></div></div>
 </div>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[22]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[17]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Plotting wwz matrix heatmap</span>
@@ -303,15 +301,31 @@ largest tau window is  46.144
 <p><strong>Finding the error of the detected period</strong> Reference: Schwarzenberg-Czerny, A., 1991, Mon. Not. R. astr. Soc., 253, 198-206</p>
 <p>The period uncertainty method of Schwarzenberg-Czerny requires the so called Mean Noise Power Level (MNPL) in the vicinity of P. The 1-sigma confidence interval on P then is equal to the width of the line at the P – MNPL level. This method is a so-called ‘post-mortem analysis’. To find the MNPL we detect FWHM of the peak and then use mquantile method to detect points between 25th and 75th quantile</p>
 <div class="nbinput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[24]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[19]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">QhX.calculation</span> <span class="kn">import</span> <span class="o">*</span>
 <br/></pre></div>
 </div>
 </div>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[20]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Determine significance</span>
+<span class="c1"># Assuming the use of a function like signif_johnson (though not explicitly found in the provided notebook cells)</span>
+<span class="n">numlc1</span> <span class="o">=</span><span class="mi">10</span>  <span class="c1"># Example Object ID</span>
+<span class="n">numlc</span><span class="o">=</span><span class="mi">10</span> <span class="c1">#number of lc for johnson method</span>
+<span class="n">peak</span> <span class="o">=</span> <span class="mi">0</span>  <span class="c1"># Example peak position</span>
+<span class="n">idx_peaks</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">]</span>  <span class="c1"># Example index of peak, assuming a single peak</span>
+<span class="c1"># Extract periods</span>
+<span class="c1"># Detect periods in the correlation matrix and store results in peaks0, hh0, r_periods0, up0, low0</span>
+<span class="n">peaks0</span><span class="p">,</span> <span class="n">hh0</span><span class="p">,</span> <span class="n">r_periods0</span><span class="p">,</span> <span class="n">up0</span><span class="p">,</span> <span class="n">low0</span> <span class="o">=</span> <span class="n">periods</span><span class="p">(</span><span class="n">numlc1</span><span class="p">,</span> <span class="n">corr</span><span class="p">,</span> <span class="mi">800</span><span class="p">,</span> <span class="n">plot</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">minfq</span><span class="o">=</span><span class="mi">2000</span><span class="p">,</span> <span class="n">maxfq</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
+<br/></pre></div>
+</div>
+</div>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[26]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[21]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Function for calculations of periods</span>
@@ -327,11 +341,11 @@ largest tau window is  46.144
 <div class="prompt empty docutils container">
 </div>
 <div class="output_area docutils container">
-<img alt="../_images/examples_Example1_22_0.png" src="../_images/examples_Example1_22_0.png" />
+<img alt="../_images/examples_Example1_23_0.png" src="../_images/examples_Example1_23_0.png" />
 </div>
 </div>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[28]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[22]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Write down obtained results</span>
@@ -345,7 +359,7 @@ largest tau window is  46.144
 </div>
 <div class="output_area docutils container">
 <div class="highlight"><pre>
-Period: 99.237, upper error : 24.49  lower error :  1.02
+Period: 100.477, upper error : 20.22  lower error :  1.21
 </pre></div></div>
 </div>
 <p>⚡ <strong>Significance of detected period based on Johnson et al (faster approach)</strong></p>
@@ -353,22 +367,11 @@ Period: 99.237, upper error : 24.49  lower error :  1.02
 <p>where x represents the number of times that the peak power of the period in the original data was greater than that of the uncorrelated ensemble and N is the total number of shuffles. This formula therefore has a maximum of 1, corresponding to a 100 per cent recovery rate.</p>
 <p>Reference</p>
 <p>Michael A. C. Johnson, Poshak Gandhi, Adriane P. Chapman, Luc Moreau, Philip A. Charles, William I. Clarkson and Adam B. Hill, Prospecting for periods with LSST – low-mass X-ray binaries as a test case, 2019, MNRAS, Volume 484, <a class="reference external" href="https://doi.org/10.1093/mnras/sty3466">https://doi.org/10.1093/mnras/sty3466</a></p>
-<div class="nbinput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
-</pre></div>
-</div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>
-</pre></div>
-</div>
-</div>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[29]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[23]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Determine significance</span>
-<span class="n">numlc</span><span class="o">=</span><span class="mi">10</span> <span class="c1">#number of lc for johnson method</span>
-<span class="n">peak</span> <span class="o">=</span> <span class="mi">0</span>  <span class="c1"># Example peak position</span>
-<span class="n">idx_peaks</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">]</span>  <span class="c1"># Example index of peak, assuming a single peak</span>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">yax</span> <span class="o">=</span> <span class="n">corr</span><span class="o">.</span><span class="n">flatten</span><span class="p">()</span>  <span class="c1"># Example correlation of oscillation patterns</span>
 <span class="n">bins</span><span class="p">,</span> <span class="n">bins11</span><span class="p">,</span> <span class="n">sig</span><span class="p">,</span> <span class="n">siger</span> <span class="o">=</span> <span class="n">signif_johnson</span><span class="p">(</span><span class="n">numlc</span><span class="p">,</span><span class="n">peak</span><span class="p">,</span> <span class="n">idx_peaks</span><span class="p">,</span> <span class="n">hh0</span><span class="p">,</span> <span class="n">tt</span><span class="p">,</span> <span class="n">yy</span><span class="p">,</span> <span class="n">ntau</span><span class="o">=</span><span class="mi">80</span><span class="p">,</span> <span class="n">ngrid</span><span class="o">=</span><span class="mi">800</span><span class="p">,</span> <span class="n">f</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">peakHeight</span><span class="o">=</span><span class="mf">0.6</span><span class="p">,</span> <span class="n">minfq</span><span class="o">=</span><span class="mi">2000</span><span class="p">,</span> <span class="n">maxfq</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
 <br/></pre></div>
 </div>
@@ -380,68 +383,68 @@ Period: 99.237, upper error : 24.49  lower error :  1.02
 <div class="highlight"><pre>
 *** Starting Weighted Wavelet Z-transform ***
 
-Pseudo sample frequency (median) is  0.314
-largest tau window is  46.144
-13.32 seconds has passed to complete Weighted Wavelet Z-transform
+Pseudo sample frequency (median) is  0.203
+largest tau window is  46.124
+7.37 seconds has passed to complete Weighted Wavelet Z-transform
 
 *** Starting Weighted Wavelet Z-transform ***
 
-Pseudo sample frequency (median) is  0.314
-largest tau window is  46.144
-13.96 seconds has passed to complete Weighted Wavelet Z-transform
+Pseudo sample frequency (median) is  0.203
+largest tau window is  46.124
+8.19 seconds has passed to complete Weighted Wavelet Z-transform
 
 *** Starting Weighted Wavelet Z-transform ***
 
-Pseudo sample frequency (median) is  0.314
-largest tau window is  46.144
-14.66 seconds has passed to complete Weighted Wavelet Z-transform
+Pseudo sample frequency (median) is  0.203
+largest tau window is  46.124
+8.61 seconds has passed to complete Weighted Wavelet Z-transform
 
 *** Starting Weighted Wavelet Z-transform ***
 
-Pseudo sample frequency (median) is  0.314
-largest tau window is  46.144
-14.02 seconds has passed to complete Weighted Wavelet Z-transform
+Pseudo sample frequency (median) is  0.203
+largest tau window is  46.124
+9.03 seconds has passed to complete Weighted Wavelet Z-transform
 
 *** Starting Weighted Wavelet Z-transform ***
 
-Pseudo sample frequency (median) is  0.314
-largest tau window is  46.144
-15.43 seconds has passed to complete Weighted Wavelet Z-transform
+Pseudo sample frequency (median) is  0.203
+largest tau window is  46.124
+8.98 seconds has passed to complete Weighted Wavelet Z-transform
 
 *** Starting Weighted Wavelet Z-transform ***
 
-Pseudo sample frequency (median) is  0.314
-largest tau window is  46.144
-15.28 seconds has passed to complete Weighted Wavelet Z-transform
+Pseudo sample frequency (median) is  0.203
+largest tau window is  46.124
+8.75 seconds has passed to complete Weighted Wavelet Z-transform
 
 *** Starting Weighted Wavelet Z-transform ***
 
-Pseudo sample frequency (median) is  0.314
-largest tau window is  46.144
-15.67 seconds has passed to complete Weighted Wavelet Z-transform
+Pseudo sample frequency (median) is  0.203
+largest tau window is  46.124
+9.75 seconds has passed to complete Weighted Wavelet Z-transform
 
 *** Starting Weighted Wavelet Z-transform ***
 
-Pseudo sample frequency (median) is  0.314
-largest tau window is  46.144
-15.24 seconds has passed to complete Weighted Wavelet Z-transform
+Pseudo sample frequency (median) is  0.203
+largest tau window is  46.124
+10.2 seconds has passed to complete Weighted Wavelet Z-transform
 
 *** Starting Weighted Wavelet Z-transform ***
 
-Pseudo sample frequency (median) is  0.314
-largest tau window is  46.144
-15.85 seconds has passed to complete Weighted Wavelet Z-transform
+Pseudo sample frequency (median) is  0.203
+largest tau window is  46.124
+9.88 seconds has passed to complete Weighted Wavelet Z-transform
 
 *** Starting Weighted Wavelet Z-transform ***
 
-Pseudo sample frequency (median) is  0.314
-largest tau window is  46.144
-15.21 seconds has passed to complete Weighted Wavelet Z-transform
+Pseudo sample frequency (median) is  0.203
+largest tau window is  46.124
+9.37 seconds has passed to complete Weighted Wavelet Z-transform
 
 </pre></div></div>
 </div>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[27]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[24]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">hist</span><span class="p">(</span><span class="n">bins</span><span class="p">,</span><span class="mi">30</span><span class="p">)</span>
@@ -453,7 +456,7 @@ largest tau window is  46.144
 </div>
 </div>
 <div class="nboutput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[27]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[24]:
 </pre></div>
 </div>
 <div class="output_area docutils container">
