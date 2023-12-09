@@ -35,6 +35,7 @@
           
           <a href="index.html" class="icon icon-home">
             QhX
+              <img src="_static/logo.png" class="logo" alt="Logo"/>
           </a>
               <div class="version">
                 0.1.0
@@ -110,7 +111,7 @@
 <span class="sig-prename descclassname"><span class="pre">QhX.output.</span></span><span class="sig-name descname"><span class="pre">classify_period</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">row</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/QhX/output.html#classify_period"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#QhX.output.classify_period" title="Link to this definition"></a></dt>
 <dd><p>Classify the detected period as ‘reliable’, ‘medium reliable’, ‘poor’, or ‘NAN’
 based on the significance of the detected period, the relative lower and upper errors,
-and the IoU of the error circles.</p>
+and the IoU of the error circles provided in function classify_periods.</p>
 <section id="parameters">
 <h2>Parameters:<a class="headerlink" href="#parameters" title="Link to this heading"></a></h2>
 <p>row (pd.Series): A row from the DataFrame containing detected period data.</p>
@@ -124,8 +125,7 @@ and the IoU of the error circles.</p>
 <dl class="py function">
 <dt class="sig sig-object py" id="QhX.output.classify_periods">
 <span class="sig-prename descclassname"><span class="pre">QhX.output.</span></span><span class="sig-name descname"><span class="pre">classify_periods</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">detected_periods</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/QhX/output.html#classify_periods"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#QhX.output.classify_periods" title="Link to this definition"></a></dt>
-<dd><p>Classify detected periods by calculating IoU and other metrics for each quasar ID.
-This function processes structured data and classifies periods based on provided criteria.
+<dd><p>Calculates IoU and compile other metrics (low errors,  upper errors, significance of detected period, and band pairs) for each quasar ID.
 It computes Intersection Over Union (IoU) and other relevant metrics for each quasar ID based
 on detected periods in different band pairs, while preserving NaN values.</p>
 <section id="id1">
