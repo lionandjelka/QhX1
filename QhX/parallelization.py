@@ -10,8 +10,9 @@ from concurrent import futures
 def background_log(set_id, e : threading.Event, delta_seconds : float):
     """
     Function for time logging
-    - Log approx. process time every delta_seconds
-    - Log start & end system time
+    - Logs approx. process time every delta_seconds
+    - End when e is triggered
+    - Logs start & end system time
     Run in background thread for QhX processes
     """
     total_time = 0
@@ -41,7 +42,7 @@ def process1_wrapper(args):
     res = None
     if data_manager is not None:
         res = process1(data_manager, set_id, ntau=80, ngrid=100, provided_minfq=2000, provided_maxfq=10, include_errors=False)
-    #print(data_manager)
+
     if log_time:
         e.set()
     return res
@@ -58,7 +59,6 @@ def process_ids(setids, data_manager, num_workers = 4, delta_seconds = 14.0, log
     - log_time : flag whether to log time
     - save_results : filename of results file
     - chunk_size : how many IDs to assign to one worker at once (use for larger files)
-    
     """
     results = []
     
