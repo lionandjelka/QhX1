@@ -8,6 +8,12 @@ from datetime import datetime
 from concurrent import futures
 
 def background_log(set_id, e : threading.Event, delta_seconds : float):
+    """
+    Function for time logging
+    - Log approx. process time every delta_seconds
+    - Log start & end system time
+    Run in background thread for QhX processes
+    """
     total_time = 0
     cur_time = datetime.now()
     print(f'Starting time for ID {set_id} : {cur_time}')
@@ -18,6 +24,13 @@ def background_log(set_id, e : threading.Event, delta_seconds : float):
     print(f'End time for ID {set_id} : {cur_time}\n')
 
 def process1_wrapper(args):
+    """
+    Wrapper for processing function
+
+    - Gets set ID, data manager reference, seconds for logging & logging flag
+    - Starts background logging thread if required
+    - Processes data if data manager exists
+    """
     set_id, data_manager, delta_seconds, log_time = args 
     e = None
     if log_time:
@@ -26,7 +39,8 @@ def process1_wrapper(args):
         daemon.start()
     time.sleep(10)
     res = None
-    #res = process1(data_manager, set_id, ntau=80, ngrid=100, provided_minfq=2000, provided_maxfq=10, include_errors=False)
+    if data_manager is not None:
+        res = process1(data_manager, set_id, ntau=80, ngrid=100, provided_minfq=2000, provided_maxfq=10, include_errors=False)
     #print(data_manager)
     if log_time:
         e.set()
@@ -35,6 +49,17 @@ def process1_wrapper(args):
 TIMEOUT = 1000.0
 
 def process_ids(setids, data_manager, num_workers = 4, delta_seconds = 14.0, log_time = True, save_results = None, chunk_size = 5):	
+    """
+    Process ids using QhX function
+    - setids : ids to process
+    - data_manager : data manager provided
+    - num_workers : maximum number of processes at one time
+    - delta_seconds : time period for process logging
+    - log_time : flag whether to log time
+    - save_results : filename of results file
+    - chunk_size : how many IDs to assign to one worker at once (use for larger files)
+    
+    """
     results = []
     
     with futures.ProcessPoolExecutor(max_workers = num_workers) as exe:
