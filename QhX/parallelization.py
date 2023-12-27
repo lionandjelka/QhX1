@@ -1,11 +1,16 @@
 from QhX.detection import process1
 
-import os
+import sys
 import threading
 import time
+import os
 from multiprocessing import Pool
 from datetime import datetime
 from concurrent import futures
+
+DEFAULT_NUM_WORKERS = 4
+DEFAULT_CHUNK_SIZE = 5
+DEFAULT_LOG_PERIOD = 10 # seconds
 
 def background_log(set_id, e : threading.Event, delta_seconds : float):
     """
@@ -17,39 +22,58 @@ def background_log(set_id, e : threading.Event, delta_seconds : float):
     """
     total_time = 0
     cur_time = datetime.now()
-    print(f'Starting time for ID {set_id} : {cur_time}')
+    print(f'Starting time for ID {set_id} : {cur_time}\n')
+    
     while e.wait(delta_seconds) == False:
         total_time += delta_seconds
-        print(f'Processing {set_id}\nDuration: {total_time/delta_seconds} ticks\n{delta_seconds} seconds each\nTime so far {total_time}s\n')
+        print(f'Processing {set_id}\nPID {os.getpid()}\nDuration: {total_time/delta_seconds} ticks\n{delta_seconds} seconds each\nTime so far {total_time}s\n')
+    
     cur_time = datetime.now()
     print(f'End time for ID {set_id} : {cur_time}\n')
 
-def process1_wrapper(args):
+def process_wrapper(args):
     """
     Wrapper for processing function
 
-    - Gets set ID, data manager reference, seconds for logging & logging flag
+    - Gets processing function (data_manager, set_id, ntau, ngrid, provided_minfq, provided_maxfq, include_errors),
+    - set ID, data manager reference,
+    - seconds for periodic logging, whether to log flag & redirect to files flag
     - Starts background logging thread if required
     - Processes data if data manager exists
     """
-    set_id, data_manager, delta_seconds, log_time = args 
-    e = None
-    if log_time:
-        e = threading.Event()
-        daemon = threading.Thread(target = background_log, args = (set_id, e, delta_seconds))
-        daemon.start()
-    time.sleep(10)
+    process_function, set_id, data_manager, delta_seconds, log_time, log_files = args
+    
+    stopper_event = None
+    log_txt_file = None
     res = None
-    if data_manager is not None:
-        res = process1(data_manager, set_id, ntau=80, ngrid=100, provided_minfq=2000, provided_maxfq=10, include_errors=False)
 
+    if log_files:
+        logging_file = open(set_id, 'w')
+        sys.stdout = logging_file
     if log_time:
-        e.set()
+        stopper_event = threading.Event()
+        daemon = threading.Thread(target = background_log, args = (set_id, stopper_event, delta_seconds))
+        daemon.start()
+
+    try:
+        res = process_function(data_manager, set_id, ntau=80, ngrid=100, provided_minfq=2000, provided_maxfq=10, include_errors=False)
+    except Exception as e:
+        print('Error processing data : ' + str(e))
+    finally:
+        
+        if log_time:
+            stopper_event.set()
+            daemon.join()
+        if log_files:
+            logging_file.close()
+
     return res
 
-TIMEOUT = 1000.0
-
-def process_ids(setids, data_manager, num_workers = 4, delta_seconds = 14.0, log_time = True, save_results = None, chunk_size = 5):	
+def process_ids(setids, data_manager, 
+                num_workers = DEFAULT_NUM_WORKERS, delta_seconds = DEFAULT_LOG_PERIOD, 
+                log_time = True, save_results = None, 
+                log_files = False, chunk_size = DEFAULT_CHUNK_SIZE,
+                process_function = process1):	
     """
     Process ids using QhX function
     - setids : ids to process
@@ -59,11 +83,13 @@ def process_ids(setids, data_manager, num_workers = 4, delta_seconds = 14.0, log
     - log_time : flag whether to log time
     - save_results : filename of results file
     - chunk_size : how many IDs to assign to one worker at once (use for larger files)
+    - process_function : function used to process quasar data,
+      takes arguments in form (data_manager, set_id, ntau, ngrid, provided_minfq, provided_maxfq, include_errors)
     """
     results = []
     
     with futures.ProcessPoolExecutor(max_workers = num_workers) as exe:
-        results = exe.map(process1_wrapper, [(setids[i], data_manager, delta_seconds, log_time) for i in range(len(setids))])
+        results = exe.map(process_wrapper, [(process_function, setids[i], data_manager, delta_seconds, log_time, log_files) for i in range(len(setids))])
 
         if save_results is not None:
             try:
