@@ -72,7 +72,7 @@ def process_wrapper(args):
 def process_ids(setids, data_manager, 
                 num_workers = DEFAULT_NUM_WORKERS, delta_seconds = DEFAULT_LOG_PERIOD, 
                 log_time = True, save_results = None, 
-                log_files = False, chunk_size = DEFAULT_CHUNK_SIZE,
+                log_files = False, chunk_size = DEFAULT_CHUNK_SIZE, tasks_per_child = 1000,
                 process_function = process1):	
     """
     Process ids using QhX function
@@ -83,12 +83,13 @@ def process_ids(setids, data_manager,
     - log_time : flag whether to log time
     - save_results : filename of results file
     - chunk_size : how many IDs to assign to one worker at once (use for larger files)
+    - tasks_per_child : how many tasks to spawn for each process before refreshing child processes
     - process_function : function used to process quasar data,
       takes arguments in form (data_manager, set_id, ntau, ngrid, provided_minfq, provided_maxfq, include_errors)
     """
     results = []
     
-    with futures.ProcessPoolExecutor(max_workers = num_workers) as exe:
+    with futures.ProcessPoolExecutor(max_workers = num_workers,maxtasksperchild=1000) as exe:
         results = exe.map(process_wrapper, [(process_function, setids[i], data_manager, delta_seconds, log_time, log_files) for i in range(len(setids))])
 
         if save_results is not None:
