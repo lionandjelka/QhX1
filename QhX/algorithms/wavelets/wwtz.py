@@ -84,7 +84,7 @@ def estimate_wavelet_periods(time_series,  ngrid, known_period=None):
 
 
 
-def inp_param(ntau, ngrid, minfq, maxfq, f=2):
+def inp_param(ntau, ngrid, minfq, maxfq, parallel=False, f=2):
     """
     Calculate the input parameters for WWZ (Weighted Wavelet Z-transform) analysis.
 
@@ -127,9 +127,6 @@ def inp_param(ntau, ngrid, minfq, maxfq, f=2):
     w = 2 * np.pi * f  # Angular frequency
     decay_constant = 1 / (2 * w**2)  # Decay constant for the wavelet
 
-    # Set parallel processing flag (recommend True for faster computation)
-    parallel = True
-
     return ntau, frequency_parameters, decay_constant, parallel
 
 # Example usage:
@@ -137,7 +134,7 @@ def inp_param(ntau, ngrid, minfq, maxfq, f=2):
 # This will set up parameters for WWZ analysis with specified values.
 
 
-def wwt1(tt, mag, ntau, ngrid, minfq, maxfq, f=2, method='linear'):
+def wwt1(tt, mag, ntau, ngrid, minfq, maxfq, parallel=False, f=2, method='linear'):
     """
     Calculate the Weighted Wavelet Z-transform (WWZ) of a given time series signal.
 
@@ -162,7 +159,7 @@ def wwt1(tt, mag, ntau, ngrid, minfq, maxfq, f=2, method='linear'):
     """
 
     # Compute input parameters for WWZ analysis
-    ntau, params, decay_constant, parallel = inp_param(ntau, ngrid, minfq, maxfq, f)
+    ntau, params, decay_constant, parallel = inp_param(ntau, ngrid, minfq, maxfq, parallel, f)
 
     # Perform WWZ analysis using libwwz library
     return libwwz_wwt(timestamps=tt, magnitudes=mag,
@@ -178,7 +175,7 @@ def wwt1(tt, mag, ntau, ngrid, minfq, maxfq, f=2, method='linear'):
 # This performs WWZ analysis on the provided time series data.
 
 
-def hybrid2d(tt, mag, ntau, ngrid, minfq, maxfq, f=2, method='linear'):
+def hybrid2d(tt, mag, ntau, ngrid, minfq, maxfq, parallel=False, f=2, method='linear'):
     """
     Perform a hybrid 2D analysis involving WWZ (Weighted Wavelet Z-transform) and auto-correlation on light curve data.
 
