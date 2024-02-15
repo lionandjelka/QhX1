@@ -18,22 +18,26 @@ class ParallelSolver():
                  data_manager = None,
                  log_time = True, 
                  log_files = False,
+                 save_results = True,
                  process_function = process1
                 ):
         """
         Constructor takes:
-        - Seconds for periodic logging
-        - Number of processes
-        - Flag for logging time & redirecting output to files
-        - Processing function (data_manager, set_id, ntau, ngrid, provided_minfq, provided_maxfq, include_errors),
-        - Data manager reference
+
+        - num_workers : number of processes to start
+        - proceess_function : processing function (data_manager, set_id, ntau, ngrid, provided_minfq, provided_maxfq, include_errors),
+        - data_manager : data manager reference
+        - delta_seconds : seconds for periodic time logging (None if not logging)
+        - log_time, log_files : flags for logging time & sending output to files
+        - save_results : saves results in separate files at the end of every ID processing
         """
         self.delta_seconds = delta_seconds
         self.num_workers = num_workers
         self.data_manager = data_manager
+        self.process_function = process_function
         self.log_time = log_time
         self.log_files = log_files
-        self.process_function = process_function
+        self.save_results = save_results
 
     @staticmethod
     def background_log(set_id, e : threading.Event, delta_seconds : float):
@@ -45,30 +49,30 @@ class ParallelSolver():
         Run in background thread
         """
         total_time = 0
-        cur_time = datetime.now()
-        print(f'Starting time for ID {set_id} : {cur_time}\n')
+        start_time = datetime.now()
+        print(f'Starting time for ID {set_id} : {start_time}\n')
         
         while e.wait(delta_seconds) == False:
             total_time += delta_seconds
             print(f'Processing {set_id}\nPID {os.getpid()}\nDuration: {total_time/delta_seconds} ticks\n{delta_seconds} seconds each\nTime so far {total_time}s\n')
         
-        cur_time = datetime.now()
-        print(f'End time for ID {set_id} : {cur_time}\n')
+        end_time = datetime.now()
+        print(f'End time for ID {set_id} : {end_time}\nTotal time : {end_time - start_time}\n')
 
-    def process_wrapper(self, id):
+    def process_wrapper(self):
         """
         Wrapper for processing function, takes id of self.setids_div for setids list to process
 
-        
         - Starts background logging thread if required
         - Processes data if data manager exists
         """
-        set_ids = self.setids_div[id]
-        print('Starting processing ' + str(set_ids) + '\n\n')
         stopper_event = None
 
-        for set_id in set_ids:
-            print(set_id)
+        while not self.set_ids_.empty():
+            try:
+                set_id = self.set_ids_.get()
+            except Exception as e:
+                break
             try:
                 if self.log_files:
                     logging_file = open(set_id, 'w')
@@ -77,7 +81,10 @@ class ParallelSolver():
                     stopper_event = threading.Event()
                     daemon = threading.Thread(target = ParallelSolver.background_log, args = (set_id, stopper_event, self.delta_seconds))
                     daemon.start()
-                self.results.put(self.process_function(self.data_manager, set_id, ntau=80, ngrid=100, provided_minfq=2000, provided_maxfq=10, include_errors=False))
+
+                result = str(self.process_function(self.data_manager, set_id, ntau=80, ngrid=100, provided_minfq=2000, provided_maxfq=10, include_errors=False))
+                if self.save_all_results_:
+                    self.results_.put('ID ' + set_id + '\n\n' + result)
             except Exception as e:
                 print('Error processing data : ' + str(e) + '\n')
             finally:
@@ -85,42 +92,44 @@ class ParallelSolver():
                     stopper_event.set()
                     daemon.join()
                 if self.log_files:
+                    sys.stdout = sys.__stdout__
                     logging_file.close()
+                if self.save_results:
+                    saving_file = open(set_id + '-res', 'w')
+                    saving_file.write(result)
+                    saving_file.close()
 
-
-    def process_ids(self, setids, save_results = None):	
+    def process_ids(self, set_ids, results_file = None):	
         """
         Process ids using QhX function
         - setids : ids to process
-        - data_manager : data manager provided
-        - num_workers : maximum number of processes at one time
-        - delta_seconds : time period for process logging
-        - log_time : flag whether to log time
         - save_results : filename of results file
-        - chunk_size : how many IDs to assign to one worker at once (use for larger files)
-        - tasks_per_child : how many tasks to spawn for each process before refreshing child processes
-        - process_function : function used to process quasar data,
-        takes arguments in form (data_manager, set_id, ntau, ngrid, provided_minfq, provided_maxfq, include_errors)
         """
-        self.setids_div = []
-        self.results = Queue()
+        self.results_ = Queue()
+        self.set_ids_ = Queue()
+        if results_file is not None:
+            self.save_all_results_ = True
+        else:
+            self.save_all_results_ = False
 
-        for i in range(self.num_workers):
-            self.setids_div.append([setids[j] for j in range(i, len(setids), self.num_workers)])
+        for id in set_ids:
+            self.set_ids_.put(id)
         
-        print('Divided sets : ' + str(self.setids_div) + '\n\n')
-
-        processes = [Process(target = self.process_wrapper, args = (i,)) for i in range(self.num_workers)]
+        processes = [Process(target = self.process_wrapper) for i in range(self.num_workers)]
         
         for p in processes:
           p.start()
         for p in processes:
           p.join()
 
-        if save_results is not None:
+        if results_file is not None:
                 try:
-                    with open(save_results, 'w') as f:
-                        for result in self.results:
+                    with open(results_file, 'w') as f:
+                        while not self.results_.empty():
+                            try:
+                                result = self.results_.get()
+                            except Exception as e:
+                                break
                             f.write(result + '\n')
                 except Exception as e:
                     print('Error while saving: \n'+ str(e))
