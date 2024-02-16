@@ -101,12 +101,11 @@ def inp_param(ntau, ngrid, minfq, maxfq, parallel=False, f=2):
     - ntau (int): Number of time delays.
     - frequency_parameters (list): List containing frequency parameters [freq_low, freq_high, freq_step, override].
     - decay_constant (float): Decay constant for the wavelet.
-    - parallel (bool): Flag to enable parallel processing.
+    - parallel (bool): Flag to enable parallel processing, will use all available cores.
 
     Note:
     -----
     - The decay constant is calculated based on the frequency 'f' and is used to define the shape of the analyzing wavelet.
-    - The function assumes parallel processing is desired. Set 'parallel' to False to disable it.
     """
 
     # Compute frequency grid parameters
@@ -220,7 +219,7 @@ def hybrid2d(tt, mag, ntau, ngrid, minfq, maxfq, parallel=False, f=2, method='li
     # ...
 
     # Perform WWZ analysis on the data using the wwt function
-    wwz_matrix = wwt1(tt, mag, ntau, ngrid, minfq, maxfq, f, method)
+    wwz_matrix = wwt1(tt, mag, ntau, ngrid, minfq, maxfq, parallel, f, method)
 
     # Auto-correlate the WWZ matrix
     # np.rot90 rotates the matrix by 90 degrees to align time and frequency axes as needed
