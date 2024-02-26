@@ -1,3 +1,11 @@
+"""
+Author:
+
+Momcilo Tosic
+Astroinformatics student
+Faculty of Mathematics, Uni of Belgrade
+
+"""
 from QhX.detection import process1
 
 import sys
