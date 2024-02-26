@@ -10,20 +10,20 @@ from QhX.calculation import *
 
 #from QhX.algorithms.wavelets.wwt import estimate_wavelet_periods
 
-def process1tiktok(data_manager,set1, initial_period, damping_factor_amplitude, damping_factor_frequency, snr=None, inject_signal=False, ntau=None, ngrid=None, minfq=None, maxfq=None):
+def process1tiktok(data_manager,set1, initial_period, damping_factor_amplitude, damping_factor_frequency, snr=None, inject_signal=False, ntau=None, ngrid=None, minfq=None, maxfq=None, parallel = False):
     if set1 not in data_manager.fs_gp.groups:
         print(f"Set ID {set1} not found.")
         return None
 
     det_periods = []
     tt0, yy0, tt1, yy1, tt2, yy2, tt3, yy3, sampling0, sampling1, sampling2, sampling3, tik0, tik1, tik2, tik3 = get_lctiktok(data_manager,set1, initial_period, damping_factor_amplitude, damping_factor_frequency, snr, inject_signal)
-    wwz_matrx0, corr0, extent0 = hybrid2d(tt0, yy0, 120, 3200, minfq=1500., maxfq=10.)
+    wwz_matrx0, corr0, extent0 = hybrid2d(tt0, yy0, 120, 3200, minfq=1500., maxfq=10., parallel=parallel)
     peaks0, hh0, r_periods0, up0, low0 = periods(int(set1), corr0, 3200, plot=False)
-    wwzmatrx1, corr1, extent1 = hybrid2d(tt1, yy1, 120, 3200, minfq=1500., maxfq=10.)
+    wwzmatrx1, corr1, extent1 = hybrid2d(tt1, yy1, 120, 3200, minfq=1500., maxfq=10., parallel=parallel)
     peaks1, hh1, r_periods1, up1, low1 = periods(int(set1), corr1, 3200, plot=False)
-    wwz_matrx2, corr2, extent2 = hybrid2d(tt2, yy2, 120, 3200, minfq=1500., maxfq=10.)
+    wwz_matrx2, corr2, extent2 = hybrid2d(tt2, yy2, 120, 3200, minfq=1500., maxfq=10., parallel=parallel)
     peaks2, hh2, r_periods2, up2, low2 = periods(int(set1), corr2, 3200, plot=False)
-    wwzmatrx3, corr3, extent3 = hybrid2d(tt3, yy3, 120, 3200, minfq=1500., maxfq=10.)
+    wwzmatrx3, corr3, extent3 = hybrid2d(tt3, yy3, 120, 3200, minfq=1500., maxfq=10., parallel=parallel)
     peaks3, hh3, r_periods3, up3, low3 = periods(int(set1), corr3, 3200, plot=False)
     r_periods01, u01, low01, sig01 = same_periods(r_periods0, r_periods1, up0, low0, up1, low1, peaks0, hh0, tt0, yy0, peaks1, hh1, tt1, yy1, ntau=ntau, ngrid=ngrid, minfq=minfq, maxfq=maxfq)
     print(set1)
@@ -49,7 +49,7 @@ def process1tiktok(data_manager,set1, initial_period, damping_factor_amplitude, 
 
 
 
-def process1_new(data_manager, set1, ntau=None, ngrid=None, provided_minfq=None, provided_maxfq=None, include_errors=True):
+def process1_new(data_manager, set1, ntau=None, ngrid=None, provided_minfq=None, provided_maxfq=None, include_errors=True, parallel=False):
     """
     Processes and analyzes light curve data from a single object to detect common periods across different bands.
 
@@ -108,7 +108,7 @@ def process1_new(data_manager, set1, ntau=None, ngrid=None, provided_minfq=None,
     tt0, yy0, tt1, yy1, tt2, yy2, tt3, yy3, sampling0, sampling1, sampling2, sampling3 = light_curves_data
     results = []
     for tt, yy in [(tt0, yy0), (tt1, yy1), (tt2, yy2), (tt3, yy3)]:
-        wwz_matrix, corr, extent = hybrid2d(tt, yy, ntau=ntau, ngrid=ngrid, minfq=provided_minfq, maxfq=provided_maxfq)
+        wwz_matrix, corr, extent = hybrid2d(tt, yy, ntau=ntau, ngrid=ngrid, minfq=provided_minfq, maxfq=provided_maxfq, parallel=parallel)
         peaks, hh, r_periods, up, low = periods(set1, corr, ngrid=ngrid, plot=False, minfq=provided_minfq, maxfq=provided_maxfq)
         results.append((r_periods, up, low, peaks, hh))
 
@@ -157,7 +157,7 @@ def process1_new(data_manager, set1, ntau=None, ngrid=None, provided_minfq=None,
 
 
 
-def process1(data_manager, set1, ntau=None, ngrid=None, provided_minfq=None, provided_maxfq=None, include_errors=True):
+def process1(data_manager, set1, ntau=None, ngrid=None, provided_minfq=None, provided_maxfq=None, include_errors=True, parallel=False):
     """
     Processes and analyzes data related to light curves of a single object to detect common periods across different light curves.
 
@@ -215,7 +215,7 @@ def process1(data_manager, set1, ntau=None, ngrid=None, provided_minfq=None, pro
     results = []
     for tt, yy in [(tt0, yy0), (tt1, yy1), (tt2, yy2), (tt3, yy3)]:
       #  local_minfq, local_maxfq = get_or_estimate_freq(tt, provided_minfq, provided_maxfq)
-        wwz_matrix, corr, extent = hybrid2d(tt, yy, ntau=ntau, ngrid=ngrid, minfq=provided_minfq, maxfq=provided_maxfq)
+        wwz_matrix, corr, extent = hybrid2d(tt, yy, ntau=ntau, ngrid=ngrid, minfq=provided_minfq, maxfq=provided_maxfq, parallel=parallel)
         peaks, hh, r_periods, up, low = periods(set1, corr, ngrid=ngrid, plot=False, minfq=provided_minfq, maxfq=provided_maxfq)
         results.append((r_periods, up, low, peaks, hh))
 
