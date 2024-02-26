@@ -12,6 +12,8 @@ from datetime import datetime
 DEFAULT_NUM_WORKERS = 4
 # Default number of seconds to pass between time loggings
 DEFAULT_LOG_PERIOD = 10
+# csv format results header
+HEADER = "Set ID,Common period (Band1 & Band2),Upper error bound,Lower error bound,Significance,Band1-Band2\n"
 
 """
 ParallelSolver runs an assigned processing function on all set IDs (string) in parameter list, using data from assigned
@@ -109,26 +111,37 @@ class ParallelSolver():
                 break
 
             # If a throw happens before setting result
-            result = ""
-            
+            res_string = ""
+
             try:
                 # Open output log file
                 if self.log_files:
                     logging_file = open(set_id, 'w')
                     sys.stdout = logging_file
+
                 # Begin logging time if flag set
                 if self.log_time:
                     stopper_event = threading.Event()
                     daemon = threading.Thread(target = ParallelSolver.background_log, args = (set_id, stopper_event, self.delta_seconds))
                     daemon.start()
+
                 # Call main processing fnc
-                result = str(self.process_function(self.data_manager, set_id,
-                                                    ntau=80, ngrid=100, provided_minfq=2000, provided_maxfq=10, parallel=self.parallel_arithmetic, include_errors=False))
+                result = self.process_function(self.data_manager, set_id, ntau=80, ngrid=100, provided_minfq=2000, provided_maxfq=10, parallel=self.parallel_arithmetic, include_errors=False)
+                
+                # Get results into formatted string
+                res_string = ""
+                for row in result:
+                    res_string_tmp = ""
+                    for entry in row:
+                        res_string_tmp += str(entry) + ","
+                    res_string_tmp = res_string_tmp[:-1] + "\n"
+                    res_string += res_string_tmp
+
                 # Put results in unified results queue if flag is set
                 if self.save_all_results_:
-                    self.results_.put('ID ' + set_id + '\n\n' + result)
+                    self.results_.put(res_string)
             except Exception as e:
-                print('Error processing data : ' + str(e) + '\n')
+                print('Error processing/saving data : ' + str(e) + '\n')
             finally:
                 # Stop background thread, close output file and write result to individual file if relevant flags are set
                 if self.log_time:
@@ -138,15 +151,15 @@ class ParallelSolver():
                     sys.stdout = sys.__stdout__
                     logging_file.close()
                 if self.save_results:
-                    saving_file = open(set_id + '-res', 'w')
-                    saving_file.write(result)
+                    saving_file = open(set_id + '-result.csv', 'w')
+                    saving_file.write(HEADER + res_string)
                     saving_file.close()
 
     def process_ids(self, set_ids, results_file = None):	
         """
         Process ids using QhX function
         - setids : ids to process
-        - save_results : filename of results file
+        - save_results : filename of results file ( preffered .csv )
         """
 
         # Unified output queue and input queue
@@ -158,6 +171,7 @@ class ParallelSolver():
             self.save_all_results_ = True
         else:
             self.save_all_results_ = False
+
         # Fill input queue
         for id in set_ids:
             self.set_ids_.put(id)
@@ -173,11 +187,14 @@ class ParallelSolver():
         if results_file is not None:
                 try:
                     with open(results_file, 'w') as f:
+
+                        # Header for CSV
+                        f.write(HEADER)
                         while not self.results_.empty():
                             try:
                                 result = self.results_.get()
                             except Exception as e:
                                 break
-                            f.write(result + '\n')
+                            f.write(result)
                 except Exception as e:
                     print('Error while saving: \n'+ str(e))
