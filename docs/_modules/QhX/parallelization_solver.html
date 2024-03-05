@@ -82,22 +82,42 @@
              
   <h1>Source code for QhX.parallelization_solver</h1><div class="highlight"><pre>
 <span></span><span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">Author:</span>
+<span class="sd">The `parallelization_solver` module is designed for parallel processing of astronomical data sets. </span>
+<span class="sd">It utilizes multiprocessing to expedite the processing of large data sets across multiple CPUs.</span>
 
+<span class="sd">This module defines the `ParallelSolver` class, which orchestrates the parallel execution of a </span>
+<span class="sd">specified processing function across different subsets of data. It features mechanisms for time </span>
+<span class="sd">logging and result aggregation, facilitating comprehensive analysis workflows.</span>
+
+<span class="sd">Example usage:</span>
+<span class="sd">--------------</span>
+<span class="sd">    from QhX.detection import process1</span>
+<span class="sd">    from QhX.parallelization_solver import ParallelSolver</span>
+<span class="sd">    from QhX.data_manager import DataManager</span>
+
+<span class="sd">    data_manager = DataManager()</span>
+<span class="sd">    fs_df = data_manager.load_fs_df(&#39;ForcedSourceTable.parquet&#39;)</span>
+<span class="sd">    fs_gp = data_manager.group_fs_df()</span>
+<span class="sd">    fs_df = data_manager.fs_df</span>
+
+<span class="sd">    setids = [&#39;1384177&#39;, &#39;1384184&#39;, &#39;1460382&#39;]</span>
+<span class="sd">    solver = ParallelSolver(data_manager=data_manager, delta_seconds=12.0, num_workers=2, log_files=True)</span>
+<span class="sd">    solver.process_ids(setids, &#39;results.csv&#39;)</span>
+
+<span class="sd">Author:</span>
+<span class="sd">-------</span>
 <span class="sd">Momcilo Tosic</span>
 <span class="sd">Astroinformatics student</span>
-<span class="sd">Faculty of Mathematics, Uni of Belgrade</span>
-
+<span class="sd">Faculty of Mathematics, University of Belgrade</span>
 <span class="sd">&quot;&quot;&quot;</span>
-<span class="kn">from</span> <span class="nn">QhX.detection</span> <span class="kn">import</span> <span class="n">process1</span>
 
 <span class="kn">import</span> <span class="nn">sys</span>
 <span class="kn">import</span> <span class="nn">threading</span>
 <span class="kn">import</span> <span class="nn">time</span>
 <span class="kn">import</span> <span class="nn">os</span>
-<span class="kn">from</span> <span class="nn">multiprocessing</span> <span class="kn">import</span> <span class="n">Process</span>
-<span class="kn">from</span> <span class="nn">multiprocessing</span> <span class="kn">import</span> <span class="n">Queue</span>
+<span class="kn">from</span> <span class="nn">multiprocessing</span> <span class="kn">import</span> <span class="n">Process</span><span class="p">,</span> <span class="n">Queue</span>
 <span class="kn">from</span> <span class="nn">datetime</span> <span class="kn">import</span> <span class="n">datetime</span>
+<span class="kn">from</span> <span class="nn">QhX.detection</span> <span class="kn">import</span> <span class="n">process1</span>
 
 <span class="c1"># Default number of processes to spawn</span>
 <span class="n">DEFAULT_NUM_WORKERS</span> <span class="o">=</span> <span class="mi">4</span>
@@ -106,30 +126,24 @@
 <span class="c1"># csv format results header</span>
 <span class="n">HEADER</span> <span class="o">=</span> <span class="s2">&quot;Set ID,Common period (Band1 &amp; Band2),Upper error bound,Lower error bound,Significance,Band1-Band2</span><span class="se">\n</span><span class="s2">&quot;</span>
 
-<span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">ParallelSolver runs an assigned processing function on all set IDs (string) in parameter list, using data from assigned</span>
-<span class="sd">DataManager instance, with possible time &amp; process logging.</span>
-<span class="sd">Saves individual results or in one single file (or both).</span>
-
-<span class="sd">Example usage:</span>
-
-<span class="sd">from QhX.detection import process1</span>
-<span class="sd">from QhX.parallelization_solver import *</span>
-<span class="sd">from QhX.data_manager import DataManager</span>
-
-<span class="sd">data_manager = DataManager()</span>
-<span class="sd">fs_df = data_manager.load_fs_df(&#39;ForcedSourceTable.parquet&#39;)</span>
-<span class="sd">fs_gp = data_manager.group_fs_df()</span>
-<span class="sd">fs_df = data_manager.fs_df</span>
-
-<span class="sd">setids = [&#39;1384177&#39;, &#39;1384184&#39;, &#39;1460382&#39;]</span>
-<span class="sd">solver = ParallelSolver(data_manager=data_manager, delta_seconds=12.0, num_workers=2, log_files=True)</span>
-<span class="sd">solver.process_ids(setids, &#39;results&#39;)</span>
-<span class="sd">&quot;&quot;&quot;</span>
 
 <div class="viewcode-block" id="ParallelSolver">
 <a class="viewcode-back" href="../../parallelization_solver.html#QhX.parallelization_solver.ParallelSolver">[docs]</a>
 <span class="k">class</span> <span class="nc">ParallelSolver</span><span class="p">():</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    A class to manage parallel execution of data processing functions.</span>
+<span class="sd">    </span>
+<span class="sd">    Attributes:</span>
+<span class="sd">        delta_seconds (float): Interval in seconds between log messages.</span>
+<span class="sd">        num_workers (int): Number of worker processes to spawn.</span>
+<span class="sd">        data_manager (DataManager): Instance of DataManager for data retrieval.</span>
+<span class="sd">        log_time (bool): Enable/disable time logging.</span>
+<span class="sd">        log_files (bool): Enable/disable logging to files.</span>
+<span class="sd">        save_results (bool): Enable/disable saving of results to files.</span>
+<span class="sd">        process_function (function): Data processing function to be parallelized.</span>
+<span class="sd">        parallel_arithmetic (bool): Use parallel arithmetic within processing function.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
     <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span>
                  <span class="n">delta_seconds</span> <span class="o">=</span> <span class="n">DEFAULT_LOG_PERIOD</span><span class="p">,</span> 
                  <span class="n">num_workers</span> <span class="o">=</span> <span class="n">DEFAULT_NUM_WORKERS</span><span class="p">,</span>
@@ -140,17 +154,7 @@
                  <span class="n">process_function</span> <span class="o">=</span> <span class="n">process1</span><span class="p">,</span>
                  <span class="n">parallel_arithmetic</span> <span class="o">=</span> <span class="kc">False</span>
                 <span class="p">):</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        Constructor takes:</span>
-
-<span class="sd">        - num_workers : number of processes to start</span>
-<span class="sd">        - process_function : processing function that takes in (data_manager, set_id, ntau, ngrid, provided_minfq, provided_maxfq, include_errors, parallel),</span>
-<span class="sd">        - data_manager : data manager reference</span>
-<span class="sd">        - delta_seconds : seconds for periodic time logging (None if not logging)</span>
-<span class="sd">        - log_time, log_files : flags for logging time &amp; sending output to files</span>
-<span class="sd">        - save_results : saves results in separate files at the end of every ID processing</span>
-<span class="sd">        - parallel_arithmetic : whether to set parallel flag of process_function (one function call will make use of ALL cores)</span>
-<span class="sd">        &quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Initialize the ParallelSolver with the specified configuration.&quot;&quot;&quot;</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">delta_seconds</span> <span class="o">=</span> <span class="n">delta_seconds</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">num_workers</span> <span class="o">=</span> <span class="n">num_workers</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">data_manager</span> <span class="o">=</span> <span class="n">data_manager</span>
@@ -165,11 +169,12 @@
     <span class="nd">@staticmethod</span>
     <span class="k">def</span> <span class="nf">background_log</span><span class="p">(</span><span class="n">set_id</span><span class="p">,</span> <span class="n">e</span> <span class="p">:</span> <span class="n">threading</span><span class="o">.</span><span class="n">Event</span><span class="p">,</span> <span class="n">delta_seconds</span> <span class="p">:</span> <span class="nb">float</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        Function for time logging</span>
-<span class="sd">        - Logs approx. process time every delta_seconds</span>
-<span class="sd">        - End when e is triggered</span>
-<span class="sd">        - Logs start &amp; end system time</span>
-<span class="sd">        Run in background thread</span>
+<span class="sd">        Background thread for logging the process time at regular intervals.</span>
+
+<span class="sd">        Parameters:</span>
+<span class="sd">            set_id (str): Identifier for the data set being processed.</span>
+<span class="sd">            e (threading.Event): Event to signal the thread to exit.</span>
+<span class="sd">            delta_seconds (float): Time interval for logging.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
 
         <span class="c1"># Log starting time</span>
@@ -191,10 +196,12 @@
 <a class="viewcode-back" href="../../parallelization_solver.html#QhX.parallelization_solver.ParallelSolver.process_wrapper">[docs]</a>
     <span class="k">def</span> <span class="nf">process_wrapper</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        Wrapper for processing function, takes id of self.setids_div for setids list to process</span>
-
-<span class="sd">        - Starts background logging thread if required</span>
-<span class="sd">        - Processes data if data manager exists</span>
+<span class="sd">        Wrapper for the process function to integrate logging and result handling.</span>
+<span class="sd">        Takes id of self.setids_div for setids list to process</span>
+<span class="sd">         </span>
+<span class="sd">        Performed tasks:</span>
+<span class="sd">         Starts background logging thread if required</span>
+<span class="sd">         Processes data if data manager exists</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         
         <span class="c1"># Event used for stopping background log thread</span>
@@ -258,9 +265,11 @@
 <a class="viewcode-back" href="../../parallelization_solver.html#QhX.parallelization_solver.ParallelSolver.process_ids">[docs]</a>
     <span class="k">def</span> <span class="nf">process_ids</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">set_ids</span><span class="p">,</span> <span class="n">results_file</span> <span class="o">=</span> <span class="kc">None</span><span class="p">):</span>	
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        Process ids using QhX function</span>
-<span class="sd">        - setids : ids to process</span>
-<span class="sd">        - save_results : filename of results file ( preffered .csv )</span>
+<span class="sd">        Processes a list of set IDs using the configured process function in parallel.</span>
+
+<span class="sd">        Parameters:</span>
+<span class="sd">            set_ids (list of str): List of set IDs to process.</span>
+<span class="sd">            results_file (str, optional): Path to save aggregated results.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
 
         <span class="c1"># Unified output queue and input queue</span>
