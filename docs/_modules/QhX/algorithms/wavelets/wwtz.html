@@ -175,7 +175,7 @@
 
 <div class="viewcode-block" id="inp_param">
 <a class="viewcode-back" href="../../../../wwtz.html#QhX.algorithms.wavelets.wwtz.inp_param">[docs]</a>
-<span class="k">def</span> <span class="nf">inp_param</span><span class="p">(</span><span class="n">ntau</span><span class="p">,</span> <span class="n">ngrid</span><span class="p">,</span> <span class="n">minfq</span><span class="p">,</span> <span class="n">maxfq</span><span class="p">,</span> <span class="n">f</span><span class="o">=</span><span class="mi">2</span><span class="p">):</span>
+<span class="k">def</span> <span class="nf">inp_param</span><span class="p">(</span><span class="n">ntau</span><span class="p">,</span> <span class="n">ngrid</span><span class="p">,</span> <span class="n">minfq</span><span class="p">,</span> <span class="n">maxfq</span><span class="p">,</span> <span class="n">parallel</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">f</span><span class="o">=</span><span class="mi">2</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Calculate the input parameters for WWZ (Weighted Wavelet Z-transform) analysis.</span>
 
@@ -192,12 +192,11 @@
 <span class="sd">    - ntau (int): Number of time delays.</span>
 <span class="sd">    - frequency_parameters (list): List containing frequency parameters [freq_low, freq_high, freq_step, override].</span>
 <span class="sd">    - decay_constant (float): Decay constant for the wavelet.</span>
-<span class="sd">    - parallel (bool): Flag to enable parallel processing.</span>
+<span class="sd">    - parallel (bool): Flag to enable parallel processing, will use all available cores.</span>
 
 <span class="sd">    Note:</span>
 <span class="sd">    -----</span>
 <span class="sd">    - The decay constant is calculated based on the frequency &#39;f&#39; and is used to define the shape of the analyzing wavelet.</span>
-<span class="sd">    - The function assumes parallel processing is desired. Set &#39;parallel&#39; to False to disable it.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
     <span class="c1"># Compute frequency grid parameters</span>
@@ -218,9 +217,6 @@
     <span class="n">w</span> <span class="o">=</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">pi</span> <span class="o">*</span> <span class="n">f</span>  <span class="c1"># Angular frequency</span>
     <span class="n">decay_constant</span> <span class="o">=</span> <span class="mi">1</span> <span class="o">/</span> <span class="p">(</span><span class="mi">2</span> <span class="o">*</span> <span class="n">w</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span>  <span class="c1"># Decay constant for the wavelet</span>
 
-    <span class="c1"># Set parallel processing flag (recommend True for faster computation)</span>
-    <span class="n">parallel</span> <span class="o">=</span> <span class="kc">True</span>
-
     <span class="k">return</span> <span class="n">ntau</span><span class="p">,</span> <span class="n">frequency_parameters</span><span class="p">,</span> <span class="n">decay_constant</span><span class="p">,</span> <span class="n">parallel</span></div>
 
 
@@ -231,7 +227,7 @@
 
 <div class="viewcode-block" id="wwt1">
 <a class="viewcode-back" href="../../../../wwtz.html#QhX.algorithms.wavelets.wwtz.wwt1">[docs]</a>
-<span class="k">def</span> <span class="nf">wwt1</span><span class="p">(</span><span class="n">tt</span><span class="p">,</span> <span class="n">mag</span><span class="p">,</span> <span class="n">ntau</span><span class="p">,</span> <span class="n">ngrid</span><span class="p">,</span> <span class="n">minfq</span><span class="p">,</span> <span class="n">maxfq</span><span class="p">,</span> <span class="n">f</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">method</span><span class="o">=</span><span class="s1">&#39;linear&#39;</span><span class="p">):</span>
+<span class="k">def</span> <span class="nf">wwt1</span><span class="p">(</span><span class="n">tt</span><span class="p">,</span> <span class="n">mag</span><span class="p">,</span> <span class="n">ntau</span><span class="p">,</span> <span class="n">ngrid</span><span class="p">,</span> <span class="n">minfq</span><span class="p">,</span> <span class="n">maxfq</span><span class="p">,</span> <span class="n">parallel</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">f</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">method</span><span class="o">=</span><span class="s1">&#39;linear&#39;</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Calculate the Weighted Wavelet Z-transform (WWZ) of a given time series signal.</span>
 
@@ -256,7 +252,7 @@
 <span class="sd">    &quot;&quot;&quot;</span>
 
     <span class="c1"># Compute input parameters for WWZ analysis</span>
-    <span class="n">ntau</span><span class="p">,</span> <span class="n">params</span><span class="p">,</span> <span class="n">decay_constant</span><span class="p">,</span> <span class="n">parallel</span> <span class="o">=</span> <span class="n">inp_param</span><span class="p">(</span><span class="n">ntau</span><span class="p">,</span> <span class="n">ngrid</span><span class="p">,</span> <span class="n">minfq</span><span class="p">,</span> <span class="n">maxfq</span><span class="p">,</span> <span class="n">f</span><span class="p">)</span>
+    <span class="n">ntau</span><span class="p">,</span> <span class="n">params</span><span class="p">,</span> <span class="n">decay_constant</span><span class="p">,</span> <span class="n">parallel</span> <span class="o">=</span> <span class="n">inp_param</span><span class="p">(</span><span class="n">ntau</span><span class="p">,</span> <span class="n">ngrid</span><span class="p">,</span> <span class="n">minfq</span><span class="p">,</span> <span class="n">maxfq</span><span class="p">,</span> <span class="n">parallel</span><span class="p">,</span> <span class="n">f</span><span class="p">)</span>
 
     <span class="c1"># Perform WWZ analysis using libwwz library</span>
     <span class="k">return</span> <span class="n">libwwz_wwt</span><span class="p">(</span><span class="n">timestamps</span><span class="o">=</span><span class="n">tt</span><span class="p">,</span> <span class="n">magnitudes</span><span class="o">=</span><span class="n">mag</span><span class="p">,</span>
@@ -275,7 +271,7 @@
 
 <div class="viewcode-block" id="hybrid2d">
 <a class="viewcode-back" href="../../../../wwtz.html#QhX.algorithms.wavelets.wwtz.hybrid2d">[docs]</a>
-<span class="k">def</span> <span class="nf">hybrid2d</span><span class="p">(</span><span class="n">tt</span><span class="p">,</span> <span class="n">mag</span><span class="p">,</span> <span class="n">ntau</span><span class="p">,</span> <span class="n">ngrid</span><span class="p">,</span> <span class="n">minfq</span><span class="p">,</span> <span class="n">maxfq</span><span class="p">,</span> <span class="n">f</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">method</span><span class="o">=</span><span class="s1">&#39;linear&#39;</span><span class="p">):</span>
+<span class="k">def</span> <span class="nf">hybrid2d</span><span class="p">(</span><span class="n">tt</span><span class="p">,</span> <span class="n">mag</span><span class="p">,</span> <span class="n">ntau</span><span class="p">,</span> <span class="n">ngrid</span><span class="p">,</span> <span class="n">minfq</span><span class="p">,</span> <span class="n">maxfq</span><span class="p">,</span> <span class="n">parallel</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">f</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">method</span><span class="o">=</span><span class="s1">&#39;linear&#39;</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Perform a hybrid 2D analysis involving WWZ (Weighted Wavelet Z-transform) and auto-correlation on light curve data.</span>
 
@@ -320,7 +316,7 @@
     <span class="c1"># ...</span>
 
     <span class="c1"># Perform WWZ analysis on the data using the wwt function</span>
-    <span class="n">wwz_matrix</span> <span class="o">=</span> <span class="n">wwt1</span><span class="p">(</span><span class="n">tt</span><span class="p">,</span> <span class="n">mag</span><span class="p">,</span> <span class="n">ntau</span><span class="p">,</span> <span class="n">ngrid</span><span class="p">,</span> <span class="n">minfq</span><span class="p">,</span> <span class="n">maxfq</span><span class="p">,</span> <span class="n">f</span><span class="p">,</span> <span class="n">method</span><span class="p">)</span>
+    <span class="n">wwz_matrix</span> <span class="o">=</span> <span class="n">wwt1</span><span class="p">(</span><span class="n">tt</span><span class="p">,</span> <span class="n">mag</span><span class="p">,</span> <span class="n">ntau</span><span class="p">,</span> <span class="n">ngrid</span><span class="p">,</span> <span class="n">minfq</span><span class="p">,</span> <span class="n">maxfq</span><span class="p">,</span> <span class="n">parallel</span><span class="p">,</span> <span class="n">f</span><span class="p">,</span> <span class="n">method</span><span class="p">)</span>
 
     <span class="c1"># Auto-correlate the WWZ matrix</span>
     <span class="c1"># np.rot90 rotates the matrix by 90 degrees to align time and frequency axes as needed</span>
