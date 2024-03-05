@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Parallelization Solver module &mdash; QhX 0.1.0 documentation</title>
+      <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="_static/jquery.js?v=5d32c60e"></script>
+        <script src="_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script src="_static/documentation_options.js?v=01f34227"></script>
+        <script src="_static/doctools.js?v=888ff710"></script>
+        <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+        <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+        <script src="https://unpkg.com/@jupyter-widgets/html-manager@^0.20.0/dist/embed-amd.js"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="test_integrated" href="test_integrated.html" />
+    <link rel="prev" title="interactive_plt" href="interactive_plt.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search"  style="background: white" >
+
+          
+          
+          <a href="index.html" class="icon icon-home">
+            QhX
+              <img src="_static/logo.png" class="logo" alt="Logo"/>
+          </a>
+              <div class="version">
+                0.1.0
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="introduction.html">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="installation.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="quick_start.html">Quick Start Tutorial</a></li>
+<li class="toctree-l1"><a class="reference internal" href="examples.html">Examples</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="package.html">Package Modules</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="data_manager.html">data_manager</a></li>
+<li class="toctree-l2"><a class="reference internal" href="light_curve.html">light_curve</a></li>
+<li class="toctree-l2"><a class="reference internal" href="calculation.html">calculation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="detection.html">detection</a></li>
+<li class="toctree-l2"><a class="reference internal" href="wwtz.html">wwtz</a></li>
+<li class="toctree-l2"><a class="reference internal" href="superlet.html">superlet module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="superlets.html">superlets</a></li>
+<li class="toctree-l2"><a class="reference internal" href="correlation.html">correlation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="reg.html">reg</a></li>
+<li class="toctree-l2"><a class="reference internal" href="output.html">output</a></li>
+<li class="toctree-l2"><a class="reference internal" href="interactive_plt.html">interactive_plt</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Parallelization Solver module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#QhX.parallelization_solver.HEADER"><code class="docutils literal notranslate"><span class="pre">HEADER</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#QhX.parallelization_solver.ParallelSolver"><code class="docutils literal notranslate"><span class="pre">ParallelSolver</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#QhX.parallelization_solver.ParallelSolver.background_log"><code class="docutils literal notranslate"><span class="pre">ParallelSolver.background_log()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#QhX.parallelization_solver.ParallelSolver.process_ids"><code class="docutils literal notranslate"><span class="pre">ParallelSolver.process_ids()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#QhX.parallelization_solver.ParallelSolver.process_wrapper"><code class="docutils literal notranslate"><span class="pre">ParallelSolver.process_wrapper()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="test_integrated.html">test_integrated</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mock_lc.html">mock_lc</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="faq.html">Frequently Asked Questions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="license.html">License</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu"  style="background: white" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">QhX</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="package.html">Package Modules</a></li>
+      <li class="breadcrumb-item active">Parallelization Solver module</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="_sources/parallelization_solver.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="parallelization-solver-module">
+<h1>Parallelization Solver module<a class="headerlink" href="#parallelization-solver-module" title="Link to this heading"></a></h1>
+<p>The <code class="docutils literal notranslate"><span class="pre">parallelization_solver</span></code> module is designed for parallel processing of data sets, using multiprocessing. Below is the documentation for the module and its classes.</p>
+<p id="module-QhX.parallelization_solver">Author:</p>
+<p>Momcilo Tosic
+Astroinformatics student
+Faculty of Mathematics, Uni of Belgrade</p>
+<dl class="py data">
+<dt class="sig sig-object py" id="QhX.parallelization_solver.HEADER">
+<span class="sig-prename descclassname"><span class="pre">QhX.parallelization_solver.</span></span><span class="sig-name descname"><span class="pre">HEADER</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'Set</span> <span class="pre">ID,Common</span> <span class="pre">period</span> <span class="pre">(Band1</span> <span class="pre">&amp;</span> <span class="pre">Band2),Upper</span> <span class="pre">error</span> <span class="pre">bound,Lower</span> <span class="pre">error</span> <span class="pre">bound,Significance,Band1-Band2\n'</span></em><a class="headerlink" href="#QhX.parallelization_solver.HEADER" title="Link to this definition"></a></dt>
+<dd><p>ParallelSolver runs an assigned processing function on all set IDs (string) in parameter list, using data from assigned
+DataManager instance, with possible time &amp; process logging.
+Saves individual results or in one single file (or both).</p>
+<p>Example usage:</p>
+<p>from QhX.detection import process1
+from QhX.parallelization_solver import *
+from QhX.data_manager import DataManager</p>
+<p>data_manager = DataManager()
+fs_df = data_manager.load_fs_df(‘ForcedSourceTable.parquet’)
+fs_gp = data_manager.group_fs_df()
+fs_df = data_manager.fs_df</p>
+<p>setids = [‘1384177’, ‘1384184’, ‘1460382’]
+solver = ParallelSolver(data_manager=data_manager, delta_seconds=12.0, num_workers=2, log_files=True)
+solver.process_ids(setids, ‘results’)</p>
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="QhX.parallelization_solver.ParallelSolver">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">QhX.parallelization_solver.</span></span><span class="sig-name descname"><span class="pre">ParallelSolver</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">delta_seconds=10</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">num_workers=4</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">data_manager=None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">log_time=True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">log_files=False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">save_results=True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">process_function=&lt;function</span> <span class="pre">process1&gt;</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">parallel_arithmetic=False</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/QhX/parallelization_solver.html#ParallelSolver"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#QhX.parallelization_solver.ParallelSolver" title="Link to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<dl class="py method">
+<dt class="sig sig-object py" id="QhX.parallelization_solver.ParallelSolver.background_log">
+<em class="property"><span class="pre">static</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">background_log</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">set_id</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">e</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Event</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">delta_seconds</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/QhX/parallelization_solver.html#ParallelSolver.background_log"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#QhX.parallelization_solver.ParallelSolver.background_log" title="Link to this definition"></a></dt>
+<dd><p>Function for time logging
+- Logs approx. process time every delta_seconds
+- End when e is triggered
+- Logs start &amp; end system time
+Run in background thread</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="QhX.parallelization_solver.ParallelSolver.process_ids">
+<span class="sig-name descname"><span class="pre">process_ids</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">set_ids</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">results_file</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/QhX/parallelization_solver.html#ParallelSolver.process_ids"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#QhX.parallelization_solver.ParallelSolver.process_ids" title="Link to this definition"></a></dt>
+<dd><p>Process ids using QhX function
+- setids : ids to process
+- save_results : filename of results file ( preffered .csv )</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="QhX.parallelization_solver.ParallelSolver.process_wrapper">
+<span class="sig-name descname"><span class="pre">process_wrapper</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/QhX/parallelization_solver.html#ParallelSolver.process_wrapper"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#QhX.parallelization_solver.ParallelSolver.process_wrapper" title="Link to this definition"></a></dt>
+<dd><p>Wrapper for processing function, takes id of self.setids_div for setids list to process</p>
+<ul class="simple">
+<li><p>Starts background logging thread if required</p></li>
+<li><p>Processes data if data manager exists</p></li>
+</ul>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="interactive_plt.html" class="btn btn-neutral float-left" title="interactive_plt" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="test_integrated.html" class="btn btn-neutral float-right" title="test_integrated" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2023, Andjelka Kovacevic.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+    <!-- Theme Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'G-XXXXXXXXXX', {
+          'anonymize_ip': false,
+      });
+    </script> 
+
+</body>
+</html>
