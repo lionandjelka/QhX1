@@ -108,8 +108,7 @@ class ParallelSolver():
     def process_wrapper(self):
         """
         Wrapper for the process function to integrate logging and result handling.
-        Takes id of self.setids_div for setids list to process
-         
+          
         Performed tasks:
          Starts background logging thread if required
          Processes data if data manager exists
