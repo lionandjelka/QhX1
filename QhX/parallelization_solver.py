@@ -1,12 +1,33 @@
 """
-Author:
+The `parallelization_solver` module is designed for parallel processing of astronomical data sets. 
+It utilizes multiprocessing to expedite the processing of large data sets across multiple CPUs.
 
+This module defines the `ParallelSolver` class, which orchestrates the parallel execution of a 
+specified processing function across different subsets of data. It features mechanisms for time 
+logging and result aggregation, facilitating comprehensive analysis workflows.
+
+Example usage:
+--------------
+    from QhX.detection import process1
+    from QhX.parallelization_solver import ParallelSolver
+    from QhX.data_manager import DataManager
+
+    data_manager = DataManager()
+    fs_df = data_manager.load_fs_df('ForcedSourceTable.parquet')
+    fs_gp = data_manager.group_fs_df()
+    fs_df = data_manager.fs_df
+
+    setids = ['1384177', '1384184', '1460382']
+    solver = ParallelSolver(data_manager=data_manager, delta_seconds=12.0, num_workers=2, log_files=True)
+    solver.process_ids(setids, 'results.csv')
+
+Author:
+-------
 Momcilo Tosic
 Astroinformatics student
-Faculty of Mathematics, Uni of Belgrade
-
+Faculty of Mathematics, University of Belgrade
 """
-from QhX.detection import process1
+
 
 import sys
 import threading
@@ -15,7 +36,7 @@ import os
 from multiprocessing import Process
 from multiprocessing import Queue
 from datetime import datetime
-
+from QhX.detection import process1
 # Default number of processes to spawn
 DEFAULT_NUM_WORKERS = 4
 # Default number of seconds to pass between time loggings
@@ -23,28 +44,21 @@ DEFAULT_LOG_PERIOD = 10
 # csv format results header
 HEADER = "Set ID,Common period (Band1 & Band2),Upper error bound,Lower error bound,Significance,Band1-Band2\n"
 
-"""
-ParallelSolver runs an assigned processing function on all set IDs (string) in parameter list, using data from assigned
-DataManager instance, with possible time & process logging.
-Saves individual results or in one single file (or both).
-
-Example usage:
-
-from QhX.detection import process1
-from QhX.parallelization_solver import *
-from QhX.data_manager import DataManager
-
-data_manager = DataManager()
-fs_df = data_manager.load_fs_df('ForcedSourceTable.parquet')
-fs_gp = data_manager.group_fs_df()
-fs_df = data_manager.fs_df
-
-setids = ['1384177', '1384184', '1460382']
-solver = ParallelSolver(data_manager=data_manager, delta_seconds=12.0, num_workers=2, log_files=True)
-solver.process_ids(setids, 'results')
-"""
 
 class ParallelSolver():
+    """
+    A class to manage parallel execution of data processing functions.
+    
+    Attributes:
+        delta_seconds (float): Interval in seconds between log messages.
+        num_workers (int): Number of worker processes to spawn.
+        data_manager (DataManager): Instance of DataManager for data retrieval.
+        log_time (bool): Enable/disable time logging.
+        log_files (bool): Enable/disable logging to files.
+        save_results (bool): Enable/disable saving of results to files.
+        process_function (function): Data processing function to be parallelized.
+        parallel_arithmetic (bool): Use parallel arithmetic within processing function.
+    """    
     def __init__(self,
                  delta_seconds = DEFAULT_LOG_PERIOD, 
                  num_workers = DEFAULT_NUM_WORKERS,
@@ -55,17 +69,8 @@ class ParallelSolver():
                  process_function = process1,
                  parallel_arithmetic = False
                 ):
-        """
-        Constructor takes:
+        """Initialize the ParallelSolver with the specified configuration."""
 
-        - num_workers : number of processes to start
-        - process_function : processing function that takes in (data_manager, set_id, ntau, ngrid, provided_minfq, provided_maxfq, include_errors, parallel),
-        - data_manager : data manager reference
-        - delta_seconds : seconds for periodic time logging (None if not logging)
-        - log_time, log_files : flags for logging time & sending output to files
-        - save_results : saves results in separate files at the end of every ID processing
-        - parallel_arithmetic : whether to set parallel flag of process_function (one function call will make use of ALL cores)
-        """
         self.delta_seconds = delta_seconds
         self.num_workers = num_workers
         self.data_manager = data_manager
@@ -78,11 +83,12 @@ class ParallelSolver():
     @staticmethod
     def background_log(set_id, e : threading.Event, delta_seconds : float):
         """
-        Function for time logging
-        - Logs approx. process time every delta_seconds
-        - End when e is triggered
-        - Logs start & end system time
-        Run in background thread
+        Background thread for logging the process time at regular intervals.
+
+        Parameters:
+            set_id (str): Identifier for the data set being processed.
+            e (threading.Event): Event to signal the thread to exit.
+            delta_seconds (float): Time interval for logging.
         """
 
         # Log starting time
@@ -101,11 +107,14 @@ class ParallelSolver():
 
     def process_wrapper(self):
         """
-        Wrapper for processing function, takes id of self.setids_div for setids list to process
-
-        - Starts background logging thread if required
-        - Processes data if data manager exists
+        Wrapper for the process function to integrate logging and result handling.
+        Takes id of self.setids_div for setids list to process
+         
+        Performed tasks:
+         Starts background logging thread if required
+         Processes data if data manager exists
         """
+
         
         # Event used for stopping background log thread
         stopper_event = None
@@ -165,10 +174,13 @@ class ParallelSolver():
 
     def process_ids(self, set_ids, results_file = None):	
         """
-        Process ids using QhX function
-        - setids : ids to process
-        - save_results : filename of results file ( preffered .csv )
+        Processes a list of set IDs using the configured process function in parallel.
+
+        Parameters:
+            set_ids (list of str): List of set IDs to process.
+            results_file (str, optional): Path to save aggregated results.
         """
+
 
         # Unified output queue and input queue
         self.results_ = Queue()
