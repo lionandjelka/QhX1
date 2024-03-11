@@ -36,13 +36,13 @@ import os
 from multiprocessing import Process
 from multiprocessing import Queue
 from datetime import datetime
-from QhX.detection import process1
+from QhX.detection import process1_new
 # Default number of processes to spawn
 DEFAULT_NUM_WORKERS = 4
 # Default number of seconds to pass between time loggings
 DEFAULT_LOG_PERIOD = 10
 # csv format results header
-HEADER = "Set ID,Common period (Band1 & Band2),Upper error bound,Lower error bound,Significance,Band1-Band2\n"
+HEADER = "ID,Sampling_1,Sampling_2,Common period (Band1 & Band1),Upper error bound,Lower error bound,Significance,Band1-Band2\n"
 
 
 class ParallelSolver():
@@ -66,7 +66,7 @@ class ParallelSolver():
                  log_time = True, 
                  log_files = False,
                  save_results = True,
-                 process_function = process1,
+                 process_function = process1_new,
                  parallel_arithmetic = False
                 ):
         """Initialize the ParallelSolver with the specified configuration."""
@@ -147,10 +147,8 @@ class ParallelSolver():
                 # Get results into formatted string
                 res_string = ""
                 for row in result:
-                    res_string_tmp = ""
-                    for entry in row:
-                        res_string_tmp += str(entry) + ","
-                    res_string_tmp = res_string_tmp[:-1] + "\n"
+                    row_values = row.values() if isinstance(row, dict) else row
+                    res_string_tmp = ','.join([str(v) for v in row_values]) + "\n"
                     res_string += res_string_tmp
 
                 # Put results in unified results queue if flag is set
@@ -170,7 +168,7 @@ class ParallelSolver():
                     saving_file = open(set_id + '-result.csv', 'w')
                     saving_file.write(HEADER + res_string)
                     saving_file.close()
-
+        
     def process_ids(self, set_ids, results_file = None):	
         """
         Processes a list of set IDs using the configured process function in parallel.
