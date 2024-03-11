@@ -4,7 +4,7 @@
   <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>interactive_plt &mdash; QhX 0.1.0 documentation</title>
+  <title>processing_utils module &mdash; QhX 0.1.0 documentation</title>
       <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
   <!--[if lt IE 9]>
@@ -21,8 +21,8 @@
     <script src="_static/js/theme.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="Parallelization Solver module" href="parallelization_solver.html" />
-    <link rel="prev" title="output" href="output.html" /> 
+    <link rel="next" title="test_integrated" href="test_integrated.html" />
+    <link rel="prev" title="Parallelization Solver module" href="parallelization_solver.html" /> 
 </head>
 
 <body class="wy-body-for-nav"> 
@@ -65,12 +65,13 @@
 <li class="toctree-l2"><a class="reference internal" href="correlation.html">correlation</a></li>
 <li class="toctree-l2"><a class="reference internal" href="reg.html">reg</a></li>
 <li class="toctree-l2"><a class="reference internal" href="output.html">output</a></li>
-<li class="toctree-l2 current"><a class="current reference internal" href="#">interactive_plt</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#QhX.plots.interactive_plt.create_interactive_plot"><code class="docutils literal notranslate"><span class="pre">create_interactive_plot()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="interactive_plt.html">interactive_plt</a></li>
+<li class="toctree-l2"><a class="reference internal" href="parallelization_solver.html">Parallelization Solver module</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">processing_utils module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#QhX.processing_utils.process1_caller"><code class="docutils literal notranslate"><span class="pre">process1_caller()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#QhX.processing_utils.process1_wrapper"><code class="docutils literal notranslate"><span class="pre">process1_wrapper()</span></code></a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="parallelization_solver.html">Parallelization Solver module</a></li>
-<li class="toctree-l2"><a class="reference internal" href="processing_utils.html">processing_utils module</a></li>
 <li class="toctree-l2"><a class="reference internal" href="test_integrated.html">test_integrated</a></li>
 <li class="toctree-l2"><a class="reference internal" href="mock_lc.html">mock_lc</a></li>
 </ul>
@@ -94,9 +95,9 @@
   <ul class="wy-breadcrumbs">
       <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
           <li class="breadcrumb-item"><a href="package.html">Package Modules</a></li>
-      <li class="breadcrumb-item active">interactive_plt</li>
+      <li class="breadcrumb-item active">processing_utils module</li>
       <li class="wy-breadcrumbs-aside">
-            <a href="_sources/interactive_plt.rst.txt" rel="nofollow"> View page source</a>
+            <a href="_sources/processing_utils.rst.txt" rel="nofollow"> View page source</a>
       </li>
   </ul>
   <hr/>
@@ -104,72 +105,56 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
              
-  <section id="module-QhX.plots.interactive_plt">
-<span id="interactive-plt"></span><h1>interactive_plt<a class="headerlink" href="#module-QhX.plots.interactive_plt" title="Link to this heading"></a></h1>
+  <section id="module-QhX.processing_utils">
+<span id="processing-utils-module"></span><h1>processing_utils module<a class="headerlink" href="#module-QhX.processing_utils" title="Link to this heading"></a></h1>
 <dl class="py function">
-<dt class="sig sig-object py" id="QhX.plots.interactive_plt.create_interactive_plot">
-<span class="sig-prename descclassname"><span class="pre">QhX.plots.interactive_plt.</span></span><span class="sig-name descname"><span class="pre">create_interactive_plot</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">output_df</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/QhX/plots/interactive_plt.html#create_interactive_plot"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#QhX.plots.interactive_plt.create_interactive_plot" title="Link to this definition"></a></dt>
-<dd><p>Creates an interactive HoloViews plot from the output DataFrame.
-This function utilizes the HoloViews library to create an interactive plot. The plot
-visualizes data from a DataFrame, which is expected to contain specific columns
-related to object identification and various metrics.</p>
-<section id="parameters">
-<h2>Parameters:<a class="headerlink" href="#parameters" title="Link to this heading"></a></h2>
-<p>output_df (pd.DataFrame): DataFrame containing the data to be plotted.
-The DataFrame is expected to have the following columns:</p>
-<ul class="simple">
-<li><dl class="simple">
-<dt>objectid: The Quasar ID, a unique identifier for each quasar in the database,</dt><dd><p>e.g., LSST AGN Data Challenge database.</p>
+<dt class="sig sig-object py" id="QhX.processing_utils.process1_caller">
+<span class="sig-prename descclassname"><span class="pre">QhX.processing_utils.</span></span><span class="sig-name descname"><span class="pre">process1_caller</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">args</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/QhX/processing_utils.html#process1_caller"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#QhX.processing_utils.process1_caller" title="Link to this definition"></a></dt>
+<dd><p>This function calls the <cite>process1_wrapper</cite> function with a set of arguments,
+facilitating its use with features like <cite>multiprocessing.Pool.map</cite>.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>args</strong> (<em>tuple</em>) – A tuple containing the arguments for the <cite>process1_wrapper</cite> function.
+Expected to contain the following elements:
+- set_id (int): The set ID to process.
+- data_manager (DataManager): The DataManager instance for the data.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>The result returned by the <cite>process1_wrapper</cite> function.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>dict</p>
 </dd>
 </dl>
-</li>
-<li><dl class="simple">
-<dt>m1,m2: The mean sampling rates in  given bands where the periods are detected.</dt><dd><p>These values represent the average interval between successive observations in that band.</p>
-</dd>
-</dl>
-</li>
-<li><dl class="simple">
-<dt>m3: The detected period in a given pair of bands. When a period is detected in two bands,</dt><dd><p>it is required that the detected values in these bands differ by less than 10% in relative error.</p>
-</dd>
-</dl>
-</li>
-<li><dl class="simple">
-<dt>m4 and m5: The lower and upper errors of the detected period, respectively. Values are taken from the period in a band which</dt><dd><p>is serving as baseline for comparison, here u-band as arising closest to the SMBH and expect to have the strognest periodic signal</p>
-</dd>
-</dl>
-</li>
-<li><dl class="simple">
-<dt>m6: The significance of the detected period as inferred from the baseline for comparison.</dt><dd><p>The significance is determined via the Johnson shuffling method, which assesses the likelihood of the period
-being a true signal as opposed to noise.</p>
-</dd>
-</dl>
-</li>
-<li><dl class="simple">
-<dt>m7: The pair of bands where the period is detected. Bands are designated as u=0, g=1, r=2, i=3.</dt><dd><p>The pairs are represented as ug=’0-1’, ur=’0-2’, ui=’0-3’, etc.
-The analysis often focuses on comparisons with respect to the u band, as it is expected to be the least deformed of all bands.</p>
-</dd>
-</dl>
-</li>
-<li><p>period_diff: difference between detected periods in two bands</p></li>
-<li><p>iou: intersection over union metric</p></li>
-<li><p>classification: poor, reliable, medium reliable, NAN</p></li>
+<p class="rubric">Notes</p>
+<p>This function is particularly useful for parallel processing scenarios
+where the <cite>process1_wrapper</cite> function needs to be mapped over a sequence of arguments.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="QhX.processing_utils.process1_wrapper">
+<span class="sig-prename descclassname"><span class="pre">QhX.processing_utils.</span></span><span class="sig-name descname"><span class="pre">process1_wrapper</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">set_id</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">data_manager</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/QhX/processing_utils.html#process1_wrapper"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#QhX.processing_utils.process1_wrapper" title="Link to this definition"></a></dt>
+<dd><p>This function acts as a wrapper for the <cite>process1_new</cite> function, simplifying its usage.</p>
+<p>It prints the set ID being processed for logging purposes and calls <cite>process1_new</cite>
+with a predefined set of parameters.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>set_id</strong> (<em>int</em>) – The unique identifier for the data set to process.</p></li>
+<li><p><strong>data_manager</strong> (<a class="reference internal" href="data_manager.html#QhX.data_manager.DataManager" title="QhX.data_manager.DataManager"><em>DataManager</em></a>) – An instance of the DataManager class that handles the data involved in the process.</p></li>
 </ul>
-</section>
-<section id="returns">
-<h2>Returns:<a class="headerlink" href="#returns" title="Link to this heading"></a></h2>
-<dl class="simple">
-<dt>hv.DynamicMap: An interactive HoloViews plot object that can be displayed in a Jupyter</dt><dd><p>Notebook or other Python interactive environments.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>A dictionary containing the results of the <cite>process1_new</cite> processing,
+structured according to the QhX detection module’s specifications.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>dict</p>
 </dd>
 </dl>
-</section>
-<section id="example">
-<h2>Example:<a class="headerlink" href="#example" title="Link to this heading"></a></h2>
-<p>Assuming <cite>output_df</cite> is a DataFrame with the required columns:</p>
-<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">interactive_plot</span> <span class="o">=</span> <span class="n">create_interactive_plot</span><span class="p">(</span><span class="n">output_df</span><span class="p">)</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">interactive_plot</span>  <span class="c1"># This will display the plot in a Jupyter Notebook</span>
-</pre></div>
-</div>
-</section>
+<p class="rubric">Notes</p>
+<p>The parameters for the <cite>process1_new</cite> function, such as <cite>ntau</cite>, <cite>ngrid</cite>,
+<cite>provided_minfq</cite>, <cite>provided_maxfq</cite>, and <cite>include_errors</cite>, are preset within this wrapper.</p>
 </dd></dl>
 
 </section>
@@ -178,8 +163,8 @@ The analysis often focuses on comparisons with respect to the u band, as it is e
            </div>
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
-        <a href="output.html" class="btn btn-neutral float-left" title="output" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
-        <a href="parallelization_solver.html" class="btn btn-neutral float-right" title="Parallelization Solver module" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="parallelization_solver.html" class="btn btn-neutral float-left" title="Parallelization Solver module" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="test_integrated.html" class="btn btn-neutral float-right" title="test_integrated" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
   <hr/>
