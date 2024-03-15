@@ -17,5 +17,7 @@ Package Modules
    reg
    output
    interactive_plt
+   parallelization_solver
+   processing_utils
    test_integrated
    mock_lc
