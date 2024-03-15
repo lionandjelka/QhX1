@@ -6,7 +6,14 @@ from QhX.light_curve import get_lctiktok, get_lc22
 from QhX.algorithms.wavelets.wwtz import *
 from QhX.calculation import *
 
-
+# Example ntau parameter
+DEFAULT_NTAU = 80
+# Example ngrid parameter
+DEFAULT_NGRID = 800
+# Example provided_minfq parameter
+DEFAULT_PROVIDED_MINFQ = 2000
+# Example provided maxfq parameter
+DEFAULT_PROVIDED_MAXFQ = 10
 
 #from QhX.algorithms.wavelets.wwt import estimate_wavelet_periods
 
