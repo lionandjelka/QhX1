@@ -20,3 +20,5 @@ Examples
 
    examples/Example1
    examples/Example2
+   examples/Example3
+   
