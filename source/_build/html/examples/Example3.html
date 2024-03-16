@@ -1,0 +1,807 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Example of using Parallelization module &mdash; QhX 0.1.0 documentation</title>
+      <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/nbsphinx-code-cells.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="../_static/jquery.js?v=5d32c60e"></script>
+        <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script src="../_static/documentation_options.js?v=01f34227"></script>
+        <script src="../_static/doctools.js?v=888ff710"></script>
+        <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+        <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+        <script src="https://unpkg.com/@jupyter-widgets/html-manager@^0.20.0/dist/embed-amd.js"></script>
+        <script>window.MathJax = {"tex": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true}, "options": {"ignoreHtmlClass": "tex2jax_ignore|mathjax_ignore|document", "processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+        <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Package Modules" href="../package.html" />
+    <link rel="prev" title="Simple version of paralelization of objects processing." href="Example2.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search"  style="background: white" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            QhX
+              <img src="../_static/logo.png" class="logo" alt="Logo"/>
+          </a>
+              <div class="version">
+                0.1.0
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../introduction.html">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../installation.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../quick_start.html">Quick Start Tutorial</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../examples.html">Examples</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="Example1.html">SIMPLE TUTORIAL WITH MOCK LIGHT CURVE</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Example2.html">Simple version of paralelization of objects processing.</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Example2.html#Calculation-of-wavelet-matrices-for-each-light-curve-is-paralelized-in-the-libwwz-library">Calculation of wavelet matrices for each light curve is paralelized in the libwwz library</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Example of using Parallelization module</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../package.html">Package Modules</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../faq.html">Frequently Asked Questions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../license.html">License</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu"  style="background: white" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">QhX</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../examples.html">Examples</a></li>
+      <li class="breadcrumb-item active">Example of using Parallelization module</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/examples/Example3.ipynb.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="Example-of-using-Parallelization-module">
+<h1>Example of using Parallelization module<a class="headerlink" href="#Example-of-using-Parallelization-module" title="Link to this heading"></a></h1>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[1]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Install QhX1 library using pip</span>
+<span class="o">!</span>pip<span class="w"> </span>install<span class="w"> </span>./QhX1
+<br/></pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+Processing ./QhX1
+Requirement already satisfied: bokeh in /home/os/.local/lib/python3.8/site-packages (from QhX==0.1.0) (3.1.1)
+Requirement already satisfied: colorednoise in /home/os/.local/lib/python3.8/site-packages (from QhX==0.1.0) (2.2.0)
+Requirement already satisfied: datashader in /home/os/.local/lib/python3.8/site-packages (from QhX==0.1.0) (0.15.2)
+Requirement already satisfied: hvplot in /home/os/.local/lib/python3.8/site-packages (from QhX==0.1.0) (0.9.0)
+Requirement already satisfied: libwwz in /home/os/.local/lib/python3.8/site-packages (from QhX==0.1.0) (1.3.2)
+Requirement already satisfied: numpy in /home/os/.local/lib/python3.8/site-packages (from QhX==0.1.0) (1.24.4)
+Requirement already satisfied: pandas in /home/os/.local/lib/python3.8/site-packages (from QhX==0.1.0) (2.0.3)
+Requirement already satisfied: panel in /home/os/.local/lib/python3.8/site-packages (from QhX==0.1.0) (1.2.3)
+Requirement already satisfied: pyarrow in /home/os/.local/lib/python3.8/site-packages (from QhX==0.1.0) (14.0.1)
+Requirement already satisfied: scikit-learn in /home/os/.local/lib/python3.8/site-packages (from QhX==0.1.0) (1.3.0)
+Requirement already satisfied: scikit-optimize in /home/os/.local/lib/python3.8/site-packages (from QhX==0.1.0) (0.9.0)
+Requirement already satisfied: scipy in /home/os/.local/lib/python3.8/site-packages (from QhX==0.1.0) (1.10.1)
+Requirement already satisfied: tqdm in /home/os/.local/lib/python3.8/site-packages (from QhX==0.1.0) (4.66.1)
+Requirement already satisfied: tornado&gt;=5.1 in /home/os/.local/lib/python3.8/site-packages (from bokeh-&gt;QhX==0.1.0) (6.3.3)
+Requirement already satisfied: contourpy&gt;=1 in /home/os/.local/lib/python3.8/site-packages (from bokeh-&gt;QhX==0.1.0) (1.1.1)
+Requirement already satisfied: xyzservices&gt;=2021.09.1 in /home/os/.local/lib/python3.8/site-packages (from bokeh-&gt;QhX==0.1.0) (2023.10.1)
+Requirement already satisfied: pillow&gt;=7.1.0 in /home/os/.local/lib/python3.8/site-packages (from bokeh-&gt;QhX==0.1.0) (10.1.0)
+Requirement already satisfied: PyYAML&gt;=3.10 in /usr/lib/python3/dist-packages (from bokeh-&gt;QhX==0.1.0) (5.3.1)
+Requirement already satisfied: Jinja2&gt;=2.9 in /home/os/.local/lib/python3.8/site-packages (from bokeh-&gt;QhX==0.1.0) (3.1.2)
+Requirement already satisfied: packaging&gt;=16.8 in /home/os/.local/lib/python3.8/site-packages (from bokeh-&gt;QhX==0.1.0) (23.2)
+Requirement already satisfied: toolz in /home/os/.local/lib/python3.8/site-packages (from datashader-&gt;QhX==0.1.0) (0.12.0)
+Requirement already satisfied: colorcet in /home/os/.local/lib/python3.8/site-packages (from datashader-&gt;QhX==0.1.0) (3.0.1)
+Requirement already satisfied: pyct in /home/os/.local/lib/python3.8/site-packages (from datashader-&gt;QhX==0.1.0) (0.5.0)
+Requirement already satisfied: xarray in /home/os/.local/lib/python3.8/site-packages (from datashader-&gt;QhX==0.1.0) (2023.1.0)
+Requirement already satisfied: requests in /usr/lib/python3/dist-packages (from datashader-&gt;QhX==0.1.0) (2.22.0)
+Requirement already satisfied: numba in /home/os/.local/lib/python3.8/site-packages (from datashader-&gt;QhX==0.1.0) (0.58.1)
+Requirement already satisfied: datashape in /home/os/.local/lib/python3.8/site-packages (from datashader-&gt;QhX==0.1.0) (0.5.2)
+Requirement already satisfied: dask in /home/os/.local/lib/python3.8/site-packages (from datashader-&gt;QhX==0.1.0) (2023.5.0)
+Requirement already satisfied: param in /home/os/.local/lib/python3.8/site-packages (from datashader-&gt;QhX==0.1.0) (2.0.1)
+Requirement already satisfied: holoviews&gt;=1.11.0 in /home/os/.local/lib/python3.8/site-packages (from hvplot-&gt;QhX==0.1.0) (1.17.1)
+Requirement already satisfied: joblib==1.2.0 in /home/os/.local/lib/python3.8/site-packages (from libwwz-&gt;QhX==0.1.0) (1.2.0)
+Requirement already satisfied: matplotlib==3.7.1 in /home/os/.local/lib/python3.8/site-packages (from libwwz-&gt;QhX==0.1.0) (3.7.1)
+Requirement already satisfied: python-dateutil&gt;=2.8.2 in /home/os/.local/lib/python3.8/site-packages (from pandas-&gt;QhX==0.1.0) (2.8.2)
+Requirement already satisfied: pytz&gt;=2020.1 in /home/os/.local/lib/python3.8/site-packages (from pandas-&gt;QhX==0.1.0) (2023.3.post1)
+Requirement already satisfied: tzdata&gt;=2022.1 in /home/os/.local/lib/python3.8/site-packages (from pandas-&gt;QhX==0.1.0) (2023.3)
+Requirement already satisfied: typing-extensions in /home/os/.local/lib/python3.8/site-packages (from panel-&gt;QhX==0.1.0) (4.8.0)
+Requirement already satisfied: mdit-py-plugins in /home/os/.local/lib/python3.8/site-packages (from panel-&gt;QhX==0.1.0) (0.4.0)
+Requirement already satisfied: bleach in /home/os/.local/lib/python3.8/site-packages (from panel-&gt;QhX==0.1.0) (6.1.0)
+Requirement already satisfied: markdown in /home/os/.local/lib/python3.8/site-packages (from panel-&gt;QhX==0.1.0) (3.5.1)
+Requirement already satisfied: pyviz-comms&gt;=0.7.4 in /home/os/.local/lib/python3.8/site-packages (from panel-&gt;QhX==0.1.0) (3.0.0)
+Requirement already satisfied: linkify-it-py in /home/os/.local/lib/python3.8/site-packages (from panel-&gt;QhX==0.1.0) (2.0.2)
+Requirement already satisfied: markdown-it-py in /home/os/.local/lib/python3.8/site-packages (from panel-&gt;QhX==0.1.0) (3.0.0)
+Requirement already satisfied: threadpoolctl&gt;=2.0.0 in /home/os/.local/lib/python3.8/site-packages (from scikit-learn-&gt;QhX==0.1.0) (3.2.0)
+Requirement already satisfied: pyaml&gt;=16.9 in /home/os/.local/lib/python3.8/site-packages (from scikit-optimize-&gt;QhX==0.1.0) (23.9.7)
+Requirement already satisfied: MarkupSafe&gt;=2.0 in /home/os/.local/lib/python3.8/site-packages (from Jinja2&gt;=2.9-&gt;bokeh-&gt;QhX==0.1.0) (2.1.3)
+Requirement already satisfied: llvmlite&lt;0.42,&gt;=0.41.0dev0 in /home/os/.local/lib/python3.8/site-packages (from numba-&gt;datashader-&gt;QhX==0.1.0) (0.41.1)
+Requirement already satisfied: importlib-metadata; python_version &lt; &#34;3.9&#34; in /home/os/.local/lib/python3.8/site-packages (from numba-&gt;datashader-&gt;QhX==0.1.0) (6.8.0)
+Requirement already satisfied: multipledispatch&gt;=0.4.7 in /home/os/.local/lib/python3.8/site-packages (from datashape-&gt;datashader-&gt;QhX==0.1.0) (1.0.0)
+Requirement already satisfied: partd&gt;=1.2.0 in /home/os/.local/lib/python3.8/site-packages (from dask-&gt;datashader-&gt;QhX==0.1.0) (1.4.1)
+Requirement already satisfied: click&gt;=8.0 in /home/os/.local/lib/python3.8/site-packages (from dask-&gt;datashader-&gt;QhX==0.1.0) (8.1.7)
+Requirement already satisfied: fsspec&gt;=2021.09.0 in /home/os/.local/lib/python3.8/site-packages (from dask-&gt;datashader-&gt;QhX==0.1.0) (2023.12.2)
+Requirement already satisfied: cloudpickle&gt;=1.5.0 in /home/os/.local/lib/python3.8/site-packages (from dask-&gt;datashader-&gt;QhX==0.1.0) (3.0.0)
+Requirement already satisfied: kiwisolver&gt;=1.0.1 in /home/os/.local/lib/python3.8/site-packages (from matplotlib==3.7.1-&gt;libwwz-&gt;QhX==0.1.0) (1.4.5)
+Requirement already satisfied: fonttools&gt;=4.22.0 in /home/os/.local/lib/python3.8/site-packages (from matplotlib==3.7.1-&gt;libwwz-&gt;QhX==0.1.0) (4.46.0)
+Requirement already satisfied: cycler&gt;=0.10 in /home/os/.local/lib/python3.8/site-packages (from matplotlib==3.7.1-&gt;libwwz-&gt;QhX==0.1.0) (0.12.1)
+Requirement already satisfied: importlib-resources&gt;=3.2.0; python_version &lt; &#34;3.10&#34; in /home/os/.local/lib/python3.8/site-packages (from matplotlib==3.7.1-&gt;libwwz-&gt;QhX==0.1.0) (6.1.1)
+Requirement already satisfied: pyparsing&gt;=2.3.1 in /home/os/.local/lib/python3.8/site-packages (from matplotlib==3.7.1-&gt;libwwz-&gt;QhX==0.1.0) (3.1.1)
+Requirement already satisfied: six&gt;=1.5 in /usr/lib/python3/dist-packages (from python-dateutil&gt;=2.8.2-&gt;pandas-&gt;QhX==0.1.0) (1.14.0)
+Requirement already satisfied: webencodings in /home/os/.local/lib/python3.8/site-packages (from bleach-&gt;panel-&gt;QhX==0.1.0) (0.5.1)
+Requirement already satisfied: uc-micro-py in /home/os/.local/lib/python3.8/site-packages (from linkify-it-py-&gt;panel-&gt;QhX==0.1.0) (1.0.2)
+Requirement already satisfied: mdurl~=0.1 in /home/os/.local/lib/python3.8/site-packages (from markdown-it-py-&gt;panel-&gt;QhX==0.1.0) (0.1.2)
+Requirement already satisfied: zipp&gt;=0.5 in /home/os/.local/lib/python3.8/site-packages (from importlib-metadata; python_version &lt; &#34;3.9&#34;-&gt;numba-&gt;datashader-&gt;QhX==0.1.0) (3.17.0)
+Requirement already satisfied: locket in /home/os/.local/lib/python3.8/site-packages (from partd&gt;=1.2.0-&gt;dask-&gt;datashader-&gt;QhX==0.1.0) (1.0.0)
+Building wheels for collected packages: QhX
+  Building wheel for QhX (setup.py) ... done
+  Created wheel for QhX: filename=QhX-0.1.0-py3-none-any.whl size=40732 sha256=73789e3b10fe1e7052b4801525963329b234c72b05dc0bcca2904b4d69051dcf
+  Stored in directory: /tmp/pip-ephem-wheel-cache-ga1hu78f/wheels/22/03/5a/257f63e0283836b3e27367cbb3c7826ddfaf220fdcfde7e438
+Successfully built QhX
+Installing collected packages: QhX
+  Attempting uninstall: QhX
+    Found existing installation: QhX 0.1.0
+    Uninstalling QhX-0.1.0:
+      Successfully uninstalled QhX-0.1.0
+Successfully installed QhX-0.1.0
+</pre></div></div>
+</div>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[2]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Import everything from parallelization_solver submodule</span>
+<span class="kn">from</span> <span class="nn">QhX.parallelization_solver</span> <span class="kn">import</span> <span class="o">*</span>
+</pre></div>
+</div>
+</div>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[3]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Import data manager</span>
+<span class="kn">from</span> <span class="nn">QhX.data_manager</span> <span class="kn">import</span> <span class="n">DataManager</span>
+
+<span class="c1"># Create a data manager instance</span>
+<span class="n">data_manager</span> <span class="o">=</span> <span class="n">DataManager</span><span class="p">()</span>
+<br/></pre></div>
+</div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[4]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Load local copy of data from &quot;https://zenodo.org/record/6878414/files/ForcedSourceTable.parquet&quot;</span>
+
+<span class="n">fs_df</span> <span class="o">=</span> <span class="n">data_manager</span><span class="o">.</span><span class="n">load_fs_df</span><span class="p">(</span><span class="s2">&quot;ForcedSourceTable.parquet&quot;</span><span class="p">)</span>
+<span class="n">fs_gp</span> <span class="o">=</span> <span class="n">data_manager</span><span class="o">.</span><span class="n">group_fs_df</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area stderr docutils container">
+<div class="highlight"><pre>
+INFO:root:Forced source data loaded successfully.
+INFO:root:Forced source data grouped successfully.
+</pre></div></div>
+</div>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[8]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Example : 2 set IDs , files logged, parallel arithmetic not used</span>
+<span class="n">setids</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;1384177&#39;</span><span class="p">,</span> <span class="s1">&#39;0458387&#39;</span><span class="p">]</span>
+
+<span class="n">solver</span> <span class="o">=</span> <span class="n">ParallelSolver</span><span class="p">(</span><span class="n">data_manager</span><span class="o">=</span><span class="n">data_manager</span><span class="p">,</span> <span class="n">delta_seconds</span><span class="o">=</span><span class="mf">12.0</span><span class="p">,</span> <span class="n">num_workers</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">log_files</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">parallel_arithmetic</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">ngrid</span> <span class="o">=</span> <span class="mi">100</span><span class="p">,</span> <span class="n">provided_minfq</span> <span class="o">=</span> <span class="mi">500</span><span class="p">,</span> <span class="n">provided_maxfq</span> <span class="o">=</span> <span class="mi">10</span><span class="p">)</span>
+<span class="n">solver</span><span class="o">.</span><span class="n">process_ids</span><span class="p">(</span><span class="n">setids</span><span class="p">,</span> <span class="s1">&#39;results.csv&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[5]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Example : 1 ID with parallel arithmetic</span>
+<span class="n">setids</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;0458387&#39;</span><span class="p">]</span>
+
+<span class="n">solver</span> <span class="o">=</span> <span class="n">ParallelSolver</span><span class="p">(</span><span class="n">data_manager</span><span class="o">=</span><span class="n">data_manager</span><span class="p">,</span> <span class="n">delta_seconds</span><span class="o">=</span><span class="mf">12.0</span><span class="p">,</span> <span class="n">num_workers</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">log_files</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">parallel_arithmetic</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">ngrid</span> <span class="o">=</span> <span class="mi">100</span><span class="p">,</span> <span class="n">provided_minfq</span> <span class="o">=</span> <span class="mi">500</span><span class="p">,</span> <span class="n">provided_maxfq</span> <span class="o">=</span> <span class="mi">10</span><span class="p">)</span>
+<span class="n">solver</span><span class="o">.</span><span class="n">process_ids</span><span class="p">(</span><span class="n">setids</span><span class="p">,</span> <span class="s1">&#39;results2.csv&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+Starting time for ID 0458387 : 2024-03-15 10:07:13.548112
+
+Processing 0458387
+PID 4994
+Duration: 1.0 ticks
+12.0 seconds each
+Time so far 12.0s
+
+Processing 0458387
+PID 4994
+Duration: 2.0 ticks
+12.0 seconds each
+Time so far 24.0s
+
+*** Starting Weighted Wavelet Z-transform ***
+
+adjusted time_divisions to:  33
+Pseudo sample frequency (median) is  0.111
+largest tau window is  70.308
+4.97 seconds has passed to complete Weighted Wavelet Z-transform
+
+*** Starting Weighted Wavelet Z-transform ***
+
+adjusted time_divisions to:  31
+Pseudo sample frequency (median) is  0.095
+largest tau window is  74.996
+0.52 seconds has passed to complete Weighted Wavelet Z-transform
+
+*** Starting Weighted Wavelet Z-transform ***
+
+adjusted time_divisions to:  31
+Pseudo sample frequency (median) is  0.111
+largest tau window is  74.996
+0.72 seconds has passed to complete Weighted Wavelet Z-transform
+
+*** Starting Weighted Wavelet Z-transform ***
+
+adjusted time_divisions to:  30
+Pseudo sample frequency (median) is  0.111
+largest tau window is  77.581
+Processing 0458387
+PID 4994
+Duration: 3.0 ticks
+12.0 seconds each
+Time so far 36.0s
+
+1.2 seconds has passed to complete Weighted Wavelet Z-transform
+
+*** Starting Weighted Wavelet Z-transform ***
+
+adjusted time_divisions to:  33
+Pseudo sample frequency (median) is  0.111
+largest tau window is  70.308
+4.72 seconds has passed to complete Weighted Wavelet Z-transform
+
+*** Starting Weighted Wavelet Z-transform ***
+
+adjusted time_divisions to:  33
+Pseudo sample frequency (median) is  0.111
+largest tau window is  70.308
+1.7 seconds has passed to complete Weighted Wavelet Z-transform
+
+*** Starting Weighted Wavelet Z-transform ***
+
+adjusted time_divisions to:  33
+Pseudo sample frequency (median) is  0.111
+largest tau window is  70.308
+2.03 seconds has passed to complete Weighted Wavelet Z-transform
+
+*** Starting Weighted Wavelet Z-transform ***
+
+adjusted time_divisions to:  33
+Pseudo sample frequency (median) is  0.111
+largest tau window is  70.308
+1.76 seconds has passed to complete Weighted Wavelet Z-transform
+
+*** Starting Weighted Wavelet Z-transform ***
+
+adjusted time_divisions to:  33
+Pseudo sample frequency (median) is  0.111
+largest tau window is  70.308
+Processing 0458387
+PID 4994
+Duration: 4.0 ticks
+12.0 seconds each
+Time so far 48.0s
+
+2.02 seconds has passed to complete Weighted Wavelet Z-transform
+
+*** Starting Weighted Wavelet Z-transform ***
+
+adjusted time_divisions to:  33
+Pseudo sample frequency (median) is  0.111
+largest tau window is  70.308
+1.54 seconds has passed to complete Weighted Wavelet Z-transform
+
+*** Starting Weighted Wavelet Z-transform ***
+
+adjusted time_divisions to:  33
+Pseudo sample frequency (median) is  0.111
+largest tau window is  70.308
+1.65 seconds has passed to complete Weighted Wavelet Z-transform
+
+*** Starting Weighted Wavelet Z-transform ***
+
+adjusted time_divisions to:  33
+Pseudo sample frequency (median) is  0.111
+largest tau window is  70.308
+1.62 seconds has passed to complete Weighted Wavelet Z-transform
+
+*** Starting Weighted Wavelet Z-transform ***
+
+adjusted time_divisions to:  33
+Pseudo sample frequency (median) is  0.111
+largest tau window is  70.308
+1.4 seconds has passed to complete Weighted Wavelet Z-transform
+
+*** Starting Weighted Wavelet Z-transform ***
+
+adjusted time_divisions to:  33
+Pseudo sample frequency (median) is  0.111
+largest tau window is  70.308
+1.62 seconds has passed to complete Weighted Wavelet Z-transform
+
+*** Starting Weighted Wavelet Z-transform ***
+
+adjusted time_divisions to:  33
+Pseudo sample frequency (median) is  0.111
+largest tau window is  70.308
+1.67 seconds has passed to complete Weighted Wavelet Z-transform
+
+*** Starting Weighted Wavelet Z-transform ***
+
+adjusted time_divisions to:  33
+Pseudo sample frequency (median) is  0.111
+largest tau window is  70.308
+Processing 0458387
+PID 4994
+Duration: 5.0 ticks
+12.0 seconds each
+Time so far 60.0s
+
+2.01 seconds has passed to complete Weighted Wavelet Z-transform
+
+*** Starting Weighted Wavelet Z-transform ***
+
+adjusted time_divisions to:  33
+Pseudo sample frequency (median) is  0.111
+largest tau window is  70.308
+1.47 seconds has passed to complete Weighted Wavelet Z-transform
+
+*** Starting Weighted Wavelet Z-transform ***
+
+adjusted time_divisions to:  33
+Pseudo sample frequency (median) is  0.111
+largest tau window is  70.308
+1.71 seconds has passed to complete Weighted Wavelet Z-transform
+
+*** Starting Weighted Wavelet Z-transform ***
+
+adjusted time_divisions to:  33
+Pseudo sample frequency (median) is  0.111
+largest tau window is  70.308
+1.62 seconds has passed to complete Weighted Wavelet Z-transform
+
+*** Starting Weighted Wavelet Z-transform ***
+
+adjusted time_divisions to:  33
+Pseudo sample frequency (median) is  0.111
+largest tau window is  70.308
+1.42 seconds has passed to complete Weighted Wavelet Z-transform
+
+*** Starting Weighted Wavelet Z-transform ***
+
+adjusted time_divisions to:  33
+Pseudo sample frequency (median) is  0.111
+largest tau window is  70.308
+1.38 seconds has passed to complete Weighted Wavelet Z-transform
+
+*** Starting Weighted Wavelet Z-transform ***
+
+adjusted time_divisions to:  33
+Pseudo sample frequency (median) is  0.111
+largest tau window is  70.308
+1.47 seconds has passed to complete Weighted Wavelet Z-transform
+
+*** Starting Weighted Wavelet Z-transform ***
+
+adjusted time_divisions to:  33
+Pseudo sample frequency (median) is  0.111
+largest tau window is  70.308
+1.26 seconds has passed to complete Weighted Wavelet Z-transform
+
+*** Starting Weighted Wavelet Z-transform ***
+
+adjusted time_divisions to:  33
+Pseudo sample frequency (median) is  0.111
+largest tau window is  70.308
+Processing 0458387
+PID 4994
+Duration: 6.0 ticks
+12.0 seconds each
+Time so far 72.0s
+
+1.48 seconds has passed to complete Weighted Wavelet Z-transform
+
+*** Starting Weighted Wavelet Z-transform ***
+
+adjusted time_divisions to:  33
+Pseudo sample frequency (median) is  0.111
+largest tau window is  70.308
+1.43 seconds has passed to complete Weighted Wavelet Z-transform
+
+*** Starting Weighted Wavelet Z-transform ***
+
+adjusted time_divisions to:  33
+Pseudo sample frequency (median) is  0.111
+largest tau window is  70.308
+1.62 seconds has passed to complete Weighted Wavelet Z-transform
+
+*** Starting Weighted Wavelet Z-transform ***
+
+adjusted time_divisions to:  33
+Pseudo sample frequency (median) is  0.111
+largest tau window is  70.308
+1.49 seconds has passed to complete Weighted Wavelet Z-transform
+
+*** Starting Weighted Wavelet Z-transform ***
+
+adjusted time_divisions to:  33
+Pseudo sample frequency (median) is  0.111
+largest tau window is  70.308
+1.13 seconds has passed to complete Weighted Wavelet Z-transform
+
+*** Starting Weighted Wavelet Z-transform ***
+
+adjusted time_divisions to:  33
+Pseudo sample frequency (median) is  0.111
+largest tau window is  70.308
+1.17 seconds has passed to complete Weighted Wavelet Z-transform
+
+*** Starting Weighted Wavelet Z-transform ***
+
+adjusted time_divisions to:  33
+Pseudo sample frequency (median) is  0.111
+largest tau window is  70.308
+1.33 seconds has passed to complete Weighted Wavelet Z-transform
+
+*** Starting Weighted Wavelet Z-transform ***
+
+adjusted time_divisions to:  33
+Pseudo sample frequency (median) is  0.111
+largest tau window is  70.308
+1.22 seconds has passed to complete Weighted Wavelet Z-transform
+
+*** Starting Weighted Wavelet Z-transform ***
+
+adjusted time_divisions to:  33
+Pseudo sample frequency (median) is  0.111
+largest tau window is  70.308
+Processing 0458387
+PID 4994
+Duration: 7.0 ticks
+12.0 seconds each
+Time so far 84.0s
+
+1.3 seconds has passed to complete Weighted Wavelet Z-transform
+
+*** Starting Weighted Wavelet Z-transform ***
+
+adjusted time_divisions to:  33
+Pseudo sample frequency (median) is  0.111
+largest tau window is  70.308
+1.19 seconds has passed to complete Weighted Wavelet Z-transform
+
+*** Starting Weighted Wavelet Z-transform ***
+
+adjusted time_divisions to:  33
+Pseudo sample frequency (median) is  0.111
+largest tau window is  70.308
+0.97 seconds has passed to complete Weighted Wavelet Z-transform
+
+*** Starting Weighted Wavelet Z-transform ***
+
+adjusted time_divisions to:  33
+Pseudo sample frequency (median) is  0.111
+largest tau window is  70.308
+1.19 seconds has passed to complete Weighted Wavelet Z-transform
+
+*** Starting Weighted Wavelet Z-transform ***
+
+adjusted time_divisions to:  33
+Pseudo sample frequency (median) is  0.111
+largest tau window is  70.308
+1.29 seconds has passed to complete Weighted Wavelet Z-transform
+
+*** Starting Weighted Wavelet Z-transform ***
+
+adjusted time_divisions to:  33
+Pseudo sample frequency (median) is  0.111
+largest tau window is  70.308
+1.39 seconds has passed to complete Weighted Wavelet Z-transform
+
+*** Starting Weighted Wavelet Z-transform ***
+
+adjusted time_divisions to:  33
+Pseudo sample frequency (median) is  0.111
+largest tau window is  70.308
+1.52 seconds has passed to complete Weighted Wavelet Z-transform
+
+*** Starting Weighted Wavelet Z-transform ***
+
+adjusted time_divisions to:  33
+Pseudo sample frequency (median) is  0.111
+largest tau window is  70.308
+0.96 seconds has passed to complete Weighted Wavelet Z-transform
+
+*** Starting Weighted Wavelet Z-transform ***
+
+adjusted time_divisions to:  33
+Pseudo sample frequency (median) is  0.111
+largest tau window is  70.308
+1.37 seconds has passed to complete Weighted Wavelet Z-transform
+
+*** Starting Weighted Wavelet Z-transform ***
+
+adjusted time_divisions to:  33
+Pseudo sample frequency (median) is  0.111
+largest tau window is  70.308
+1.22 seconds has passed to complete Weighted Wavelet Z-transform
+
+*** Starting Weighted Wavelet Z-transform ***
+
+adjusted time_divisions to:  33
+Pseudo sample frequency (median) is  0.111Processing 0458387
+PID 4994
+Duration: 8.0 ticks
+12.0 seconds each
+Time so far 96.0s
+
+largest tau window is
+ 70.308
+1.64 seconds has passed to complete Weighted Wavelet Z-transform
+
+*** Starting Weighted Wavelet Z-transform ***
+
+adjusted time_divisions to:  33
+Pseudo sample frequency (median) is  0.111
+largest tau window is  70.308
+1.36 seconds has passed to complete Weighted Wavelet Z-transform
+
+*** Starting Weighted Wavelet Z-transform ***
+
+adjusted time_divisions to:  33
+Pseudo sample frequency (median) is  0.111
+largest tau window is  70.308
+1.74 seconds has passed to complete Weighted Wavelet Z-transform
+
+*** Starting Weighted Wavelet Z-transform ***
+
+adjusted time_divisions to:  33
+Pseudo sample frequency (median) is  0.111
+largest tau window is  70.308
+1.14 seconds has passed to complete Weighted Wavelet Z-transform
+
+*** Starting Weighted Wavelet Z-transform ***
+
+adjusted time_divisions to:  33
+Pseudo sample frequency (median) is  0.111
+largest tau window is  70.308
+1.88 seconds has passed to complete Weighted Wavelet Z-transform
+
+*** Starting Weighted Wavelet Z-transform ***
+
+adjusted time_divisions to:  33
+Pseudo sample frequency (median) is  0.111
+largest tau window is  70.308
+1.62 seconds has passed to complete Weighted Wavelet Z-transform
+
+*** Starting Weighted Wavelet Z-transform ***
+
+adjusted time_divisions to:  33
+Pseudo sample frequency (median) is  0.111
+largest tau window is  70.308
+1.85 seconds has passed to complete Weighted Wavelet Z-transform
+
+*** Starting Weighted Wavelet Z-transform ***
+
+adjusted time_divisions to:  33
+Pseudo sample frequency (median) is  0.111
+largest tau window is  70.308
+Processing 0458387
+PID 4994
+Duration: 9.0 ticks
+12.0 seconds each
+Time so far 108.0s
+
+1.46 seconds has passed to complete Weighted Wavelet Z-transform
+
+*** Starting Weighted Wavelet Z-transform ***
+
+adjusted time_divisions to:  33
+Pseudo sample frequency (median) is  0.111
+largest tau window is  70.308
+1.42 seconds has passed to complete Weighted Wavelet Z-transform
+
+*** Starting Weighted Wavelet Z-transform ***
+
+adjusted time_divisions to:  33
+Pseudo sample frequency (median) is  0.111
+largest tau window is  70.308
+1.22 seconds has passed to complete Weighted Wavelet Z-transform
+
+*** Starting Weighted Wavelet Z-transform ***
+
+adjusted time_divisions to:  33
+Pseudo sample frequency (median) is  0.111
+largest tau window is  70.308
+1.67 seconds has passed to complete Weighted Wavelet Z-transform
+
+*** Starting Weighted Wavelet Z-transform ***
+
+adjusted time_divisions to:  33
+Pseudo sample frequency (median) is  0.111
+largest tau window is  70.308
+1.28 seconds has passed to complete Weighted Wavelet Z-transform
+
+*** Starting Weighted Wavelet Z-transform ***
+
+adjusted time_divisions to:  33
+Pseudo sample frequency (median) is  0.111
+largest tau window is  70.308
+1.24 seconds has passed to complete Weighted Wavelet Z-transform
+
+End time for ID 0458387 : 2024-03-15 10:09:29.707823
+Total time : 0:02:16.159711
+
+</pre></div></div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area stderr docutils container">
+<div class="highlight"><pre>
+/home/os/.local/lib/python3.8/site-packages/joblib/externals/loky/backend/resource_tracker.py:310: UserWarning: resource_tracker: There appear to be 4 leaked folder objects to clean up at shutdown
+  warnings.warn(
+</pre></div></div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[11]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Show content of results.csv file</span>
+<span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s1">&#39;results.csv&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">results_file</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">results_file</span><span class="o">.</span><span class="n">read</span><span class="p">())</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+ID,Sampling_1,Sampling_2,Common period (Band1 &amp; Band1),Upper error bound,Lower error bound,Significance,Band1-Band2
+1384177,22.7388695652174,21.9744537815126,335.570469798658,-1,-1,0.98,0-1
+1384177,22.7388695652174,19.3330769230769,335.570469798658,-1,-1,1,0-2
+1384177,22.7388695652174,22.5428448275862,nan,nan,nan,nan,0-3
+1384177,21.9744537815126,19.3330769230769,335.570469798658,-1,-1,1,1-2
+1384177,21.9744537815126,22.5428448275862,nan,nan,nan,nan,1-3
+1384177,19.3330769230769,22.5428448275862,nan,nan,nan,nan,2-3
+458387,70.308125,74.9956666666665,nan,nan,nan,nan,0-1
+458387,70.308125,74.9956666666665,nan,nan,nan,nan,0-2
+458387,70.308125,77.5813793103449,nan,nan,nan,nan,0-3
+458387,74.9956666666665,74.9956666666665,nan,nan,nan,nan,1-2
+458387,74.9956666666665,77.5813793103449,nan,nan,nan,nan,1-3
+458387,74.9956666666665,77.5813793103449,44.2869796279894,41.6265844303889,0.914820284696262,1,2-3
+
+</pre></div></div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[6]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Show content of results2.csv file</span>
+<span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s1">&#39;results2.csv&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">results_file</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">results_file</span><span class="o">.</span><span class="n">read</span><span class="p">())</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+ID,Sampling_1,Sampling_2,Common period (Band1 &amp; Band1),Upper error bound,Lower error bound,Significance,Band1-Band2
+0458387,70.30812500000002,74.99566666666651,nan,nan,nan,nan,0-1
+0458387,70.30812500000002,74.99566666666651,nan,nan,nan,nan,0-2
+0458387,70.30812500000002,77.58137931034484,nan,nan,nan,nan,0-3
+0458387,74.99566666666651,74.99566666666651,nan,nan,nan,nan,1-2
+0458387,74.99566666666651,77.58137931034484,nan,nan,nan,nan,1-3
+0458387,74.99566666666651,77.58137931034484,44.28697962798937,41.62658443038886,0.9148202846962619,1.0,2-3
+
+</pre></div></div>
+</div>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="Example2.html" class="btn btn-neutral float-left" title="Simple version of paralelization of objects processing." accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="../package.html" class="btn btn-neutral float-right" title="Package Modules" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2023, Andjelka Kovacevic.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+    <!-- Theme Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'G-XXXXXXXXXX', {
+          'anonymize_ip': false,
+      });
+    </script> 
+
+</body>
+</html>

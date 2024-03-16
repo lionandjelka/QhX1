@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>QhX.processing_utils &mdash; QhX 0.1.0 documentation</title>
+      <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="../../_static/jquery.js?v=5d32c60e"></script>
+        <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script src="../../_static/documentation_options.js?v=01f34227"></script>
+        <script src="../../_static/doctools.js?v=888ff710"></script>
+        <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+        <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+        <script src="https://unpkg.com/@jupyter-widgets/html-manager@^0.20.0/dist/embed-amd.js"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search"  style="background: white" >
+
+          
+          
+          <a href="../../index.html" class="icon icon-home">
+            QhX
+              <img src="../../_static/logo.png" class="logo" alt="Logo"/>
+          </a>
+              <div class="version">
+                0.1.0
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../introduction.html">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../installation.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../quick_start.html">Quick Start Tutorial</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../examples.html">Examples</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../package.html">Package Modules</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../faq.html">Frequently Asked Questions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../license.html">License</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu"  style="background: white" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">QhX</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../index.html">Module code</a></li>
+      <li class="breadcrumb-item active">QhX.processing_utils</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <h1>Source code for QhX.processing_utils</h1><div class="highlight"><pre>
+<span></span><span class="c1"># processing_utils.py</span>
+<span class="kn">import</span> <span class="nn">QhX</span>
+<span class="kn">from</span> <span class="nn">QhX.data_manager</span> <span class="kn">import</span> <span class="n">DataManager</span>
+<span class="kn">from</span> <span class="nn">QhX.light_curve</span> <span class="kn">import</span> <span class="n">get_lctiktok</span><span class="p">,</span> <span class="n">get_lc22</span>
+<span class="kn">from</span> <span class="nn">QhX.calculation</span> <span class="kn">import</span> <span class="n">periods</span><span class="p">,</span> <span class="n">signif_johnson</span>
+<span class="kn">from</span> <span class="nn">QhX.algorithms.wavelets.wwtz</span> <span class="kn">import</span> <span class="o">*</span>
+<span class="kn">from</span> <span class="nn">QhX.detection</span> <span class="kn">import</span> <span class="n">process1_new</span>
+
+<div class="viewcode-block" id="process1_wrapper">
+<a class="viewcode-back" href="../../processing_utils.html#QhX.processing_utils.process1_wrapper">[docs]</a>
+<span class="k">def</span> <span class="nf">process1_wrapper</span><span class="p">(</span><span class="n">set_id</span><span class="p">,</span> <span class="n">data_manager</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    This function acts as a wrapper for the `process1_new` function, simplifying its usage.</span>
+<span class="sd">    </span>
+<span class="sd">    It prints the set ID being processed for logging purposes and calls `process1_new`</span>
+<span class="sd">    with a predefined set of parameters.</span>
+<span class="sd">    </span>
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    set_id : int</span>
+<span class="sd">        The unique identifier for the data set to process.</span>
+<span class="sd">    data_manager : DataManager</span>
+<span class="sd">        An instance of the DataManager class that handles the data involved in the process.</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    dict</span>
+<span class="sd">        A dictionary containing the results of the `process1_new` processing, </span>
+<span class="sd">        structured according to the QhX detection module&#39;s specifications.</span>
+
+<span class="sd">    Notes</span>
+<span class="sd">    -----</span>
+<span class="sd">    The parameters for the `process1_new` function, such as `ntau`, `ngrid`,</span>
+<span class="sd">    `provided_minfq`, `provided_maxfq`, and `include_errors`, are preset within this wrapper.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Processing setid: </span><span class="si">{</span><span class="n">set_id</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>  <span class="c1"># Using print for visibility in Google Colab</span>
+    <span class="c1"># Call the actual process1 function</span>
+    <span class="k">return</span> <span class="n">QhX</span><span class="o">.</span><span class="n">detection</span><span class="o">.</span><span class="n">process1_new</span><span class="p">(</span><span class="n">data_manager</span><span class="p">,</span> <span class="n">set_id</span><span class="p">,</span> <span class="n">ntau</span><span class="o">=</span><span class="mi">80</span><span class="p">,</span> <span class="n">ngrid</span><span class="o">=</span><span class="mi">200</span><span class="p">,</span> <span class="n">provided_minfq</span><span class="o">=</span><span class="mi">500</span><span class="p">,</span> <span class="n">provided_maxfq</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">include_errors</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="process1_caller">
+<a class="viewcode-back" href="../../processing_utils.html#QhX.processing_utils.process1_caller">[docs]</a>
+<span class="k">def</span> <span class="nf">process1_caller</span><span class="p">(</span><span class="n">args</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    This function calls the `process1_wrapper` function with a set of arguments,</span>
+<span class="sd">    facilitating its use with features like `multiprocessing.Pool.map`.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    args : tuple</span>
+<span class="sd">        A tuple containing the arguments for the `process1_wrapper` function.</span>
+<span class="sd">        Expected to contain the following elements:</span>
+<span class="sd">        - set_id (int): The set ID to process.</span>
+<span class="sd">        - data_manager (DataManager): The DataManager instance for the data.</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    dict</span>
+<span class="sd">        The result returned by the `process1_wrapper` function.</span>
+
+<span class="sd">    Notes</span>
+<span class="sd">    -----</span>
+<span class="sd">    This function is particularly useful for parallel processing scenarios</span>
+<span class="sd">    where the `process1_wrapper` function needs to be mapped over a sequence of arguments.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">return</span> <span class="n">process1_wrapper</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">)</span></div>
+
+</pre></div>
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2023, Andjelka Kovacevic.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+    <!-- Theme Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'G-XXXXXXXXXX', {
+          'anonymize_ip': false,
+      });
+    </script> 
+
+</body>
+</html>
