@@ -111,21 +111,22 @@
 <span class="sd">Faculty of Mathematics, University of Belgrade</span>
 <span class="sd">&quot;&quot;&quot;</span>
 
+
 <span class="kn">import</span> <span class="nn">sys</span>
 <span class="kn">import</span> <span class="nn">threading</span>
 <span class="kn">import</span> <span class="nn">time</span>
 <span class="kn">import</span> <span class="nn">os</span>
-<span class="kn">from</span> <span class="nn">multiprocessing</span> <span class="kn">import</span> <span class="n">Process</span><span class="p">,</span> <span class="n">Queue</span>
+<span class="kn">from</span> <span class="nn">multiprocessing</span> <span class="kn">import</span> <span class="n">Process</span>
+<span class="kn">from</span> <span class="nn">multiprocessing</span> <span class="kn">import</span> <span class="n">Queue</span>
 <span class="kn">from</span> <span class="nn">datetime</span> <span class="kn">import</span> <span class="n">datetime</span>
-<span class="kn">from</span> <span class="nn">QhX.detection</span> <span class="kn">import</span> <span class="n">process1</span>
+<span class="kn">from</span> <span class="nn">QhX.detection</span> <span class="kn">import</span> <span class="o">*</span>
 
 <span class="c1"># Default number of processes to spawn</span>
 <span class="n">DEFAULT_NUM_WORKERS</span> <span class="o">=</span> <span class="mi">4</span>
 <span class="c1"># Default number of seconds to pass between time loggings</span>
 <span class="n">DEFAULT_LOG_PERIOD</span> <span class="o">=</span> <span class="mi">10</span>
-<span class="c1"># csv format results header</span>
-<span class="n">HEADER</span> <span class="o">=</span> <span class="s2">&quot;Set ID,Common period (Band1 &amp; Band2),Upper error bound,Lower error bound,Significance,Band1-Band2</span><span class="se">\n</span><span class="s2">&quot;</span>
-
+<span class="c1"># CSV format results header</span>
+<span class="n">HEADER</span> <span class="o">=</span> <span class="s2">&quot;ID,Sampling_1,Sampling_2,Common period (Band1 &amp; Band1),Upper error bound,Lower error bound,Significance,Band1-Band2</span><span class="se">\n</span><span class="s2">&quot;</span>
 
 <div class="viewcode-block" id="ParallelSolver">
 <a class="viewcode-back" href="../../parallelization_solver.html#QhX.parallelization_solver.ParallelSolver">[docs]</a>
@@ -142,8 +143,11 @@
 <span class="sd">        save_results (bool): Enable/disable saving of results to files.</span>
 <span class="sd">        process_function (function): Data processing function to be parallelized.</span>
 <span class="sd">        parallel_arithmetic (bool): Use parallel arithmetic within processing function.</span>
-<span class="sd">    &quot;&quot;&quot;</span>
-
+<span class="sd">        ntau (int): Parameter ntau for process_function. </span>
+<span class="sd">        ngrid (int): Parameter ngrid for process_function.</span>
+<span class="sd">        provided_minfq (int): Parameter provided_minfq for process_function.</span>
+<span class="sd">        provided_maxfq (int): Parameters provided_maxfq for process_function.</span>
+<span class="sd">    &quot;&quot;&quot;</span>    
     <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span>
                  <span class="n">delta_seconds</span> <span class="o">=</span> <span class="n">DEFAULT_LOG_PERIOD</span><span class="p">,</span> 
                  <span class="n">num_workers</span> <span class="o">=</span> <span class="n">DEFAULT_NUM_WORKERS</span><span class="p">,</span>
@@ -151,10 +155,15 @@
                  <span class="n">log_time</span> <span class="o">=</span> <span class="kc">True</span><span class="p">,</span> 
                  <span class="n">log_files</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span>
                  <span class="n">save_results</span> <span class="o">=</span> <span class="kc">True</span><span class="p">,</span>
-                 <span class="n">process_function</span> <span class="o">=</span> <span class="n">process1</span><span class="p">,</span>
-                 <span class="n">parallel_arithmetic</span> <span class="o">=</span> <span class="kc">False</span>
+                 <span class="n">process_function</span> <span class="o">=</span> <span class="n">process1_new</span><span class="p">,</span>
+                 <span class="n">parallel_arithmetic</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span>
+                 <span class="n">ntau</span> <span class="o">=</span>  <span class="n">DEFAULT_NTAU</span><span class="p">,</span>
+                 <span class="n">ngrid</span> <span class="o">=</span> <span class="n">DEFAULT_NGRID</span><span class="p">,</span> 
+                 <span class="n">provided_minfq</span> <span class="o">=</span> <span class="n">DEFAULT_PROVIDED_MINFQ</span><span class="p">,</span> 
+                 <span class="n">provided_maxfq</span> <span class="o">=</span> <span class="n">DEFAULT_PROVIDED_MAXFQ</span>
                 <span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Initialize the ParallelSolver with the specified configuration.&quot;&quot;&quot;</span>
+
         <span class="bp">self</span><span class="o">.</span><span class="n">delta_seconds</span> <span class="o">=</span> <span class="n">delta_seconds</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">num_workers</span> <span class="o">=</span> <span class="n">num_workers</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">data_manager</span> <span class="o">=</span> <span class="n">data_manager</span>
@@ -163,6 +172,10 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">log_files</span> <span class="o">=</span> <span class="n">log_files</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">save_results</span> <span class="o">=</span> <span class="n">save_results</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">parallel_arithmetic</span> <span class="o">=</span> <span class="n">parallel_arithmetic</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">ntau</span> <span class="o">=</span> <span class="n">ntau</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">ngrid</span> <span class="o">=</span> <span class="n">ngrid</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">provided_minfq</span> <span class="o">=</span> <span class="n">provided_minfq</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">provided_maxfq</span> <span class="o">=</span> <span class="n">provided_maxfq</span>
 
 <div class="viewcode-block" id="ParallelSolver.background_log">
 <a class="viewcode-back" href="../../parallelization_solver.html#QhX.parallelization_solver.ParallelSolver.background_log">[docs]</a>
@@ -197,11 +210,12 @@
     <span class="k">def</span> <span class="nf">process_wrapper</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Wrapper for the process function to integrate logging and result handling.</span>
-<span class="sd">         </span>
+<span class="sd">          </span>
 <span class="sd">        Performed tasks:</span>
 <span class="sd">         Starts background logging thread if required</span>
 <span class="sd">         Processes data if data manager exists</span>
 <span class="sd">        &quot;&quot;&quot;</span>
+
         
         <span class="c1"># Event used for stopping background log thread</span>
         <span class="n">stopper_event</span> <span class="o">=</span> <span class="kc">None</span>
@@ -229,16 +243,24 @@
                     <span class="n">daemon</span> <span class="o">=</span> <span class="n">threading</span><span class="o">.</span><span class="n">Thread</span><span class="p">(</span><span class="n">target</span> <span class="o">=</span> <span class="n">ParallelSolver</span><span class="o">.</span><span class="n">background_log</span><span class="p">,</span> <span class="n">args</span> <span class="o">=</span> <span class="p">(</span><span class="n">set_id</span><span class="p">,</span> <span class="n">stopper_event</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">delta_seconds</span><span class="p">))</span>
                     <span class="n">daemon</span><span class="o">.</span><span class="n">start</span><span class="p">()</span>
 
-                <span class="c1"># Call main processing fnc</span>
-                <span class="n">result</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">process_function</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">data_manager</span><span class="p">,</span> <span class="n">set_id</span><span class="p">,</span> <span class="n">ntau</span><span class="o">=</span><span class="mi">80</span><span class="p">,</span> <span class="n">ngrid</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span> <span class="n">provided_minfq</span><span class="o">=</span><span class="mi">2000</span><span class="p">,</span> <span class="n">provided_maxfq</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">parallel</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">parallel_arithmetic</span><span class="p">,</span> <span class="n">include_errors</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+                <span class="c1"># Call main processing function</span>
+                <span class="n">result</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">process_function</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">data_manager</span><span class="p">,</span>
+                                               <span class="n">set_id</span><span class="p">,</span> 
+                                               <span class="n">ntau</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">ntau</span><span class="p">,</span> 
+                                               <span class="n">ngrid</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">ngrid</span><span class="p">,</span> 
+                                               <span class="n">provided_minfq</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">provided_minfq</span><span class="p">,</span> 
+                                               <span class="n">provided_maxfq</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">provided_maxfq</span><span class="p">,</span> 
+                                               <span class="n">parallel</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">parallel_arithmetic</span><span class="p">,</span> 
+                                               <span class="n">include_errors</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
                 
                 <span class="c1"># Get results into formatted string</span>
                 <span class="n">res_string</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span>
                 <span class="k">for</span> <span class="n">row</span> <span class="ow">in</span> <span class="n">result</span><span class="p">:</span>
-                    <span class="n">res_string_tmp</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span>
-                    <span class="k">for</span> <span class="n">entry</span> <span class="ow">in</span> <span class="n">row</span><span class="p">:</span>
-                        <span class="n">res_string_tmp</span> <span class="o">+=</span> <span class="nb">str</span><span class="p">(</span><span class="n">entry</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&quot;,&quot;</span>
-                    <span class="n">res_string_tmp</span> <span class="o">=</span> <span class="n">res_string_tmp</span><span class="p">[:</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">+</span> <span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span>
+                    <span class="c1"># Get row values from array or dict</span>
+                    <span class="n">row_values</span> <span class="o">=</span> <span class="n">row</span><span class="o">.</span><span class="n">values</span><span class="p">()</span> <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">row</span><span class="p">,</span> <span class="nb">dict</span><span class="p">)</span> <span class="k">else</span> <span class="n">row</span>
+                    <span class="c1"># Place row values into CSV formatted string</span>
+                    <span class="n">res_string_tmp</span> <span class="o">=</span> <span class="s1">&#39;,&#39;</span><span class="o">.</span><span class="n">join</span><span class="p">([</span><span class="nb">str</span><span class="p">(</span><span class="n">v</span><span class="p">)</span> <span class="k">for</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">row_values</span><span class="p">])</span> <span class="o">+</span> <span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span>
+                    <span class="c1"># Append row to resulting string</span>
                     <span class="n">res_string</span> <span class="o">+=</span> <span class="n">res_string_tmp</span>
 
                 <span class="c1"># Put results in unified results queue if flag is set</span>
@@ -259,7 +281,7 @@
                     <span class="n">saving_file</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">HEADER</span> <span class="o">+</span> <span class="n">res_string</span><span class="p">)</span>
                     <span class="n">saving_file</span><span class="o">.</span><span class="n">close</span><span class="p">()</span></div>
 
-
+        
 <div class="viewcode-block" id="ParallelSolver.process_ids">
 <a class="viewcode-back" href="../../parallelization_solver.html#QhX.parallelization_solver.ParallelSolver.process_ids">[docs]</a>
     <span class="k">def</span> <span class="nf">process_ids</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">set_ids</span><span class="p">,</span> <span class="n">results_file</span> <span class="o">=</span> <span class="kc">None</span><span class="p">):</span>	
@@ -270,6 +292,7 @@
 <span class="sd">            set_ids (list of str): List of set IDs to process.</span>
 <span class="sd">            results_file (str, optional): Path to save aggregated results.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
+
 
         <span class="c1"># Unified output queue and input queue</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">results_</span> <span class="o">=</span> <span class="n">Queue</span><span class="p">()</span>
