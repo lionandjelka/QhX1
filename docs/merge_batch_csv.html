@@ -4,7 +4,7 @@
   <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>processing_utils module &mdash; QhX 0.1.0 documentation</title>
+  <title>merge_batch_csv Module &mdash; QhX 0.1.0 documentation</title>
       <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
   <!--[if lt IE 9]>
@@ -21,8 +21,8 @@
     <script src="_static/js/theme.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="test_integrated" href="test_integrated.html" />
-    <link rel="prev" title="Interactive Plot Large Files Module" href="interactive_plot_large_files.html" /> 
+    <link rel="next" title="Parallel Classification Module" href="parallel_classification.html" />
+    <link rel="prev" title="Batch Processor Module" href="batch_processor.html" /> 
 </head>
 
 <body class="wy-body-for-nav"> 
@@ -68,15 +68,16 @@
 <li class="toctree-l2"><a class="reference internal" href="interactive_plt.html">interactive_plt</a></li>
 <li class="toctree-l2"><a class="reference internal" href="parallelization_solver.html">Parallelization Solver module</a></li>
 <li class="toctree-l2"><a class="reference internal" href="batch_processor.html">Batch Processor Module</a></li>
-<li class="toctree-l2"><a class="reference internal" href="merge_batch_csv.html">merge_batch_csv Module</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">merge_batch_csv Module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#QhX.merge_batch_csv.merge_batch_csv"><code class="docutils literal notranslate"><span class="pre">merge_batch_csv()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#usage">Usage</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#parameters">Parameters</a></li>
+</ul>
+</li>
 <li class="toctree-l2"><a class="reference internal" href="parallel_classification.html">Parallel Classification Module</a></li>
 <li class="toctree-l2"><a class="reference internal" href="output_parallel.html">output_parallel</a></li>
 <li class="toctree-l2"><a class="reference internal" href="interactive_plot_large_files.html">Interactive Plot Large Files Module</a></li>
-<li class="toctree-l2 current"><a class="current reference internal" href="#">processing_utils module</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#QhX.processing_utils.process1_caller"><code class="docutils literal notranslate"><span class="pre">process1_caller()</span></code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="#QhX.processing_utils.process1_wrapper"><code class="docutils literal notranslate"><span class="pre">process1_wrapper()</span></code></a></li>
-</ul>
-</li>
+<li class="toctree-l2"><a class="reference internal" href="processing_utils.html">processing_utils module</a></li>
 <li class="toctree-l2"><a class="reference internal" href="test_integrated.html">test_integrated</a></li>
 <li class="toctree-l2"><a class="reference internal" href="mock_lc.html">mock_lc</a></li>
 </ul>
@@ -100,9 +101,9 @@
   <ul class="wy-breadcrumbs">
       <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
           <li class="breadcrumb-item"><a href="package.html">Package Modules</a></li>
-      <li class="breadcrumb-item active">processing_utils module</li>
+      <li class="breadcrumb-item active">merge_batch_csv Module</li>
       <li class="wy-breadcrumbs-aside">
-            <a href="_sources/processing_utils.rst.txt" rel="nofollow"> View page source</a>
+            <a href="_sources/merge_batch_csv.rst.txt" rel="nofollow"> View page source</a>
       </li>
   </ul>
   <hr/>
@@ -110,66 +111,66 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
              
-  <section id="module-QhX.processing_utils">
-<span id="processing-utils-module"></span><h1>processing_utils module<a class="headerlink" href="#module-QhX.processing_utils" title="Link to this heading"></a></h1>
-<dl class="py function">
-<dt class="sig sig-object py" id="QhX.processing_utils.process1_caller">
-<span class="sig-prename descclassname"><span class="pre">QhX.processing_utils.</span></span><span class="sig-name descname"><span class="pre">process1_caller</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">args</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/QhX/processing_utils.html#process1_caller"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#QhX.processing_utils.process1_caller" title="Link to this definition"></a></dt>
-<dd><p>This function calls the <cite>process1_wrapper</cite> function with a set of arguments,
-facilitating its use with features like <cite>multiprocessing.Pool.map</cite>.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><p><strong>args</strong> (<em>tuple</em>) – A tuple containing the arguments for the <cite>process1_wrapper</cite> function.
-Expected to contain the following elements:
-- set_id (int): The set ID to process.
-- data_manager (DataManager): The DataManager instance for the data.</p>
-</dd>
-<dt class="field-even">Returns<span class="colon">:</span></dt>
-<dd class="field-even"><p>The result returned by the <cite>process1_wrapper</cite> function.</p>
-</dd>
-<dt class="field-odd">Return type<span class="colon">:</span></dt>
-<dd class="field-odd"><p>dict</p>
-</dd>
-</dl>
-<p class="rubric">Notes</p>
-<p>This function is particularly useful for parallel processing scenarios
-where the <cite>process1_wrapper</cite> function needs to be mapped over a sequence of arguments.</p>
-</dd></dl>
-
-<dl class="py function">
-<dt class="sig sig-object py" id="QhX.processing_utils.process1_wrapper">
-<span class="sig-prename descclassname"><span class="pre">QhX.processing_utils.</span></span><span class="sig-name descname"><span class="pre">process1_wrapper</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">set_id</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">data_manager</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/QhX/processing_utils.html#process1_wrapper"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#QhX.processing_utils.process1_wrapper" title="Link to this definition"></a></dt>
-<dd><p>This function acts as a wrapper for the <cite>process1_new</cite> function, simplifying its usage.</p>
-<p>It prints the set ID being processed for logging purposes and calls <cite>process1_new</cite>
-with a predefined set of parameters.</p>
+  <section id="merge-batch-csv-module">
+<h1>merge_batch_csv Module<a class="headerlink" href="#merge-batch-csv-module" title="Link to this heading"></a></h1>
+<p>The <code class="docutils literal notranslate"><span class="pre">merge_batch_csv</span></code> module provides functionality for merging CSV files generated from batch processes into a single consolidated CSV file. This is particularly useful for analyzing results that are split across multiple batch output files.</p>
+<dl class="py function" id="module-QhX.merge_batch_csv">
+<dt class="sig sig-object py" id="QhX.merge_batch_csv.merge_batch_csv">
+<span class="sig-prename descclassname"><span class="pre">QhX.merge_batch_csv.</span></span><span class="sig-name descname"><span class="pre">merge_batch_csv</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">directory</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'.'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">output_file</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'merged_result.csv'</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/QhX/merge_batch_csv.html#merge_batch_csv"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#QhX.merge_batch_csv.merge_batch_csv" title="Link to this definition"></a></dt>
+<dd><p>Merges CSV files named ‘result.csv’ found in directories ending with ‘sz100’ or ‘sz200’
+into a single CSV file.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>set_id</strong> (<em>int</em>) – The unique identifier for the data set to process.</p></li>
-<li><p><strong>data_manager</strong> (<a class="reference internal" href="data_manager.html#QhX.data_manager.DataManager" title="QhX.data_manager.DataManager"><em>DataManager</em></a>) – An instance of the DataManager class that handles the data involved in the process.</p></li>
+<li><p><strong>directory</strong> (<em>str</em>) – The root directory to search for CSV files. Defaults to the current directory.</p></li>
+<li><p><strong>output_file</strong> (<em>str</em>) – The name of the output file where the merged results will be saved. Defaults to ‘merged_result.csv’.</p></li>
 </ul>
 </dd>
 <dt class="field-even">Returns<span class="colon">:</span></dt>
-<dd class="field-even"><p>A dictionary containing the results of the <cite>process1_new</cite> processing,
-structured according to the QhX detection module’s specifications.</p>
+<dd class="field-even"><p>The number of files successfully merged.</p>
 </dd>
 <dt class="field-odd">Return type<span class="colon">:</span></dt>
-<dd class="field-odd"><p>dict</p>
+<dd class="field-odd"><p>int</p>
 </dd>
 </dl>
-<p class="rubric">Notes</p>
-<p>The parameters for the <cite>process1_new</cite> function, such as <cite>ntau</cite>, <cite>ngrid</cite>,
-<cite>provided_minfq</cite>, <cite>provided_maxfq</cite>, and <cite>include_errors</cite>, are preset within this wrapper.</p>
 </dd></dl>
 
+<section id="usage">
+<h2>Usage<a class="headerlink" href="#usage" title="Link to this heading"></a></h2>
+<p>The <code class="docutils literal notranslate"><span class="pre">merge_batch_csv</span></code> function can be executed directly as a standalone script or imported into another Python script.</p>
+<p><strong>As a Standalone Script:</strong></p>
+<p>Navigate to the package directory and execute:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">cd</span><span class="w"> </span>path/to/QhX
+python<span class="w"> </span>-m<span class="w"> </span>merge_batch_csv
+</pre></div>
+</div>
+<p><strong>Importing in Python Scripts:</strong></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">QhX.merge_batch_csv</span> <span class="kn">import</span> <span class="n">merge_batch_csv</span>
+
+<span class="n">directory_to_search</span> <span class="o">=</span> <span class="s2">&quot;./data&quot;</span>
+<span class="n">output_file_name</span> <span class="o">=</span> <span class="s2">&quot;final_merged_results.csv&quot;</span>
+
+<span class="n">merge_batch_csv</span><span class="p">(</span><span class="n">directory</span><span class="o">=</span><span class="n">directory_to_search</span><span class="p">,</span> <span class="n">output_file</span><span class="o">=</span><span class="n">output_file_name</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;CSV files have been merged successfully.&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="parameters">
+<h2>Parameters<a class="headerlink" href="#parameters" title="Link to this heading"></a></h2>
+<ul class="simple">
+<li><p><strong>directory</strong> (str): The root directory to search for CSV files. Defaults to the current directory.</p></li>
+<li><p><strong>output_file</strong> (str): The filename for the merged CSV. Defaults to ‘merged_result.csv’.</p></li>
+</ul>
+</section>
 </section>
 
 
            </div>
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
-        <a href="interactive_plot_large_files.html" class="btn btn-neutral float-left" title="Interactive Plot Large Files Module" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
-        <a href="test_integrated.html" class="btn btn-neutral float-right" title="test_integrated" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="batch_processor.html" class="btn btn-neutral float-left" title="Batch Processor Module" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="parallel_classification.html" class="btn btn-neutral float-right" title="Parallel Classification Module" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
   <hr/>

@@ -4,7 +4,7 @@
   <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>processing_utils module &mdash; QhX 0.1.0 documentation</title>
+  <title>Parallel Classification Module &mdash; QhX 0.1.0 documentation</title>
       <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
   <!--[if lt IE 9]>
@@ -21,8 +21,8 @@
     <script src="_static/js/theme.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="test_integrated" href="test_integrated.html" />
-    <link rel="prev" title="Interactive Plot Large Files Module" href="interactive_plot_large_files.html" /> 
+    <link rel="next" title="output_parallel" href="output_parallel.html" />
+    <link rel="prev" title="merge_batch_csv Module" href="merge_batch_csv.html" /> 
 </head>
 
 <body class="wy-body-for-nav"> 
@@ -69,14 +69,13 @@
 <li class="toctree-l2"><a class="reference internal" href="parallelization_solver.html">Parallelization Solver module</a></li>
 <li class="toctree-l2"><a class="reference internal" href="batch_processor.html">Batch Processor Module</a></li>
 <li class="toctree-l2"><a class="reference internal" href="merge_batch_csv.html">merge_batch_csv Module</a></li>
-<li class="toctree-l2"><a class="reference internal" href="parallel_classification.html">Parallel Classification Module</a></li>
-<li class="toctree-l2"><a class="reference internal" href="output_parallel.html">output_parallel</a></li>
-<li class="toctree-l2"><a class="reference internal" href="interactive_plot_large_files.html">Interactive Plot Large Files Module</a></li>
-<li class="toctree-l2 current"><a class="current reference internal" href="#">processing_utils module</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#QhX.processing_utils.process1_caller"><code class="docutils literal notranslate"><span class="pre">process1_caller()</span></code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="#QhX.processing_utils.process1_wrapper"><code class="docutils literal notranslate"><span class="pre">process1_wrapper()</span></code></a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Parallel Classification Module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#parallel_classification.process_csv_in_chunks"><code class="docutils literal notranslate"><span class="pre">process_csv_in_chunks()</span></code></a></li>
 </ul>
 </li>
+<li class="toctree-l2"><a class="reference internal" href="output_parallel.html">output_parallel</a></li>
+<li class="toctree-l2"><a class="reference internal" href="interactive_plot_large_files.html">Interactive Plot Large Files Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="processing_utils.html">processing_utils module</a></li>
 <li class="toctree-l2"><a class="reference internal" href="test_integrated.html">test_integrated</a></li>
 <li class="toctree-l2"><a class="reference internal" href="mock_lc.html">mock_lc</a></li>
 </ul>
@@ -100,9 +99,9 @@
   <ul class="wy-breadcrumbs">
       <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
           <li class="breadcrumb-item"><a href="package.html">Package Modules</a></li>
-      <li class="breadcrumb-item active">processing_utils module</li>
+      <li class="breadcrumb-item active">Parallel Classification Module</li>
       <li class="wy-breadcrumbs-aside">
-            <a href="_sources/processing_utils.rst.txt" rel="nofollow"> View page source</a>
+            <a href="_sources/parallel_classification.rst.txt" rel="nofollow"> View page source</a>
       </li>
   </ul>
   <hr/>
@@ -110,56 +109,42 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
              
-  <section id="module-QhX.processing_utils">
-<span id="processing-utils-module"></span><h1>processing_utils module<a class="headerlink" href="#module-QhX.processing_utils" title="Link to this heading"></a></h1>
+  <section id="module-parallel_classification">
+<span id="parallel-classification-module"></span><h1>Parallel Classification Module<a class="headerlink" href="#module-parallel_classification" title="Link to this heading"></a></h1>
 <dl class="py function">
-<dt class="sig sig-object py" id="QhX.processing_utils.process1_caller">
-<span class="sig-prename descclassname"><span class="pre">QhX.processing_utils.</span></span><span class="sig-name descname"><span class="pre">process1_caller</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">args</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/QhX/processing_utils.html#process1_caller"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#QhX.processing_utils.process1_caller" title="Link to this definition"></a></dt>
-<dd><p>This function calls the <cite>process1_wrapper</cite> function with a set of arguments,
-facilitating its use with features like <cite>multiprocessing.Pool.map</cite>.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><p><strong>args</strong> (<em>tuple</em>) – A tuple containing the arguments for the <cite>process1_wrapper</cite> function.
-Expected to contain the following elements:
-- set_id (int): The set ID to process.
-- data_manager (DataManager): The DataManager instance for the data.</p>
-</dd>
-<dt class="field-even">Returns<span class="colon">:</span></dt>
-<dd class="field-even"><p>The result returned by the <cite>process1_wrapper</cite> function.</p>
-</dd>
-<dt class="field-odd">Return type<span class="colon">:</span></dt>
-<dd class="field-odd"><p>dict</p>
-</dd>
-</dl>
-<p class="rubric">Notes</p>
-<p>This function is particularly useful for parallel processing scenarios
-where the <cite>process1_wrapper</cite> function needs to be mapped over a sequence of arguments.</p>
-</dd></dl>
-
-<dl class="py function">
-<dt class="sig sig-object py" id="QhX.processing_utils.process1_wrapper">
-<span class="sig-prename descclassname"><span class="pre">QhX.processing_utils.</span></span><span class="sig-name descname"><span class="pre">process1_wrapper</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">set_id</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">data_manager</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/QhX/processing_utils.html#process1_wrapper"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#QhX.processing_utils.process1_wrapper" title="Link to this definition"></a></dt>
-<dd><p>This function acts as a wrapper for the <cite>process1_new</cite> function, simplifying its usage.</p>
-<p>It prints the set ID being processed for logging purposes and calls <cite>process1_new</cite>
-with a predefined set of parameters.</p>
+<dt class="sig sig-object py" id="parallel_classification.process_csv_in_chunks">
+<span class="sig-prename descclassname"><span class="pre">parallel_classification.</span></span><span class="sig-name descname"><span class="pre">process_csv_in_chunks</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">csv_file_path</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">chunk_size</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">10000</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">output_file_path</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'classified_periods.csv'</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/parallel_classification.html#process_csv_in_chunks"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#parallel_classification.process_csv_in_chunks" title="Link to this definition"></a></dt>
+<dd><p>Processes a CSV file in chunks, classifying periods for each chunk.</p>
+<p>Reads the specified CSV file in chunks of a specified size, applies
+classification to each chunk using the <cite>classify_periods</cite> function, further
+classifies each period within the chunk using <cite>classify_period</cite>, and
+compiles the results into a single DataFrame. The final DataFrame is then
+saved to a new CSV file.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>set_id</strong> (<em>int</em>) – The unique identifier for the data set to process.</p></li>
-<li><p><strong>data_manager</strong> (<a class="reference internal" href="data_manager.html#QhX.data_manager.DataManager" title="QhX.data_manager.DataManager"><em>DataManager</em></a>) – An instance of the DataManager class that handles the data involved in the process.</p></li>
+<li><p><strong>csv_file_path</strong> (<em>str</em>) – The path to the CSV file to be processed.</p></li>
+<li><p><strong>chunk_size</strong> (<em>int</em><em>, </em><em>optional</em>) – The number of rows per chunk to read from the CSV. Defaults to 10000.</p></li>
+<li><p><strong>output_file_path</strong> (<em>str</em><em>, </em><em>optional</em>) – Path where the fully processed and classified CSV file will be saved.
+Defaults to ‘classified_periods.csv’.</p></li>
 </ul>
 </dd>
 <dt class="field-even">Returns<span class="colon">:</span></dt>
-<dd class="field-even"><p>A dictionary containing the results of the <cite>process1_new</cite> processing,
-structured according to the QhX detection module’s specifications.</p>
+<dd class="field-even"><p>This function does not return a value. It saves the processed and classified
+data directly to a CSV file specified by <cite>output_file_path</cite>.</p>
 </dd>
 <dt class="field-odd">Return type<span class="colon">:</span></dt>
-<dd class="field-odd"><p>dict</p>
+<dd class="field-odd"><p>None</p>
 </dd>
 </dl>
-<p class="rubric">Notes</p>
-<p>The parameters for the <cite>process1_new</cite> function, such as <cite>ntau</cite>, <cite>ngrid</cite>,
-<cite>provided_minfq</cite>, <cite>provided_maxfq</cite>, and <cite>include_errors</cite>, are preset within this wrapper.</p>
+<p class="rubric">Example</p>
+<p>Below is an example of how to use the <cite>process_csv_in_chunks</cite> function:</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">csv_file_path</span> <span class="o">=</span> <span class="s1">&#39;path/to/your/large_csv_file.csv&#39;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">output_file_path</span> <span class="o">=</span> <span class="s1">&#39;path/to/save/classified_periods.csv&#39;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">process_csv_in_chunks</span><span class="p">(</span><span class="n">csv_file_path</span><span class="p">,</span> <span class="n">chunk_size</span><span class="o">=</span><span class="mi">10000</span><span class="p">,</span> <span class="n">output_file_path</span><span class="o">=</span><span class="n">output_file_path</span><span class="p">)</span>
+<span class="go">Processed and classified data saved to path/to/save/classified_periods.csv</span>
+</pre></div>
+</div>
 </dd></dl>
 
 </section>
@@ -168,8 +153,8 @@ structured according to the QhX detection module’s specifications.</p>
            </div>
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
-        <a href="interactive_plot_large_files.html" class="btn btn-neutral float-left" title="Interactive Plot Large Files Module" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
-        <a href="test_integrated.html" class="btn btn-neutral float-right" title="test_integrated" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="merge_batch_csv.html" class="btn btn-neutral float-left" title="merge_batch_csv Module" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="output_parallel.html" class="btn btn-neutral float-right" title="output_parallel" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
   <hr/>

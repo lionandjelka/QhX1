@@ -21,7 +21,7 @@
     <script src="_static/js/theme.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="processing_utils module" href="processing_utils.html" />
+    <link rel="next" title="Batch Processor Module" href="batch_processor.html" />
     <link rel="prev" title="interactive_plt" href="interactive_plt.html" /> 
 </head>
 
@@ -78,6 +78,10 @@
 <li class="toctree-l4"><a class="reference internal" href="#QhX.parallelization_solver.ParallelSolver.save_results"><code class="docutils literal notranslate"><span class="pre">ParallelSolver.save_results</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="#QhX.parallelization_solver.ParallelSolver.process_function"><code class="docutils literal notranslate"><span class="pre">ParallelSolver.process_function</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="#QhX.parallelization_solver.ParallelSolver.parallel_arithmetic"><code class="docutils literal notranslate"><span class="pre">ParallelSolver.parallel_arithmetic</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#QhX.parallelization_solver.ParallelSolver.ntau"><code class="docutils literal notranslate"><span class="pre">ParallelSolver.ntau</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#QhX.parallelization_solver.ParallelSolver.ngrid"><code class="docutils literal notranslate"><span class="pre">ParallelSolver.ngrid</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#QhX.parallelization_solver.ParallelSolver.provided_minfq"><code class="docutils literal notranslate"><span class="pre">ParallelSolver.provided_minfq</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#QhX.parallelization_solver.ParallelSolver.provided_maxfq"><code class="docutils literal notranslate"><span class="pre">ParallelSolver.provided_maxfq</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="#QhX.parallelization_solver.ParallelSolver.background_log"><code class="docutils literal notranslate"><span class="pre">ParallelSolver.background_log()</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="#QhX.parallelization_solver.ParallelSolver.process_ids"><code class="docutils literal notranslate"><span class="pre">ParallelSolver.process_ids()</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="#QhX.parallelization_solver.ParallelSolver.process_wrapper"><code class="docutils literal notranslate"><span class="pre">ParallelSolver.process_wrapper()</span></code></a></li>
@@ -85,6 +89,11 @@
 </li>
 </ul>
 </li>
+<li class="toctree-l2"><a class="reference internal" href="batch_processor.html">Batch Processor Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="merge_batch_csv.html">merge_batch_csv Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="parallel_classification.html">Parallel Classification Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="output_parallel.html">output_parallel</a></li>
+<li class="toctree-l2"><a class="reference internal" href="interactive_plot_large_files.html">Interactive Plot Large Files Module</a></li>
 <li class="toctree-l2"><a class="reference internal" href="processing_utils.html">processing_utils module</a></li>
 <li class="toctree-l2"><a class="reference internal" href="test_integrated.html">test_integrated</a></li>
 <li class="toctree-l2"><a class="reference internal" href="mock_lc.html">mock_lc</a></li>
@@ -150,7 +159,7 @@ Faculty of Mathematics, University of Belgrade</p>
 </section>
 <dl class="py class">
 <dt class="sig sig-object py" id="QhX.parallelization_solver.ParallelSolver">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">QhX.parallelization_solver.</span></span><span class="sig-name descname"><span class="pre">ParallelSolver</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">delta_seconds=10</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">num_workers=4</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">data_manager=None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">log_time=True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">log_files=False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">save_results=True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">process_function=&lt;function</span> <span class="pre">process1&gt;</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">parallel_arithmetic=False</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/QhX/parallelization_solver.html#ParallelSolver"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#QhX.parallelization_solver.ParallelSolver" title="Link to this definition"></a></dt>
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">QhX.parallelization_solver.</span></span><span class="sig-name descname"><span class="pre">ParallelSolver</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">delta_seconds=10</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">num_workers=4</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">data_manager=None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">log_time=True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">log_files=False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">save_results=True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">process_function=&lt;function</span> <span class="pre">process1_new&gt;</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">parallel_arithmetic=False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ntau=80</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ngrid=800</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">provided_minfq=2000</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">provided_maxfq=10</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/QhX/parallelization_solver.html#ParallelSolver"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#QhX.parallelization_solver.ParallelSolver" title="Link to this definition"></a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
 <p>A class to manage parallel execution of data processing functions.</p>
 <dl class="py attribute">
@@ -241,6 +250,50 @@ Faculty of Mathematics, University of Belgrade</p>
 </dl>
 </dd></dl>
 
+<dl class="py attribute">
+<dt class="sig sig-object py" id="QhX.parallelization_solver.ParallelSolver.ntau">
+<span class="sig-name descname"><span class="pre">ntau</span></span><a class="headerlink" href="#QhX.parallelization_solver.ParallelSolver.ntau" title="Link to this definition"></a></dt>
+<dd><p>Parameter ntau for process_function.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>int</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="QhX.parallelization_solver.ParallelSolver.ngrid">
+<span class="sig-name descname"><span class="pre">ngrid</span></span><a class="headerlink" href="#QhX.parallelization_solver.ParallelSolver.ngrid" title="Link to this definition"></a></dt>
+<dd><p>Parameter ngrid for process_function.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>int</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="QhX.parallelization_solver.ParallelSolver.provided_minfq">
+<span class="sig-name descname"><span class="pre">provided_minfq</span></span><a class="headerlink" href="#QhX.parallelization_solver.ParallelSolver.provided_minfq" title="Link to this definition"></a></dt>
+<dd><p>Parameter provided_minfq for process_function.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>int</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="QhX.parallelization_solver.ParallelSolver.provided_maxfq">
+<span class="sig-name descname"><span class="pre">provided_maxfq</span></span><a class="headerlink" href="#QhX.parallelization_solver.ParallelSolver.provided_maxfq" title="Link to this definition"></a></dt>
+<dd><p>Parameters provided_maxfq for process_function.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>int</p>
+</dd>
+</dl>
+</dd></dl>
+
 <dl class="py method">
 <dt class="sig sig-object py" id="QhX.parallelization_solver.ParallelSolver.background_log">
 <em class="property"><span class="pre">static</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">background_log</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">set_id</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">e</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Event</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">delta_seconds</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/QhX/parallelization_solver.html#ParallelSolver.background_log"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#QhX.parallelization_solver.ParallelSolver.background_log" title="Link to this definition"></a></dt>
@@ -290,7 +343,7 @@ Processes data if data manager exists</p>
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
         <a href="interactive_plt.html" class="btn btn-neutral float-left" title="interactive_plt" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
-        <a href="processing_utils.html" class="btn btn-neutral float-right" title="processing_utils module" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="batch_processor.html" class="btn btn-neutral float-right" title="Batch Processor Module" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
   <hr/>

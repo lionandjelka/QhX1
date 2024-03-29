@@ -4,7 +4,7 @@
   <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>processing_utils module &mdash; QhX 0.1.0 documentation</title>
+  <title>Interactive Plot Large Files Module &mdash; QhX 0.1.0 documentation</title>
       <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
   <!--[if lt IE 9]>
@@ -21,8 +21,8 @@
     <script src="_static/js/theme.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="test_integrated" href="test_integrated.html" />
-    <link rel="prev" title="Interactive Plot Large Files Module" href="interactive_plot_large_files.html" /> 
+    <link rel="next" title="processing_utils module" href="processing_utils.html" />
+    <link rel="prev" title="output_parallel" href="output_parallel.html" /> 
 </head>
 
 <body class="wy-body-for-nav"> 
@@ -71,12 +71,11 @@
 <li class="toctree-l2"><a class="reference internal" href="merge_batch_csv.html">merge_batch_csv Module</a></li>
 <li class="toctree-l2"><a class="reference internal" href="parallel_classification.html">Parallel Classification Module</a></li>
 <li class="toctree-l2"><a class="reference internal" href="output_parallel.html">output_parallel</a></li>
-<li class="toctree-l2"><a class="reference internal" href="interactive_plot_large_files.html">Interactive Plot Large Files Module</a></li>
-<li class="toctree-l2 current"><a class="current reference internal" href="#">processing_utils module</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#QhX.processing_utils.process1_caller"><code class="docutils literal notranslate"><span class="pre">process1_caller()</span></code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="#QhX.processing_utils.process1_wrapper"><code class="docutils literal notranslate"><span class="pre">process1_wrapper()</span></code></a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Interactive Plot Large Files Module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#QhX.interactive_plot_large_files.create_interactive_plot_large"><code class="docutils literal notranslate"><span class="pre">create_interactive_plot_large()</span></code></a></li>
 </ul>
 </li>
+<li class="toctree-l2"><a class="reference internal" href="processing_utils.html">processing_utils module</a></li>
 <li class="toctree-l2"><a class="reference internal" href="test_integrated.html">test_integrated</a></li>
 <li class="toctree-l2"><a class="reference internal" href="mock_lc.html">mock_lc</a></li>
 </ul>
@@ -100,9 +99,9 @@
   <ul class="wy-breadcrumbs">
       <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
           <li class="breadcrumb-item"><a href="package.html">Package Modules</a></li>
-      <li class="breadcrumb-item active">processing_utils module</li>
+      <li class="breadcrumb-item active">Interactive Plot Large Files Module</li>
       <li class="wy-breadcrumbs-aside">
-            <a href="_sources/processing_utils.rst.txt" rel="nofollow"> View page source</a>
+            <a href="_sources/interactive_plot_large_files.rst.txt" rel="nofollow"> View page source</a>
       </li>
   </ul>
   <hr/>
@@ -110,56 +109,57 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
              
-  <section id="module-QhX.processing_utils">
-<span id="processing-utils-module"></span><h1>processing_utils module<a class="headerlink" href="#module-QhX.processing_utils" title="Link to this heading"></a></h1>
+  <section id="module-QhX.interactive_plot_large_files">
+<span id="interactive-plot-large-files-module"></span><h1>Interactive Plot Large Files Module<a class="headerlink" href="#module-QhX.interactive_plot_large_files" title="Link to this heading"></a></h1>
+<p>interactive_plot_large_files.py</p>
+<p>This module is designed to facilitate the creation of interactive visualizations for large datasets, specifically
+tailored for the analysis of periodic phenomena in astronomical observations. It leverages the HoloViews and Bokeh
+libraries to render dynamic, interactive plots that support efficient exploration of vast amounts of data through
+decimation, rasterization, and dynamic spreading techniques.</p>
+<p>The core functionality is encapsulated in the <cite>create_interactive_plot_large</cite> function, which processes a CSV file
+containing period analysis results and generates an interactive plot. This visualization aids in the identification
+of patterns, outliers, and correlations within the data, offering insights into the underlying astronomical phenomena.</p>
+<p>Requirements:
+- pandas: For loading and processing the CSV data.
+- HoloViews: For constructing interactive visualizations.
+- datashader: For rasterizing large datasets to enhance performance.
+- bokeh: For backend rendering of interactive plots.</p>
+<p>Example usage can be found at the bottom of this module, illustrating how to generate and display an interactive plot
+from a CSV file containing large dataset period analysis results.</p>
 <dl class="py function">
-<dt class="sig sig-object py" id="QhX.processing_utils.process1_caller">
-<span class="sig-prename descclassname"><span class="pre">QhX.processing_utils.</span></span><span class="sig-name descname"><span class="pre">process1_caller</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">args</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/QhX/processing_utils.html#process1_caller"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#QhX.processing_utils.process1_caller" title="Link to this definition"></a></dt>
-<dd><p>This function calls the <cite>process1_wrapper</cite> function with a set of arguments,
-facilitating its use with features like <cite>multiprocessing.Pool.map</cite>.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><p><strong>args</strong> (<em>tuple</em>) – A tuple containing the arguments for the <cite>process1_wrapper</cite> function.
-Expected to contain the following elements:
-- set_id (int): The set ID to process.
-- data_manager (DataManager): The DataManager instance for the data.</p>
-</dd>
-<dt class="field-even">Returns<span class="colon">:</span></dt>
-<dd class="field-even"><p>The result returned by the <cite>process1_wrapper</cite> function.</p>
-</dd>
-<dt class="field-odd">Return type<span class="colon">:</span></dt>
-<dd class="field-odd"><p>dict</p>
+<dt class="sig sig-object py" id="QhX.interactive_plot_large_files.create_interactive_plot_large">
+<span class="sig-prename descclassname"><span class="pre">QhX.interactive_plot_large_files.</span></span><span class="sig-name descname"><span class="pre">create_interactive_plot_large</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">file_path</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/QhX/interactive_plot_large_files.html#create_interactive_plot_large"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#QhX.interactive_plot_large_files.create_interactive_plot_large" title="Link to this definition"></a></dt>
+<dd><p>Generates an interactive plot from a specified CSV file containing large datasets of period analysis results.
+It employs decimation, rasterization, and dynamic spreading to manage large data volumes efficiently, ensuring
+interactive performance and clarity in data visualization.</p>
+<section id="parameters">
+<h2>Parameters:<a class="headerlink" href="#parameters" title="Link to this heading"></a></h2>
+<dl class="simple">
+<dt>file_path<span class="classifier">str</span></dt><dd><p>Path to the CSV file containing the dataset for visualization. Expected columns include detected periods,
+error bounds, significance, band identifiers, period differences, IoU scores, and classifications.</p>
 </dd>
 </dl>
-<p class="rubric">Notes</p>
-<p>This function is particularly useful for parallel processing scenarios
-where the <cite>process1_wrapper</cite> function needs to be mapped over a sequence of arguments.</p>
-</dd></dl>
-
-<dl class="py function">
-<dt class="sig sig-object py" id="QhX.processing_utils.process1_wrapper">
-<span class="sig-prename descclassname"><span class="pre">QhX.processing_utils.</span></span><span class="sig-name descname"><span class="pre">process1_wrapper</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">set_id</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">data_manager</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/QhX/processing_utils.html#process1_wrapper"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#QhX.processing_utils.process1_wrapper" title="Link to this definition"></a></dt>
-<dd><p>This function acts as a wrapper for the <cite>process1_new</cite> function, simplifying its usage.</p>
-<p>It prints the set ID being processed for logging purposes and calls <cite>process1_new</cite>
-with a predefined set of parameters.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>set_id</strong> (<em>int</em>) – The unique identifier for the data set to process.</p></li>
-<li><p><strong>data_manager</strong> (<a class="reference internal" href="data_manager.html#QhX.data_manager.DataManager" title="QhX.data_manager.DataManager"><em>DataManager</em></a>) – An instance of the DataManager class that handles the data involved in the process.</p></li>
-</ul>
-</dd>
-<dt class="field-even">Returns<span class="colon">:</span></dt>
-<dd class="field-even"><p>A dictionary containing the results of the <cite>process1_new</cite> processing,
-structured according to the QhX detection module’s specifications.</p>
-</dd>
-<dt class="field-odd">Return type<span class="colon">:</span></dt>
-<dd class="field-odd"><p>dict</p>
+</section>
+<section id="returns">
+<h2>Returns:<a class="headerlink" href="#returns" title="Link to this heading"></a></h2>
+<dl class="simple">
+<dt>hv.DynamicMap</dt><dd><p>An interactive HoloViews plot object that can be displayed in Jupyter Notebooks or exported as an HTML file
+for broader analysis and exploration.</p>
 </dd>
 </dl>
-<p class="rubric">Notes</p>
-<p>The parameters for the <cite>process1_new</cite> function, such as <cite>ntau</cite>, <cite>ngrid</cite>,
-<cite>provided_minfq</cite>, <cite>provided_maxfq</cite>, and <cite>include_errors</cite>, are preset within this wrapper.</p>
+</section>
+<section id="example">
+<h2>Example:<a class="headerlink" href="#example" title="Link to this heading"></a></h2>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">interactive_plot</span> <span class="o">=</span> <span class="n">create_interactive_plot_large</span><span class="p">(</span><span class="s1">&#39;path_to_large_dataset.csv&#39;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">hv</span><span class="o">.</span><span class="n">save</span><span class="p">(</span><span class="n">interactive_plot</span><span class="p">,</span> <span class="s1">&#39;interactive_visualization.html&#39;</span><span class="p">,</span> <span class="n">backend</span><span class="o">=</span><span class="s1">&#39;bokeh&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="note">
+<h2>Note:<a class="headerlink" href="#note" title="Link to this heading"></a></h2>
+<p>This function is specifically optimized for large datasets, applying techniques such as decimation and rasterization
+to maintain performance without compromising the ability to discern patterns and outliers in the data.</p>
+</section>
 </dd></dl>
 
 </section>
@@ -168,8 +168,8 @@ structured according to the QhX detection module’s specifications.</p>
            </div>
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
-        <a href="interactive_plot_large_files.html" class="btn btn-neutral float-left" title="Interactive Plot Large Files Module" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
-        <a href="test_integrated.html" class="btn btn-neutral float-right" title="test_integrated" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="output_parallel.html" class="btn btn-neutral float-left" title="output_parallel" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="processing_utils.html" class="btn btn-neutral float-right" title="processing_utils module" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
   <hr/>

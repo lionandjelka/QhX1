@@ -4,7 +4,7 @@
   <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>processing_utils module &mdash; QhX 0.1.0 documentation</title>
+  <title>Batch Processor Module &mdash; QhX 0.1.0 documentation</title>
       <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
   <!--[if lt IE 9]>
@@ -21,8 +21,8 @@
     <script src="_static/js/theme.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="test_integrated" href="test_integrated.html" />
-    <link rel="prev" title="Interactive Plot Large Files Module" href="interactive_plot_large_files.html" /> 
+    <link rel="next" title="merge_batch_csv Module" href="merge_batch_csv.html" />
+    <link rel="prev" title="Parallelization Solver module" href="parallelization_solver.html" /> 
 </head>
 
 <body class="wy-body-for-nav"> 
@@ -67,16 +67,22 @@
 <li class="toctree-l2"><a class="reference internal" href="output.html">output</a></li>
 <li class="toctree-l2"><a class="reference internal" href="interactive_plt.html">interactive_plt</a></li>
 <li class="toctree-l2"><a class="reference internal" href="parallelization_solver.html">Parallelization Solver module</a></li>
-<li class="toctree-l2"><a class="reference internal" href="batch_processor.html">Batch Processor Module</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Batch Processor Module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#overview">Overview</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#functions">Functions</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#QhX.batch_processor.process_batches"><code class="docutils literal notranslate"><span class="pre">process_batches()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#usage">Usage</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#installation-and-requirements">Installation and Requirements</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#see-also">See Also</a></li>
+</ul>
+</li>
 <li class="toctree-l2"><a class="reference internal" href="merge_batch_csv.html">merge_batch_csv Module</a></li>
 <li class="toctree-l2"><a class="reference internal" href="parallel_classification.html">Parallel Classification Module</a></li>
 <li class="toctree-l2"><a class="reference internal" href="output_parallel.html">output_parallel</a></li>
 <li class="toctree-l2"><a class="reference internal" href="interactive_plot_large_files.html">Interactive Plot Large Files Module</a></li>
-<li class="toctree-l2 current"><a class="current reference internal" href="#">processing_utils module</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#QhX.processing_utils.process1_caller"><code class="docutils literal notranslate"><span class="pre">process1_caller()</span></code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="#QhX.processing_utils.process1_wrapper"><code class="docutils literal notranslate"><span class="pre">process1_wrapper()</span></code></a></li>
-</ul>
-</li>
+<li class="toctree-l2"><a class="reference internal" href="processing_utils.html">processing_utils module</a></li>
 <li class="toctree-l2"><a class="reference internal" href="test_integrated.html">test_integrated</a></li>
 <li class="toctree-l2"><a class="reference internal" href="mock_lc.html">mock_lc</a></li>
 </ul>
@@ -100,9 +106,9 @@
   <ul class="wy-breadcrumbs">
       <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
           <li class="breadcrumb-item"><a href="package.html">Package Modules</a></li>
-      <li class="breadcrumb-item active">processing_utils module</li>
+      <li class="breadcrumb-item active">Batch Processor Module</li>
       <li class="wy-breadcrumbs-aside">
-            <a href="_sources/processing_utils.rst.txt" rel="nofollow"> View page source</a>
+            <a href="_sources/batch_processor.rst.txt" rel="nofollow"> View page source</a>
       </li>
   </ul>
   <hr/>
@@ -110,66 +116,61 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
              
-  <section id="module-QhX.processing_utils">
-<span id="processing-utils-module"></span><h1>processing_utils module<a class="headerlink" href="#module-QhX.processing_utils" title="Link to this heading"></a></h1>
+  <section id="module-QhX.batch_processor">
+<span id="batch-processor-module"></span><h1>Batch Processor Module<a class="headerlink" href="#module-QhX.batch_processor" title="Link to this heading"></a></h1>
+<p>The <code class="docutils literal notranslate"><span class="pre">batch_processor</span></code> module is part of the QhX package, designed for processing large datasets in parallel batches. It uses <code class="docutils literal notranslate"><span class="pre">DataManager</span></code> for data loading and preprocessing, and the <code class="docutils literal notranslate"><span class="pre">ParallelSolver</span></code> for executing data processing tasks in parallel.</p>
+<section id="overview">
+<h2>Overview<a class="headerlink" href="#overview" title="Link to this heading"></a></h2>
+<p>The module allows for the processing of data in specified batch sizes using a predetermined number of parallel workers. It aims to enhance processing efficiency when dealing with large datasets.</p>
+</section>
+<section id="functions">
+<h2>Functions<a class="headerlink" href="#functions" title="Link to this heading"></a></h2>
 <dl class="py function">
-<dt class="sig sig-object py" id="QhX.processing_utils.process1_caller">
-<span class="sig-prename descclassname"><span class="pre">QhX.processing_utils.</span></span><span class="sig-name descname"><span class="pre">process1_caller</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">args</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/QhX/processing_utils.html#process1_caller"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#QhX.processing_utils.process1_caller" title="Link to this definition"></a></dt>
-<dd><p>This function calls the <cite>process1_wrapper</cite> function with a set of arguments,
-facilitating its use with features like <cite>multiprocessing.Pool.map</cite>.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><p><strong>args</strong> (<em>tuple</em>) – A tuple containing the arguments for the <cite>process1_wrapper</cite> function.
-Expected to contain the following elements:
-- set_id (int): The set ID to process.
-- data_manager (DataManager): The DataManager instance for the data.</p>
-</dd>
-<dt class="field-even">Returns<span class="colon">:</span></dt>
-<dd class="field-even"><p>The result returned by the <cite>process1_wrapper</cite> function.</p>
-</dd>
-<dt class="field-odd">Return type<span class="colon">:</span></dt>
-<dd class="field-odd"><p>dict</p>
-</dd>
-</dl>
-<p class="rubric">Notes</p>
-<p>This function is particularly useful for parallel processing scenarios
-where the <cite>process1_wrapper</cite> function needs to be mapped over a sequence of arguments.</p>
-</dd></dl>
-
-<dl class="py function">
-<dt class="sig sig-object py" id="QhX.processing_utils.process1_wrapper">
-<span class="sig-prename descclassname"><span class="pre">QhX.processing_utils.</span></span><span class="sig-name descname"><span class="pre">process1_wrapper</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">set_id</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">data_manager</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/QhX/processing_utils.html#process1_wrapper"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#QhX.processing_utils.process1_wrapper" title="Link to this definition"></a></dt>
-<dd><p>This function acts as a wrapper for the <cite>process1_new</cite> function, simplifying its usage.</p>
-<p>It prints the set ID being processed for logging purposes and calls <cite>process1_new</cite>
-with a predefined set of parameters.</p>
+<dt class="sig sig-object py" id="QhX.batch_processor.process_batches">
+<span class="sig-prename descclassname"><span class="pre">QhX.batch_processor.</span></span><span class="sig-name descname"><span class="pre">process_batches</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">batch_size</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">num_workers</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">25</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">start_i</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/QhX/batch_processor.html#process_batches"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#QhX.batch_processor.process_batches" title="Link to this definition"></a></dt>
+<dd><p>Processes data in batches using parallel processing.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>set_id</strong> (<em>int</em>) – The unique identifier for the data set to process.</p></li>
-<li><p><strong>data_manager</strong> (<a class="reference internal" href="data_manager.html#QhX.data_manager.DataManager" title="QhX.data_manager.DataManager"><em>DataManager</em></a>) – An instance of the DataManager class that handles the data involved in the process.</p></li>
+<li><p><strong>batch_size</strong> (<em>int</em>) – The number of data points to process in each batch.</p></li>
+<li><p><strong>num_workers</strong> (<em>int</em><em>, </em><em>optional</em>) – The number of parallel workers to use for processing. Defaults to 25.</p></li>
+<li><p><strong>start_i</strong> (<em>int</em><em>, </em><em>optional</em>) – The index from which to start processing the dataset. Defaults to 0.</p></li>
 </ul>
 </dd>
-<dt class="field-even">Returns<span class="colon">:</span></dt>
-<dd class="field-even"><p>A dictionary containing the results of the <cite>process1_new</cite> processing,
-structured according to the QhX detection module’s specifications.</p>
-</dd>
-<dt class="field-odd">Return type<span class="colon">:</span></dt>
-<dd class="field-odd"><p>dict</p>
-</dd>
 </dl>
-<p class="rubric">Notes</p>
-<p>The parameters for the <cite>process1_new</cite> function, such as <cite>ntau</cite>, <cite>ngrid</cite>,
-<cite>provided_minfq</cite>, <cite>provided_maxfq</cite>, and <cite>include_errors</cite>, are preset within this wrapper.</p>
+<p>This function loads a dataset, groups the data as necessary, and then processes it in batches.
+Each batch is processed in a new directory to keep the results organized.</p>
 </dd></dl>
 
+<p>This function is responsible for orchestrating the batch processing workflow. It involves loading and optionally grouping the dataset, splitting it into batches, and processing each batch in parallel.</p>
+</section>
+<section id="usage">
+<h2>Usage<a class="headerlink" href="#usage" title="Link to this heading"></a></h2>
+<p>The module can be used as a standalone script or imported into other scripts or modules within the QhX package. When executed as a script, it requires the batch size as a mandatory argument, with optional arguments for the number of workers and the starting index for processing.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>python<span class="w"> </span>-m<span class="w"> </span>QhX.batch_processor<span class="w"> </span><span class="m">100</span><span class="w"> </span><span class="m">25</span><span class="w"> </span><span class="m">0</span>
+</pre></div>
+</div>
+<p>This command processes the dataset in batches of 100 using 25 parallel workers, starting from the first record.</p>
+</section>
+<section id="installation-and-requirements">
+<h2>Installation and Requirements<a class="headerlink" href="#installation-and-requirements" title="Link to this heading"></a></h2>
+<p>Ensure that the QhX package is properly installed and configured in your environment. The <code class="docutils literal notranslate"><span class="pre">batch_processor</span></code> module depends on other components of the QhX package, such as <code class="docutils literal notranslate"><span class="pre">DataManager</span></code> and <code class="docutils literal notranslate"><span class="pre">ParallelSolver</span></code>.</p>
+</section>
+<section id="see-also">
+<h2>See Also<a class="headerlink" href="#see-also" title="Link to this heading"></a></h2>
+<ul class="simple">
+<li><p><a class="reference internal" href="data_manager.html"><span class="doc">data_manager</span></a></p></li>
+<li><p><a class="reference internal" href="parallelization_solver.html"><span class="doc">Parallelization Solver module</span></a></p></li>
+</ul>
+</section>
 </section>
 
 
            </div>
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
-        <a href="interactive_plot_large_files.html" class="btn btn-neutral float-left" title="Interactive Plot Large Files Module" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
-        <a href="test_integrated.html" class="btn btn-neutral float-right" title="test_integrated" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="parallelization_solver.html" class="btn btn-neutral float-left" title="Parallelization Solver module" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="merge_batch_csv.html" class="btn btn-neutral float-right" title="merge_batch_csv Module" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
   <hr/>
