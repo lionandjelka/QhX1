@@ -74,6 +74,8 @@ Once QhX is installed, and you have confirmed that the tests pass, you can impor
 .. code-block:: python
 
     import QhX
+	import numpy as np
+	import pandas as pd
 
 Step 4: Loading Data
 --------------------
@@ -128,6 +130,7 @@ With the data loaded, you can start analyzing the light curve:
 .. code-block:: python
 
    from QhX.calculation import *
+   from QhX.detection import *
    # Ensure to import or define other necessary functions like hybrid2d, periods, same_periods, etc.
    from QhX.algorithms.wavelets.wwtz import *
    process1_results = process1_new(data_manager, '1384142', ntau=80, ngrid=800, provided_minfq=2000, provided_maxfq=10, include_errors=True)
@@ -196,12 +199,12 @@ The output dictionary `process1_results` contains:
 Step 6: Viewing Results
 -----------------------
 
-Finally, examine the results of your analysis:
+Finally, examine the results of your analysis. Important that process1_results will be suplied as a list of dictionaries:
 
 .. code-block:: python
 
     from QhX.output import classify_periods, classify_period
-    outt=classify_periods(process1_results)
+    outt=classify_periods([process1_results])
 	outt['classification'] =outt.apply(classify_period, axis=1)
 	print(outt)
 	
