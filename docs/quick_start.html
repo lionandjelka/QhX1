@@ -153,6 +153,8 @@ experimental significance 1.0
 <h2>Step 3: Importing the Package<a class="headerlink" href="#step-3-importing-the-package" title="Link to this heading"></a></h2>
 <p>Once QhX is installed, and you have confirmed that the tests pass, you can import it into your Python script or interactive session:</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">QhX</span>
+    <span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+    <span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
 </pre></div>
 </div>
 </section>
@@ -196,6 +198,7 @@ setidnew=df.index
 <h2>Step 5: Analyzing the Light Curve<a class="headerlink" href="#step-5-analyzing-the-light-curve" title="Link to this heading"></a></h2>
 <p>With the data loaded, you can start analyzing the light curve:</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">QhX.calculation</span> <span class="kn">import</span> <span class="o">*</span>
+<span class="kn">from</span> <span class="nn">QhX.detection</span> <span class="kn">import</span> <span class="o">*</span>
 <span class="c1"># Ensure to import or define other necessary functions like hybrid2d, periods, same_periods, etc.</span>
 <span class="kn">from</span> <span class="nn">QhX.algorithms.wavelets.wwtz</span> <span class="kn">import</span> <span class="o">*</span>
 <span class="n">process1_results</span> <span class="o">=</span> <span class="n">process1_new</span><span class="p">(</span><span class="n">data_manager</span><span class="p">,</span> <span class="s1">&#39;1384142&#39;</span><span class="p">,</span> <span class="n">ntau</span><span class="o">=</span><span class="mi">80</span><span class="p">,</span> <span class="n">ngrid</span><span class="o">=</span><span class="mi">800</span><span class="p">,</span> <span class="n">provided_minfq</span><span class="o">=</span><span class="mi">2000</span><span class="p">,</span> <span class="n">provided_maxfq</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">include_errors</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
@@ -263,9 +266,9 @@ setidnew=df.index
 </section>
 <section id="step-6-viewing-results">
 <h2>Step 6: Viewing Results<a class="headerlink" href="#step-6-viewing-results" title="Link to this heading"></a></h2>
-<p>Finally, examine the results of your analysis:</p>
+<p>Finally, examine the results of your analysis. Important that process1_results will be suplied as a list of dictionaries:</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">QhX.output</span> <span class="kn">import</span> <span class="n">classify_periods</span><span class="p">,</span> <span class="n">classify_period</span>
-<span class="n">outt</span><span class="o">=</span><span class="n">classify_periods</span><span class="p">(</span><span class="n">process1_results</span><span class="p">)</span>
+<span class="n">outt</span><span class="o">=</span><span class="n">classify_periods</span><span class="p">([</span><span class="n">process1_results</span><span class="p">])</span>
     <span class="n">outt</span><span class="p">[</span><span class="s1">&#39;classification&#39;</span><span class="p">]</span> <span class="o">=</span><span class="n">outt</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="n">classify_period</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
     <span class="nb">print</span><span class="p">(</span><span class="n">outt</span><span class="p">)</span>
 </pre></div>
