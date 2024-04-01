@@ -37,15 +37,14 @@ from multiprocessing import Process
 from multiprocessing import Queue
 from datetime import datetime
 from QhX.detection import *
+from QhX.iparallelization_solver import *
 
-# Default number of processes to spawn
-DEFAULT_NUM_WORKERS = 4
 # Default number of seconds to pass between time loggings
 DEFAULT_LOG_PERIOD = 10
 # CSV format results header
 HEADER = "ID,Sampling_1,Sampling_2,Common period (Band1 & Band1),Upper error bound,Lower error bound,Significance,Band1-Band2\n"
 
-class ParallelSolver():
+class ParallelSolver(IParallelSolver):
     """
     A class to manage parallel execution of data processing functions.
     
@@ -79,8 +78,8 @@ class ParallelSolver():
                 ):
         """Initialize the ParallelSolver with the specified configuration."""
 
+        super().__init__(num_workers)
         self.delta_seconds = delta_seconds
-        self.num_workers = num_workers
         self.data_manager = data_manager
         self.process_function = process_function
         self.log_time = log_time
@@ -117,44 +116,32 @@ class ParallelSolver():
         end_time = datetime.now()
         print(f'End time for ID {set_id} : {end_time}\nTotal time : {end_time - start_time}\n')
 
-    def process_wrapper(self):
+    def aggregate_process_function_result(self, result):
         """
-        Wrapper for the process function to integrate logging and result handling.
-          
-        Performed tasks:
-         Starts background logging thread if required
-         Processes data if data manager exists
+        Places the result dict into a string
+
+        Parameters:
+            result (dict, list): Result from QhX detection function
         """
+        res = ""
+        for row in result:
+            # Get row values from array or dict
+            row_values = row.values() if isinstance(row, dict) else row
+            # Place row values into CSV formatted string
+            res_string_tmp = ','.join([str(v) for v in row_values]) + "\n"
+            # Append row to resulting string
+            res += res_string_tmp
+        return res
 
+    def get_process_function_result(self, set_id):
+        """
+        Run the QhX detection function and return the result
+
+        Parameters:
+            set_id (str): Set ID to process
+        """
         
-        # Event used for stopping background log thread
-        stopper_event = None
-        
-        # Go through unprocessed sets
-        while not self.set_ids_.empty():
-            # Safely pop from queue
-            try:
-                set_id = self.set_ids_.get()
-            except Exception as e:
-                break
-
-            # If a throw happens before setting result
-            res_string = ""
-
-            try:
-                # Open output log file
-                if self.log_files:
-                    logging_file = open(set_id, 'w')
-                    sys.stdout = logging_file
-
-                # Begin logging time if flag set
-                if self.log_time:
-                    stopper_event = threading.Event()
-                    daemon = threading.Thread(target = ParallelSolver.background_log, args = (set_id, stopper_event, self.delta_seconds))
-                    daemon.start()
-
-                # Call main processing function
-                result = self.process_function(self.data_manager,
+        result = self.process_function(self.data_manager,
                                                set_id, 
                                                ntau=self.ntau, 
                                                ngrid=self.ngrid, 
@@ -162,78 +149,80 @@ class ParallelSolver():
                                                provided_maxfq=self.provided_maxfq, 
                                                parallel=self.parallel_arithmetic, 
                                                include_errors=False)
-                
-                # Get results into formatted string
-                res_string = ""
-                for row in result:
-                    # Get row values from array or dict
-                    row_values = row.values() if isinstance(row, dict) else row
-                    # Place row values into CSV formatted string
-                    res_string_tmp = ','.join([str(v) for v in row_values]) + "\n"
-                    # Append row to resulting string
-                    res_string += res_string_tmp
-
-                # Put results in unified results queue if flag is set
-                if self.save_all_results_:
-                    self.results_.put(res_string)
-            except Exception as e:
-                print('Error processing/saving data : ' + str(e) + '\n')
-            finally:
-                # Stop background thread, close output file and write result to individual file if relevant flags are set
-                if self.log_time:
-                    stopper_event.set()
-                    daemon.join()
-                if self.log_files:
-                    sys.stdout = sys.__stdout__
-                    logging_file.close()
-                if self.save_results:
-                    saving_file = open(set_id + '-result.csv', 'w')
-                    saving_file.write(HEADER + res_string)
-                    saving_file.close()
-        
-    def process_ids(self, set_ids, results_file = None):	
+        return result
+    
+    def maybe_begin_logging(self, set_id):
         """
-        Processes a list of set IDs using the configured process function in parallel.
+        Starts a logging thread and opens a logging file, redirecting output to it
 
         Parameters:
-            set_ids (list of str): List of set IDs to process.
-            results_file (str, optional): Path to save aggregated results.
+            set_id (str): ID of set to be processed
         """
+        logging_file = None
+        # Open output log file
+        if self.log_files:
+            logging_file = open(set_id, 'w')
+            sys.stdout = logging_file
 
-
-        # Unified output queue and input queue
-        self.results_ = Queue()
-        self.set_ids_ = Queue()
-
-        # Set flag to save all results from unified queue
-        if results_file is not None:
-            self.save_all_results_ = True
-        else:
-            self.save_all_results_ = False
-
-        # Fill input queue
-        for id in set_ids:
-            self.set_ids_.put(id)
+        # Begin logging time if flag set
+        if self.log_time:
+            stopper_event = threading.Event()
+            daemon = threading.Thread(target = ParallelSolver.background_log, args = (set_id, stopper_event, self.delta_seconds))
+            daemon.start()
         
-        # Generate and start processes
-        processes = [Process(target = self.process_wrapper) for i in range(self.num_workers)]
-        for p in processes:
-          p.start()
-        for p in processes:
-          p.join()
+        return stopper_event, daemon, logging_file
+    
+    def maybe_stop_logging(self, stopper_event, logging_thread, logging_file):
+        """
+        Stops the logging thread gracefully
 
-        # Save results to unified results file
+        Parameters:
+            stopper_event (Event): Event to set to end logging
+            logging_thread (Thread): Thread to join
+            logging_file (file): File to close
+        """
+        # Stop background thread, close output file and write result to individual file if relevant flags are set
+        if self.log_time:
+            stopper_event.set()
+            logging_thread.join()
+        if self.log_files:
+            sys.stdout = sys.__stdout__
+            logging_file.close()
+
+    def maybe_save_local_results(self, set_id, res_string):
+        """
+        Saves local results of set ID formed into a string
+
+        Parameters:
+            set_id (str): ID which was processed
+            res_string (str): The string the result was aggregated into
+        """
+        # Save local results with header
+        if self.save_results:
+            saving_file = open(set_id + '-result.csv', 'w')
+            saving_file.write(HEADER + res_string)
+            saving_file.close()
+
+    def maybe_save_results(self, results_file):
+        """
+        If results file is set, saves the full results queue to it.
+
+        Parameters:
+            result_file (str, optional): Filename of the result file
+        """
+        # Save results to results_file
         if results_file is not None:
-                try:
-                    with open(results_file, 'w') as f:
+            try:
+                with open(results_file, 'w') as f:
+                    # Header for CSV
+                    f.write(HEADER)
+                    while not self.results_.empty():
+                        try:
+                            result = self.results_.get()
+                        except Exception as e:
+                            break
+                        f.write(result)
+            except Exception as e:
+                print('Error while saving: \n'+ str(e))
+        
 
-                        # Header for CSV
-                        f.write(HEADER)
-                        while not self.results_.empty():
-                            try:
-                                result = self.results_.get()
-                            except Exception as e:
-                                break
-                            f.write(result)
-                except Exception as e:
-                    print('Error while saving: \n'+ str(e))
