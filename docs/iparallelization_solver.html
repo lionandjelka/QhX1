@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>parallelization_solver module &mdash; QhX 0.1.0 documentation</title>
+      <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="_static/jquery.js?v=5d32c60e"></script>
+        <script src="_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script src="_static/documentation_options.js?v=01f34227"></script>
+        <script src="_static/doctools.js?v=888ff710"></script>
+        <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+        <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+        <script src="https://unpkg.com/@jupyter-widgets/html-manager@^0.20.0/dist/embed-amd.js"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Parallelization Solver module" href="parallelization_solver.html" />
+    <link rel="prev" title="interactive_plt" href="interactive_plt.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search"  style="background: white" >
+
+          
+          
+          <a href="index.html" class="icon icon-home">
+            QhX
+              <img src="_static/logo.png" class="logo" alt="Logo"/>
+          </a>
+              <div class="version">
+                0.1.0
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="introduction.html">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="installation.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="quick_start.html">Quick Start Tutorial</a></li>
+<li class="toctree-l1"><a class="reference internal" href="examples.html">Examples</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="package.html">Package Modules</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="data_manager.html">data_manager</a></li>
+<li class="toctree-l2"><a class="reference internal" href="light_curve.html">light_curve</a></li>
+<li class="toctree-l2"><a class="reference internal" href="calculation.html">calculation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="detection.html">detection</a></li>
+<li class="toctree-l2"><a class="reference internal" href="wwtz.html">wwtz</a></li>
+<li class="toctree-l2"><a class="reference internal" href="superlet.html">superlet module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="superlets.html">superlets</a></li>
+<li class="toctree-l2"><a class="reference internal" href="correlation.html">correlation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="reg.html">reg</a></li>
+<li class="toctree-l2"><a class="reference internal" href="output.html">output</a></li>
+<li class="toctree-l2"><a class="reference internal" href="interactive_plt.html">interactive_plt</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">parallelization_solver module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#author">Author:</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#iparallelization_solver.IParallelSolver"><code class="docutils literal notranslate"><span class="pre">IParallelSolver</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#iparallelization_solver.IParallelSolver.num_workers"><code class="docutils literal notranslate"><span class="pre">IParallelSolver.num_workers</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#iparallelization_solver.IParallelSolver.aggregate_process_function_result"><code class="docutils literal notranslate"><span class="pre">IParallelSolver.aggregate_process_function_result()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#iparallelization_solver.IParallelSolver.get_process_function_result"><code class="docutils literal notranslate"><span class="pre">IParallelSolver.get_process_function_result()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#iparallelization_solver.IParallelSolver.maybe_begin_logging"><code class="docutils literal notranslate"><span class="pre">IParallelSolver.maybe_begin_logging()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#iparallelization_solver.IParallelSolver.maybe_save_local_results"><code class="docutils literal notranslate"><span class="pre">IParallelSolver.maybe_save_local_results()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#iparallelization_solver.IParallelSolver.maybe_save_results"><code class="docutils literal notranslate"><span class="pre">IParallelSolver.maybe_save_results()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#iparallelization_solver.IParallelSolver.maybe_stop_logging"><code class="docutils literal notranslate"><span class="pre">IParallelSolver.maybe_stop_logging()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#iparallelization_solver.IParallelSolver.process_ids"><code class="docutils literal notranslate"><span class="pre">IParallelSolver.process_ids()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#iparallelization_solver.IParallelSolver.process_wrapper"><code class="docutils literal notranslate"><span class="pre">IParallelSolver.process_wrapper()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="parallelization_solver.html">Parallelization Solver module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="batch_processor.html">Batch Processor Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="merge_batch_csv.html">merge_batch_csv Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="parallel_classification.html">Parallel Classification Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="output_parallel.html">output_parallel</a></li>
+<li class="toctree-l2"><a class="reference internal" href="interactive_plot_large_files.html">Interactive Plot Large Files Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="processing_utils.html">processing_utils module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="test_integrated.html">test_integrated</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mock_lc.html">mock_lc</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="faq.html">Frequently Asked Questions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="license.html">License</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu"  style="background: white" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">QhX</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="package.html">Package Modules</a></li>
+      <li class="breadcrumb-item active">parallelization_solver module</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="_sources/iparallelization_solver.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="module-iparallelization_solver">
+<span id="parallelization-solver-module"></span><h1>parallelization_solver module<a class="headerlink" href="#module-iparallelization_solver" title="Link to this heading"></a></h1>
+<p>The <cite>iparallelization_solver</cite> interface is designed for parallel execution of an input function.</p>
+<p>This module defines the <cite>IParallelSolver</cite> class, which orchestrates the parallel execution of a
+general processing function on a data set consisting of multiple data points, here reffered to as set IDs.
+It also declares a logging method (intended to start a separate logging thread).</p>
+<section id="author">
+<h2>Author:<a class="headerlink" href="#author" title="Link to this heading"></a></h2>
+<p>Momcilo Tosic
+Astroinformatics student
+Faculty of Mathematics, University of Belgrade</p>
+</section>
+<dl class="py class">
+<dt class="sig sig-object py" id="iparallelization_solver.IParallelSolver">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">iparallelization_solver.</span></span><span class="sig-name descname"><span class="pre">IParallelSolver</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">num_workers</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">4</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/iparallelization_solver.html#IParallelSolver"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#iparallelization_solver.IParallelSolver" title="Link to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>A class to manage parallel execution of data processing functions.</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="iparallelization_solver.IParallelSolver.num_workers">
+<span class="sig-name descname"><span class="pre">num_workers</span></span><a class="headerlink" href="#iparallelization_solver.IParallelSolver.num_workers" title="Link to this definition"></a></dt>
+<dd><p>Number of worker processes to spawn.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>int</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="iparallelization_solver.IParallelSolver.aggregate_process_function_result">
+<span class="sig-name descname"><span class="pre">aggregate_process_function_result</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">result</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/iparallelization_solver.html#IParallelSolver.aggregate_process_function_result"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#iparallelization_solver.IParallelSolver.aggregate_process_function_result" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="iparallelization_solver.IParallelSolver.get_process_function_result">
+<span class="sig-name descname"><span class="pre">get_process_function_result</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">set_id</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/iparallelization_solver.html#IParallelSolver.get_process_function_result"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#iparallelization_solver.IParallelSolver.get_process_function_result" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="iparallelization_solver.IParallelSolver.maybe_begin_logging">
+<span class="sig-name descname"><span class="pre">maybe_begin_logging</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">set_id</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/iparallelization_solver.html#IParallelSolver.maybe_begin_logging"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#iparallelization_solver.IParallelSolver.maybe_begin_logging" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="iparallelization_solver.IParallelSolver.maybe_save_local_results">
+<span class="sig-name descname"><span class="pre">maybe_save_local_results</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">set_id</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">res_string</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/iparallelization_solver.html#IParallelSolver.maybe_save_local_results"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#iparallelization_solver.IParallelSolver.maybe_save_local_results" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="iparallelization_solver.IParallelSolver.maybe_save_results">
+<span class="sig-name descname"><span class="pre">maybe_save_results</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">results_file</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/iparallelization_solver.html#IParallelSolver.maybe_save_results"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#iparallelization_solver.IParallelSolver.maybe_save_results" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="iparallelization_solver.IParallelSolver.maybe_stop_logging">
+<span class="sig-name descname"><span class="pre">maybe_stop_logging</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">stopper_event</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">logging_thread</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">logging_file</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/iparallelization_solver.html#IParallelSolver.maybe_stop_logging"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#iparallelization_solver.IParallelSolver.maybe_stop_logging" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="iparallelization_solver.IParallelSolver.process_ids">
+<span class="sig-name descname"><span class="pre">process_ids</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">set_ids</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">results_file</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/iparallelization_solver.html#IParallelSolver.process_ids"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#iparallelization_solver.IParallelSolver.process_ids" title="Link to this definition"></a></dt>
+<dd><p>Processes a list of set IDs using the configured process function in parallel.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>set_ids</strong> (<em>list</em><em> of </em><em>str</em>) – List of set IDs to process.</p></li>
+<li><p><strong>results_file</strong> (<em>str</em><em>, </em><em>optional</em>) – Path to save aggregated results.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="iparallelization_solver.IParallelSolver.process_wrapper">
+<span class="sig-name descname"><span class="pre">process_wrapper</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/iparallelization_solver.html#IParallelSolver.process_wrapper"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#iparallelization_solver.IParallelSolver.process_wrapper" title="Link to this definition"></a></dt>
+<dd><p>Wrapper for the process function to integrate logging and result handling.</p>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="interactive_plt.html" class="btn btn-neutral float-left" title="interactive_plt" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="parallelization_solver.html" class="btn btn-neutral float-right" title="Parallelization Solver module" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2023, Andjelka Kovacevic.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+    <!-- Theme Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'G-XXXXXXXXXX', {
+          'anonymize_ip': false,
+      });
+    </script> 
+
+</body>
+</html>
