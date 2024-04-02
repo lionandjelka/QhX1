@@ -120,9 +120,8 @@
 <span class="kn">from</span> <span class="nn">multiprocessing</span> <span class="kn">import</span> <span class="n">Queue</span>
 <span class="kn">from</span> <span class="nn">datetime</span> <span class="kn">import</span> <span class="n">datetime</span>
 <span class="kn">from</span> <span class="nn">QhX.detection</span> <span class="kn">import</span> <span class="o">*</span>
+<span class="kn">from</span> <span class="nn">QhX.iparallelization_solver</span> <span class="kn">import</span> <span class="o">*</span>
 
-<span class="c1"># Default number of processes to spawn</span>
-<span class="n">DEFAULT_NUM_WORKERS</span> <span class="o">=</span> <span class="mi">4</span>
 <span class="c1"># Default number of seconds to pass between time loggings</span>
 <span class="n">DEFAULT_LOG_PERIOD</span> <span class="o">=</span> <span class="mi">10</span>
 <span class="c1"># CSV format results header</span>
@@ -130,7 +129,7 @@
 
 <div class="viewcode-block" id="ParallelSolver">
 <a class="viewcode-back" href="../../parallelization_solver.html#QhX.parallelization_solver.ParallelSolver">[docs]</a>
-<span class="k">class</span> <span class="nc">ParallelSolver</span><span class="p">():</span>
+<span class="k">class</span> <span class="nc">ParallelSolver</span><span class="p">(</span><span class="n">IParallelSolver</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    A class to manage parallel execution of data processing functions.</span>
 <span class="sd">    </span>
@@ -164,8 +163,8 @@
                 <span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Initialize the ParallelSolver with the specified configuration.&quot;&quot;&quot;</span>
 
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">num_workers</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">delta_seconds</span> <span class="o">=</span> <span class="n">delta_seconds</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">num_workers</span> <span class="o">=</span> <span class="n">num_workers</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">data_manager</span> <span class="o">=</span> <span class="n">data_manager</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">process_function</span> <span class="o">=</span> <span class="n">process_function</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">log_time</span> <span class="o">=</span> <span class="n">log_time</span>
@@ -205,46 +204,37 @@
         <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;End time for ID </span><span class="si">{</span><span class="n">set_id</span><span class="si">}</span><span class="s1"> : </span><span class="si">{</span><span class="n">end_time</span><span class="si">}</span><span class="se">\n</span><span class="s1">Total time : </span><span class="si">{</span><span class="n">end_time</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">start_time</span><span class="si">}</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">)</span></div>
 
 
-<div class="viewcode-block" id="ParallelSolver.process_wrapper">
-<a class="viewcode-back" href="../../parallelization_solver.html#QhX.parallelization_solver.ParallelSolver.process_wrapper">[docs]</a>
-    <span class="k">def</span> <span class="nf">process_wrapper</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<div class="viewcode-block" id="ParallelSolver.aggregate_process_function_result">
+<a class="viewcode-back" href="../../parallelization_solver.html#QhX.parallelization_solver.ParallelSolver.aggregate_process_function_result">[docs]</a>
+    <span class="k">def</span> <span class="nf">aggregate_process_function_result</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">result</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        Wrapper for the process function to integrate logging and result handling.</span>
-<span class="sd">          </span>
-<span class="sd">        Performed tasks:</span>
-<span class="sd">         Starts background logging thread if required</span>
-<span class="sd">         Processes data if data manager exists</span>
+<span class="sd">        Places the result dict into a string</span>
+
+<span class="sd">        Parameters:</span>
+<span class="sd">            result (dict, list): Result from QhX detection function</span>
 <span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">res</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span>
+        <span class="k">for</span> <span class="n">row</span> <span class="ow">in</span> <span class="n">result</span><span class="p">:</span>
+            <span class="c1"># Get row values from array or dict</span>
+            <span class="n">row_values</span> <span class="o">=</span> <span class="n">row</span><span class="o">.</span><span class="n">values</span><span class="p">()</span> <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">row</span><span class="p">,</span> <span class="nb">dict</span><span class="p">)</span> <span class="k">else</span> <span class="n">row</span>
+            <span class="c1"># Place row values into CSV formatted string</span>
+            <span class="n">res_string_tmp</span> <span class="o">=</span> <span class="s1">&#39;,&#39;</span><span class="o">.</span><span class="n">join</span><span class="p">([</span><span class="nb">str</span><span class="p">(</span><span class="n">v</span><span class="p">)</span> <span class="k">for</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">row_values</span><span class="p">])</span> <span class="o">+</span> <span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span>
+            <span class="c1"># Append row to resulting string</span>
+            <span class="n">res</span> <span class="o">+=</span> <span class="n">res_string_tmp</span>
+        <span class="k">return</span> <span class="n">res</span></div>
 
+
+<div class="viewcode-block" id="ParallelSolver.get_process_function_result">
+<a class="viewcode-back" href="../../parallelization_solver.html#QhX.parallelization_solver.ParallelSolver.get_process_function_result">[docs]</a>
+    <span class="k">def</span> <span class="nf">get_process_function_result</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">set_id</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Run the QhX detection function and return the result</span>
+
+<span class="sd">        Parameters:</span>
+<span class="sd">            set_id (str): Set ID to process</span>
+<span class="sd">        &quot;&quot;&quot;</span>
         
-        <span class="c1"># Event used for stopping background log thread</span>
-        <span class="n">stopper_event</span> <span class="o">=</span> <span class="kc">None</span>
-        
-        <span class="c1"># Go through unprocessed sets</span>
-        <span class="k">while</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">set_ids_</span><span class="o">.</span><span class="n">empty</span><span class="p">():</span>
-            <span class="c1"># Safely pop from queue</span>
-            <span class="k">try</span><span class="p">:</span>
-                <span class="n">set_id</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">set_ids_</span><span class="o">.</span><span class="n">get</span><span class="p">()</span>
-            <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
-                <span class="k">break</span>
-
-            <span class="c1"># If a throw happens before setting result</span>
-            <span class="n">res_string</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span>
-
-            <span class="k">try</span><span class="p">:</span>
-                <span class="c1"># Open output log file</span>
-                <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">log_files</span><span class="p">:</span>
-                    <span class="n">logging_file</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="n">set_id</span><span class="p">,</span> <span class="s1">&#39;w&#39;</span><span class="p">)</span>
-                    <span class="n">sys</span><span class="o">.</span><span class="n">stdout</span> <span class="o">=</span> <span class="n">logging_file</span>
-
-                <span class="c1"># Begin logging time if flag set</span>
-                <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">log_time</span><span class="p">:</span>
-                    <span class="n">stopper_event</span> <span class="o">=</span> <span class="n">threading</span><span class="o">.</span><span class="n">Event</span><span class="p">()</span>
-                    <span class="n">daemon</span> <span class="o">=</span> <span class="n">threading</span><span class="o">.</span><span class="n">Thread</span><span class="p">(</span><span class="n">target</span> <span class="o">=</span> <span class="n">ParallelSolver</span><span class="o">.</span><span class="n">background_log</span><span class="p">,</span> <span class="n">args</span> <span class="o">=</span> <span class="p">(</span><span class="n">set_id</span><span class="p">,</span> <span class="n">stopper_event</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">delta_seconds</span><span class="p">))</span>
-                    <span class="n">daemon</span><span class="o">.</span><span class="n">start</span><span class="p">()</span>
-
-                <span class="c1"># Call main processing function</span>
-                <span class="n">result</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">process_function</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">data_manager</span><span class="p">,</span>
+        <span class="n">result</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">process_function</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">data_manager</span><span class="p">,</span>
                                                <span class="n">set_id</span><span class="p">,</span> 
                                                <span class="n">ntau</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">ntau</span><span class="p">,</span> 
                                                <span class="n">ngrid</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">ngrid</span><span class="p">,</span> 
@@ -252,85 +242,96 @@
                                                <span class="n">provided_maxfq</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">provided_maxfq</span><span class="p">,</span> 
                                                <span class="n">parallel</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">parallel_arithmetic</span><span class="p">,</span> 
                                                <span class="n">include_errors</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
-                
-                <span class="c1"># Get results into formatted string</span>
-                <span class="n">res_string</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span>
-                <span class="k">for</span> <span class="n">row</span> <span class="ow">in</span> <span class="n">result</span><span class="p">:</span>
-                    <span class="c1"># Get row values from array or dict</span>
-                    <span class="n">row_values</span> <span class="o">=</span> <span class="n">row</span><span class="o">.</span><span class="n">values</span><span class="p">()</span> <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">row</span><span class="p">,</span> <span class="nb">dict</span><span class="p">)</span> <span class="k">else</span> <span class="n">row</span>
-                    <span class="c1"># Place row values into CSV formatted string</span>
-                    <span class="n">res_string_tmp</span> <span class="o">=</span> <span class="s1">&#39;,&#39;</span><span class="o">.</span><span class="n">join</span><span class="p">([</span><span class="nb">str</span><span class="p">(</span><span class="n">v</span><span class="p">)</span> <span class="k">for</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">row_values</span><span class="p">])</span> <span class="o">+</span> <span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span>
-                    <span class="c1"># Append row to resulting string</span>
-                    <span class="n">res_string</span> <span class="o">+=</span> <span class="n">res_string_tmp</span>
+        <span class="k">return</span> <span class="n">result</span></div>
 
-                <span class="c1"># Put results in unified results queue if flag is set</span>
-                <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">save_all_results_</span><span class="p">:</span>
-                    <span class="bp">self</span><span class="o">.</span><span class="n">results_</span><span class="o">.</span><span class="n">put</span><span class="p">(</span><span class="n">res_string</span><span class="p">)</span>
-            <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
-                <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Error processing/saving data : &#39;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">e</span><span class="p">)</span> <span class="o">+</span> <span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">)</span>
-            <span class="k">finally</span><span class="p">:</span>
-                <span class="c1"># Stop background thread, close output file and write result to individual file if relevant flags are set</span>
-                <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">log_time</span><span class="p">:</span>
-                    <span class="n">stopper_event</span><span class="o">.</span><span class="n">set</span><span class="p">()</span>
-                    <span class="n">daemon</span><span class="o">.</span><span class="n">join</span><span class="p">()</span>
-                <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">log_files</span><span class="p">:</span>
-                    <span class="n">sys</span><span class="o">.</span><span class="n">stdout</span> <span class="o">=</span> <span class="n">sys</span><span class="o">.</span><span class="n">__stdout__</span>
-                    <span class="n">logging_file</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
-                <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">save_results</span><span class="p">:</span>
-                    <span class="n">saving_file</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="n">set_id</span> <span class="o">+</span> <span class="s1">&#39;-result.csv&#39;</span><span class="p">,</span> <span class="s1">&#39;w&#39;</span><span class="p">)</span>
-                    <span class="n">saving_file</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">HEADER</span> <span class="o">+</span> <span class="n">res_string</span><span class="p">)</span>
-                    <span class="n">saving_file</span><span class="o">.</span><span class="n">close</span><span class="p">()</span></div>
-
-        
-<div class="viewcode-block" id="ParallelSolver.process_ids">
-<a class="viewcode-back" href="../../parallelization_solver.html#QhX.parallelization_solver.ParallelSolver.process_ids">[docs]</a>
-    <span class="k">def</span> <span class="nf">process_ids</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">set_ids</span><span class="p">,</span> <span class="n">results_file</span> <span class="o">=</span> <span class="kc">None</span><span class="p">):</span>	
+    
+<div class="viewcode-block" id="ParallelSolver.maybe_begin_logging">
+<a class="viewcode-back" href="../../parallelization_solver.html#QhX.parallelization_solver.ParallelSolver.maybe_begin_logging">[docs]</a>
+    <span class="k">def</span> <span class="nf">maybe_begin_logging</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">set_id</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        Processes a list of set IDs using the configured process function in parallel.</span>
+<span class="sd">        Starts a logging thread and opens a logging file, redirecting output to it</span>
 
 <span class="sd">        Parameters:</span>
-<span class="sd">            set_ids (list of str): List of set IDs to process.</span>
-<span class="sd">            results_file (str, optional): Path to save aggregated results.</span>
+<span class="sd">            set_id (str): ID of set to be processed</span>
 <span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">logging_file</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="c1"># Open output log file</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">log_files</span><span class="p">:</span>
+            <span class="n">logging_file</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="n">set_id</span><span class="p">,</span> <span class="s1">&#39;w&#39;</span><span class="p">)</span>
+            <span class="n">sys</span><span class="o">.</span><span class="n">stdout</span> <span class="o">=</span> <span class="n">logging_file</span>
 
-
-        <span class="c1"># Unified output queue and input queue</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">results_</span> <span class="o">=</span> <span class="n">Queue</span><span class="p">()</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">set_ids_</span> <span class="o">=</span> <span class="n">Queue</span><span class="p">()</span>
-
-        <span class="c1"># Set flag to save all results from unified queue</span>
-        <span class="k">if</span> <span class="n">results_file</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">save_all_results_</span> <span class="o">=</span> <span class="kc">True</span>
-        <span class="k">else</span><span class="p">:</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">save_all_results_</span> <span class="o">=</span> <span class="kc">False</span>
-
-        <span class="c1"># Fill input queue</span>
-        <span class="k">for</span> <span class="nb">id</span> <span class="ow">in</span> <span class="n">set_ids</span><span class="p">:</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">set_ids_</span><span class="o">.</span><span class="n">put</span><span class="p">(</span><span class="nb">id</span><span class="p">)</span>
+        <span class="c1"># Begin logging time if flag set</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">log_time</span><span class="p">:</span>
+            <span class="n">stopper_event</span> <span class="o">=</span> <span class="n">threading</span><span class="o">.</span><span class="n">Event</span><span class="p">()</span>
+            <span class="n">daemon</span> <span class="o">=</span> <span class="n">threading</span><span class="o">.</span><span class="n">Thread</span><span class="p">(</span><span class="n">target</span> <span class="o">=</span> <span class="n">ParallelSolver</span><span class="o">.</span><span class="n">background_log</span><span class="p">,</span> <span class="n">args</span> <span class="o">=</span> <span class="p">(</span><span class="n">set_id</span><span class="p">,</span> <span class="n">stopper_event</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">delta_seconds</span><span class="p">))</span>
+            <span class="n">daemon</span><span class="o">.</span><span class="n">start</span><span class="p">()</span>
         
-        <span class="c1"># Generate and start processes</span>
-        <span class="n">processes</span> <span class="o">=</span> <span class="p">[</span><span class="n">Process</span><span class="p">(</span><span class="n">target</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">process_wrapper</span><span class="p">)</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">num_workers</span><span class="p">)]</span>
-        <span class="k">for</span> <span class="n">p</span> <span class="ow">in</span> <span class="n">processes</span><span class="p">:</span>
-          <span class="n">p</span><span class="o">.</span><span class="n">start</span><span class="p">()</span>
-        <span class="k">for</span> <span class="n">p</span> <span class="ow">in</span> <span class="n">processes</span><span class="p">:</span>
-          <span class="n">p</span><span class="o">.</span><span class="n">join</span><span class="p">()</span>
+        <span class="k">return</span> <span class="n">stopper_event</span><span class="p">,</span> <span class="n">daemon</span><span class="p">,</span> <span class="n">logging_file</span></div>
 
-        <span class="c1"># Save results to unified results file</span>
+    
+<div class="viewcode-block" id="ParallelSolver.maybe_stop_logging">
+<a class="viewcode-back" href="../../parallelization_solver.html#QhX.parallelization_solver.ParallelSolver.maybe_stop_logging">[docs]</a>
+    <span class="k">def</span> <span class="nf">maybe_stop_logging</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">stopper_event</span><span class="p">,</span> <span class="n">logging_thread</span><span class="p">,</span> <span class="n">logging_file</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Stops the logging thread gracefully</span>
+
+<span class="sd">        Parameters:</span>
+<span class="sd">            stopper_event (Event): Event to set to end logging</span>
+<span class="sd">            logging_thread (Thread): Thread to join</span>
+<span class="sd">            logging_file (file): File to close</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="c1"># Stop background thread, close output file and write result to individual file if relevant flags are set</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">log_time</span><span class="p">:</span>
+            <span class="n">stopper_event</span><span class="o">.</span><span class="n">set</span><span class="p">()</span>
+            <span class="n">logging_thread</span><span class="o">.</span><span class="n">join</span><span class="p">()</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">log_files</span><span class="p">:</span>
+            <span class="n">sys</span><span class="o">.</span><span class="n">stdout</span> <span class="o">=</span> <span class="n">sys</span><span class="o">.</span><span class="n">__stdout__</span>
+            <span class="n">logging_file</span><span class="o">.</span><span class="n">close</span><span class="p">()</span></div>
+
+
+<div class="viewcode-block" id="ParallelSolver.maybe_save_local_results">
+<a class="viewcode-back" href="../../parallelization_solver.html#QhX.parallelization_solver.ParallelSolver.maybe_save_local_results">[docs]</a>
+    <span class="k">def</span> <span class="nf">maybe_save_local_results</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">set_id</span><span class="p">,</span> <span class="n">res_string</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Saves local results of set ID formed into a string</span>
+
+<span class="sd">        Parameters:</span>
+<span class="sd">            set_id (str): ID which was processed</span>
+<span class="sd">            res_string (str): The string the result was aggregated into</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="c1"># Save local results with header</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">save_results</span><span class="p">:</span>
+            <span class="n">saving_file</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="n">set_id</span> <span class="o">+</span> <span class="s1">&#39;-result.csv&#39;</span><span class="p">,</span> <span class="s1">&#39;w&#39;</span><span class="p">)</span>
+            <span class="n">saving_file</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">HEADER</span> <span class="o">+</span> <span class="n">res_string</span><span class="p">)</span>
+            <span class="n">saving_file</span><span class="o">.</span><span class="n">close</span><span class="p">()</span></div>
+
+
+<div class="viewcode-block" id="ParallelSolver.maybe_save_results">
+<a class="viewcode-back" href="../../parallelization_solver.html#QhX.parallelization_solver.ParallelSolver.maybe_save_results">[docs]</a>
+    <span class="k">def</span> <span class="nf">maybe_save_results</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">results_file</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        If results file is set, saves the full results queue to it.</span>
+
+<span class="sd">        Parameters:</span>
+<span class="sd">            result_file (str, optional): Filename of the result file</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="c1"># Save results to results_file</span>
         <span class="k">if</span> <span class="n">results_file</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
-                <span class="k">try</span><span class="p">:</span>
-                    <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">results_file</span><span class="p">,</span> <span class="s1">&#39;w&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
-
-                        <span class="c1"># Header for CSV</span>
-                        <span class="n">f</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">HEADER</span><span class="p">)</span>
-                        <span class="k">while</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">results_</span><span class="o">.</span><span class="n">empty</span><span class="p">():</span>
-                            <span class="k">try</span><span class="p">:</span>
-                                <span class="n">result</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">results_</span><span class="o">.</span><span class="n">get</span><span class="p">()</span>
-                            <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
-                                <span class="k">break</span>
-                            <span class="n">f</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">result</span><span class="p">)</span>
-                <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
-                    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Error while saving: </span><span class="se">\n</span><span class="s1">&#39;</span><span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">e</span><span class="p">))</span></div>
+            <span class="k">try</span><span class="p">:</span>
+                <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">results_file</span><span class="p">,</span> <span class="s1">&#39;w&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+                    <span class="c1"># Header for CSV</span>
+                    <span class="n">f</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">HEADER</span><span class="p">)</span>
+                    <span class="k">while</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">results_</span><span class="o">.</span><span class="n">empty</span><span class="p">():</span>
+                        <span class="k">try</span><span class="p">:</span>
+                            <span class="n">result</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">results_</span><span class="o">.</span><span class="n">get</span><span class="p">()</span>
+                        <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+                            <span class="k">break</span>
+                        <span class="n">f</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">result</span><span class="p">)</span>
+            <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+                <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Error while saving: </span><span class="se">\n</span><span class="s1">&#39;</span><span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">e</span><span class="p">))</span></div>
 </div>
+
+        
 
 </pre></div>
 

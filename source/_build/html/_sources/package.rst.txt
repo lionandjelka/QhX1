@@ -17,6 +17,7 @@ Package Modules
    reg
    output
    interactive_plt
+   iparallelization_solver
    parallelization_solver
    batch_processor
    merge_batch_csv

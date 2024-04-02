@@ -66,9 +66,11 @@
 <li class="toctree-l2"><a class="reference internal" href="reg.html">reg</a></li>
 <li class="toctree-l2"><a class="reference internal" href="output.html">output</a></li>
 <li class="toctree-l2"><a class="reference internal" href="interactive_plt.html">interactive_plt</a></li>
+<li class="toctree-l2"><a class="reference internal" href="iparallelization_solver.html">parallelization_solver module</a></li>
 <li class="toctree-l2"><a class="reference internal" href="parallelization_solver.html">Parallelization Solver module</a></li>
 <li class="toctree-l2"><a class="reference internal" href="batch_processor.html">Batch Processor Module</a></li>
 <li class="toctree-l2 current"><a class="current reference internal" href="#">merge_batch_csv Module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#QhX.merge_batch_csv.check_endings"><code class="docutils literal notranslate"><span class="pre">check_endings()</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="#QhX.merge_batch_csv.merge_batch_csv"><code class="docutils literal notranslate"><span class="pre">merge_batch_csv()</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="#usage">Usage</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#parameters">Parameters</a></li>
@@ -115,13 +117,19 @@
 <h1>merge_batch_csv Module<a class="headerlink" href="#merge-batch-csv-module" title="Link to this heading"></a></h1>
 <p>The <code class="docutils literal notranslate"><span class="pre">merge_batch_csv</span></code> module provides functionality for merging CSV files generated from batch processes into a single consolidated CSV file. This is particularly useful for analyzing results that are split across multiple batch output files.</p>
 <dl class="py function" id="module-QhX.merge_batch_csv">
+<dt class="sig sig-object py" id="QhX.merge_batch_csv.check_endings">
+<span class="sig-prename descclassname"><span class="pre">QhX.merge_batch_csv.</span></span><span class="sig-name descname"><span class="pre">check_endings</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">root</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">all_sizes</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/QhX/merge_batch_csv.html#check_endings"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#QhX.merge_batch_csv.check_endings" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
 <dt class="sig sig-object py" id="QhX.merge_batch_csv.merge_batch_csv">
-<span class="sig-prename descclassname"><span class="pre">QhX.merge_batch_csv.</span></span><span class="sig-name descname"><span class="pre">merge_batch_csv</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">directory</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'.'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">output_file</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'merged_result.csv'</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/QhX/merge_batch_csv.html#merge_batch_csv"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#QhX.merge_batch_csv.merge_batch_csv" title="Link to this definition"></a></dt>
-<dd><p>Merges CSV files named ‘result.csv’ found in directories ending with ‘sz100’ or ‘sz200’
+<span class="sig-prename descclassname"><span class="pre">QhX.merge_batch_csv.</span></span><span class="sig-name descname"><span class="pre">merge_batch_csv</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">all_sizes</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">[100,</span> <span class="pre">200]</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">directory</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'.'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">output_file</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'merged_result.csv'</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/QhX/merge_batch_csv.html#merge_batch_csv"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#QhX.merge_batch_csv.merge_batch_csv" title="Link to this definition"></a></dt>
+<dd><p>Merges CSV files named ‘result.csv’ found in directories ending with szX, where X is a number from all_sizes
 into a single CSV file.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
+<li><p><strong>all_sizes</strong> (<em>list</em><em> of </em><em>int</em>) – The list of all batch sizes whose folders we need to merge</p></li>
 <li><p><strong>directory</strong> (<em>str</em>) – The root directory to search for CSV files. Defaults to the current directory.</p></li>
 <li><p><strong>output_file</strong> (<em>str</em>) – The name of the output file where the merged results will be saved. Defaults to ‘merged_result.csv’.</p></li>
 </ul>
