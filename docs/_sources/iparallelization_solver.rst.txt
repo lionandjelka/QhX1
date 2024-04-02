@@ -1,5 +1,5 @@
-parallelization_solver module
-=============================
+iparallelization_solver module
+===============================
 
 .. automodule:: iparallelization_solver
    :members:
