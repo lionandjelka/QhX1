@@ -50,8 +50,19 @@
         </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
               <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
 <ul class="current">
-<li class="toctree-l1 current"><a class="current reference internal" href="#">Introduction</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="#package-architecture">Package Architecture</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="#qhx-project-history">QhX Project History</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#foundation-of-the-method-and-code-functions">Foundation of the Method and Code Functions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#initial-modularization">Initial Modularization</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#modules-enhancement-expansion-packaging-and-testing">Modules Enhancement, Expansion, Packaging, and Testing</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#parallelization">Parallelization</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#testing">Testing</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="#qhx-package-overview">QhX Package Overview</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#main-modules">Main Modules</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#core-components">Core Components</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#output-modules">Output Modules</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="installation.html">Installation</a></li>
@@ -89,14 +100,95 @@
   <section id="introduction">
 <h1>Introduction<a class="headerlink" href="#introduction" title="Link to this heading"></a></h1>
 <p>Variability in astronomical sources can manifest in multiple forms, intrinsic or extrinsic. Intrinsic variability may be caused by changes in the physical conditions, such as those observed in Cepheid Variables or stellar flares, or it may be accretion-induced, as seen in cataclysmic variables and Active Galactic Nuclei (AGN). Extrinsic variability, on the other hand, results from geometrical factors.</p>
-<p>AGN, in particular, are known to exhibit variability of about 10% across various timescales, ranging from less than an hour to several years. This variability is not uniform across all AGN, presenting a wide spectrum of stochastic behavior. In response to the complex nature of the processes governing these variations, and the nonlinearity observed in quasar light curves, our package—Quasar harmonic eXplorer (QhX)—has been developed to include  a method for detecting periodic variability through the cross-correlation of wavelet transforms of quasar light curves in pairs of bands.</p>
-<img alt="descriptive text for image" class="align-center" src="_images/LSSTtimedominmining.png" />
-<section id="package-architecture">
-<h2>Package Architecture<a class="headerlink" href="#package-architecture" title="Link to this heading"></a></h2>
-<p>High-Level Architecture consists of data_manager, light_curve, core, output, and auxiliary modules.
-Below, Figure illustrates the modular structure of the QhX package. Data management is handled by the data_manager module, which is responsible for loading, grouping, and retrieving data. The light_curve module processes this data and feeds it into the core analytical components, calculation and detection, within the core module. Results from the core processing are then passed to the output module for classification. The algorithms module contains complex analytical tools like wavelet transforms and superlet calculations, supported by plots and utils as auxiliary modules for visualization and utility functions, respectively. Together, these interconnected modules form the backbone of QhX’s functionality.</p>
-<img alt="descriptive text for image" class="align-center" src="_images/diagram.png" />
-<p>The purpose of this documentation is to guide users through the features and functionalities of QhX, facilitating the exploration and analysis of quasar light curves with an emphasis on periodic variability detection and analysis.</p>
+<p>AGN, in particular, are known to exhibit variability of about 10% across various timescales, ranging from less than an hour to several years. This variability is not uniform across all AGN, presenting a wide spectrum of stochastic behavior. In response to the complex nature of the processes governing these variations, and the nonlinearity observed in quasar light curves, our package—Quasar harmonic eXplorer (QhX)—has been developed to include a method for detecting periodic variability through the cross-correlation of wavelet transforms of quasar light curves in pairs of bands.</p>
+<img alt="LSST time-domain mining diagram" class="align-center" src="_images/LSSTtimedominmining.png" />
+</section>
+<section id="qhx-project-history">
+<h1>QhX Project History<a class="headerlink" href="#qhx-project-history" title="Link to this heading"></a></h1>
+<section id="foundation-of-the-method-and-code-functions">
+<h2>Foundation of the Method and Code Functions<a class="headerlink" href="#foundation-of-the-method-and-code-functions" title="Link to this heading"></a></h2>
+<ul class="simple">
+<li><p><strong>Lead</strong>: Andjelka Kovacevic, in-kind lead</p></li>
+<li><p><strong>Publications</strong>:
+- <a class="reference external" href="https://ui.adsabs.harvard.edu/abs/2018MNRAS.475.2051K/abstract">Kovacevic et al. 2018</a>
+- <a class="reference external" href="https://ui.adsabs.harvard.edu/abs/2019ApJ...871...32K/abstract">Kovacevic et al. 2019</a>
+- <a class="reference external" href="https://ui.adsabs.harvard.edu/abs/2020OAst...29...51K/abstract">Kovacevic, Popovic, Ilic 2020</a></p></li>
+</ul>
+</section>
+<section id="initial-modularization">
+<h2>Initial Modularization<a class="headerlink" href="#initial-modularization" title="Link to this heading"></a></h2>
+<ul class="simple">
+<li><p><strong>Contributor</strong>: Viktor Radovic, former in-kind postdoc</p></li>
+</ul>
+</section>
+<section id="modules-enhancement-expansion-packaging-and-testing">
+<h2>Modules Enhancement, Expansion, Packaging, and Testing<a class="headerlink" href="#modules-enhancement-expansion-packaging-and-testing" title="Link to this heading"></a></h2>
+<ul class="simple">
+<li><p><strong>Lead</strong>: Andjelka Kovacevic</p></li>
+<li><p><strong>Publications</strong>:
+- <a class="reference external" href="https://www.mdpi.com/2227-7390/10/22/4278">Kovacevic et al. 2022</a>
+- <cite>Kovacevic 2024 (accepted)
+- `Kovacevic et al. (in prep)</cite></p></li>
+</ul>
+</section>
+<section id="parallelization">
+<h2>Parallelization<a class="headerlink" href="#parallelization" title="Link to this heading"></a></h2>
+<ul class="simple">
+<li><p><strong>Contributor</strong>: Momcilo Tosic, AI guest student under the mentorship of Andjelka Kovacevic</p></li>
+<li><p><strong>Publication</strong>:
+- <cite>Kovacevic, Tosic, Ilic et al. (in prep)</cite></p></li>
+</ul>
+</section>
+<section id="testing">
+<h2>Testing<a class="headerlink" href="#testing" title="Link to this heading"></a></h2>
+<ul class="simple">
+<li><p><strong>Contributors</strong>:
+- Momcilo Tosic
+- Vuk Ostojic
+- Andjelka Kovacevic within COST Action MW GAIA STSM 2023</p></li>
+</ul>
+</section>
+</section>
+<section id="qhx-package-overview">
+<h1>QhX Package Overview<a class="headerlink" href="#qhx-package-overview" title="Link to this heading"></a></h1>
+<p>The QhX package is structured into several modules, each with a specific role as indicated in the architecture diagram below.</p>
+<img alt="QhX package architecture diagram" class="align-center" src="_images/diagram.png" />
+<p>We adopt a modular approach to ensure optimal organization, scalability, and maintainability. By segmenting functionality into distinct modules, we prioritize the separation of concerns, allowing each part of the package to focus on specific aspects of data processing or analysis. This modularity not only facilitates parallel development—enabling different teams to work on separate components simultaneously—but also enhances the scalability of our system, as individual modules can be optimized or redeveloped independently to improve performance and resource management.</p>
+<p>Furthermore, the modular design enhances the reusability of our code. Modules crafted for particular tasks can be easily integrated across different parts of the project or reused in future projects, provided they have well-defined interfaces. This approach simplifies testing and maintenance, as each module can be tested and debugged in isolation, reducing the complexity involved in managing a large codebase. Additionally, our modular architecture offers flexibility in integration, making it straightforward to incorporate various components or third-party modules, ensuring they interact seamlessly through established interfaces.</p>
+<section id="main-modules">
+<h2>Main Modules<a class="headerlink" href="#main-modules" title="Link to this heading"></a></h2>
+<ul class="simple">
+<li><p><strong>Algorithms Module</strong>
+This module encompasses two algorithmic strategies: <code class="docutils literal notranslate"><span class="pre">wavelets</span></code> and <code class="docutils literal notranslate"><span class="pre">superlets</span></code>. The <code class="docutils literal notranslate"><span class="pre">superlets</span></code> submodule further divides into <code class="docutils literal notranslate"><span class="pre">superlet</span></code> and <code class="docutils literal notranslate"><span class="pre">superlets</span></code>.</p></li>
+<li><p><strong>Utilities Module</strong>
+The <code class="docutils literal notranslate"><span class="pre">utils</span></code> module contains essential utility functions, such as <code class="docutils literal notranslate"><span class="pre">mock_lc</span></code> for simulating individual red noise light curves for tests and <code class="docutils literal notranslate"><span class="pre">correlation</span></code> for statistical correlation operations on matrices of wavelet coefficients.</p></li>
+<li><p><strong>Plots Module</strong>
+The <code class="docutils literal notranslate"><span class="pre">plots</span></code> module is designed for data visualization, with components for <code class="docutils literal notranslate"><span class="pre">interactive_plot</span></code> and <code class="docutils literal notranslate"><span class="pre">reg</span></code> for interactive plotting and simple plotting of mock light curves, respectively.</p></li>
+</ul>
+</section>
+<section id="core-components">
+<h2>Core Components<a class="headerlink" href="#core-components" title="Link to this heading"></a></h2>
+<ul class="simple">
+<li><p><strong>Light Curve Handling</strong>
+The <code class="docutils literal notranslate"><span class="pre">light_curve</span></code> processes and returns light curves with an option to include magnitude errors for a given set ID.
+Also, it identifies and removes outliers from a light curve based on a Z-score threshold or Median Absolute Deviation (MAD).
+It can optionally consider errors in flux measurements for a more nuanced outlier detection.</p></li>
+<li><p><strong>Parallelization Components</strong>
+<code class="docutils literal notranslate"><span class="pre">parallelization_solver</span></code> and <code class="docutils literal notranslate"><span class="pre">iparallelization_solver</span></code> perform parallel computations on High Performance Computing sources using the data as structured as in given examples (<code class="docutils literal notranslate"><span class="pre">parallelization_solver</span></code>) and on more generalized input (<code class="docutils literal notranslate"><span class="pre">iparallelization_solver</span></code>).</p></li>
+<li><p><strong>Detection and Calculation</strong>
+These components, along with the <code class="docutils literal notranslate"><span class="pre">data_manager</span></code>, form the backbone of the package’s data processing capabilities. <code class="docutils literal notranslate"><span class="pre">Calculation</span></code> estimates the error of the determined period using the FWHM method. It also uses a 2D Hybrid method to analyze correlation data of wavelet transforms of light curves to determine periods. Significance is determined through <a class="reference external" href="https://academic.oup.com/mnras/article/484/1/19/5256646">Johnson et al. 2018</a> method by simulating a given number of artificial red noise light curves.
+<code class="docutils literal notranslate"><span class="pre">Detection</span></code> compares periods detected in different bands to find common periods, if they do not differ more than 10%.
+It compiles the results, including period values, errors, and significance, into a structured format.</p></li>
+<li><p><strong>Batch Processing</strong>
+The <code class="docutils literal notranslate"><span class="pre">batch_processor</span></code> and <code class="docutils literal notranslate"><span class="pre">merge_batch_csv</span></code> handle the processing of data obtained on HPC in batches and the merging of outputs into a single CSV file.</p></li>
+</ul>
+</section>
+<section id="output-modules">
+<h2>Output Modules<a class="headerlink" href="#output-modules" title="Link to this heading"></a></h2>
+<p>The <code class="docutils literal notranslate"><span class="pre">output</span></code> and <code class="docutils literal notranslate"><span class="pre">output_parallel</span></code> modules, although not directly connected to others in the diagram, serve as end points for the system’s process flow.
+The first module handles serialized data and calculates the <a class="reference external" href="_static/IoU_metric.pdf">Intersection over Union metric</a>.  It also classifies individually
+detected periods in band pairs as ‘reliable’, ‘medium reliable’, ‘poor’, or ‘NAN’ based on the significance of the detected period, the relative lower and
+upper errors, and the IoU of the error circles provided. The second module classifies and aggregates results from batches obtained from HPC.</p>
 </section>
 </section>
 
