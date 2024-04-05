@@ -84,7 +84,7 @@ def get_full_width(x: np.ndarray, y: np.ndarray, peak: np.ndarray, height: float
 def periods(lcID, data, ngrid, plot=False, save=False, peakHeight=0.6, prominence=0.7, minfq=None, maxfq=None, xlim=None):
     """
     Perform period determination for the output of hybrid2d data.    
-    This function analyzes auto-correlation data to determine periods of a light curve.
+    This function analyzes correlation data to determine periods of a light curve.
 
     Parameters:
     -----------
