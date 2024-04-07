@@ -2,7 +2,7 @@
 The `iparallelization_solver` interface is designed for parallel execution of an input function. 
 
 This module defines the `IParallelSolver` class, which orchestrates the parallel execution of a 
-general processing function on a data set consisting of multiple data points, here reffered to as set IDs.
+general processing function on a data set consisting of multiple independent data subsets, here reffered to as set IDs.
 It also declares a logging method (intended to start a separate logging thread).
 
 Author:
