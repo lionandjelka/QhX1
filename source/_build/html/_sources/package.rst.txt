@@ -26,4 +26,5 @@ Package Modules
    interactive_plot_large_files.rst
    processing_utils
    test_integrated
+   test_parallel_solver
    mock_lc
