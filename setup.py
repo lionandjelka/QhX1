@@ -8,7 +8,7 @@ setup(
     description='A short description of our package',  # Provide a short description
     long_description=open('README.md').read(),
     long_description_content_type='text/markdown',
-    url='http://github.com/yourusername/your_package_name',  # Replace with the URL of our package
+    url='https://github.com/LSST-SER-SAG-S1/QhX1',  # Replace with the URL of our package
     packages=find_packages(),
     install_requires=[
         'numpy',
