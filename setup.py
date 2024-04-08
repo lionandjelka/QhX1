@@ -40,5 +40,9 @@ setup(
     python_requires='>=3.0',  # Specify the minimum Python version required
     # Additional keywords about your package
     keywords='astronomy, data analysis, light curves',
-    # Consider adding more configurations as per your package's requirements
+    # Consider adding more configurations 
+    project_urls={
+        'Documentation': 'https://lionandjelka.github.io/QhX1/introduction.html',  # Add documentation URL here
+    },
+    
 )
