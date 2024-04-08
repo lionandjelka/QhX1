@@ -27,7 +27,7 @@ After installation, you can run the included tests to verify that everything is 
 
 .. code-block:: bash
 
-    (base) Andjelkas-MacBook-Pro-2:QhX1 andjelka$ pytest -s QhX/tests/test_integrated.py QhX/tests/test_parallel_solver.py
+    (base) Andjelkas-MacBook-Pro-2:QhX1 andjelka$ pytest -s QhX/tests/test_integrated.py 
 
 You should see output similar to the following, indicating that the tests have passed:
 
@@ -63,9 +63,7 @@ You should see output similar to the following, indicating that the tests have p
     number of simulated shuffled light curves 10
     experimental significance 1.0
     
-    QhX/tests/test_parallel_solver.py .
-
-    ================================================= 2 passed in 135.23s (0:02:15) =================================================
+    ================================================= 1 passed in 114.15s (0:01:54) =================================================
 
 Step 3: Importing the Package
 -----------------------------
