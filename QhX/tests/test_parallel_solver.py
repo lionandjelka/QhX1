@@ -1,11 +1,16 @@
 import unittest
+from unittest.mock import Mock
 import os
 from QhX.parallelization_solver import *
 
 class TestUnitParallelSolver(unittest.TestCase):
     def test_parallel_solver_process_and_merge(self):
+    
         # Create mock function to return string values from header
-        mock_function = lambda *arg, **kwarg: [dict([(i, x) for i, x in enumerate(HEADER.split(','))])]
+        mock_function = Mock()
+        args = {'return_value': [dict([(i, x) for i, x in enumerate(HEADER.split(','))])]}
+        mock_function.configure_mock(**args)
+	
         # Two mock setids
         mock_setids = ['0','1']
         # One line of mock result
