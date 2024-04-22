@@ -54,7 +54,7 @@ class IParallelSolver():
 
             try:
                 # Maybe start logging
-                stopper_event, logging_thread, logging_file = self.maybe_begin_logging(set_id)
+                self.maybe_begin_logging(set_id)
 
                 # Call main processing function
                 result = self.get_process_function_result(set_id)
@@ -70,7 +70,7 @@ class IParallelSolver():
             finally:
                 try:
                     # Maybe stop logging
-                    self.maybe_stop_logging(stopper_event, logging_thread, logging_file)
+                    self.maybe_stop_logging()
 
                     # Maybe save local results
                     self.maybe_save_local_results(set_id, res_string)
@@ -120,7 +120,7 @@ class IParallelSolver():
     def maybe_begin_logging(self, set_id):
         pass
     
-    def maybe_stop_logging(self, stopper_event, logging_thread, logging_file):
+    def maybe_stop_logging(self):
         pass
 
     def maybe_save_local_results(self, set_id, res_string):
