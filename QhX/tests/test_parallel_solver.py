@@ -2,24 +2,28 @@ import unittest
 from unittest.mock import Mock
 import os
 from QhX.parallelization_solver import *
+import pickle
+
+# Define a fake function which returns setids given as all column values
+def function_fake(*args, **kwargs):
+    setid = 'fake'
+    if len(args) > 1:
+        setid = args[1]
+    return [dict([(i, setid) for i, x in enumerate(HEADER.split(','))])]
 
 class TestUnitParallelSolver(unittest.TestCase):
     def setUp(self):
-        # Create mock function to return string values from header
-        mock_function = Mock()
-        args = {'return_value': [dict([(i, x) for i, x in enumerate(HEADER.split(','))])]}
-        mock_function.configure_mock(**args)
-	
-        # Two mock setids
-        self.mock_setids = ['0','1']
-        # One line of mock result
-        mock_result = ','.join(mock_function()[0].values())
+        # Mock setids
+        self.mock_setids = ['0','1','2','3']
         
         # Instance of ParallelSolver with file loggings
-        self.solver = ParallelSolver(process_function=mock_function, log_files=True)
+        self.solver = ParallelSolver(process_function=function_fake, log_files=True)
         
-        # Expected result, to have a header and all outputs
-        self.expected_result = HEADER + '\n'.join([mock_result for setid in self.mock_setids]) + '\n'
+        # Expected result, to have a header and all lines with fake function results
+        self.expected_result = HEADER +\
+        '\n'.join([','.join(
+           function_fake(None, setid)[0].values())
+         for setid in self.mock_setids]) + '\n'
         
     def test_parallel_solver_process_and_merge(self):
         # Run the process ids
@@ -34,7 +38,9 @@ class TestUnitParallelSolver(unittest.TestCase):
         for setid in self.mock_setids:
             self.assertTrue(os.path.isfile(setid), "Log file missing")
         self.assertIsNotNone(process_result, "Merged file missing or cannot be read")
-        self.assertEqual(self.expected_result,process_result, "Merged result does not match expected result")
+        
+        # Assert sorted equality because working in different processes may lead to different set ID order in result file
+        self.assertEqual(sorted(self.expected_result), sorted(process_result), "Merged result does not match expected result")
 
 if __name__ == '__main__':
     unittest.main()
