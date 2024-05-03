@@ -2,7 +2,6 @@ import unittest
 from unittest.mock import Mock
 import os
 from QhX.parallelization_solver import *
-import pickle
 
 # Define a fake function which returns setids given as all column values
 def function_fake(*args, **kwargs):
