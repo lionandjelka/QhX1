@@ -27,7 +27,7 @@ After installation, you can run the included tests to verify that everything is 
 
 .. code-block:: bash
 
-    (base) Andjelkas-MacBook-Pro-2:QhX1 andjelka$ pytest -s QhX/tests/test_integrated.py
+    (base) Andjelkas-MacBook-Pro-2:QhX1 andjelka$ pytest -s QhX/tests/test_integrated.py 
 
 You should see output similar to the following, indicating that the tests have passed:
 
@@ -38,7 +38,7 @@ You should see output similar to the following, indicating that the tests have p
     platform darwin -- Python 3.10.9, pytest-7.1.2, pluggy-1.0.0
     rootdir: /Users/andjelka/Documents/QhX1
     plugins: anyio-3.5.0
-    collected 1 item                                                                                                                
+    collected 2 items                                                                                                                
 
     QhX/tests/test_integrated.py Running integrated  test on simulation of single light curve, and functionalities of modules
     for Wavelet matrix coefficients calculations and period and its significance calculation. This may take time about 500-800 seconds...
@@ -62,8 +62,7 @@ You should see output similar to the following, indicating that the tests have p
     upper and lower errors in days [3.3403584182233317] [1.6831563583308196]
     number of simulated shuffled light curves 10
     experimental significance 1.0
-
-
+    
     ================================================= 1 passed in 114.15s (0:01:54) =================================================
 
 Step 3: Importing the Package

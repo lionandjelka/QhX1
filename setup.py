@@ -8,7 +8,7 @@ setup(
     description='A short description of our package',  # Provide a short description
     long_description=open('README.md').read(),
     long_description_content_type='text/markdown',
-    url='http://github.com/yourusername/your_package_name',  # Replace with the URL of our package
+    url='https://github.com/LSST-SER-SAG-S1/QhX1',  # Replace with the URL of our package
     packages=find_packages(),
     install_requires=[
         'numpy',
@@ -40,5 +40,9 @@ setup(
     python_requires='>=3.0',  # Specify the minimum Python version required
     # Additional keywords about your package
     keywords='astronomy, data analysis, light curves',
-    # Consider adding more configurations as per your package's requirements
+    # Consider adding more configurations 
+    project_urls={
+        'Documentation': 'https://lionandjelka.github.io/QhX1/introduction.html',  # Add documentation URL here
+    },
+    
 )

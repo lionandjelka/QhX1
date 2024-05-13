@@ -22,7 +22,7 @@
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
     <link rel="next" title="Examples" href="examples.html" />
-    <link rel="prev" title="test_parallel_solver" href="test_parallel_solver.html" /> 
+    <link rel="prev" title="test_integrated" href="test_integrated.html" /> 
 </head>
 
 <body class="wy-body-for-nav"> 
@@ -55,7 +55,6 @@
 <li class="toctree-l1"><a class="reference internal" href="introduction.html#qhx-package-overview">QhX Package Overview</a></li>
 <li class="toctree-l1"><a class="reference internal" href="installation.html">Installation</a></li>
 <li class="toctree-l1"><a class="reference internal" href="test_integrated.html">test_integrated</a></li>
-<li class="toctree-l1"><a class="reference internal" href="test_parallel_solver.html">test_parallel_solver</a></li>
 <li class="toctree-l1 current"><a class="current reference internal" href="#">Quick Start Tutorial</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="#step-1-installation">Step 1: Installation</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#step-2-running-tests">Step 2: Running Tests</a></li>
@@ -115,7 +114,7 @@ pip<span class="w"> </span>install<span class="w"> </span>.
 <section id="step-2-running-tests">
 <h2>Step 2: Running Tests<a class="headerlink" href="#step-2-running-tests" title="Link to this heading"></a></h2>
 <p>After installation, you can run the included tests to verify that everything is working as expected:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="o">(</span>base<span class="o">)</span><span class="w"> </span>Andjelkas-MacBook-Pro-2:QhX1<span class="w"> </span>andjelka$<span class="w"> </span>pytest<span class="w"> </span>-s<span class="w"> </span>QhX/tests/test_integrated.py
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="o">(</span>base<span class="o">)</span><span class="w"> </span>Andjelkas-MacBook-Pro-2:QhX1<span class="w"> </span>andjelka$<span class="w"> </span>pytest<span class="w"> </span>-s<span class="w"> </span>QhX/tests/test_integrated.py<span class="w"> </span>QhX/tests/test_parallel_solver.py
 </pre></div>
 </div>
 <p>You should see output similar to the following, indicating that the tests have passed:</p>
@@ -123,7 +122,7 @@ pip<span class="w"> </span>install<span class="w"> </span>.
 platform darwin -- Python 3.10.9, pytest-7.1.2, pluggy-1.0.0
 rootdir: /Users/andjelka/Documents/QhX1
 plugins: anyio-3.5.0
-collected 1 item
+collected 2 items
 
 QhX/tests/test_integrated.py Running integrated  test on simulation of single light curve, and functionalities of modules
 for Wavelet matrix coefficients calculations and period and its significance calculation. This may take time about 500-800 seconds...
@@ -148,8 +147,9 @@ upper and lower errors in days [3.3403584182233317] [1.6831563583308196]
 number of simulated shuffled light curves 10
 experimental significance 1.0
 
+QhX/tests/test_parallel_solver.py .
 
-================================================= 1 passed in 114.15s (0:01:54) =================================================
+================================================= 2 passed in 135.23s (0:02:15) =================================================
 </pre></div>
 </div>
 </section>
@@ -369,7 +369,7 @@ setidnew=df.index
            </div>
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
-        <a href="test_parallel_solver.html" class="btn btn-neutral float-left" title="test_parallel_solver" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="test_integrated.html" class="btn btn-neutral float-left" title="test_integrated" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
         <a href="examples.html" class="btn btn-neutral float-right" title="Examples" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
