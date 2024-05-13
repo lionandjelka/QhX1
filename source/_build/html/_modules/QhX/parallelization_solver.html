@@ -88,7 +88,7 @@
 <span class="sd">The `parallelization_solver` module is designed for parallel processing of astronomical data sets. </span>
 <span class="sd">It utilizes multiprocessing to expedite the processing of large data sets across multiple CPUs.</span>
 
-<span class="sd">This module defines the `ParallelSolver` class, which orchestrates the parallel execution of a </span>
+<span class="sd">This module defines the `ParallelSolver` class, which orchestrates the parallel execution and result processing of a </span>
 <span class="sd">specified processing function across different subsets of data. It features mechanisms for time </span>
 <span class="sd">logging and result aggregation, facilitating comprehensive analysis workflows.</span>
 
@@ -114,19 +114,14 @@
 <span class="sd">Faculty of Mathematics, University of Belgrade</span>
 <span class="sd">&quot;&quot;&quot;</span>
 
-
 <span class="kn">import</span> <span class="nn">sys</span>
-<span class="kn">import</span> <span class="nn">threading</span>
 <span class="kn">import</span> <span class="nn">time</span>
-<span class="kn">import</span> <span class="nn">os</span>
 <span class="kn">from</span> <span class="nn">multiprocessing</span> <span class="kn">import</span> <span class="n">Process</span>
 <span class="kn">from</span> <span class="nn">multiprocessing</span> <span class="kn">import</span> <span class="n">Queue</span>
-<span class="kn">from</span> <span class="nn">datetime</span> <span class="kn">import</span> <span class="n">datetime</span>
 <span class="kn">from</span> <span class="nn">QhX.detection</span> <span class="kn">import</span> <span class="o">*</span>
 <span class="kn">from</span> <span class="nn">QhX.iparallelization_solver</span> <span class="kn">import</span> <span class="o">*</span>
+<span class="kn">from</span> <span class="nn">QhX.utils.logger</span> <span class="kn">import</span> <span class="o">*</span>
 
-<span class="c1"># Default number of seconds to pass between time loggings</span>
-<span class="n">DEFAULT_LOG_PERIOD</span> <span class="o">=</span> <span class="mi">10</span>
 <span class="c1"># CSV format results header</span>
 <span class="n">HEADER</span> <span class="o">=</span> <span class="s2">&quot;ID,Sampling_1,Sampling_2,Common period (Band1 &amp; Band1),Upper error bound,Lower error bound,Significance,Band1-Band2</span><span class="se">\n</span><span class="s2">&quot;</span>
 
@@ -170,42 +165,13 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">delta_seconds</span> <span class="o">=</span> <span class="n">delta_seconds</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">data_manager</span> <span class="o">=</span> <span class="n">data_manager</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">process_function</span> <span class="o">=</span> <span class="n">process_function</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">log_time</span> <span class="o">=</span> <span class="n">log_time</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">log_files</span> <span class="o">=</span> <span class="n">log_files</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">save_results</span> <span class="o">=</span> <span class="n">save_results</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">parallel_arithmetic</span> <span class="o">=</span> <span class="n">parallel_arithmetic</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">ntau</span> <span class="o">=</span> <span class="n">ntau</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">ngrid</span> <span class="o">=</span> <span class="n">ngrid</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">provided_minfq</span> <span class="o">=</span> <span class="n">provided_minfq</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">provided_maxfq</span> <span class="o">=</span> <span class="n">provided_maxfq</span>
-
-<div class="viewcode-block" id="ParallelSolver.background_log">
-<a class="viewcode-back" href="../../parallelization_solver.html#QhX.parallelization_solver.ParallelSolver.background_log">[docs]</a>
-    <span class="nd">@staticmethod</span>
-    <span class="k">def</span> <span class="nf">background_log</span><span class="p">(</span><span class="n">set_id</span><span class="p">,</span> <span class="n">e</span> <span class="p">:</span> <span class="n">threading</span><span class="o">.</span><span class="n">Event</span><span class="p">,</span> <span class="n">delta_seconds</span> <span class="p">:</span> <span class="nb">float</span><span class="p">):</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        Background thread for logging the process time at regular intervals.</span>
-
-<span class="sd">        Parameters:</span>
-<span class="sd">            set_id (str): Identifier for the data set being processed.</span>
-<span class="sd">            e (threading.Event): Event to signal the thread to exit.</span>
-<span class="sd">            delta_seconds (float): Time interval for logging.</span>
-<span class="sd">        &quot;&quot;&quot;</span>
-
-        <span class="c1"># Log starting time</span>
-        <span class="n">total_time</span> <span class="o">=</span> <span class="mi">0</span>
-        <span class="n">start_time</span> <span class="o">=</span> <span class="n">datetime</span><span class="o">.</span><span class="n">now</span><span class="p">()</span>
-        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Starting time for ID </span><span class="si">{</span><span class="n">set_id</span><span class="si">}</span><span class="s1"> : </span><span class="si">{</span><span class="n">start_time</span><span class="si">}</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">)</span>
-        
-        <span class="k">while</span> <span class="n">e</span><span class="o">.</span><span class="n">wait</span><span class="p">(</span><span class="n">delta_seconds</span><span class="p">)</span> <span class="o">==</span> <span class="kc">False</span><span class="p">:</span>
-            <span class="c1"># Log how much time passed so far</span>
-            <span class="n">total_time</span> <span class="o">+=</span> <span class="n">delta_seconds</span>
-            <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Processing </span><span class="si">{</span><span class="n">set_id</span><span class="si">}</span><span class="se">\n</span><span class="s1">PID </span><span class="si">{</span><span class="n">os</span><span class="o">.</span><span class="n">getpid</span><span class="p">()</span><span class="si">}</span><span class="se">\n</span><span class="s1">Duration: </span><span class="si">{</span><span class="n">total_time</span><span class="o">/</span><span class="n">delta_seconds</span><span class="si">}</span><span class="s1"> ticks</span><span class="se">\n</span><span class="si">{</span><span class="n">delta_seconds</span><span class="si">}</span><span class="s1"> seconds each</span><span class="se">\n</span><span class="s1">Time so far </span><span class="si">{</span><span class="n">total_time</span><span class="si">}</span><span class="s1">s</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">)</span>
-        
-        <span class="c1"># Log finish time</span>
-        <span class="n">end_time</span> <span class="o">=</span> <span class="n">datetime</span><span class="o">.</span><span class="n">now</span><span class="p">()</span>
-        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;End time for ID </span><span class="si">{</span><span class="n">set_id</span><span class="si">}</span><span class="s1"> : </span><span class="si">{</span><span class="n">end_time</span><span class="si">}</span><span class="se">\n</span><span class="s1">Total time : </span><span class="si">{</span><span class="n">end_time</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">start_time</span><span class="si">}</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">)</span></div>
-
+        <span class="bp">self</span><span class="o">.</span><span class="n">logger</span> <span class="o">=</span> <span class="n">Logger</span><span class="p">(</span><span class="n">log_files</span><span class="p">,</span> <span class="n">log_time</span><span class="p">,</span> <span class="n">delta_seconds</span><span class="p">)</span>
 
 <div class="viewcode-block" id="ParallelSolver.aggregate_process_function_result">
 <a class="viewcode-back" href="../../parallelization_solver.html#QhX.parallelization_solver.ParallelSolver.aggregate_process_function_result">[docs]</a>
@@ -252,44 +218,19 @@
 <a class="viewcode-back" href="../../parallelization_solver.html#QhX.parallelization_solver.ParallelSolver.maybe_begin_logging">[docs]</a>
     <span class="k">def</span> <span class="nf">maybe_begin_logging</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">set_id</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        Starts a logging thread and opens a logging file, redirecting output to it</span>
+<span class="sd">        Starts a logging thread</span>
 
 <span class="sd">        Parameters:</span>
 <span class="sd">            set_id (str): ID of set to be processed</span>
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="n">logging_file</span> <span class="o">=</span> <span class="kc">None</span>
-        <span class="c1"># Open output log file</span>
-        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">log_files</span><span class="p">:</span>
-            <span class="n">logging_file</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="n">set_id</span><span class="p">,</span> <span class="s1">&#39;w&#39;</span><span class="p">)</span>
-            <span class="n">sys</span><span class="o">.</span><span class="n">stdout</span> <span class="o">=</span> <span class="n">logging_file</span>
-
-        <span class="c1"># Begin logging time if flag set</span>
-        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">log_time</span><span class="p">:</span>
-            <span class="n">stopper_event</span> <span class="o">=</span> <span class="n">threading</span><span class="o">.</span><span class="n">Event</span><span class="p">()</span>
-            <span class="n">daemon</span> <span class="o">=</span> <span class="n">threading</span><span class="o">.</span><span class="n">Thread</span><span class="p">(</span><span class="n">target</span> <span class="o">=</span> <span class="n">ParallelSolver</span><span class="o">.</span><span class="n">background_log</span><span class="p">,</span> <span class="n">args</span> <span class="o">=</span> <span class="p">(</span><span class="n">set_id</span><span class="p">,</span> <span class="n">stopper_event</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">delta_seconds</span><span class="p">))</span>
-            <span class="n">daemon</span><span class="o">.</span><span class="n">start</span><span class="p">()</span>
-        
-        <span class="k">return</span> <span class="n">stopper_event</span><span class="p">,</span> <span class="n">daemon</span><span class="p">,</span> <span class="n">logging_file</span></div>
+        <span class="bp">self</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">start</span><span class="p">(</span><span class="n">set_id</span><span class="p">)</span></div>
 
     
 <div class="viewcode-block" id="ParallelSolver.maybe_stop_logging">
 <a class="viewcode-back" href="../../parallelization_solver.html#QhX.parallelization_solver.ParallelSolver.maybe_stop_logging">[docs]</a>
-    <span class="k">def</span> <span class="nf">maybe_stop_logging</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">stopper_event</span><span class="p">,</span> <span class="n">logging_thread</span><span class="p">,</span> <span class="n">logging_file</span><span class="p">):</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        Stops the logging thread gracefully</span>
-
-<span class="sd">        Parameters:</span>
-<span class="sd">            stopper_event (Event): Event to set to end logging</span>
-<span class="sd">            logging_thread (Thread): Thread to join</span>
-<span class="sd">            logging_file (file): File to close</span>
-<span class="sd">        &quot;&quot;&quot;</span>
-        <span class="c1"># Stop background thread, close output file and write result to individual file if relevant flags are set</span>
-        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">log_time</span><span class="p">:</span>
-            <span class="n">stopper_event</span><span class="o">.</span><span class="n">set</span><span class="p">()</span>
-            <span class="n">logging_thread</span><span class="o">.</span><span class="n">join</span><span class="p">()</span>
-        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">log_files</span><span class="p">:</span>
-            <span class="n">sys</span><span class="o">.</span><span class="n">stdout</span> <span class="o">=</span> <span class="n">sys</span><span class="o">.</span><span class="n">__stdout__</span>
-            <span class="n">logging_file</span><span class="o">.</span><span class="n">close</span><span class="p">()</span></div>
+    <span class="k">def</span> <span class="nf">maybe_stop_logging</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot; Stops the logger &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">stop</span><span class="p">()</span></div>
 
 
 <div class="viewcode-block" id="ParallelSolver.maybe_save_local_results">

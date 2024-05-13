@@ -144,7 +144,7 @@
 
             <span class="k">try</span><span class="p">:</span>
                 <span class="c1"># Maybe start logging</span>
-                <span class="n">stopper_event</span><span class="p">,</span> <span class="n">logging_thread</span><span class="p">,</span> <span class="n">logging_file</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">maybe_begin_logging</span><span class="p">(</span><span class="n">set_id</span><span class="p">)</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">maybe_begin_logging</span><span class="p">(</span><span class="n">set_id</span><span class="p">)</span>
 
                 <span class="c1"># Call main processing function</span>
                 <span class="n">result</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_process_function_result</span><span class="p">(</span><span class="n">set_id</span><span class="p">)</span>
@@ -160,7 +160,7 @@
             <span class="k">finally</span><span class="p">:</span>
                 <span class="k">try</span><span class="p">:</span>
                     <span class="c1"># Maybe stop logging</span>
-                    <span class="bp">self</span><span class="o">.</span><span class="n">maybe_stop_logging</span><span class="p">(</span><span class="n">stopper_event</span><span class="p">,</span> <span class="n">logging_thread</span><span class="p">,</span> <span class="n">logging_file</span><span class="p">)</span>
+                    <span class="bp">self</span><span class="o">.</span><span class="n">maybe_stop_logging</span><span class="p">()</span>
 
                     <span class="c1"># Maybe save local results</span>
                     <span class="bp">self</span><span class="o">.</span><span class="n">maybe_save_local_results</span><span class="p">(</span><span class="n">set_id</span><span class="p">,</span> <span class="n">res_string</span><span class="p">)</span>
@@ -225,7 +225,7 @@
     
 <div class="viewcode-block" id="IParallelSolver.maybe_stop_logging">
 <a class="viewcode-back" href="../iparallelization_solver.html#iparallelization_solver.IParallelSolver.maybe_stop_logging">[docs]</a>
-    <span class="k">def</span> <span class="nf">maybe_stop_logging</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">stopper_event</span><span class="p">,</span> <span class="n">logging_thread</span><span class="p">,</span> <span class="n">logging_file</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">maybe_stop_logging</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="k">pass</span></div>
 
 
