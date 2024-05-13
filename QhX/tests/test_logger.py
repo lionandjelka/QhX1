@@ -16,11 +16,14 @@ class TestUnitLogger(unittest.TestCase):
             
         # Assert the presence of log file, and its contents
         self.assertTrue(os.path.isfile(setid), "Log file missing")
+        print('\n\nLog file created.')
         
         with open(setid) as log_file:
             res = log_file.read()
             self.assertIn('2', res)
+            print('\nTime log found in file.')
             self.assertIn('REDIRECT', res)
+            print('\nOutput log found in file.')
 
 if __name__ == '__main__':
     unittest.main()
