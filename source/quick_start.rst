@@ -27,7 +27,7 @@ After installation, you can run the included tests to verify that everything is 
 
 .. code-block:: bash
 
-    (base) Andjelkas-MacBook-Pro-2:QhX1 andjelka$ pytest -s QhX/tests/test_integrated.py QhX/tests/test_parallel_solver.py QhX/tests/test_logger.py
+    (base) Andjelkas-MacBook-Pro-2:QhX1 andjelka$ pytest -s QhX/tests/test_integrated.py 
 
 You should see output similar to the following, indicating that the tests have passed:
 
@@ -38,7 +38,7 @@ You should see output similar to the following, indicating that the tests have p
     platform darwin -- Python 3.10.9, pytest-7.1.2, pluggy-1.0.0
     rootdir: /Users/andjelka/Documents/QhX1
     plugins: anyio-3.5.0
-    collected 3 items                                                                                                                
+    collected 2 items                                                                                                                
 
     QhX/tests/test_integrated.py Running integrated  test on simulation of single light curve, and functionalities of modules
     for Wavelet matrix coefficients calculations and period and its significance calculation. This may take time about 500-800 seconds...
@@ -63,10 +63,67 @@ You should see output similar to the following, indicating that the tests have p
     number of simulated shuffled light curves 10
     experimental significance 1.0
     
-    QhX/tests/test_parallel_solver.py .
-    QhX/tests/test_logger.py .
+    ================================================= 1 passed in 114.15s (0:01:54) =================================================
+    
+For more advanced users, you may test the logger and parallel solver classes:
 
-    ================================================= 3 passed in 140.11s (0:02:20) =================================================
+.. code-block:: bash
+
+    os@ubuntu:~/Desktop/qhx_astro/QhX1$ cd QhX/tests; pytest -s test_logger.py
+    
+You should see output resembling this:
+
+.. code-block:: text
+
+   ================================== test session starts ==================================
+   platform linux -- Python 3.10.11, pytest-8.1.1, pluggy-1.4.0
+   rootdir: /home/os/Desktop/qhx_astro/QhX1
+   plugins: anyio-4.3.0
+   collected 1 item                                                                        
+   
+   test_logger.py 
+   
+   Log file created.
+   
+   Time log found in file.
+   
+   Output log found in file.
+   .
+   
+   ================================== 1 passed in 27.56s ===================================
+
+For the parallel solver (note we are in the QhX1 folder again):
+
+.. code-block:: bash
+
+    os@ubuntu:~/Desktop/qhx_astro/QhX1$ cd QhX/tests; pytest -s test_parallel_solver.py
+    
+The output should look similar to this:
+
+.. code-block:: text
+
+    ================================== test session starts ==================================
+    platform linux -- Python 3.10.11, pytest-8.1.1, pluggy-1.4.0
+    rootdir: /home/os/Desktop/qhx_astro/QhX1
+    plugins: anyio-4.3.0
+    collected 1 item                                                                        
+    
+    test_parallel_solver.py 
+    
+    Log file for 0 created.
+    
+    Log file for 1 created.
+    
+    Log file for 2 created.
+    
+    Log file for 3 created.
+
+    Merged results file present.
+    
+    Merged result file content correct.
+    .
+    
+    ================================== 1 passed in 23.84s ===================================
 
 Step 3: Importing the Package
 -----------------------------
@@ -236,4 +293,3 @@ Further Exploration
 -------------------
 
 Now that you've had a taste of what QhX can do, explore the documentation to learn more about the available modules and functions. You can also check out the Examples section for more detailed use cases and advanced features.
-
