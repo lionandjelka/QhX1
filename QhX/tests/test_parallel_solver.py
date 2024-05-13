@@ -36,10 +36,14 @@ class TestUnitParallelSolver(unittest.TestCase):
         # Assert the presence of log files, process result data and its corectness
         for setid in self.mock_setids:
             self.assertTrue(os.path.isfile(setid), "Log file missing")
+            print(f'\n\nLog file for {setid} created.',end='')
+
         self.assertIsNotNone(process_result, "Merged file missing or cannot be read")
+        print('\n\nMerged results file present.')        
         
         # Assert sorted equality because working in different processes may lead to different set ID order in result file
         self.assertEqual(sorted(self.expected_result), sorted(process_result), "Merged result does not match expected result")
+        print('\nMerged result file content correct.')
 
 if __name__ == '__main__':
     unittest.main()
