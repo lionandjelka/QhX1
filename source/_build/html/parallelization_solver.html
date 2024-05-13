@@ -87,7 +87,6 @@
 <li class="toctree-l4"><a class="reference internal" href="#QhX.parallelization_solver.ParallelSolver.provided_minfq"><code class="docutils literal notranslate"><span class="pre">ParallelSolver.provided_minfq</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="#QhX.parallelization_solver.ParallelSolver.provided_maxfq"><code class="docutils literal notranslate"><span class="pre">ParallelSolver.provided_maxfq</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="#QhX.parallelization_solver.ParallelSolver.aggregate_process_function_result"><code class="docutils literal notranslate"><span class="pre">ParallelSolver.aggregate_process_function_result()</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="#QhX.parallelization_solver.ParallelSolver.background_log"><code class="docutils literal notranslate"><span class="pre">ParallelSolver.background_log()</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="#QhX.parallelization_solver.ParallelSolver.get_process_function_result"><code class="docutils literal notranslate"><span class="pre">ParallelSolver.get_process_function_result()</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="#QhX.parallelization_solver.ParallelSolver.maybe_begin_logging"><code class="docutils literal notranslate"><span class="pre">ParallelSolver.maybe_begin_logging()</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="#QhX.parallelization_solver.ParallelSolver.maybe_save_local_results"><code class="docutils literal notranslate"><span class="pre">ParallelSolver.maybe_save_local_results()</span></code></a></li>
@@ -104,6 +103,8 @@
 <li class="toctree-l2"><a class="reference internal" href="interactive_plot_large_files.html">Interactive Plot Large Files Module</a></li>
 <li class="toctree-l2"><a class="reference internal" href="processing_utils.html">processing_utils module</a></li>
 <li class="toctree-l2"><a class="reference internal" href="test_integrated.html">test_integrated</a></li>
+<li class="toctree-l2"><a class="reference internal" href="test_logger.html">test_logger</a></li>
+<li class="toctree-l2"><a class="reference internal" href="test_parallel_solver.html">test_parallel_solver</a></li>
 <li class="toctree-l2"><a class="reference internal" href="mock_lc.html">mock_lc</a></li>
 </ul>
 </li>
@@ -141,7 +142,7 @@
 <p>The <code class="docutils literal notranslate"><span class="pre">parallelization_solver</span></code> module is designed for parallel processing of data sets, using multiprocessing. Below is the documentation for the module and its classes.</p>
 <p id="module-QhX.parallelization_solver">The <cite>parallelization_solver</cite> module is designed for parallel processing of astronomical data sets.
 It utilizes multiprocessing to expedite the processing of large data sets across multiple CPUs.</p>
-<p>This module defines the <cite>ParallelSolver</cite> class, which orchestrates the parallel execution of a
+<p>This module defines the <cite>ParallelSolver</cite> class, which orchestrates the parallel execution and result processing of a
 specified processing function across different subsets of data. It features mechanisms for time
 logging and result aggregation, facilitating comprehensive analysis workflows.</p>
 <section id="example-usage">
@@ -314,21 +315,6 @@ Faculty of Mathematics, University of Belgrade</p>
 </dd></dl>
 
 <dl class="py method">
-<dt class="sig sig-object py" id="QhX.parallelization_solver.ParallelSolver.background_log">
-<em class="property"><span class="pre">static</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">background_log</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">set_id</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">e</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Event</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">delta_seconds</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/QhX/parallelization_solver.html#ParallelSolver.background_log"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#QhX.parallelization_solver.ParallelSolver.background_log" title="Link to this definition"></a></dt>
-<dd><p>Background thread for logging the process time at regular intervals.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>set_id</strong> (<em>str</em>) – Identifier for the data set being processed.</p></li>
-<li><p><strong>e</strong> (<em>threading.Event</em>) – Event to signal the thread to exit.</p></li>
-<li><p><strong>delta_seconds</strong> (<em>float</em>) – Time interval for logging.</p></li>
-</ul>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="py method">
 <dt class="sig sig-object py" id="QhX.parallelization_solver.ParallelSolver.get_process_function_result">
 <span class="sig-name descname"><span class="pre">get_process_function_result</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">set_id</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/QhX/parallelization_solver.html#ParallelSolver.get_process_function_result"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#QhX.parallelization_solver.ParallelSolver.get_process_function_result" title="Link to this definition"></a></dt>
 <dd><p>Run the QhX detection function and return the result</p>
@@ -342,7 +328,7 @@ Faculty of Mathematics, University of Belgrade</p>
 <dl class="py method">
 <dt class="sig sig-object py" id="QhX.parallelization_solver.ParallelSolver.maybe_begin_logging">
 <span class="sig-name descname"><span class="pre">maybe_begin_logging</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">set_id</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/QhX/parallelization_solver.html#ParallelSolver.maybe_begin_logging"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#QhX.parallelization_solver.ParallelSolver.maybe_begin_logging" title="Link to this definition"></a></dt>
-<dd><p>Starts a logging thread and opens a logging file, redirecting output to it</p>
+<dd><p>Starts a logging thread</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><p><strong>set_id</strong> (<em>str</em>) – ID of set to be processed</p>
@@ -377,17 +363,8 @@ Faculty of Mathematics, University of Belgrade</p>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="QhX.parallelization_solver.ParallelSolver.maybe_stop_logging">
-<span class="sig-name descname"><span class="pre">maybe_stop_logging</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">stopper_event</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">logging_thread</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">logging_file</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/QhX/parallelization_solver.html#ParallelSolver.maybe_stop_logging"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#QhX.parallelization_solver.ParallelSolver.maybe_stop_logging" title="Link to this definition"></a></dt>
-<dd><p>Stops the logging thread gracefully</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>stopper_event</strong> (<em>Event</em>) – Event to set to end logging</p></li>
-<li><p><strong>logging_thread</strong> (<em>Thread</em>) – Thread to join</p></li>
-<li><p><strong>logging_file</strong> (<em>file</em>) – File to close</p></li>
-</ul>
-</dd>
-</dl>
+<span class="sig-name descname"><span class="pre">maybe_stop_logging</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/QhX/parallelization_solver.html#ParallelSolver.maybe_stop_logging"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#QhX.parallelization_solver.ParallelSolver.maybe_stop_logging" title="Link to this definition"></a></dt>
+<dd><p>Stops the logger</p>
 </dd></dl>
 
 </dd></dl>

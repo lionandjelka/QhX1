@@ -19,6 +19,19 @@ Classifier: Operating System :: OS Independent
 Requires-Python: >=3.0
 Description-Content-Type: text/markdown
 License-File: LICENSE.txt
+Requires-Dist: numpy
+Requires-Dist: pandas
+Requires-Dist: scipy
+Requires-Dist: scikit-learn
+Requires-Dist: scikit-optimize
+Requires-Dist: libwwz
+Requires-Dist: colorednoise
+Requires-Dist: tqdm
+Requires-Dist: panel
+Requires-Dist: hvplot
+Requires-Dist: bokeh
+Requires-Dist: datashader
+Requires-Dist: pyarrow
 
 # QhX: Quasar harmonics eXplorer
 
