@@ -32,6 +32,9 @@ QhX/plots/interactive_plt.py
 QhX/plots/reg.py
 QhX/tests/__init__.py
 QhX/tests/test_integrated.py
+QhX/tests/test_logger.py
+QhX/tests/test_parallel_solver.py
 QhX/utils/__init__.py
 QhX/utils/correlation.py
+QhX/utils/logger.py
 QhX/utils/mock_lc.py
