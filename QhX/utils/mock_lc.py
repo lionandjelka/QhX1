@@ -114,70 +114,78 @@ def artificial_stochastic_mock_lc(T, deltatc=1, oscillations=True, A=0.14, noise
     lumbol = np.power(10,loglumbol)
 
     # Calculate M_{SMBH}
-    msmbh=np.power((lumbol*const2/const1),2/3.)
+    msmbh = np.power((lumbol * const2 / const1), 2 / 3.)
     
     # Calculate damping time scale (Eq 22, Kelly et al. 2009)
-    logtau = -8.13+0.24*np.log10(lumbol)+0.34*np.log10(1+z)
+    logtau = -8.13 + 0.24 * np.log10(lumbol) + 0.34 * np.log10(1 + z)
     if frame == 'observed':
-        # Convering to observed frame (Eq 17, Kelly et al. 2009)
-        tau = np.power(10,logtau)*(1+z)
+        # Converting to observed frame (Eq 17, Kelly et al. 2009)
+        tau = np.power(10, logtau) * (1 + z)
     elif frame == 'rest':
-        tau = np.power(10,logtau)
+        tau = np.power(10, logtau)
     
     # Calculate log sigma^2 - an amplitude of correlation decay (Eq 25, Kelly et al. 2009)
-    logsig2 = 8-0.27*np.log10(lumbol)+0.47*np.log10(1+z)
+    logsig2 = 8 - 0.27 * np.log10(lumbol) + 0.47 * np.log10(1 + z)
     if frame == 'observed':
-        # Convering to observed frame (Eq 18, Kelly et al. 2009)
-        sig = np.sqrt(np.power(10,logsig2))/np.sqrt(1+z)
+        # Converting to observed frame (Eq 18, Kelly et al. 2009)
+        sig = np.sqrt(np.power(10, logsig2)) / np.sqrt(1 + z)
     elif frame == 'rest':
-        sig = np.sqrt(np.power(10,logsig2))
+        sig = np.sqrt(np.power(10, logsig2))
           
     # OPTIONAL: Calculate the broad line region radius
-    logrblr=1.527+0.533*np.log10(lumbol/1e44)
-    rblr=np.power(10,logrblr)
-    rblr=rblr/10
+    logrblr = 1.527 + 0.533 * np.log10(lumbol / 1e44)
+    rblr = np.power(10, logrblr)
+    rblr = rblr / 10
     
     # Calculating light curve magnitudes
     ss = np.zeros(times)
     ss[0] = meanmag # light curve is initialized
-    SFCONST2=sig*sig
-    ratio = -deltatc/tau
+    SFCONST2 = sig * sig
+    ratio = -deltatc / tau
 
     for i in range(1, times):
-        ss[i] = np.random.normal(ss[i-1]*np.exp(ratio) + meanmag*(1-np.exp(ratio)),
-                                     np.sqrt(10*0.5*tau*SFCONST2*((1-np.exp(2*ratio)))),1)
+        ss[i] = np.random.normal(ss[i-1] * np.exp(ratio) + meanmag * (1 - np.exp(ratio)),
+                                 np.sqrt(10 * 0.5 * tau * SFCONST2 * (1 - np.exp(2 * ratio))), 1)
         
     # Calculating error (Ivezic et al. 2019)
-    gamma=0.039
-    m5=24.7
-    x=np.zeros(ss.shape)
-    x=np.power(10, 0.4*(ss-m5))
+    gamma = 0.039
+    m5 = 24.7
+    x = np.zeros(ss.shape)
+    x = np.power(10, 0.4 * (ss - m5))
 
-    err = (0.005*0.005) + (0.04-gamma)*x + gamma*x*x
+    err = (0.005 * 0.005) + (0.04 - gamma) * x + gamma * x * x
     
+    # Setting period type and value (modify these lines as needed)
+    period_type = 'hardcoded'  # 'hardcoded' or 'physical'
+    P_value = 0.001  # Only used if period_type is 'hardcoded', it should be in years
+
     # Final light curve with oscillations
-    if oscillations == True:
-        # Calculate underlying periodicity
-        conver=173.145 # convert from LightDays to AU
-        lightdays=10
-        P = np.sqrt(((lightdays*conver)**3)/(msmbh))
+    if oscillations:
+        if period_type == 'physical':
+            # Calculate underlying periodicity
+            conver = 173.145 # convert from LightDays to AU
+            lightdays = 10
+            P_years = np.sqrt(((lightdays * conver) ** 3) / msmbh)
+            P_days = P_years * 365.25
+        else:
+            P_days = P_value * 365.25
+        
         # Calculating and adding oscillatory signal
-        P = 0.001
-        sinus=A*np.sin(2*np.pi*tt*(P*365))
+        sinus = A * np.sin(2 * np.pi * tt / P_days)
         ss = ss + sinus
         yy = np.zeros(times)
         for i in range(times):
             # Adding error and noise to each magnitude value
-            yy[i] = ss[i] + np.random.normal(0,((noise*ss[i])),1) + np.sqrt(err[i])
+            yy[i] = ss[i] + np.random.normal(0, ((noise * ss[i])), 1) + np.sqrt(err[i])
     
-        return tt, yy, P
+        return tt, yy, P_days
     
     # Final light curve without oscillations
-    if oscillations == False:
+    if not oscillations:
         yy = np.zeros(times)
         for i in range(times):
             # Adding error and noise to each magnitude value
-            yy[i] = ss[i] + np.random.normal(0,((noise*ss[i])),1) + np.sqrt(err[i])
+            yy[i] = ss[i] + np.random.normal(0, ((noise * ss[i])), 1) + np.sqrt(err[i])
     
         return tt, yy
     
