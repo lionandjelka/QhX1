@@ -96,12 +96,12 @@
 <p>The QhX package can be installed along with its necessary dependencies using pip. Ensure that you have Python and pip installed on your system before proceeding.</p>
 <section id="installing-with-pip">
 <h2>Installing with pip<a class="headerlink" href="#installing-with-pip" title="Link to this heading"></a></h2>
-<p>You can install the package directly from PyPI (assuming it is uploaded there) using the following command:</p>
+<p>You can install the package directly from PyPI  using the following command:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>pip<span class="w"> </span>install<span class="w"> </span>QhX
 </pre></div>
 </div>
 <p>Users can install QhX by cloning its repository and installing it manually:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>git<span class="w"> </span>clone<span class="w"> </span>https://github.com/yourusername/QhX.git
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>git<span class="w"> </span>clone<span class="w"> </span>https://github.com/lionandjelka/QhX1.git
 <span class="nb">cd</span><span class="w"> </span>QhX
 pip<span class="w"> </span>install<span class="w"> </span>.
 </pre></div>
@@ -124,9 +124,11 @@ pip<span class="w"> </span>install<span class="w"> </span>.
 <li><p>hvplot</p></li>
 <li><p>datashader</p></li>
 <li><p>bokeh</p></li>
+<li><p>dask[dataframe]</p></li>
+<li><p>traitlets</p></li>
 </ul>
 <p>These dependencies should be automatically installed when installing QhX using pip. However, if you need to install them manually, you can use the following command:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>pip<span class="w"> </span>install<span class="w"> </span>numpy<span class="w"> </span>pandas<span class="w"> </span>scipy<span class="w"> </span>scikit-learn<span class="w"> </span>scikit-optimize<span class="w"> </span>libwwz<span class="w"> </span>colorednoise<span class="w"> </span>tqdm<span class="w"> </span>pyarrow<span class="w"> </span>panel<span class="w"> </span>hvplot<span class="w"> </span>datashader<span class="w"> </span>bokeh
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>pip<span class="w"> </span>install<span class="w"> </span>numpy<span class="w"> </span>pandas<span class="w"> </span>scipy<span class="w"> </span>scikit-learn<span class="w"> </span>scikit-optimize<span class="w"> </span>libwwz<span class="w"> </span>colorednoise<span class="w"> </span>tqdm<span class="w"> </span>pyarrow<span class="w"> </span>panel<span class="w"> </span>hvplot<span class="w"> </span>datashader<span class="w"> </span>bokeh<span class="w"> </span>dask<span class="o">[</span>dataframe<span class="o">]</span><span class="w"> </span>traitlets
 </pre></div>
 </div>
 <p>Alternatively, if you have a <cite>requirements.txt</cite> file in your repository, you can install all the dependencies using:</p>
