@@ -50,22 +50,27 @@
         </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
               <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
 <ul class="current">
-<li class="toctree-l1"><a class="reference internal" href="introduction.html">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="installation.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="quick_start.html">Quick Start Tutorial</a></li>
+<li class="toctree-l1"><a class="reference internal" href="test_integrated.html">test_integrated</a></li>
+<li class="toctree-l1"><a class="reference internal" href="examples.html">Examples</a></li>
+<li class="toctree-l1"><a class="reference internal" href="introduction.html">Motivation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="introduction.html#theoretical-background">Theoretical background</a></li>
 <li class="toctree-l1"><a class="reference internal" href="introduction.html#qhx-project-history">QhX Project History</a></li>
 <li class="toctree-l1"><a class="reference internal" href="introduction.html#qhx-package-overview">QhX Package Overview</a></li>
-<li class="toctree-l1"><a class="reference internal" href="installation.html">Installation</a></li>
-<li class="toctree-l1"><a class="reference internal" href="test_integrated.html">test_integrated</a></li>
-<li class="toctree-l1"><a class="reference internal" href="quick_start.html">Quick Start Tutorial</a></li>
-<li class="toctree-l1"><a class="reference internal" href="examples.html">Examples</a></li>
 <li class="toctree-l1 current"><a class="reference internal" href="package.html">Package Modules</a><ul class="current">
 <li class="toctree-l2"><a class="reference internal" href="data_manager.html">data_manager</a></li>
 <li class="toctree-l2"><a class="reference internal" href="light_curve.html">light_curve</a></li>
 <li class="toctree-l2"><a class="reference internal" href="calculation.html">calculation</a></li>
 <li class="toctree-l2 current"><a class="current reference internal" href="#">detection</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#QhX.detection.process1"><code class="docutils literal notranslate"><span class="pre">process1()</span></code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="#QhX.detection.process1_new"><code class="docutils literal notranslate"><span class="pre">process1_new()</span></code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="#QhX.detection.process1tiktok"><code class="docutils literal notranslate"><span class="pre">process1tiktok()</span></code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="#QhX.detection.same_periods"><code class="docutils literal notranslate"><span class="pre">same_periods()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#differences-between-process1-new-and-process1">Differences between <cite>process1_new</cite> and <cite>process1</cite></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#process1tiktok">process1tiktok</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#QhX.detection.process1"><code class="docutils literal notranslate"><span class="pre">process1()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#QhX.detection.process1_new"><code class="docutils literal notranslate"><span class="pre">process1_new()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#QhX.detection.process1tiktok"><code class="docutils literal notranslate"><span class="pre">process1tiktok()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#QhX.detection.same_periods"><code class="docutils literal notranslate"><span class="pre">same_periods()</span></code></a></li>
+</ul>
+</li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="wwtz.html">wwtz</a></li>
@@ -118,9 +123,78 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
              
-  <section id="module-QhX.detection">
-<span id="detection"></span><h1>detection<a class="headerlink" href="#module-QhX.detection" title="Link to this heading"></a></h1>
-<dl class="py function">
+  <section id="detection">
+<h1>detection<a class="headerlink" href="#detection" title="Link to this heading"></a></h1>
+<p>This module contains functions for processing and analyzing light curve data, including detecting common periods across different bands and simulating damped oscillations in light curves.</p>
+<section id="differences-between-process1-new-and-process1">
+<h2>Differences between <cite>process1_new</cite> and <cite>process1</cite><a class="headerlink" href="#differences-between-process1-new-and-process1" title="Link to this heading"></a></h2>
+<p>Both <cite>process1_new</cite> and <cite>process1</cite> are designed to process and analyze light curve data to detect common periods across different light curve bands. However, there are several key differences in how the two functions operate and return results:</p>
+<ol class="arabic simple">
+<li><p><strong>Return Format</strong>:
+- <strong>`process1_new`</strong>: Returns a list of dictionaries. Each dictionary contains comprehensive information about detected periods, errors, significance, and sampling rates. This structured format is more user-friendly for data manipulation, especially in formats like JSON or Pandas DataFrames.
+- <strong>`process1`</strong>: Returns a NumPy array. This format is more compact and efficient but provides only numerical data without the metadata (e.g., object IDs and sampling rates). It is ideal for computational efficiency but less flexible for detailed data analysis.</p></li>
+<li><p><strong>Result Compilation</strong>:
+- <strong>`process1_new`</strong>: The results are returned as dictionaries that contain metadata such as object IDs and sampling rates. This format is more useful for tasks requiring additional context, visualization, or exporting to files.
+- <strong>`process1`</strong>: Focuses on returning numerical data (such as period values and errors), making it more suitable for tasks that require a straightforward, efficient output.</p></li>
+<li><p><strong>Data Structure</strong>:
+- <strong>`process1_new`</strong>: Provides structured data in the form of dictionaries, where each detected period is associated with the band pair it was detected in, making it easier to interpret.
+- <strong>`process1`</strong>: Returns a NumPy array without explicit labels, requiring the user to know the order of values returned, which may complicate interpretation.</p></li>
+<li><p><strong>Usability</strong>:
+- <strong>`process1_new`</strong>: Best for detailed and flexible data manipulation, such as exporting results or visualization.
+- <strong>`process1`</strong>: Best for cases where computational performance is more important than having detailed, structured data.</p></li>
+</ol>
+<p>In summary, <cite>process1_new</cite> is ideal for tasks requiring detailed output and flexible data handling, while <cite>process1</cite> is optimized for efficient numerical processing.</p>
+</section>
+<section id="process1tiktok">
+<h2>process1tiktok<a class="headerlink" href="#process1tiktok" title="Link to this heading"></a></h2>
+<p>The <cite>process1tiktok</cite> function is an experimental function that processes and analyzes light curve data while simulating damped oscillations. This function is useful for testing how these injected signals are detected and how damping factors affect the detected periods.</p>
+<p>This function simulates a signal with damping factors applied to both its amplitude and frequency. It can inject this simulated signal into real light curve data and attempt to detect periods using wavelet techniques.</p>
+<p>### Parameters</p>
+<ul class="simple">
+<li><p><strong>data_manager</strong> : object
+The data manager that handles access to the dataset.</p></li>
+<li><p><strong>set1</strong> : int
+Identifier representing the dataset to be processed.</p></li>
+<li><p><strong>initial_period</strong> : float
+The initial period of the signal injected into the light curve data.</p></li>
+<li><p><strong>damping_factor_amplitude</strong> : float
+Damping factor that modifies the amplitude of the injected signal over time.</p></li>
+<li><p><strong>damping_factor_frequency</strong> : float
+Damping factor that modifies the frequency of the injected signal over time.</p></li>
+<li><p><strong>snr</strong> : float, optional
+Signal-to-noise ratio of the injected signal. Default is None.</p></li>
+<li><p><strong>inject_signal</strong> : bool, optional
+If <cite>True</cite>, the function will inject the damped oscillating signal into the light curve data. Default is <cite>False</cite>.</p></li>
+<li><p><strong>ntau</strong> : int, optional
+Number of time delays for wavelet analysis. Default is None.</p></li>
+<li><p><strong>ngrid</strong> : int, optional
+Number of grid points for wavelet analysis. Default is None.</p></li>
+<li><p><strong>minfq</strong> : float, optional
+Minimum frequency for the wavelet analysis. If <cite>None</cite>, it is estimated from the data.</p></li>
+<li><p><strong>maxfq</strong> : float, optional
+Maximum frequency for the wavelet analysis. If <cite>None</cite>, it is estimated from the data.</p></li>
+<li><p><strong>parallel</strong> : bool, optional
+If <cite>True</cite>, the function will enable parallel processing to speed up calculations. Default is <cite>False</cite>.</p></li>
+</ul>
+<p>### Returns</p>
+<p>A NumPy array containing the detected common periods and related data across the light curves. The array has the following structure:</p>
+<ul class="simple">
+<li><p><strong>set1</strong> (int): Identifier of the object.</p></li>
+<li><p><strong>sampling_i</strong> (float): Sampling rate for the first band in the pair.</p></li>
+<li><p><strong>sampling_j</strong> (float): Sampling rate for the second band in the pair.</p></li>
+<li><p><strong>period</strong> (float): The detected common period, or 0 if no period was detected.</p></li>
+<li><p><strong>upper_error</strong> (float): The upper bound of the period’s error, or 0 if no period was detected.</p></li>
+<li><p><strong>lower_error</strong> (float): The lower bound of the period’s error, or 0 if no period was detected.</p></li>
+<li><p><strong>significance</strong> (float): The statistical significance of the detected period, or 0 if no period was detected.</p></li>
+<li><p><strong>label</strong> (int): A label identifying the pair of light curves.</p></li>
+</ul>
+<p>### Example Usage</p>
+<p>This example shows how to use the <cite>process1tiktok</cite> function to simulate a damped oscillation and detect its period:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">results</span> <span class="o">=</span> <span class="n">process1tiktok</span><span class="p">(</span><span class="n">data_manager</span><span class="p">,</span> <span class="s1">&#39;1384142&#39;</span><span class="p">,</span> <span class="n">initial_period</span><span class="o">=</span><span class="mf">5.0</span><span class="p">,</span> <span class="n">damping_factor_amplitude</span><span class="o">=</span><span class="mf">0.2</span><span class="p">,</span> <span class="n">damping_factor_frequency</span><span class="o">=</span><span class="mf">0.1</span><span class="p">,</span> <span class="n">snr</span><span class="o">=</span><span class="mi">30</span><span class="p">,</span> <span class="n">inject_signal</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">np</span><span class="o">.</span><span class="n">savetxt</span><span class="p">(</span><span class="s1">&#39;light_curve_tiktok_analysis.csv&#39;</span><span class="p">,</span> <span class="n">results</span><span class="p">,</span> <span class="n">delimiter</span><span class="o">=</span><span class="s1">&#39;,&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+<dl class="py function" id="module-QhX.detection">
 <dt class="sig sig-object py" id="QhX.detection.process1">
 <span class="sig-prename descclassname"><span class="pre">QhX.detection.</span></span><span class="sig-name descname"><span class="pre">process1</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data_manager</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">set1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ntau</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ngrid</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">provided_minfq</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">provided_maxfq</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">include_errors</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">parallel</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/QhX/detection.html#process1"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#QhX.detection.process1" title="Link to this definition"></a></dt>
 <dd><p>Processes and analyzes data related to light curves of a single object to detect common periods across different light curves.</p>
@@ -254,6 +328,7 @@ This tolerance level allows for minor variations in period detection between dat
 is evaluated to determine if it is an intrinsic feature of the astronomical object or a result of random fluctuations.</p>
 </dd></dl>
 
+</section>
 </section>
 
 
