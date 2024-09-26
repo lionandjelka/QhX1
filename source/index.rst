@@ -5,14 +5,15 @@ Welcome to Quasar harmonic eXplorer (QhX's) documentation!
    :maxdepth: 2
    :caption: Contents:
 
-   introduction
    installation
-   test_integrated
    quick_start
+   test_integrated
    examples
+   introduction
    package
    faq
    license
+
 
 
 Indices and tables

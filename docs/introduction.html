@@ -4,7 +4,7 @@
   <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Introduction &mdash; QhX 0.1.0 documentation</title>
+  <title>Motivation &mdash; QhX 0.1.0 documentation</title>
       <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
   <!--[if lt IE 9]>
@@ -18,11 +18,13 @@
         <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
         <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
         <script src="https://unpkg.com/@jupyter-widgets/html-manager@^0.20.0/dist/embed-amd.js"></script>
+        <script>window.MathJax = {"tex": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true}, "options": {"ignoreHtmlClass": "tex2jax_ignore|mathjax_ignore|document", "processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+        <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script src="_static/js/theme.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="Installation" href="installation.html" />
-    <link rel="prev" title="Welcome to Quasar harmonic eXplorer (QhX’s) documentation!" href="index.html" /> 
+    <link rel="next" title="Package Modules" href="package.html" />
+    <link rel="prev" title="Example of visualisation of large files obtained from HPC" href="examples/Example5.html" /> 
 </head>
 
 <body class="wy-body-for-nav"> 
@@ -50,7 +52,16 @@
         </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
               <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
 <ul class="current">
-<li class="toctree-l1 current"><a class="current reference internal" href="#">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="installation.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="quick_start.html">Quick Start Tutorial</a></li>
+<li class="toctree-l1"><a class="reference internal" href="test_integrated.html">test_integrated</a></li>
+<li class="toctree-l1"><a class="reference internal" href="examples.html">Examples</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Motivation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="#theoretical-background">Theoretical background</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#key-features">Key Features</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#performance-and-scalability">Performance and Scalability</a></li>
+</ul>
+</li>
 <li class="toctree-l1"><a class="reference internal" href="#qhx-project-history">QhX Project History</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="#foundation-of-the-method-and-code-functions">Foundation of the Method and Code Functions</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#initial-modularization">Initial Modularization</a></li>
@@ -65,10 +76,6 @@
 <li class="toctree-l2"><a class="reference internal" href="#output-modules">Output Modules</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="installation.html">Installation</a></li>
-<li class="toctree-l1"><a class="reference internal" href="test_integrated.html">test_integrated</a></li>
-<li class="toctree-l1"><a class="reference internal" href="quick_start.html">Quick Start Tutorial</a></li>
-<li class="toctree-l1"><a class="reference internal" href="examples.html">Examples</a></li>
 <li class="toctree-l1"><a class="reference internal" href="package.html">Package Modules</a></li>
 <li class="toctree-l1"><a class="reference internal" href="faq.html">Frequently Asked Questions</a></li>
 <li class="toctree-l1"><a class="reference internal" href="license.html">License</a></li>
@@ -88,7 +95,7 @@
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
       <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
-      <li class="breadcrumb-item active">Introduction</li>
+      <li class="breadcrumb-item active">Motivation</li>
       <li class="wy-breadcrumbs-aside">
             <a href="_sources/introduction.rst.txt" rel="nofollow"> View page source</a>
       </li>
@@ -98,11 +105,57 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
              
-  <section id="introduction">
-<h1>Introduction<a class="headerlink" href="#introduction" title="Link to this heading"></a></h1>
+  <section id="motivation">
+<h1>Motivation<a class="headerlink" href="#motivation" title="Link to this heading"></a></h1>
 <p>Variability in astronomical sources can manifest in multiple forms, intrinsic or extrinsic. Intrinsic variability may be caused by changes in the physical conditions, such as those observed in Cepheid Variables or stellar flares, or it may be accretion-induced, as seen in cataclysmic variables and Active Galactic Nuclei (AGN). Extrinsic variability, on the other hand, results from geometrical factors.</p>
 <p>AGN, in particular, are known to exhibit variability of about 10% across various timescales, ranging from less than an hour to several years. This variability is not uniform across all AGN, presenting a wide spectrum of stochastic behavior. In response to the complex nature of the processes governing these variations, and the nonlinearity observed in quasar light curves, our package—Quasar harmonic eXplorer (QhX)—has been developed to include a method for detecting periodic variability through the cross-correlation of wavelet transforms of quasar light curves in pairs of bands.</p>
 <img alt="LSST time-domain mining diagram" class="align-center" src="_images/LSSTtimedominmining.png" />
+</section>
+<section id="theoretical-background">
+<h1>Theoretical background<a class="headerlink" href="#theoretical-background" title="Link to this heading"></a></h1>
+<p>Quasar emission often exhibits red noise, which manifests as self-similar patterns over varying time scales. This characteristic makes it difficult to identify clear signals of quasi-periodic oscillations (QPO) or binary systems due to the Fourier uncertainty principle. To address these challenges, we have developed a pipeline for <strong>nonlinear periodicity detection</strong>.</p>
+<p>Traditional periodograms transform time-domain signals into the frequency domain. While effective for stationary frequency spectra, this method falls short when handling non-stationary signals, which are common in quasar light curves.
+The cornerstone of our approach is the <strong>2DHybrid method</strong>. Distinct from traditional Fourier methods, the 2DHybrid technique auto or cross-correlates wavelet matrices from one or two signals, transforming them into a two-dimensional domain of period correlations. We specifically use the <strong>Weighted Wavelet Z-transform (WWZ)</strong>, which is highly effective in uncovering periodicities within quasar light curves. The cross-correlation of wavelet  matrices of signals, <span class="math notranslate nohighlight">\(x(t)\)</span> and <span class="math notranslate nohighlight">\(y(t)\)</span>, is defined by:</p>
+<div class="math notranslate nohighlight">
+\[C(a, b) = \int_{-\infty}^{\infty} W_x(a, b) \cdot W_y^*(a, b) \, db\]</div>
+<p>where <span class="math notranslate nohighlight">\(W_x(a, b)\)</span> and <span class="math notranslate nohighlight">\(W_y(a, b)\)</span> are the wavelet transforms of the signals at scale <span class="math notranslate nohighlight">\(a\)</span> and translation <span class="math notranslate nohighlight">\(b\)</span>. <span class="math notranslate nohighlight">\(W_y^*(a, b)\)</span> denotes the complex conjugate of <span class="math notranslate nohighlight">\(W_y(a, b)\)</span>. This operation introduces nonlinearity by integrating over the translation parameter <span class="math notranslate nohighlight">\(b\)</span>, allowing for the detection of complex, multicomponent signals.</p>
+<p>Additionally, the <strong>Gabor limit</strong> can be assessed using the WWZ transform’s frequency (<span class="math notranslate nohighlight">\(f\)</span>) and time (<span class="math notranslate nohighlight">\(\tau\)</span>) data, ensuring the reliability of detected periodicities:</p>
+<div class="math notranslate nohighlight">
+\[\hat{GL} = \Delta \tau \cdot \Delta f &lt; \frac{1}{4\pi}\]</div>
+<p>where <span class="math notranslate nohighlight">\(\Delta f_i = f_{i+1} - f_i\)</span> and <span class="math notranslate nohighlight">\(\Delta f = \frac{1}{m}\sum_{i=1}^{m-1} \Delta f_i\)</span>, and similarly for <span class="math notranslate nohighlight">\(\Delta \tau\)</span>.</p>
+<p>Below is the image that demonstrates the workflow of the 2DHybrid method from data input to output:</p>
+<a class="reference internal image-reference" href="_images/2DHybrid_method.png"><img alt="2DHybrid method workflow" class="align-center" src="_images/2DHybrid_method.png" style="width: 700px;" /></a>
+<p><strong>Figure Description</strong>:
+The image visually outlines the 2DHybrid method used in our pipeline, from the <strong>raw or preprocessed data</strong> to the final <strong>catalog of flagged periodic objects</strong>:</p>
+<ol class="arabic simple">
+<li><p><strong>Raw Data or Preprocessed Data</strong>: Displays a plot of a <strong>1D light curve</strong>, highlighting observed data, mean model, and confidence intervals.</p></li>
+<li><p><strong>2DHybrid Method (Period-Period Domain)</strong>: Shows the transformation from 1D light curves to a <strong>2D period-period correlation plane</strong>. It details main diagonal and off-diagonal correlation clusters, which represent potential periodic components detected by the method.</p></li>
+<li><p><strong>Catalog of Flagged Periodic Objects</strong>: Depicts the output as a <strong>catalog of detected periodic objects</strong>, listing detected periods with parameters such as name, period values, and reliability classifications.</p></li>
+</ol>
+<section id="key-features">
+<h2>Key Features<a class="headerlink" href="#key-features" title="Link to this heading"></a></h2>
+<ol class="arabic simple">
+<li><p>Our pipeline transforms input data into a time-period plane using wavelet transforms, then (auto)correlates the resulting wavelet matrices to generate a correlation density in the period-period domain. This allows for the identification of distinct periodic components in quasar light curves, which manifest as “islands” in the correlation map. The numerical values are obtained by integrating correlation maps along one of dimensions.</p></li>
+<li><p><strong>Intersection over Union (IoU) Metric</strong>: We introduce the IoU metric to evaluate the overlap of detected periods across multiple bands. Alongside traditional statistical measures like significance and error margins, the IoU metric helps to quantify the confidence of each detection. Each detected period is visualized within an “IoU ball,” where the radius reflects relative error, providing a clear and intuitive representation of the detected signals.</p></li>
+<li><p><strong>Numerical and dynamic visual catalogs</strong>: The pipeline generates comprehensive results files in both CSV and visual formats. Using HoloViews, we offer dynamic visualizations of periodicity candidates, stratified across bands based on statistical vetting, making it easier to assess and explore the results.</p></li>
+</ol>
+</section>
+<section id="performance-and-scalability">
+<h2>Performance and Scalability<a class="headerlink" href="#performance-and-scalability" title="Link to this heading"></a></h2>
+<p>We  tested <strong>Quasar harmonic eXplorer (QhX)</strong> across the <strong>LSST AGN Data Challenge</strong> and <strong>GAIA DR3</strong>. These tests were conducted on platforms ranging from the the in-house high-performance computing (HPC) stations to  <strong>ATOS AI Platform</strong> with four Nvidia servers and 120k cores,and personal devices, ensuring cross-platform compatibility.</p>
+<figure class="align-left" id="id1">
+<a class="reference internal image-reference" href="_images/inhouse.png"><img alt="Specifications of the In-House High-Performance Computing System" src="_images/inhouse.png" style="width: 50%;" /></a>
+<figcaption>
+<p><span class="caption-text"><strong>Figure: In-House HPC System Specifications</strong>. Detailed here are the specifications of our in-house HPC system, the HPE ProLiant DL380 Gen10 server, which represents a smaller-scale, yet highly capable, computing resource. Equipped with dual Intel Xeon processors and 64GB of memory, this system supports a variety of computational tasks, ideal for preliminary testing and smaller data sets before scaling up to larger platforms.</span><a class="headerlink" href="#id1" title="Link to this image"></a></p>
+</figcaption>
+</figure>
+<figure class="align-left" id="id2">
+<a class="reference internal image-reference" href="_images/atos.png"><img alt="Specifications of the ATOS AI Platform" src="_images/atos.png" style="width: 50%;" /></a>
+<figcaption>
+<p><span class="caption-text"><strong>Figure: ATOS AI Platform Specifications</strong>. Detailed here are the specifications for the NVIDIA DGX A100 320GB system utilized on the ATOS AI Platform, where our pipeline has been extensively tested. This high-performance setup includes eight NVIDIA A100 GPUs and 1TB of system memory, providing substantial computational power for large-scale machine learning and deep learning workloads.</span><a class="headerlink" href="#id2" title="Link to this image"></a></p>
+</figcaption>
+</figure>
+</section>
 </section>
 <section id="qhx-project-history">
 <h1>QhX Project History<a class="headerlink" href="#qhx-project-history" title="Link to this heading"></a></h1>
@@ -197,8 +250,8 @@ upper errors, and the IoU of the error circles provided. The second module class
            </div>
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
-        <a href="index.html" class="btn btn-neutral float-left" title="Welcome to Quasar harmonic eXplorer (QhX’s) documentation!" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
-        <a href="installation.html" class="btn btn-neutral float-right" title="Installation" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="examples/Example5.html" class="btn btn-neutral float-left" title="Example of visualisation of large files obtained from HPC" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="package.html" class="btn btn-neutral float-right" title="Package Modules" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
   <hr/>
