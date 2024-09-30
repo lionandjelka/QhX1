@@ -11,3 +11,5 @@ panel
 hvplot 
 datashader
 bokeh
+dask[dataframe]
+traitlets
