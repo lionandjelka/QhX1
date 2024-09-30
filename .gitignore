@@ -1,1 +1,9 @@
+# Ignore system files
 .DS_Store
+.Trash/
+*.pickle
+*.doctree
+# Exclude Sphinx documentation build directory
+source/_build/
+
+
