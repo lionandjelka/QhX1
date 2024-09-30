@@ -2,7 +2,7 @@ from setuptools import setup, find_packages
 
 setup(
     name='QhX',  # Replace with our package's name
-    version='0.1.0',  # Replace with our package's version
+    version='0.1.1',  # Replace with our package's version
     author='Andjelka Kovacevic',  #  name
     author_email='andjelka.kovacevic@matf.bg.ac.rs',  # email
     description='A short description of our package',  # Provide a short description
@@ -23,7 +23,10 @@ setup(
         'hvplot',
         ' bokeh',
         'datashader',
-        'pyarrow'
+        'pyarrow',
+        'dask[dataframe]',
+        'traitlets'
+        
         # Add other dependencies required by our package
     ],
     classifiers=[
