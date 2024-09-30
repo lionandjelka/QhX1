@@ -6,7 +6,7 @@ The QhX package can be installed along with its necessary dependencies using pip
 Installing with pip
 -------------------
 
-You can install the package directly from PyPI (assuming it is uploaded there) using the following command:
+You can install the package directly from PyPI  using the following command:
 
 .. code-block:: bash
 
@@ -16,7 +16,7 @@ Users can install QhX by cloning its repository and installing it manually:
 
 .. code-block:: bash
 
-    git clone https://github.com/yourusername/QhX.git
+    git clone https://github.com/lionandjelka/QhX1.git
     cd QhX
     pip install .
 
@@ -38,12 +38,16 @@ QhX requires the following packages to be installed:
 - hvplot
 - datashader
 - bokeh
+- dask[dataframe]
+- traitlets
+
 
 These dependencies should be automatically installed when installing QhX using pip. However, if you need to install them manually, you can use the following command:
 
 .. code-block:: bash
 
-    pip install numpy pandas scipy scikit-learn scikit-optimize libwwz colorednoise tqdm pyarrow panel hvplot datashader bokeh
+    pip install numpy pandas scipy scikit-learn scikit-optimize libwwz colorednoise tqdm pyarrow panel hvplot datashader bokeh dask[dataframe] traitlets
+
 
 Alternatively, if you have a `requirements.txt` file in your repository, you can install all the dependencies using:
 

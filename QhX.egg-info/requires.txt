@@ -11,3 +11,5 @@ hvplot
 bokeh
 datashader
 pyarrow
+dask[dataframe]
+traitlets

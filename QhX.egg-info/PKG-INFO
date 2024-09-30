@@ -1,6 +1,6 @@
 Metadata-Version: 2.1
 Name: QhX
-Version: 0.1.0
+Version: 0.1.1
 Summary: A short description of our package
 Home-page: https://github.com/LSST-SER-SAG-S1/QhX1
 Author: Andjelka Kovacevic
@@ -32,6 +32,8 @@ Requires-Dist: hvplot
 Requires-Dist: bokeh
 Requires-Dist: datashader
 Requires-Dist: pyarrow
+Requires-Dist: dask[dataframe]
+Requires-Dist: traitlets
 
 # QhX: Quasar harmonics eXplorer
 

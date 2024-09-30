@@ -16,18 +16,72 @@ Or, if you are installing from the source:
 
 .. code-block:: bash
 
-    git clone https://github.com/yourusername/QhX.git
+    git clone https://github.com/lionandjelka/QhX1.git
     cd QhX
     pip install .
 
 Step 2: Running Tests
 ---------------------
 
-After installation, you can run the included tests to verify that everything is working as expected:
+Once you have installed the `QhX` package, it is important to run the tests to verify that everything is working correctly in your environment. This section explains how to do that.
+
+### 1. Ensure `pytest` is Installed
+
+To run the tests, you need `pytest`. You can install it using `pip`:
 
 .. code-block:: bash
 
-    (base) Andjelkas-MacBook-Pro-2:QhX1 andjelka$ pytest -s QhX/tests/test_integrated.py 
+    pip install pytest
+
+### 2. Check Where the Package is Installed
+
+To confirm where the `QhX` package is installed, use the following command:
+
+.. code-block:: bash
+
+    pip show QhX
+
+This command will display the installation path of the `QhX` package. You can use this path to locate the tests, if necessary.
+
+### 3. Running the Tests
+
+#### Option 1: Running Tests from the Installed Package Directory
+
+If you are in the directory where the package is installed, you can directly run the tests using:
+
+.. code-block:: bash
+
+    pytest -s QhX/tests/test_integrated.py
+
+#### Option 2: Running Tests from Anywhere
+
+If you are not in the package installation directory, you can specify the full path to the tests. Use the path obtained in step 2, and run:
+
+.. code-block:: bash
+
+    python -m pytest -s /path/to/your/package/QhX/tests/test_integrated.py
+
+This will run the tests regardless of your current directory, as long as the package is installed.
+
+### 4. Using Verbose Mode
+
+For more detailed test output, you can add the `-v` flag for verbose mode:
+
+.. code-block:: bash
+
+    pytest -v -s QhX/tests/test_integrated.py
+
+This will provide more information about each test that is executed.
+
+### Notes
+
+- Make sure that you are using the correct Python environment where the `QhX` package is installed.
+- You can also run `pytest` as a Python module to ensure it's using the correct environment:
+
+.. code-block:: bash
+
+    python -m pytest -s QhX/tests/test_integrated.py
+
 
 You should see output similar to the following, indicating that the tests have passed:
 
