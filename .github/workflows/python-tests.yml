@@ -29,8 +29,7 @@ jobs:
 
     - name: Run pylint
       run: |
-        pylint QhX/  # Adjust 'QhX/' to point to the directory with your Python code
-      continue-on-error: true  # Allow tests to run even if linting fails
+          pylint QhX/ --disable=invalid-name,line-too-long
 
     - name: Run tests
       run: |
