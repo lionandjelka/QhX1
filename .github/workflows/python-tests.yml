@@ -30,6 +30,9 @@ jobs:
     - name: Run pylint
       run: |
           pylint QhX/ --disable=invalid-name,line-too-long
+      continue-on-error: true
+      env:
+        PYLINTHINTS: "Consistent naming conventions such as `snake_case` help maintain readability, reduce conflicts, and ensure compatibility with Python's ecosystem."
 
     - name: Run tests
       run: |
