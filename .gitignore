@@ -23,6 +23,7 @@ wheels/
 *.egg-info/
 .installed.cfg
 *.egg
+QhX_new_dynamical.egg-info/
 
 # PyInstaller
 # Usually these files are written by a python script from a template
