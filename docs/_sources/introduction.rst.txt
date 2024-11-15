@@ -14,7 +14,7 @@ Theoretical background
 
 Quasar emission often exhibits red noise, which manifests as self-similar patterns over varying time scales. This characteristic makes it difficult to identify clear signals of quasi-periodic oscillations (QPO) or binary systems due to the Fourier uncertainty principle. To address these challenges, we have developed a pipeline for **nonlinear periodicity detection**.
 
-Traditional periodograms transform time-domain signals into the frequency domain. While effective for stationary frequency spectra, this method falls short when handling non-stationary signals, which are common in quasar light curves. 
+Traditional periodograms transform time-domain signals into the frequency domain. While effective for stationary frequency spectra, this method falls short when handling non-stationary signals, which are common in quasar light curves.
 The cornerstone of our approach is the **2DHybrid method**. Distinct from traditional Fourier methods, the 2DHybrid technique auto or cross-correlates wavelet matrices from one or two signals, transforming them into a two-dimensional domain of period correlations. We specifically use the **Weighted Wavelet Z-transform (WWZ)**, which is highly effective in uncovering periodicities within quasar light curves. The cross-correlation of wavelet  matrices of signals, :math:`x(t)` and :math:`y(t)`, is defined by:
 
 .. math::
@@ -57,7 +57,7 @@ Key Features
 Performance and Scalability
 ---------------------------
 
-We  tested **Quasar harmonic eXplorer (QhX)** across the **LSST AGN Data Challenge** and **GAIA DR3**. These tests were conducted on platforms ranging from the the in-house high-performance computing (HPC) stations to  **ATOS AI Platform** with four Nvidia servers and 120k cores,and personal devices, ensuring cross-platform compatibility. 
+We  tested **Quasar harmonic eXplorer (QhX)** across the **LSST AGN Data Challenge** and **GAIA DR3**. These tests were conducted on platforms ranging from the the in-house high-performance computing (HPC) stations to  **ATOS AI Platform** with four Nvidia servers and 120k cores,and personal devices, ensuring cross-platform compatibility.
 
 .. figure:: _static/inhouse.png
    :align: left
@@ -96,13 +96,13 @@ Modules Enhancement, Expansion, Packaging, and Testing
 - **Publications**:
   - `Kovacevic et al. 2022 <https://www.mdpi.com/2227-7390/10/22/4278>`_
   - `Kovacevic 2024 (accepted)
-  - `Kovacevic et al. (in prep)` 
+  - `Kovacevic et al. (in prep)`
 
 Parallelization
 ---------------
 - **Contributor**: Momcilo Tosic, AI guest student under the mentorship of Andjelka Kovacevic
 - **Publication**:
-  - `Kovacevic, Tosic, Ilic et al. (in prep)` 
+  - `Kovacevic, Tosic, Ilic et al. (in prep)`
 
 Testing
 -------
@@ -125,7 +125,7 @@ QhX Package Overview
 
 The QhX package is structured into several modules, each with a specific role as indicated in the architecture diagram below.
 
-.. image:: /_static/diagram.png
+.. image:: /_static/qhxdiag.png
    :alt: QhX package architecture diagram
    :align: center
 
@@ -138,38 +138,65 @@ Main Modules
 ------------
 
 - **Algorithms Module**
-  This module encompasses two algorithmic strategies: ``wavelets`` and ``superlets``. The ``superlets`` submodule further divides into ``superlet`` and ``superlets``.
+  The Algorithms module provides two primary strategies for time-series analysis: ``wavelets`` and ``superlets``.
+  - ``wavelets``: Contains functions for performing wavelet transformations and analyzing time-domain data.
+  - ``superlets``: Extends the wavelet approach for higher frequency resolution, with submodules ``superlet`` and ``superlets`` for customized configurations.
 
 - **Utilities Module**
-  The ``utils`` module contains essential utility functions, such as ``mock_lc`` for simulating individual red noise light curves for tests and ``correlation`` for statistical correlation operations on matrices of wavelet coefficients.
+  The ``utils`` module offers essential utility functions, including:
+  - ``mock_lc``: Simulates red noise light curves for testing purposes.
+  - ``correlation``: Computes statistical correlations on matrices of wavelet coefficients, aiding in the identification of periodicities.
 
 - **Plots Module**
-  The ``plots`` module is designed for data visualization, with components for ``interactive_plot`` and ``reg`` for interactive plotting and simple plotting of mock light curves, respectively.
+  The ``plots`` module is designed for visualizing data, with components for:
+  - ``interactive_plot``: Enables interactive exploration of data, particularly useful for examining light curves in detail.
+  - ``reg``: A simpler plotting tool for static visualization of mock light curves and preliminary data checks.
 
 Core Components
 ---------------
 
 - **Light Curve Handling**
-  The ``light_curve`` processes and returns light curves with an option to include magnitude errors for a given set ID.
-  Also, it identifies and removes outliers from a light curve based on a Z-score threshold or Median Absolute Deviation (MAD).
-  It can optionally consider errors in flux measurements for a more nuanced outlier detection.
+  The ``light_curve`` module processes and outputs light curves, with optional inclusion of magnitude errors for specific IDs.
+  - Identifies and removes outliers using a Z-score threshold or Median Absolute Deviation (MAD).
+  - Allows optional inclusion of flux measurement errors to enhance outlier detection accuracy.
 
 - **Parallelization Components**
-  ``parallelization_solver`` and ``iparallelization_solver`` perform parallel computations on High Performance Computing sources using the data as structured as in given examples (``parallelization_solver``) and on more generalized input (``iparallelization_solver``).
+  This package supports high-performance computing through ``parallelization_solver`` and ``iparallelization_solver``:
+  - ``parallelization_solver``: Executes parallel computations on structured data suited for high-performance environments.
+  - ``iparallelization_solver``: Performs parallel processing on more generalized data inputs, providing flexibility for various dataset structures.
 
 - **Detection and Calculation**
-  These components, along with the ``data_manager``, form the backbone of the package's data processing capabilities. ``Calculation`` estimates the error of the determined period using the FWHM method. It also uses a 2D Hybrid method to analyze correlation data of wavelet transforms of light curves to determine periods. Significance is determined through `Johnson et al. 2018 <https://academic.oup.com/mnras/article/484/1/19/5256646>`_ method by simulating a given number of artificial red noise light curves.
-  ``Detection`` compares periods detected in different bands to find common periods, if they do not differ more than 10%.
-  It compiles the results, including period values, errors, and significance, into a structured format.
+  These modules, along with ``data_manager`` and ``data_manager_dynamical``, form the core processing capabilities of QhX.
+  - ``Calculation``: Estimates period errors using the Full Width at Half Maximum (FWHM) method and applies a 2D Hybrid approach for correlation analysis on wavelet-transformed light curves.
+  - ``Detection``: Identifies common periods across different bands, considering periods consistent within a 10% tolerance across bands. This module compiles period values, errors, and significance.
+  - Significance is assessed following the methodology of `Johnson et al. 2018 <https://academic.oup.com/mnras/article/484/1/19/5256646>`_ by simulating red noise light curves.
 
 - **Batch Processing**
-  The ``batch_processor`` and ``merge_batch_csv`` handle the processing of data obtained on HPC in batches and the merging of outputs into a single CSV file.
+  The ``batch_processor`` and ``merge_batch_csv`` modules facilitate batch processing for high-performance computing (HPC) environments:
+  - ``batch_processor``: Manages data processing in batch mode for efficiency on large datasets.
+  - ``merge_batch_csv``: Aggregates output files from batch processes into a single CSV file for easier post-processing and analysis.
 
 Output Modules
 --------------
 
-The ``output`` and ``output_parallel`` modules, although not directly connected to others in the diagram, serve as end points for the system's process flow.
-The first module handles serialized data and calculates the `Intersection over Union metric <_static/IoU_metric.pdf>`_.  It also classifies individually
-detected periods in band pairs as 'reliable', 'medium reliable', 'poor', or 'NAN' based on the significance of the detected period, the relative lower and
-upper errors, and the IoU of the error circles provided. The second module classifies and aggregates results from batches obtained from HPC.
+The ``output`` and ``output_parallel`` modules handle the final classification and output generation:
+- **output**: Serializes and classifies detected periods based on Intersection over Union (IoU) metrics. Each detected period in band pairs is classified as 'reliable', 'medium reliable', 'poor', or 'NAN' based on the period's significance, error bounds, and IoU of error circles.
+- **output_parallel**: Aggregates and classifies results from HPC batch outputs, streamlining data processing for large-scale datasets.
 
+New Dynamic Module: QhX_dynamical
+---------------------------------
+
+- **QhX_dynamical** (Version 0.1.0) introduces capabilities for handling datasets with dynamic filter configurations.
+  - Supports both dynamic and fixed modes, making it versatile for datasets with or without variable filters.
+  - Includes ``ParallelSolver`` for efficient parallel processing of large datasets and an advanced seeding mechanism to ensure reproducibility.
+  - For consistent filter configurations, users can select the 'fixed' mode, making all functionalities from ``QhX`` (Version 0.1.1) accessible.
+
+Usage Recommendations
+---------------------
+
+- Use **QhX (0.1.1)** for datasets with consistent filter setups across all observations.
+- Choose **QhX_dynamical (0.1.0)** for dynamic filter configurations or if you need flexibility in switching between fixed and dynamic modes.
+
+Both versions are open-source and licensed under the MIT License, ensuring accessibility and modifiability.
+
+---

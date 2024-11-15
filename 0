@@ -1,5 +1,7 @@
-Starting time for ID 0 : 2024-04-08 15:27:59.931049
+Starting time for ID 0 : 2024-10-15 21:08:15.828778
 
-End time for ID 0 : 2024-04-08 15:27:59.931382
-Total time : 0:00:00.000333
+Error processing/saving data : 'NoneType' object has no attribute 'fs_gp'
+
+End time for ID 0 : 2024-10-15 21:08:15.828929
+Total time : 0:00:00.000151
 

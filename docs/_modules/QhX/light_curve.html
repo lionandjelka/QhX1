@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>QhX.light_curve &mdash; QhX 0.1.1 documentation</title>
+  <title>QhX.light_curve &mdash; QhX_dynamical 0.1.0 documentation</title>
       <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
   <!--[if lt IE 9]>
@@ -12,7 +12,7 @@
   
         <script src="../../_static/jquery.js?v=5d32c60e"></script>
         <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
-        <script src="../../_static/documentation_options.js?v=a58bc63e"></script>
+        <script src="../../_static/documentation_options.js?v=01f34227"></script>
         <script src="../../_static/doctools.js?v=888ff710"></script>
         <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
         <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
@@ -31,11 +31,11 @@
           
           
           <a href="../../index.html" class="icon icon-home">
-            QhX
+            QhX_dynamical
               <img src="../../_static/logo.png" class="logo" alt="Logo"/>
           </a>
               <div class="version">
-                0.1.1
+                0.1.0
               </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
@@ -47,6 +47,7 @@
         </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
               <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
 <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../important_note.html">Important Note</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../installation.html">Installation</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../quick_start.html">Quick Start Tutorial</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../test_integrated.html">test_integrated</a></li>
@@ -58,6 +59,7 @@
 <li class="toctree-l1"><a class="reference internal" href="../../package.html">Package Modules</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../faq.html">Frequently Asked Questions</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../license.html">License</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../support_and_contact.html">Support and Contact Information</a></li>
 </ul>
 
         </div>
@@ -66,7 +68,7 @@
 
     <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu"  style="background: white" >
           <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
-          <a href="../../index.html">QhX</a>
+          <a href="../../index.html">QhX_dynamical</a>
       </nav>
 
       <div class="wy-nav-content">
@@ -337,7 +339,8 @@
 <span class="k">def</span> <span class="nf">get_lc22</span><span class="p">(</span><span class="n">data_manager</span><span class="p">,</span> <span class="n">set1</span><span class="p">,</span> <span class="n">include_errors</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Process and return light curves with an option to include magnitude errors for a given set ID.</span>
-
+<span class="sd">    This version is for fixed filters ranging from 0 to 3 and preserves MJD precision.</span>
+<span class="sd">    </span>
 <span class="sd">    Parameters:</span>
 <span class="sd">    -----------</span>
 <span class="sd">    - set1 (str): The object ID for which light curves are to be processed.</span>
@@ -345,56 +348,50 @@
 
 <span class="sd">    Returns:</span>
 <span class="sd">    --------</span>
-<span class="sd">    tuple: Contains the processed time series with or without magnitude errors for each</span>
-<span class="sd">           filter, along with their respective sampling rates. Returns None if the set ID</span>
-<span class="sd">           is not found or if any filter data is missing.</span>
+<span class="sd">    tuple: Contains the processed time series with or without magnitude errors for each filter (0 to 3),</span>
+<span class="sd">           along with their respective sampling rates.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="k">if</span> <span class="n">set1</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">data_manager</span><span class="o">.</span><span class="n">fs_gp</span><span class="o">.</span><span class="n">groups</span><span class="p">:</span>
         <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Set ID </span><span class="si">{</span><span class="n">set1</span><span class="si">}</span><span class="s2"> not found.&quot;</span><span class="p">)</span>
         <span class="k">return</span> <span class="kc">None</span>
+    
+    <span class="c1"># Fetch data for the given object ID</span>
+    <span class="n">demo_lc</span> <span class="o">=</span> <span class="n">data_manager</span><span class="o">.</span><span class="n">fs_gp</span><span class="o">.</span><span class="n">get_group</span><span class="p">(</span><span class="n">set1</span><span class="p">)</span>
+    
+    <span class="c1"># Initialize containers for time series data and sampling rates</span>
+    <span class="n">tt_with_errors</span> <span class="o">=</span> <span class="p">{</span><span class="mi">0</span><span class="p">:</span> <span class="kc">None</span><span class="p">,</span> <span class="mi">1</span><span class="p">:</span> <span class="kc">None</span><span class="p">,</span> <span class="mi">2</span><span class="p">:</span> <span class="kc">None</span><span class="p">,</span> <span class="mi">3</span><span class="p">:</span> <span class="kc">None</span><span class="p">}</span>
+    <span class="n">ts_with_errors</span> <span class="o">=</span> <span class="p">{</span><span class="mi">0</span><span class="p">:</span> <span class="kc">None</span><span class="p">,</span> <span class="mi">1</span><span class="p">:</span> <span class="kc">None</span><span class="p">,</span> <span class="mi">2</span><span class="p">:</span> <span class="kc">None</span><span class="p">,</span> <span class="mi">3</span><span class="p">:</span> <span class="kc">None</span><span class="p">}</span>
+    <span class="n">sampling_rates</span> <span class="o">=</span> <span class="p">{</span><span class="mi">0</span><span class="p">:</span> <span class="kc">None</span><span class="p">,</span> <span class="mi">1</span><span class="p">:</span> <span class="kc">None</span><span class="p">,</span> <span class="mi">2</span><span class="p">:</span> <span class="kc">None</span><span class="p">,</span> <span class="mi">3</span><span class="p">:</span> <span class="kc">None</span><span class="p">}</span>
 
-    <span class="n">demo_lc</span> <span class="o">=</span> <span class="n">data_manager</span><span class="o">.</span><span class="n">fs_gp</span><span class="o">.</span><span class="n">get_group</span><span class="p">(</span><span class="n">set1</span><span class="p">)</span>    
-    <span class="n">tt_with_errors0</span> <span class="o">=</span> <span class="n">ts_with_errors0</span> <span class="o">=</span> <span class="n">tt_with_errors1</span> <span class="o">=</span> <span class="n">ts_with_errors1</span> <span class="o">=</span> <span class="kc">None</span>
-    <span class="n">tt_with_errors2</span> <span class="o">=</span> <span class="n">ts_with_errors2</span> <span class="o">=</span> <span class="n">tt_with_errors3</span> <span class="o">=</span> <span class="n">ts_with_errors3</span> <span class="o">=</span> <span class="kc">None</span>
-    <span class="n">sampling0</span> <span class="o">=</span> <span class="n">sampling1</span> <span class="o">=</span> <span class="n">sampling2</span> <span class="o">=</span> <span class="n">sampling3</span> <span class="o">=</span> <span class="kc">None</span>
-
-    <span class="k">for</span> <span class="n">filter_value</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">5</span><span class="p">):</span>  <span class="c1"># Assuming filters range from 1 to 4</span>
+    <span class="k">for</span> <span class="n">filter_value</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">4</span><span class="p">):</span>  <span class="c1"># Fixed filters from 0 to 3</span>
         <span class="n">d</span> <span class="o">=</span> <span class="n">demo_lc</span><span class="p">[</span><span class="n">demo_lc</span><span class="p">[</span><span class="s1">&#39;filter&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="n">filter_value</span><span class="p">]</span><span class="o">.</span><span class="n">sort_values</span><span class="p">(</span><span class="n">by</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;mjd&#39;</span><span class="p">])</span><span class="o">.</span><span class="n">dropna</span><span class="p">()</span>
         <span class="k">if</span> <span class="n">d</span><span class="o">.</span><span class="n">empty</span> <span class="ow">or</span> <span class="p">(</span><span class="s1">&#39;psMagErr&#39;</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">d</span><span class="o">.</span><span class="n">columns</span> <span class="ow">and</span> <span class="n">include_errors</span><span class="p">):</span>
-            <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;No data or &#39;err&#39; column not found for filter </span><span class="si">{</span><span class="n">filter_value</span><span class="si">}</span><span class="s2"> in set </span><span class="si">{</span><span class="n">set1</span><span class="si">}</span><span class="s2">.&quot;</span><span class="p">)</span>
-            <span class="k">return</span> <span class="kc">None</span>
+            <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;No data or &#39;psMagErr&#39; column not found for filter </span><span class="si">{</span><span class="n">filter_value</span><span class="si">}</span><span class="s2"> in set </span><span class="si">{</span><span class="n">set1</span><span class="si">}</span><span class="s2">.&quot;</span><span class="p">)</span>
+            <span class="k">continue</span>
+
+        <span class="c1"># Extract MJD, magnitude, and errors</span>
         <span class="n">tt</span><span class="p">,</span> <span class="n">yy</span> <span class="o">=</span> <span class="n">d</span><span class="p">[</span><span class="s1">&#39;mjd&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">to_numpy</span><span class="p">(),</span> <span class="n">d</span><span class="p">[</span><span class="s1">&#39;psMag&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">to_numpy</span><span class="p">()</span>
         <span class="n">err_mag</span> <span class="o">=</span> <span class="n">d</span><span class="p">[</span><span class="s1">&#39;psMagErr&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">to_numpy</span><span class="p">()</span> <span class="k">if</span> <span class="s1">&#39;psMagErr&#39;</span> <span class="ow">in</span> <span class="n">d</span><span class="o">.</span><span class="n">columns</span> <span class="ow">and</span> <span class="n">include_errors</span> <span class="k">else</span> <span class="kc">None</span>
 
+        <span class="c1"># Handle outliers</span>
         <span class="k">if</span> <span class="n">include_errors</span> <span class="ow">and</span> <span class="n">err_mag</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
             <span class="n">tt</span><span class="p">,</span> <span class="n">yy</span><span class="p">,</span> <span class="n">err_mag</span> <span class="o">=</span> <span class="n">outliers_mad</span><span class="p">(</span><span class="n">tt</span><span class="p">,</span> <span class="n">yy</span><span class="p">,</span> <span class="n">err_mag</span><span class="p">)</span>
         <span class="k">else</span><span class="p">:</span>
             <span class="n">tt</span><span class="p">,</span> <span class="n">yy</span> <span class="o">=</span> <span class="n">outliers_mad</span><span class="p">(</span><span class="n">tt</span><span class="p">,</span> <span class="n">yy</span><span class="p">)</span>
 
+        <span class="c1"># Create the time series with or without errors</span>
         <span class="n">ts_with_or_without_errors</span> <span class="o">=</span> <span class="n">yy</span>
         <span class="k">if</span> <span class="n">include_errors</span> <span class="ow">and</span> <span class="n">err_mag</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
             <span class="n">ts_with_or_without_errors</span> <span class="o">+=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">normal</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">err_mag</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">tt</span><span class="p">))</span>
 
-        <span class="k">if</span> <span class="n">filter_value</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
-            <span class="n">tt_with_errors0</span> <span class="o">=</span> <span class="n">tt</span>
-            <span class="n">ts_with_errors0</span> <span class="o">=</span> <span class="n">ts_with_or_without_errors</span>
-            <span class="n">sampling0</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">diff</span><span class="p">(</span><span class="n">tt</span><span class="p">))</span> <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">tt</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">1</span> <span class="k">else</span> <span class="mi">0</span>
-        <span class="k">elif</span> <span class="n">filter_value</span> <span class="o">==</span> <span class="mi">2</span><span class="p">:</span>
-            <span class="n">tt_with_errors1</span> <span class="o">=</span> <span class="n">tt</span>
-            <span class="n">ts_with_errors1</span> <span class="o">=</span> <span class="n">ts_with_or_without_errors</span>
-            <span class="n">sampling1</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">diff</span><span class="p">(</span><span class="n">tt</span><span class="p">))</span> <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">tt</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">1</span> <span class="k">else</span> <span class="mi">0</span>
-        <span class="k">elif</span> <span class="n">filter_value</span> <span class="o">==</span> <span class="mi">3</span><span class="p">:</span>
-            <span class="n">tt_with_errors2</span> <span class="o">=</span> <span class="n">tt</span>
-            <span class="n">ts_with_errors2</span> <span class="o">=</span> <span class="n">ts_with_or_without_errors</span>
-            <span class="n">sampling2</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">diff</span><span class="p">(</span><span class="n">tt</span><span class="p">))</span> <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">tt</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">1</span> <span class="k">else</span> <span class="mi">0</span>
-        <span class="k">elif</span> <span class="n">filter_value</span> <span class="o">==</span> <span class="mi">4</span><span class="p">:</span>
-            <span class="n">tt_with_errors3</span> <span class="o">=</span> <span class="n">tt</span>
-            <span class="n">ts_with_errors3</span> <span class="o">=</span> <span class="n">ts_with_or_without_errors</span>
-            <span class="n">sampling3</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">diff</span><span class="p">(</span><span class="n">tt</span><span class="p">))</span> <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">tt</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">1</span> <span class="k">else</span> <span class="mi">0</span>
+        <span class="c1"># Store time series and sampling rates</span>
+        <span class="n">tt_with_errors</span><span class="p">[</span><span class="n">filter_value</span><span class="p">]</span> <span class="o">=</span> <span class="n">tt</span>
+        <span class="n">ts_with_errors</span><span class="p">[</span><span class="n">filter_value</span><span class="p">]</span> <span class="o">=</span> <span class="n">ts_with_or_without_errors</span>
+        <span class="n">sampling_rates</span><span class="p">[</span><span class="n">filter_value</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">diff</span><span class="p">(</span><span class="n">tt</span><span class="p">))</span> <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">tt</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">1</span> <span class="k">else</span> <span class="mi">0</span>
 
-    <span class="k">return</span> <span class="n">tt_with_errors0</span><span class="p">,</span> <span class="n">ts_with_errors0</span><span class="p">,</span> <span class="n">tt_with_errors1</span><span class="p">,</span> <span class="n">ts_with_errors1</span><span class="p">,</span> \
-           <span class="n">tt_with_errors2</span><span class="p">,</span> <span class="n">ts_with_errors2</span><span class="p">,</span> <span class="n">tt_with_errors3</span><span class="p">,</span> <span class="n">ts_with_errors3</span><span class="p">,</span> \
-           <span class="n">sampling0</span><span class="p">,</span> <span class="n">sampling1</span><span class="p">,</span> <span class="n">sampling2</span><span class="p">,</span> <span class="n">sampling3</span></div>
+    <span class="k">return</span> <span class="n">tt_with_errors</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">ts_with_errors</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">tt_with_errors</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">ts_with_errors</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> \
+           <span class="n">tt_with_errors</span><span class="p">[</span><span class="mi">2</span><span class="p">],</span> <span class="n">ts_with_errors</span><span class="p">[</span><span class="mi">2</span><span class="p">],</span> <span class="n">tt_with_errors</span><span class="p">[</span><span class="mi">3</span><span class="p">],</span> <span class="n">ts_with_errors</span><span class="p">[</span><span class="mi">3</span><span class="p">],</span> \
+           <span class="n">sampling_rates</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">sampling_rates</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">sampling_rates</span><span class="p">[</span><span class="mi">2</span><span class="p">],</span> <span class="n">sampling_rates</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span></div>
 
 </pre></div>
 

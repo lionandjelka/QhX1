@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>QhX.parallelization_solver &mdash; QhX 0.1.1 documentation</title>
+  <title>QhX.parallelization_solver &mdash; QhX_dynamical 0.1.0 documentation</title>
       <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
   <!--[if lt IE 9]>
@@ -12,7 +12,7 @@
   
         <script src="../../_static/jquery.js?v=5d32c60e"></script>
         <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
-        <script src="../../_static/documentation_options.js?v=a58bc63e"></script>
+        <script src="../../_static/documentation_options.js?v=01f34227"></script>
         <script src="../../_static/doctools.js?v=888ff710"></script>
         <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
         <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
@@ -31,11 +31,11 @@
           
           
           <a href="../../index.html" class="icon icon-home">
-            QhX
+            QhX_dynamical
               <img src="../../_static/logo.png" class="logo" alt="Logo"/>
           </a>
               <div class="version">
-                0.1.1
+                0.1.0
               </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
@@ -47,6 +47,7 @@
         </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
               <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
 <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../important_note.html">Important Note</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../installation.html">Installation</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../quick_start.html">Quick Start Tutorial</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../test_integrated.html">test_integrated</a></li>
@@ -58,6 +59,7 @@
 <li class="toctree-l1"><a class="reference internal" href="../../package.html">Package Modules</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../faq.html">Frequently Asked Questions</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../license.html">License</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../support_and_contact.html">Support and Contact Information</a></li>
 </ul>
 
         </div>
@@ -66,7 +68,7 @@
 
     <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu"  style="background: white" >
           <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
-          <a href="../../index.html">QhX</a>
+          <a href="../../index.html">QhX_dynamical</a>
       </nav>
 
       <div class="wy-nav-content">
@@ -85,198 +87,130 @@
            <div itemprop="articleBody">
              
   <h1>Source code for QhX.parallelization_solver</h1><div class="highlight"><pre>
-<span></span><span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">The `parallelization_solver` module is designed for parallel processing of astronomical data sets. </span>
-<span class="sd">It utilizes multiprocessing to expedite the processing of large data sets across multiple CPUs.</span>
-
-<span class="sd">This module defines the `ParallelSolver` class, which orchestrates the parallel execution and result processing of a </span>
-<span class="sd">specified processing function across different subsets of data. It features mechanisms for time </span>
-<span class="sd">logging and result aggregation, facilitating comprehensive analysis workflows.</span>
-
-<span class="sd">Example usage:</span>
-<span class="sd">--------------</span>
-<span class="sd">    from QhX.detection import process1</span>
-<span class="sd">    from QhX.parallelization_solver import ParallelSolver</span>
-<span class="sd">    from QhX.data_manager import DataManager</span>
-
-<span class="sd">    data_manager = DataManager()</span>
-<span class="sd">    fs_df = data_manager.load_fs_df(&#39;ForcedSourceTable.parquet&#39;)</span>
-<span class="sd">    fs_gp = data_manager.group_fs_df()</span>
-<span class="sd">    fs_df = data_manager.fs_df</span>
-
-<span class="sd">    setids = [&#39;1384177&#39;, &#39;1384184&#39;, &#39;1460382&#39;]</span>
-<span class="sd">    solver = ParallelSolver(data_manager=data_manager, delta_seconds=12.0, num_workers=2, log_files=True)</span>
-<span class="sd">    solver.process_ids(setids, &#39;results.csv&#39;)</span>
-
-<span class="sd">Author:</span>
-<span class="sd">-------</span>
-<span class="sd">Momcilo Tosic</span>
-<span class="sd">Astroinformatics student</span>
-<span class="sd">Faculty of Mathematics, University of Belgrade</span>
-<span class="sd">&quot;&quot;&quot;</span>
-
-<span class="kn">import</span> <span class="nn">sys</span>
+<span></span><span class="kn">import</span> <span class="nn">sys</span>
 <span class="kn">import</span> <span class="nn">time</span>
 <span class="kn">from</span> <span class="nn">multiprocessing</span> <span class="kn">import</span> <span class="n">Process</span>
 <span class="kn">from</span> <span class="nn">multiprocessing</span> <span class="kn">import</span> <span class="n">Queue</span>
-<span class="kn">from</span> <span class="nn">QhX.detection</span> <span class="kn">import</span> <span class="o">*</span>
-<span class="kn">from</span> <span class="nn">QhX.iparallelization_solver</span> <span class="kn">import</span> <span class="o">*</span>
-<span class="kn">from</span> <span class="nn">QhX.utils.logger</span> <span class="kn">import</span> <span class="o">*</span>
+<span class="kn">from</span> <span class="nn">QhX.detection</span> <span class="kn">import</span> <span class="n">process1_new</span>  <span class="c1"># Fixed mode</span>
+<span class="kn">from</span> <span class="nn">QhX.dynamical_mode</span> <span class="kn">import</span> <span class="n">process1_new_dyn</span>  <span class="c1"># Dynamical mode</span>
+<span class="kn">from</span> <span class="nn">QhX.iparallelization_solver</span> <span class="kn">import</span> <span class="n">IParallelSolver</span>
+<span class="kn">from</span> <span class="nn">QhX.utils.logger</span> <span class="kn">import</span> <span class="n">Logger</span>
+
+<span class="n">DEFAULT_NTAU</span> <span class="o">=</span> <span class="kc">None</span>
+<span class="n">DEFAULT_NGRID</span> <span class="o">=</span> <span class="kc">None</span>
+<span class="n">DEFAULT_PROVIDED_MINFQ</span> <span class="o">=</span> <span class="kc">None</span>
+<span class="n">DEFAULT_PROVIDED_MAXFQ</span> <span class="o">=</span> <span class="kc">None</span>
+<span class="n">DEFAULT_LOG_PERIOD</span> <span class="o">=</span> <span class="mf">10.0</span>  <span class="c1"># Placeholder for log period</span>
+<span class="n">DEFAULT_NUM_WORKERS</span> <span class="o">=</span> <span class="mi">4</span>  <span class="c1"># Placeholder for the number of workers</span>
 
 <span class="c1"># CSV format results header</span>
-<span class="n">HEADER</span> <span class="o">=</span> <span class="s2">&quot;ID,Sampling_1,Sampling_2,Common period (Band1 &amp; Band1),Upper error bound,Lower error bound,Significance,Band1-Band2</span><span class="se">\n</span><span class="s2">&quot;</span>
+<span class="n">HEADER</span> <span class="o">=</span> <span class="s2">&quot;ID,Sampling_1,Sampling_2,Common period (Band1 &amp; Band2),Upper error bound,Lower error bound,Significance,Band1-Band2</span><span class="se">\n</span><span class="s2">&quot;</span>
 
 <div class="viewcode-block" id="ParallelSolver">
 <a class="viewcode-back" href="../../parallelization_solver.html#QhX.parallelization_solver.ParallelSolver">[docs]</a>
 <span class="k">class</span> <span class="nc">ParallelSolver</span><span class="p">(</span><span class="n">IParallelSolver</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    A class to manage parallel execution of data processing functions.</span>
-<span class="sd">    </span>
-<span class="sd">    Attributes:</span>
-<span class="sd">        delta_seconds (float): Interval in seconds between log messages.</span>
-<span class="sd">        num_workers (int): Number of worker processes to spawn.</span>
-<span class="sd">        data_manager (DataManager): Instance of DataManager for data retrieval.</span>
-<span class="sd">        log_time (bool): Enable/disable time logging.</span>
-<span class="sd">        log_files (bool): Enable/disable logging to files.</span>
-<span class="sd">        save_results (bool): Enable/disable saving of results to files.</span>
-<span class="sd">        process_function (function): Data processing function to be parallelized.</span>
-<span class="sd">        parallel_arithmetic (bool): Use parallel arithmetic within processing function.</span>
-<span class="sd">        ntau (int): Parameter ntau for process_function. </span>
-<span class="sd">        ngrid (int): Parameter ngrid for process_function.</span>
-<span class="sd">        provided_minfq (int): Parameter provided_minfq for process_function.</span>
-<span class="sd">        provided_maxfq (int): Parameters provided_maxfq for process_function.</span>
 <span class="sd">    &quot;&quot;&quot;</span>    
     <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span>
-                 <span class="n">delta_seconds</span> <span class="o">=</span> <span class="n">DEFAULT_LOG_PERIOD</span><span class="p">,</span> 
-                 <span class="n">num_workers</span> <span class="o">=</span> <span class="n">DEFAULT_NUM_WORKERS</span><span class="p">,</span>
-                 <span class="n">data_manager</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
-                 <span class="n">log_time</span> <span class="o">=</span> <span class="kc">True</span><span class="p">,</span> 
-                 <span class="n">log_files</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span>
-                 <span class="n">save_results</span> <span class="o">=</span> <span class="kc">True</span><span class="p">,</span>
-                 <span class="n">process_function</span> <span class="o">=</span> <span class="n">process1_new</span><span class="p">,</span>
-                 <span class="n">parallel_arithmetic</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span>
-                 <span class="n">ntau</span> <span class="o">=</span>  <span class="n">DEFAULT_NTAU</span><span class="p">,</span>
-                 <span class="n">ngrid</span> <span class="o">=</span> <span class="n">DEFAULT_NGRID</span><span class="p">,</span> 
-                 <span class="n">provided_minfq</span> <span class="o">=</span> <span class="n">DEFAULT_PROVIDED_MINFQ</span><span class="p">,</span> 
-                 <span class="n">provided_maxfq</span> <span class="o">=</span> <span class="n">DEFAULT_PROVIDED_MAXFQ</span>
+                 <span class="n">delta_seconds</span><span class="o">=</span><span class="n">DEFAULT_LOG_PERIOD</span><span class="p">,</span> 
+                 <span class="n">num_workers</span><span class="o">=</span><span class="n">DEFAULT_NUM_WORKERS</span><span class="p">,</span>
+                 <span class="n">data_manager</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+                 <span class="n">log_time</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> 
+                 <span class="n">log_files</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+                 <span class="n">save_results</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+                 <span class="n">process_function</span><span class="o">=</span><span class="n">process1_new</span><span class="p">,</span>  <span class="c1"># Default is fixed mode</span>
+                 <span class="n">parallel_arithmetic</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+                 <span class="n">ntau</span><span class="o">=</span><span class="n">DEFAULT_NTAU</span><span class="p">,</span>
+                 <span class="n">ngrid</span><span class="o">=</span><span class="n">DEFAULT_NGRID</span><span class="p">,</span> 
+                 <span class="n">provided_minfq</span><span class="o">=</span><span class="n">DEFAULT_PROVIDED_MINFQ</span><span class="p">,</span> 
+                 <span class="n">provided_maxfq</span><span class="o">=</span><span class="n">DEFAULT_PROVIDED_MAXFQ</span><span class="p">,</span>
+                 <span class="n">mode</span><span class="o">=</span><span class="s1">&#39;fixed&#39;</span>  <span class="c1"># New mode parameter, default to &#39;fixed&#39;</span>
                 <span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Initialize the ParallelSolver with the specified configuration.&quot;&quot;&quot;</span>
-
         <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">num_workers</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">delta_seconds</span> <span class="o">=</span> <span class="n">delta_seconds</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">data_manager</span> <span class="o">=</span> <span class="n">data_manager</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">process_function</span> <span class="o">=</span> <span class="n">process_function</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">save_results</span> <span class="o">=</span> <span class="n">save_results</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">parallel_arithmetic</span> <span class="o">=</span> <span class="n">parallel_arithmetic</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">ntau</span> <span class="o">=</span> <span class="n">ntau</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">ngrid</span> <span class="o">=</span> <span class="n">ngrid</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">provided_minfq</span> <span class="o">=</span> <span class="n">provided_minfq</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">provided_maxfq</span> <span class="o">=</span> <span class="n">provided_maxfq</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">mode</span> <span class="o">=</span> <span class="n">mode</span>  <span class="c1"># Set the mode</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">logger</span> <span class="o">=</span> <span class="n">Logger</span><span class="p">(</span><span class="n">log_files</span><span class="p">,</span> <span class="n">log_time</span><span class="p">,</span> <span class="n">delta_seconds</span><span class="p">)</span>
+
+        <span class="c1"># Determine the processing function based on the mode</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">mode</span> <span class="o">==</span> <span class="s1">&#39;fixed&#39;</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">process_function</span> <span class="o">=</span> <span class="n">process1_new</span>  <span class="c1"># Use the fixed mode function</span>
+        <span class="k">elif</span> <span class="bp">self</span><span class="o">.</span><span class="n">mode</span> <span class="o">==</span> <span class="s1">&#39;dynamical&#39;</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">process_function</span> <span class="o">=</span> <span class="n">process1_new_dyn</span>  <span class="c1"># Use the dynamical mode function</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Unknown mode: </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">mode</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
 
 <div class="viewcode-block" id="ParallelSolver.aggregate_process_function_result">
 <a class="viewcode-back" href="../../parallelization_solver.html#QhX.parallelization_solver.ParallelSolver.aggregate_process_function_result">[docs]</a>
     <span class="k">def</span> <span class="nf">aggregate_process_function_result</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">result</span><span class="p">):</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        Places the result dict into a string</span>
-
-<span class="sd">        Parameters:</span>
-<span class="sd">            result (dict, list): Result from QhX detection function</span>
-<span class="sd">        &quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Places the result dict into a string&quot;&quot;&quot;</span>
         <span class="n">res</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span>
         <span class="k">for</span> <span class="n">row</span> <span class="ow">in</span> <span class="n">result</span><span class="p">:</span>
-            <span class="c1"># Get row values from array or dict</span>
             <span class="n">row_values</span> <span class="o">=</span> <span class="n">row</span><span class="o">.</span><span class="n">values</span><span class="p">()</span> <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">row</span><span class="p">,</span> <span class="nb">dict</span><span class="p">)</span> <span class="k">else</span> <span class="n">row</span>
-            <span class="c1"># Place row values into CSV formatted string</span>
-            <span class="n">res_string_tmp</span> <span class="o">=</span> <span class="s1">&#39;,&#39;</span><span class="o">.</span><span class="n">join</span><span class="p">([</span><span class="nb">str</span><span class="p">(</span><span class="n">v</span><span class="p">)</span> <span class="k">for</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">row_values</span><span class="p">])</span> <span class="o">+</span> <span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span>
-            <span class="c1"># Append row to resulting string</span>
-            <span class="n">res</span> <span class="o">+=</span> <span class="n">res_string_tmp</span>
+            <span class="n">res</span> <span class="o">+=</span> <span class="s1">&#39;,&#39;</span><span class="o">.</span><span class="n">join</span><span class="p">([</span><span class="nb">str</span><span class="p">(</span><span class="n">v</span><span class="p">)</span> <span class="k">for</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">row_values</span><span class="p">])</span> <span class="o">+</span> <span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span>
         <span class="k">return</span> <span class="n">res</span></div>
 
 
 <div class="viewcode-block" id="ParallelSolver.get_process_function_result">
 <a class="viewcode-back" href="../../parallelization_solver.html#QhX.parallelization_solver.ParallelSolver.get_process_function_result">[docs]</a>
     <span class="k">def</span> <span class="nf">get_process_function_result</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">set_id</span><span class="p">):</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        Run the QhX detection function and return the result</span>
-
-<span class="sd">        Parameters:</span>
-<span class="sd">            set_id (str): Set ID to process</span>
-<span class="sd">        &quot;&quot;&quot;</span>
-        
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Run the detection function and return the result&quot;&quot;&quot;</span>
         <span class="n">result</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">process_function</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">data_manager</span><span class="p">,</span>
-                                               <span class="n">set_id</span><span class="p">,</span> 
-                                               <span class="n">ntau</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">ntau</span><span class="p">,</span> 
-                                               <span class="n">ngrid</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">ngrid</span><span class="p">,</span> 
-                                               <span class="n">provided_minfq</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">provided_minfq</span><span class="p">,</span> 
-                                               <span class="n">provided_maxfq</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">provided_maxfq</span><span class="p">,</span> 
-                                               <span class="n">parallel</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">parallel_arithmetic</span><span class="p">,</span> 
-                                               <span class="n">include_errors</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+                                       <span class="n">set_id</span><span class="p">,</span> 
+                                       <span class="n">ntau</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">ntau</span><span class="p">,</span> 
+                                       <span class="n">ngrid</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">ngrid</span><span class="p">,</span> 
+                                       <span class="n">provided_minfq</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">provided_minfq</span><span class="p">,</span> 
+                                       <span class="n">provided_maxfq</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">provided_maxfq</span><span class="p">,</span> 
+                                       <span class="n">parallel</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">parallel_arithmetic</span><span class="p">,</span> 
+                                       <span class="n">include_errors</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
         <span class="k">return</span> <span class="n">result</span></div>
 
     
 <div class="viewcode-block" id="ParallelSolver.maybe_begin_logging">
 <a class="viewcode-back" href="../../parallelization_solver.html#QhX.parallelization_solver.ParallelSolver.maybe_begin_logging">[docs]</a>
     <span class="k">def</span> <span class="nf">maybe_begin_logging</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">set_id</span><span class="p">):</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        Starts a logging thread</span>
-
-<span class="sd">        Parameters:</span>
-<span class="sd">            set_id (str): ID of set to be processed</span>
-<span class="sd">        &quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Starts a logging thread&quot;&quot;&quot;</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">start</span><span class="p">(</span><span class="n">set_id</span><span class="p">)</span></div>
 
     
 <div class="viewcode-block" id="ParallelSolver.maybe_stop_logging">
 <a class="viewcode-back" href="../../parallelization_solver.html#QhX.parallelization_solver.ParallelSolver.maybe_stop_logging">[docs]</a>
     <span class="k">def</span> <span class="nf">maybe_stop_logging</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot; Stops the logger &quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Stops the logger&quot;&quot;&quot;</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">stop</span><span class="p">()</span></div>
 
 
 <div class="viewcode-block" id="ParallelSolver.maybe_save_local_results">
 <a class="viewcode-back" href="../../parallelization_solver.html#QhX.parallelization_solver.ParallelSolver.maybe_save_local_results">[docs]</a>
     <span class="k">def</span> <span class="nf">maybe_save_local_results</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">set_id</span><span class="p">,</span> <span class="n">res_string</span><span class="p">):</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        Saves local results of set ID formed into a string</span>
-
-<span class="sd">        Parameters:</span>
-<span class="sd">            set_id (str): ID which was processed</span>
-<span class="sd">            res_string (str): The string the result was aggregated into</span>
-<span class="sd">        &quot;&quot;&quot;</span>
-        <span class="c1"># Save local results with header</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Saves local results of set ID formed into a string&quot;&quot;&quot;</span>
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">save_results</span><span class="p">:</span>
-            <span class="n">saving_file</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="n">set_id</span> <span class="o">+</span> <span class="s1">&#39;-result.csv&#39;</span><span class="p">,</span> <span class="s1">&#39;w&#39;</span><span class="p">)</span>
-            <span class="n">saving_file</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">HEADER</span> <span class="o">+</span> <span class="n">res_string</span><span class="p">)</span>
-            <span class="n">saving_file</span><span class="o">.</span><span class="n">close</span><span class="p">()</span></div>
+            <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">set_id</span><span class="si">}</span><span class="s1">-result.csv&#39;</span><span class="p">,</span> <span class="s1">&#39;w&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">saving_file</span><span class="p">:</span>
+                <span class="n">saving_file</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">HEADER</span> <span class="o">+</span> <span class="n">res_string</span><span class="p">)</span></div>
 
 
 <div class="viewcode-block" id="ParallelSolver.maybe_save_results">
 <a class="viewcode-back" href="../../parallelization_solver.html#QhX.parallelization_solver.ParallelSolver.maybe_save_results">[docs]</a>
     <span class="k">def</span> <span class="nf">maybe_save_results</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">results_file</span><span class="p">):</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        If results file is set, saves the full results queue to it.</span>
-
-<span class="sd">        Parameters:</span>
-<span class="sd">            result_file (str, optional): Filename of the result file</span>
-<span class="sd">        &quot;&quot;&quot;</span>
-        <span class="c1"># Save results to results_file</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;If results file is set, saves the full results queue to it.&quot;&quot;&quot;</span>
         <span class="k">if</span> <span class="n">results_file</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
             <span class="k">try</span><span class="p">:</span>
                 <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">results_file</span><span class="p">,</span> <span class="s1">&#39;w&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
-                    <span class="c1"># Header for CSV</span>
                     <span class="n">f</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">HEADER</span><span class="p">)</span>
                     <span class="k">while</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">results_</span><span class="o">.</span><span class="n">empty</span><span class="p">():</span>
-                        <span class="k">try</span><span class="p">:</span>
-                            <span class="n">result</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">results_</span><span class="o">.</span><span class="n">get</span><span class="p">()</span>
-                        <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
-                            <span class="k">break</span>
+                        <span class="n">result</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">results_</span><span class="o">.</span><span class="n">get</span><span class="p">()</span>
                         <span class="n">f</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">result</span><span class="p">)</span>
             <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
-                <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Error while saving: </span><span class="se">\n</span><span class="s1">&#39;</span><span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">e</span><span class="p">))</span></div>
+                <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Error while saving:&#39;</span><span class="p">,</span> <span class="n">e</span><span class="p">)</span></div>
 </div>
-
-        
 
 </pre></div>
 

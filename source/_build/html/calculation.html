@@ -4,7 +4,7 @@
   <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>calculation &mdash; QhX 0.1.1 documentation</title>
+  <title>calculation &mdash; QhX_dynamical 0.1.0 documentation</title>
       <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
   <!--[if lt IE 9]>
@@ -13,7 +13,7 @@
   
         <script src="_static/jquery.js?v=5d32c60e"></script>
         <script src="_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
-        <script src="_static/documentation_options.js?v=a58bc63e"></script>
+        <script src="_static/documentation_options.js?v=01f34227"></script>
         <script src="_static/doctools.js?v=888ff710"></script>
         <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
         <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
@@ -34,11 +34,11 @@
           
           
           <a href="index.html" class="icon icon-home">
-            QhX
+            QhX_dynamical
               <img src="_static/logo.png" class="logo" alt="Logo"/>
           </a>
               <div class="version">
-                0.1.1
+                0.1.0
               </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
@@ -50,6 +50,7 @@
         </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
               <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
 <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="important_note.html">Important Note</a></li>
 <li class="toctree-l1"><a class="reference internal" href="installation.html">Installation</a></li>
 <li class="toctree-l1"><a class="reference internal" href="quick_start.html">Quick Start Tutorial</a></li>
 <li class="toctree-l1"><a class="reference internal" href="test_integrated.html">test_integrated</a></li>
@@ -60,6 +61,7 @@
 <li class="toctree-l1"><a class="reference internal" href="introduction.html#qhx-package-overview">QhX Package Overview</a></li>
 <li class="toctree-l1 current"><a class="reference internal" href="package.html">Package Modules</a><ul class="current">
 <li class="toctree-l2"><a class="reference internal" href="data_manager.html">data_manager</a></li>
+<li class="toctree-l2"><a class="reference internal" href="dynamical_mode.html">Dynamical Mode Module</a></li>
 <li class="toctree-l2"><a class="reference internal" href="light_curve.html">light_curve</a></li>
 <li class="toctree-l2 current"><a class="current reference internal" href="#">calculation</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#QhX.calculation.get_full_width"><code class="docutils literal notranslate"><span class="pre">get_full_width()</span></code></a></li>
@@ -91,6 +93,7 @@
 </li>
 <li class="toctree-l1"><a class="reference internal" href="faq.html">Frequently Asked Questions</a></li>
 <li class="toctree-l1"><a class="reference internal" href="license.html">License</a></li>
+<li class="toctree-l1"><a class="reference internal" href="support_and_contact.html">Support and Contact Information</a></li>
 </ul>
 
         </div>
@@ -99,7 +102,7 @@
 
     <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu"  style="background: white" >
           <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
-          <a href="index.html">QhX</a>
+          <a href="index.html">QhX_dynamical</a>
       </nav>
 
       <div class="wy-nav-content">
@@ -187,43 +190,8 @@ This function analyzes correlation data to determine periods of a light curve.</
 <dt class="sig sig-object py" id="QhX.calculation.signif_johnson">
 <span class="sig-prename descclassname"><span class="pre">QhX.calculation.</span></span><span class="sig-name descname"><span class="pre">signif_johnson</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">numlc</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">peak</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">idx_peaks</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">yax</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">tt</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">yy</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ntau</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ngrid</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">f</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">2</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">peakHeight</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.6</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">minfq</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">maxfq</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">algorithm</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'wwz'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">method</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'linear'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">use_mag_errors</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">err_mag</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/QhX/calculation.html#signif_johnson"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#QhX.calculation.signif_johnson" title="Link to this definition"></a></dt>
 <dd><p>Assess the significance of detected peaks in light curve data using the Johnson method,
-with an option to incorporate magnitude errors into the analysis.
-This function performs a significance test on the peaks detected in a light curve. It
-compares the peak power against the power of red noise (background noise) to determine
-the likelihood that the peak is a true signal rather than noise. The analysis can be
-enhanced by incorporating magnitude errors, which adds robustness to the significance
-estimation.</p>
-<section id="id3">
-<h2>Parameters:<a class="headerlink" href="#id3" title="Link to this heading"></a></h2>
-<ul class="simple">
-<li><p>numlc (int): Number of light curves to analyze.</p></li>
-<li><p>peak (int): Index of the peak for which significance is being calculated.</p></li>
-<li><p>idx_peaks (np.ndarray): Array of indices of detected peaks.</p></li>
-<li><p>yax (np.ndarray): Array of processed data corresponding to the peaks.</p></li>
-<li><p>tt (np.ndarray): Array of time stamps for the light curve.</p></li>
-<li><p>yy (np.ndarray): Array of magnitude values of the light curve.</p></li>
-<li><p>ntau (int): Number of time divisions for the analysis.</p></li>
-<li><p>ngrid (int): Grid size for frequency analysis.</p></li>
-<li><p>f (float, optional): Frequency parameter for the analysis algorithm. Default is 2.</p></li>
-<li><p>peakHeight (float, optional): Threshold for peak height. Default is 0.6.</p></li>
-<li><p>minfq (float, optional): Minimum frequency for analysis. Default is 1500.</p></li>
-<li><p>maxfq (float, optional): Maximum frequency for analysis. Default is 10.</p></li>
-<li><p>algorithm (str, optional): Name of the analysis algorithm to use. Default is ‘wwz’.</p></li>
-<li><p>method (str, optional): Interpolation method for the analysis. Default is ‘linear’.</p></li>
-<li><p>use_mag_errors (bool, optional): Flag to indicate whether to use magnitude errors. Default is False.</p></li>
-<li><p>err_mag (np.ndarray, optional): Array of magnitude errors. Required if use_mag_errors is True.</p></li>
-</ul>
-</section>
-<section id="id4">
-<h2>Returns:<a class="headerlink" href="#id4" title="Link to this heading"></a></h2>
-<p>tuple: A tuple containing the following elements:</p>
-<ul class="simple">
-<li><p>bins (list): List of peak power values.</p></li>
-<li><p>bins11 (list): List of red noise power values at the peak positions.</p></li>
-<li><p>count / numlc (float): Fraction of cases where peak power is larger than red noise power.</p></li>
-<li><p>count11 / numlc (float): Fraction of cases where red noise power is larger than peak power.</p></li>
-</ul>
-</section>
+with an option to incorporate magnitude errors into the analysis.</p>
+<p>Parameters and returns are the same as described before.</p>
 </dd></dl>
 
 </section>

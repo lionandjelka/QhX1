@@ -4,7 +4,7 @@
   <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>processing_utils module &mdash; QhX 0.1.1 documentation</title>
+  <title>processing_utils module &mdash; QhX_dynamical 0.1.0 documentation</title>
       <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
   <!--[if lt IE 9]>
@@ -13,7 +13,7 @@
   
         <script src="_static/jquery.js?v=5d32c60e"></script>
         <script src="_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
-        <script src="_static/documentation_options.js?v=a58bc63e"></script>
+        <script src="_static/documentation_options.js?v=01f34227"></script>
         <script src="_static/doctools.js?v=888ff710"></script>
         <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
         <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
@@ -34,11 +34,11 @@
           
           
           <a href="index.html" class="icon icon-home">
-            QhX
+            QhX_dynamical
               <img src="_static/logo.png" class="logo" alt="Logo"/>
           </a>
               <div class="version">
-                0.1.1
+                0.1.0
               </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
@@ -50,6 +50,7 @@
         </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
               <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
 <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="important_note.html">Important Note</a></li>
 <li class="toctree-l1"><a class="reference internal" href="installation.html">Installation</a></li>
 <li class="toctree-l1"><a class="reference internal" href="quick_start.html">Quick Start Tutorial</a></li>
 <li class="toctree-l1"><a class="reference internal" href="test_integrated.html">test_integrated</a></li>
@@ -60,6 +61,7 @@
 <li class="toctree-l1"><a class="reference internal" href="introduction.html#qhx-package-overview">QhX Package Overview</a></li>
 <li class="toctree-l1 current"><a class="reference internal" href="package.html">Package Modules</a><ul class="current">
 <li class="toctree-l2"><a class="reference internal" href="data_manager.html">data_manager</a></li>
+<li class="toctree-l2"><a class="reference internal" href="dynamical_mode.html">Dynamical Mode Module</a></li>
 <li class="toctree-l2"><a class="reference internal" href="light_curve.html">light_curve</a></li>
 <li class="toctree-l2"><a class="reference internal" href="calculation.html">calculation</a></li>
 <li class="toctree-l2"><a class="reference internal" href="detection.html">detection</a></li>
@@ -90,6 +92,7 @@
 </li>
 <li class="toctree-l1"><a class="reference internal" href="faq.html">Frequently Asked Questions</a></li>
 <li class="toctree-l1"><a class="reference internal" href="license.html">License</a></li>
+<li class="toctree-l1"><a class="reference internal" href="support_and_contact.html">Support and Contact Information</a></li>
 </ul>
 
         </div>
@@ -98,7 +101,7 @@
 
     <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu"  style="background: white" >
           <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
-          <a href="index.html">QhX</a>
+          <a href="index.html">QhX_dynamical</a>
       </nav>
 
       <div class="wy-nav-content">
@@ -150,7 +153,7 @@ creation and inter-process communication.</p>
 </dl>
 <dl class="py function">
 <dt class="sig sig-object py" id="QhX.processing_utils.parallel_pool">
-<span class="sig-prename descclassname"><span class="pre">QhX.processing_utils.</span></span><span class="sig-name descname"><span class="pre">parallel_pool</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">setids</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">data_manager</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ntau</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ngrid</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">provided_minfq</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">provided_maxfq</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">include_errors</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">num_threads</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">2</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/QhX/processing_utils.html#parallel_pool"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#QhX.processing_utils.parallel_pool" title="Link to this definition"></a></dt>
+<span class="sig-prename descclassname"><span class="pre">QhX.processing_utils.</span></span><span class="sig-name descname"><span class="pre">parallel_pool</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">setids</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">data_manager</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ntau</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ngrid</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">provided_minfq</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">provided_maxfq</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">include_errors</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">mode</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'fixed'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">num_threads</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">2</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/QhX/processing_utils.html#parallel_pool"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#QhX.processing_utils.parallel_pool" title="Link to this definition"></a></dt>
 <dd><p>Sets up the thread pool and manages the parallel execution of the processing function.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
@@ -161,7 +164,8 @@ creation and inter-process communication.</p>
 <li><p><strong>ngrid</strong> (<em>int</em>) – Number of grid points.</p></li>
 <li><p><strong>provided_minfq</strong> (<em>float</em>) – Period in days for calculating minimum frequency parameter for processing.</p></li>
 <li><p><strong>provided_maxfq</strong> (<em>float</em>) – Period in days for calculating  maximum frequency parameter for processing.</p></li>
-<li><p><strong>include_errors</strong> (<em>bool</em>) – Flag to indicate whether to include error of magnitudes  handling.</p></li>
+<li><p><strong>include_errors</strong> (<em>bool</em>) – Flag to indicate whether to include error of magnitudes handling.</p></li>
+<li><p><strong>mode</strong> (<em>str</em>) – Either ‘fixed’ or ‘dynamical’ to select which processing function to use.</p></li>
 <li><p><strong>num_threads</strong> (<em>int</em>) – Number of threads to use for parallel processing.</p></li>
 </ul>
 </dd>
@@ -178,21 +182,22 @@ creation and inter-process communication.</p>
 <dt class="sig sig-object py" id="QhX.processing_utils.process_pool">
 <span class="sig-prename descclassname"><span class="pre">QhX.processing_utils.</span></span><span class="sig-name descname"><span class="pre">process_pool</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">args</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/QhX/processing_utils.html#process_pool"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#QhX.processing_utils.process_pool" title="Link to this definition"></a></dt>
 <dd><p>This function is called by each thread in the pool, unpacking the arguments
-and passing them to the actual processing function.</p>
+and passing them to the appropriate processing function based on the mode.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><p><strong>args</strong> (<em>tuple</em>) – A tuple containing all the parameters needed for the
-process1_new function. This should include:
+processing function. This should include:
 - set_id (str)
 - data_manager (DataManager object)
 - ntau (int)
 - ngrid (int)
 - provided_minfq (float)
 - provided_maxfq (float)
-- include_errors (bool)</p>
+- include_errors (bool)
+- mode (str): Either ‘fixed’ or ‘dynamical’ to determine which function to call.</p>
 </dd>
 <dt class="field-even">Returns<span class="colon">:</span></dt>
-<dd class="field-even"><p>The result from the process1_new function.</p>
+<dd class="field-even"><p>The result from the appropriate processing function.</p>
 </dd>
 <dt class="field-odd">Return type<span class="colon">:</span></dt>
 <dd class="field-odd"><p>dict</p>

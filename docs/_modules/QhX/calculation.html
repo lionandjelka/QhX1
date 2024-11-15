@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>QhX.calculation &mdash; QhX 0.1.1 documentation</title>
+  <title>QhX.calculation &mdash; QhX_dynamical 0.1.0 documentation</title>
       <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
   <!--[if lt IE 9]>
@@ -12,7 +12,7 @@
   
         <script src="../../_static/jquery.js?v=5d32c60e"></script>
         <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
-        <script src="../../_static/documentation_options.js?v=a58bc63e"></script>
+        <script src="../../_static/documentation_options.js?v=01f34227"></script>
         <script src="../../_static/doctools.js?v=888ff710"></script>
         <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
         <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
@@ -31,11 +31,11 @@
           
           
           <a href="../../index.html" class="icon icon-home">
-            QhX
+            QhX_dynamical
               <img src="../../_static/logo.png" class="logo" alt="Logo"/>
           </a>
               <div class="version">
-                0.1.1
+                0.1.0
               </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
@@ -47,6 +47,7 @@
         </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
               <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
 <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../important_note.html">Important Note</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../installation.html">Installation</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../quick_start.html">Quick Start Tutorial</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../test_integrated.html">test_integrated</a></li>
@@ -58,6 +59,7 @@
 <li class="toctree-l1"><a class="reference internal" href="../../package.html">Package Modules</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../faq.html">Frequently Asked Questions</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../license.html">License</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../support_and_contact.html">Support and Contact Information</a></li>
 </ul>
 
         </div>
@@ -66,7 +68,7 @@
 
     <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu"  style="background: white" >
           <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
-          <a href="../../index.html">QhX</a>
+          <a href="../../index.html">QhX_dynamical</a>
       </nav>
 
       <div class="wy-nav-content">
@@ -286,47 +288,17 @@
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Assess the significance of detected peaks in light curve data using the Johnson method, </span>
 <span class="sd">    with an option to incorporate magnitude errors into the analysis.</span>
-<span class="sd">    This function performs a significance test on the peaks detected in a light curve. It </span>
-<span class="sd">    compares the peak power against the power of red noise (background noise) to determine </span>
-<span class="sd">    the likelihood that the peak is a true signal rather than noise. The analysis can be </span>
-<span class="sd">    enhanced by incorporating magnitude errors, which adds robustness to the significance </span>
-<span class="sd">    estimation.</span>
-
-<span class="sd">    Parameters:</span>
-<span class="sd">    -----------</span>
-<span class="sd">    - numlc (int): Number of light curves to analyze.</span>
-<span class="sd">    - peak (int): Index of the peak for which significance is being calculated.</span>
-<span class="sd">    - idx_peaks (np.ndarray): Array of indices of detected peaks.</span>
-<span class="sd">    - yax (np.ndarray): Array of processed data corresponding to the peaks.</span>
-<span class="sd">    - tt (np.ndarray): Array of time stamps for the light curve.</span>
-<span class="sd">    - yy (np.ndarray): Array of magnitude values of the light curve.</span>
-<span class="sd">    - ntau (int): Number of time divisions for the analysis.</span>
-<span class="sd">    - ngrid (int): Grid size for frequency analysis.</span>
-<span class="sd">    - f (float, optional): Frequency parameter for the analysis algorithm. Default is 2.</span>
-<span class="sd">    - peakHeight (float, optional): Threshold for peak height. Default is 0.6.</span>
-<span class="sd">    - minfq (float, optional): Minimum frequency for analysis. Default is 1500.</span>
-<span class="sd">    - maxfq (float, optional): Maximum frequency for analysis. Default is 10.</span>
-<span class="sd">    - algorithm (str, optional): Name of the analysis algorithm to use. Default is &#39;wwz&#39;.</span>
-<span class="sd">    - method (str, optional): Interpolation method for the analysis. Default is &#39;linear&#39;.</span>
-<span class="sd">    - use_mag_errors (bool, optional): Flag to indicate whether to use magnitude errors. Default is False.</span>
-<span class="sd">    - err_mag (np.ndarray, optional): Array of magnitude errors. Required if use_mag_errors is True.</span>
-<span class="sd"> </span>
-<span class="sd">    Returns:</span>
-<span class="sd">    --------</span>
-<span class="sd">    tuple: A tuple containing the following elements:</span>
 <span class="sd">    </span>
-<span class="sd">    - bins (list): List of peak power values.</span>
-<span class="sd">    - bins11 (list): List of red noise power values at the peak positions.</span>
-<span class="sd">    - count / numlc (float): Fraction of cases where peak power is larger than red noise power.</span>
-<span class="sd">    - count11 / numlc (float): Fraction of cases where red noise power is larger than peak power.</span>
+<span class="sd">    Parameters and returns are the same as described before.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
-  <span class="c1"># Interpolation parameters (similar to periods function)</span>
+
+    <span class="c1"># Interpolation parameters</span>
     <span class="n">fmin</span> <span class="o">=</span> <span class="mi">1</span> <span class="o">/</span> <span class="n">minfq</span>
     <span class="n">fmax</span> <span class="o">=</span> <span class="mi">1</span> <span class="o">/</span> <span class="n">maxfq</span>
     <span class="n">df</span> <span class="o">=</span> <span class="p">(</span><span class="n">fmax</span> <span class="o">-</span> <span class="n">fmin</span><span class="p">)</span> <span class="o">/</span> <span class="n">ngrid</span>
     <span class="n">osax</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">start</span><span class="o">=</span><span class="n">fmin</span><span class="p">,</span> <span class="n">stop</span><span class="o">=</span><span class="n">fmax</span> <span class="o">+</span> <span class="n">df</span><span class="p">,</span> <span class="n">step</span><span class="o">=</span><span class="n">df</span><span class="p">)</span>
     <span class="n">xax</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">start</span><span class="o">=</span><span class="n">fmin</span><span class="p">,</span> <span class="n">stop</span><span class="o">=</span><span class="n">fmax</span> <span class="o">+</span> <span class="n">df</span><span class="p">,</span> <span class="n">step</span><span class="o">=</span><span class="n">df</span> <span class="o">/</span> <span class="mi">2</span><span class="p">)</span>
-  
+
     <span class="n">idxrep</span> <span class="o">=</span> <span class="n">idx_peaks</span><span class="p">[</span><span class="n">peak</span><span class="p">]</span>
     <span class="n">count</span> <span class="o">=</span> <span class="mf">0.</span>  <span class="c1"># Peak power larger than red noise peak power</span>
     <span class="n">count11</span> <span class="o">=</span> <span class="mf">0.</span>  <span class="c1"># Peak power of red noise larger than observed peak power</span>
@@ -334,48 +306,51 @@
     <span class="n">bins</span> <span class="o">=</span> <span class="p">[]</span>
 
     <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">numlc</span><span class="p">):</span>
-        <span class="k">if</span> <span class="n">use_mag_errors</span><span class="p">:</span>
-            <span class="k">if</span> <span class="n">err_mag</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
-                <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;Magnitude errors (err_mag) must be provided if use_mag_errors is True&quot;</span><span class="p">)</span>
-            <span class="c1"># Combine magnitudes and errors into a single array and shuffle</span>
-            <span class="n">mag_err_combined</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">column_stack</span><span class="p">((</span><span class="n">yy</span><span class="p">,</span> <span class="n">err_mag</span><span class="p">))</span>
-            <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">shuffle</span><span class="p">(</span><span class="n">mag_err_combined</span><span class="p">)</span>
-            <span class="n">shuffled_yy</span><span class="p">,</span> <span class="n">shuffled_err_mag</span> <span class="o">=</span> <span class="n">mag_err_combined</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">],</span> <span class="n">mag_err_combined</span><span class="p">[:,</span> <span class="mi">1</span><span class="p">]</span>
-            <span class="n">y</span> <span class="o">=</span> <span class="n">shuffled_yy</span> <span class="o">+</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">normal</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">shuffled_err_mag</span><span class="p">)</span>
-        <span class="k">else</span><span class="p">:</span>
-            <span class="n">y</span> <span class="o">=</span> <span class="n">shuffle</span><span class="p">(</span><span class="n">yy</span><span class="p">)</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">use_mag_errors</span><span class="p">:</span>
+                <span class="k">if</span> <span class="n">err_mag</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+                    <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;Magnitude errors (err_mag) must be provided if use_mag_errors is True&quot;</span><span class="p">)</span>
+                <span class="c1"># Shuffle magnitudes and errors</span>
+                <span class="n">mag_err_combined</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">column_stack</span><span class="p">((</span><span class="n">yy</span><span class="p">,</span> <span class="n">err_mag</span><span class="p">))</span>
+                <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">shuffle</span><span class="p">(</span><span class="n">mag_err_combined</span><span class="p">)</span>
+                <span class="n">shuffled_yy</span><span class="p">,</span> <span class="n">shuffled_err_mag</span> <span class="o">=</span> <span class="n">mag_err_combined</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">],</span> <span class="n">mag_err_combined</span><span class="p">[:,</span> <span class="mi">1</span><span class="p">]</span>
+                <span class="n">y</span> <span class="o">=</span> <span class="n">shuffled_yy</span> <span class="o">+</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">normal</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">shuffled_err_mag</span><span class="p">)</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">y</span> <span class="o">=</span> <span class="n">shuffle</span><span class="p">(</span><span class="n">yy</span><span class="p">)</span>
 
-        <span class="c1"># WWZ analysis or other algorithm using &#39;y&#39;</span>
-        <span class="n">ntau</span><span class="p">,</span> <span class="n">params</span><span class="p">,</span> <span class="n">decay_constant</span><span class="p">,</span> <span class="n">parallel</span> <span class="o">=</span> <span class="n">inp_param</span><span class="p">(</span><span class="n">ntau</span><span class="o">=</span><span class="n">ntau</span><span class="p">,</span> <span class="n">ngrid</span><span class="o">=</span><span class="n">ngrid</span><span class="p">,</span> <span class="n">f</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">minfq</span><span class="o">=</span><span class="n">minfq</span><span class="p">,</span> <span class="n">maxfq</span><span class="o">=</span><span class="n">maxfq</span><span class="p">)</span>
-        <span class="k">if</span> <span class="n">algorithm</span> <span class="o">==</span> <span class="s1">&#39;wwz&#39;</span><span class="p">:</span>
-            <span class="n">wwt_removedx</span> <span class="o">=</span> <span class="n">libwwz_wwt</span><span class="p">(</span><span class="n">timestamps</span><span class="o">=</span><span class="n">tt</span><span class="p">,</span>
-                                      <span class="n">magnitudes</span><span class="o">=</span><span class="n">y</span><span class="p">,</span>
-                                      <span class="n">time_divisions</span><span class="o">=</span><span class="n">ntau</span><span class="p">,</span>
-                                      <span class="n">freq_params</span><span class="o">=</span><span class="n">params</span><span class="p">,</span>
-                                      <span class="n">decay_constant</span><span class="o">=</span><span class="n">decay_constant</span><span class="p">,</span>
-                                      <span class="n">method</span><span class="o">=</span><span class="s1">&#39;linear&#39;</span><span class="p">,</span>
-                                      <span class="n">parallel</span><span class="o">=</span><span class="n">parallel</span><span class="p">)</span>
-        <span class="n">corr1x</span> <span class="o">=</span> <span class="n">correlation_nd</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">rot90</span><span class="p">(</span><span class="n">wwt_removedx</span><span class="p">[</span><span class="mi">2</span><span class="p">]),</span> <span class="n">np</span><span class="o">.</span><span class="n">rot90</span><span class="p">(</span><span class="n">wwt_removedx</span><span class="p">[</span><span class="mi">2</span><span class="p">]))</span>
-        <span class="n">hhx</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">rot90</span><span class="p">(</span><span class="n">corr1x</span><span class="p">)</span><span class="o">.</span><span class="n">T</span> <span class="o">/</span> <span class="n">corr1x</span><span class="o">.</span><span class="n">max</span><span class="p">()</span>
-        <span class="n">hh1x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">rot90</span><span class="p">(</span><span class="n">hhx</span><span class="o">.</span><span class="n">T</span><span class="p">)</span>
-        <span class="n">hh1xarr</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">hh1x</span><span class="p">)</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span> <span class="o">/</span> <span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">hh1x</span><span class="p">)</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">max</span><span class="p">()</span>
-        <span class="n">f</span> <span class="o">=</span> <span class="n">interpolate</span><span class="o">.</span><span class="n">interp1d</span><span class="p">(</span><span class="n">osax</span><span class="p">,</span> <span class="n">hh1xarr</span><span class="p">,</span> <span class="n">fill_value</span><span class="o">=</span><span class="s2">&quot;extrapolate&quot;</span><span class="p">)</span>
-        <span class="n">interpolated_hh1xarr</span> <span class="o">=</span> <span class="n">f</span><span class="p">(</span><span class="n">xax</span><span class="p">)</span>
-        
-        <span class="c1"># Ensure idxrep is within bounds for interpolated array</span>
-        <span class="k">if</span> <span class="n">idxrep</span> <span class="o">&gt;=</span> <span class="nb">len</span><span class="p">(</span><span class="n">interpolated_hh1xarr</span><span class="p">):</span>
-            <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Index </span><span class="si">{</span><span class="n">idxrep</span><span class="si">}</span><span class="s2"> out of bounds for interpolated_hh1xarr with size </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">interpolated_hh1xarr</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
-            <span class="k">continue</span>
+            <span class="c1"># WWZ analysis or other algorithm using &#39;y&#39;</span>
+            <span class="n">ntau</span><span class="p">,</span> <span class="n">params</span><span class="p">,</span> <span class="n">decay_constant</span><span class="p">,</span> <span class="n">parallel</span> <span class="o">=</span> <span class="n">inp_param</span><span class="p">(</span><span class="n">ntau</span><span class="o">=</span><span class="n">ntau</span><span class="p">,</span> <span class="n">ngrid</span><span class="o">=</span><span class="n">ngrid</span><span class="p">,</span> <span class="n">f</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">minfq</span><span class="o">=</span><span class="n">minfq</span><span class="p">,</span> <span class="n">maxfq</span><span class="o">=</span><span class="n">maxfq</span><span class="p">)</span>
+            <span class="k">if</span> <span class="n">algorithm</span> <span class="o">==</span> <span class="s1">&#39;wwz&#39;</span><span class="p">:</span>
+                <span class="n">wwt_removedx</span> <span class="o">=</span> <span class="n">libwwz_wwt</span><span class="p">(</span><span class="n">timestamps</span><span class="o">=</span><span class="n">tt</span><span class="p">,</span> <span class="n">magnitudes</span><span class="o">=</span><span class="n">y</span><span class="p">,</span> <span class="n">time_divisions</span><span class="o">=</span><span class="n">ntau</span><span class="p">,</span> <span class="n">freq_params</span><span class="o">=</span><span class="n">params</span><span class="p">,</span> <span class="n">decay_constant</span><span class="o">=</span><span class="n">decay_constant</span><span class="p">,</span> <span class="n">method</span><span class="o">=</span><span class="s1">&#39;linear&#39;</span><span class="p">,</span> <span class="n">parallel</span><span class="o">=</span><span class="n">parallel</span><span class="p">)</span>
             
-        <span class="c1"># Append original yax value at idxrep</span>
-        <span class="n">bins</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">yax</span><span class="p">[</span><span class="n">idxrep</span><span class="p">])</span>
-        
-        <span class="c1"># Compare original yax value against interpolated hh1xarr</span>
-        <span class="k">if</span> <span class="n">yax</span><span class="p">[</span><span class="n">idxrep</span><span class="p">]</span> <span class="o">/</span> <span class="n">interpolated_hh1xarr</span><span class="p">[</span><span class="n">idxrep</span><span class="p">]</span> <span class="o">&gt;</span> <span class="mf">1.</span><span class="p">:</span>
-            <span class="n">count</span> <span class="o">+=</span> <span class="mf">1.</span>
-        <span class="k">else</span><span class="p">:</span>
-            <span class="n">count11</span> <span class="o">+=</span> <span class="mf">1.</span>
-            <span class="n">bins11</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">interpolated_hh1xarr</span><span class="p">[</span><span class="n">idxrep</span><span class="p">])</span>
+            <span class="n">corr1x</span> <span class="o">=</span> <span class="n">correlation_nd</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">rot90</span><span class="p">(</span><span class="n">wwt_removedx</span><span class="p">[</span><span class="mi">2</span><span class="p">]),</span> <span class="n">np</span><span class="o">.</span><span class="n">rot90</span><span class="p">(</span><span class="n">wwt_removedx</span><span class="p">[</span><span class="mi">2</span><span class="p">]))</span>
+            <span class="n">hhx</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">rot90</span><span class="p">(</span><span class="n">corr1x</span><span class="p">)</span><span class="o">.</span><span class="n">T</span> <span class="o">/</span> <span class="n">corr1x</span><span class="o">.</span><span class="n">max</span><span class="p">()</span>
+            <span class="n">hh1x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">rot90</span><span class="p">(</span><span class="n">hhx</span><span class="o">.</span><span class="n">T</span><span class="p">)</span>
+            <span class="n">hh1xarr</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">hh1x</span><span class="p">)</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span> <span class="o">/</span> <span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">hh1x</span><span class="p">)</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">max</span><span class="p">()</span>
+
+            <span class="c1"># Interpolate hh1xarr over osax</span>
+            <span class="n">f</span> <span class="o">=</span> <span class="n">interpolate</span><span class="o">.</span><span class="n">interp1d</span><span class="p">(</span><span class="n">osax</span><span class="p">,</span> <span class="n">hh1xarr</span><span class="p">,</span> <span class="n">fill_value</span><span class="o">=</span><span class="s2">&quot;extrapolate&quot;</span><span class="p">)</span>
+            <span class="n">interpolated_hh1xarr</span> <span class="o">=</span> <span class="n">f</span><span class="p">(</span><span class="n">xax</span><span class="p">)</span>
+
+            <span class="c1"># Ensure idxrep is within bounds</span>
+            <span class="k">if</span> <span class="n">idxrep</span> <span class="o">&gt;=</span> <span class="nb">len</span><span class="p">(</span><span class="n">interpolated_hh1xarr</span><span class="p">):</span>
+                <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Index </span><span class="si">{</span><span class="n">idxrep</span><span class="si">}</span><span class="s2"> out of bounds for interpolated_hh1xarr with size </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">interpolated_hh1xarr</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+                <span class="k">continue</span>
+
+            <span class="c1"># Append original yax value at idxrep</span>
+            <span class="n">bins</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">yax</span><span class="p">[</span><span class="n">idxrep</span><span class="p">])</span>
+
+            <span class="c1"># Compare original yax value against interpolated hh1xarr</span>
+            <span class="k">if</span> <span class="n">yax</span><span class="p">[</span><span class="n">idxrep</span><span class="p">]</span> <span class="o">/</span> <span class="n">interpolated_hh1xarr</span><span class="p">[</span><span class="n">idxrep</span><span class="p">]</span> <span class="o">&gt;</span> <span class="mf">1.</span><span class="p">:</span>
+                <span class="n">count</span> <span class="o">+=</span> <span class="mf">1.</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">count11</span> <span class="o">+=</span> <span class="mf">1.</span>
+                <span class="n">bins11</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">interpolated_hh1xarr</span><span class="p">[</span><span class="n">idxrep</span><span class="p">])</span>
+
+        <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+            <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Error during significance calculation for iteration </span><span class="si">{</span><span class="n">i</span><span class="si">}</span><span class="s2">: </span><span class="si">{</span><span class="n">e</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+            <span class="n">bins</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">nan</span><span class="p">)</span>  <span class="c1"># Append NaN in case of an error</span>
+            <span class="n">count</span> <span class="o">+=</span> <span class="mf">0.</span>  <span class="c1"># Handle the case by not contributing to the significance</span>
 
     <span class="k">return</span> <span class="n">bins</span><span class="p">,</span> <span class="n">bins11</span><span class="p">,</span> <span class="n">count</span> <span class="o">/</span> <span class="n">numlc</span><span class="p">,</span> <span class="n">count11</span> <span class="o">/</span> <span class="n">numlc</span></div>
 

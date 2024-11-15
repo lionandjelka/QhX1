@@ -1,4 +1,4 @@
-output 
+output
 =======================
 
 .. automodule:: QhX.output

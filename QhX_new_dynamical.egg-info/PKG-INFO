@@ -1,0 +1,124 @@
+Metadata-Version: 2.1
+Name: QhX_new_dynamical
+Version: 0.1.1
+Summary: QhX_new_dynamical: New package with dynamic mode for light curve analysis
+Author-email: Andjelka Kovacevic <andjelka.kovacevic@matf.bg.ac.rs>
+License: MIT License
+        
+            Copyright (c) 2023 Andjelka Kovacevic and SER-SAG-S1 team
+        
+            Permission is hereby granted, free of charge, to any person obtaining a copy
+            of this software and associated documentation files (the "Software"), to deal
+            in the Software without restriction, including without limitation the rights
+            to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+            copies of the Software, and to permit persons to whom the Software is
+            furnished to do so, subject to the following conditions:
+        
+            The above copyright notice and this permission notice shall be included in all
+            copies or substantial portions of the Software.
+        
+            THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+            IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+            FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+            AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+            LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+            OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+            SOFTWARE.
+        
+        
+Project-URL: Documentation, https://lionandjelka.github.io/QhX_new_dynamical
+Keywords: astronomy,data analysis,light curves,dynamic mode
+Classifier: Development Status :: 3 - Alpha
+Classifier: Intended Audience :: Science/Research
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.7
+Classifier: Programming Language :: Python :: 3.8
+Classifier: Programming Language :: Python :: 3.9
+Classifier: Programming Language :: Python :: 3.10
+Classifier: Operating System :: OS Independent
+Requires-Python: >=3.0
+Description-Content-Type: text/markdown
+License-File: LICENSE.txt
+Requires-Dist: numpy
+Requires-Dist: pandas
+Requires-Dist: scipy
+Requires-Dist: scikit-learn
+Requires-Dist: scikit-optimize
+Requires-Dist: libwwz
+Requires-Dist: colorednoise
+Requires-Dist: tqdm
+Requires-Dist: panel
+Requires-Dist: hvplot
+Requires-Dist: bokeh
+Requires-Dist: datashader
+Requires-Dist: pyarrow
+Requires-Dist: dask[dataframe]
+Requires-Dist: traitlets
+Provides-Extra: tests
+Requires-Dist: pytest; extra == "tests"
+
+# QhX: Quasar harmonics eXplorer
+[![Python CI Workflow](https://github.com/lionandjelka/QhX_new_dynamical/actions/workflows/CI-pylint.yml/badge.svg)](https://github.com/lionandjelka/QhX_new_dynamical/actions/workflows/CI-pylint.yml)
+[![pages-build-deployment](https://github.com/lionandjelka/QhX_new_dynamical/actions/workflows/pages/pages-build-deployment/badge.svg)](https://github.com/lionandjelka/QhX_new_dynamical/actions/workflows/pages/pages-build-deployment)
+
+Framework for 2D Hybrid Method.
+
+<ol>
+  <li><a href="#intro">Introduction to package.</a></li>
+  <li><a href="#inkind">Introduction to in-kind proposal.</a></li>
+  <li><a href="#quick-links">Quick links</a></li>
+</ol>
+
+## Introduction to QhX package
+
+The package will be separated into a few different modules:
+
+1. In response to the inherent nonlinearity of the physical processes and signatures observed in quasar light curves, our package incorporates a method for detecting periodic variability through the cross-correlation of wavelet matrices. 2D Hybrid technique (Kovacevic et al 2018, 2019, Kovacevic et al 2020a, 2021) is based on the calculation of the Wavelet transforms of light curves (LC). These WTs are cross-correlated 𝑀 = 𝐶𝑜𝑟𝑟(𝑊𝑇(𝐿𝐶1), 𝑊𝑇(𝐿𝐶2)) and presented as 2D heatmaps (M). It is also possible to autocorrelate WT of one light curve with itself and obtain a detection of oscillations in one light curve. M provides information about the presence of coordinated or independent signals and relative directions of signal variations.
+
+    Given a sample of quasar light curves, it provides:
+    - Summary statistics, such as detected periods in at least two bands, where the reference band is the u band, with lower and upper errors, and significance.
+    - Comparison statistics between detected periods in band pairs, such as Intersection over Union metric (IoU).
+    - Quantification of the robustness of detected periods.
+    - Numerical catalogue of objects with detected periods and flags related to robustness.
+    - Visualization of numerical catalogue.
+
+    For more information, please refer to the [documentation](https://lionandjelka.github.io/QhX1/introduction.html) for a usage guide.
+
+## Quick Links
+
+- [Introduction to package](#intro)
+- [Introduction to in-kind proposal](#inkind)
+- [Documentation](https://lionandjelka.github.io/QhX1/introduction.html)
+
+## QhX Project History
+
+### Foundation of the Method and Code Functions
+- **Lead**: Andjelka Kovacevic, in-kind lead
+- **Publications**:
+  - [Kovacevic et al. 2018](https://ui.adsabs.harvard.edu/abs/2018MNRAS.475.2051K/abstract)
+  - [Kovacevic et al. 2019](https://ui.adsabs.harvard.edu/abs/2019ApJ...871...32K/abstract)
+  - [Kovacevic, Popovic, Ilic 2020](https://ui.adsabs.harvard.edu/abs/2020OAst...29...51K/abstract)
+
+### Initial Modularization
+- **Contributor**: Viktor Radovic, former in-kind postdoc
+
+### Modules Enhancement, Expansion, Packaging, and Testing
+- **Lead**: Andjelka Kovacevic
+- **Publications**:
+  - [Kovacevic et al. 2022](https://www.mdpi.com/2227-7390/10/22/4278)
+  - Kovacevic 2024 (accepted)
+  - Kovacevic et al. (in prep)
+
+### Parallelization
+- **Contributor**: Momcilo Tosic, AI guest student under the mentorship of Andjelka Kovacevic
+- **Publication**:
+  - Kovacevic, Tosic, Ilic et al. (in prep)
+
+### Testing
+- **Contributors**:
+  - Momcilo Tosic
+  - Vuk Ostojic
+  - Andjelka Kovacevic within COST Action MW GAIA STSM 2023
+
+![image](https://user-images.githubusercontent.com/78701856/191952700-d104bc04-72a4-4258-961b-2c139619e673.png)

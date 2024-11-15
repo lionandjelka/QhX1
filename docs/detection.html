@@ -4,7 +4,7 @@
   <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>detection &mdash; QhX 0.1.1 documentation</title>
+  <title>detection &mdash; QhX_dynamical 0.1.0 documentation</title>
       <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
   <!--[if lt IE 9]>
@@ -13,7 +13,7 @@
   
         <script src="_static/jquery.js?v=5d32c60e"></script>
         <script src="_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
-        <script src="_static/documentation_options.js?v=a58bc63e"></script>
+        <script src="_static/documentation_options.js?v=01f34227"></script>
         <script src="_static/doctools.js?v=888ff710"></script>
         <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
         <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
@@ -34,11 +34,11 @@
           
           
           <a href="index.html" class="icon icon-home">
-            QhX
+            QhX_dynamical
               <img src="_static/logo.png" class="logo" alt="Logo"/>
           </a>
               <div class="version">
-                0.1.1
+                0.1.0
               </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
@@ -50,6 +50,7 @@
         </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
               <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
 <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="important_note.html">Important Note</a></li>
 <li class="toctree-l1"><a class="reference internal" href="installation.html">Installation</a></li>
 <li class="toctree-l1"><a class="reference internal" href="quick_start.html">Quick Start Tutorial</a></li>
 <li class="toctree-l1"><a class="reference internal" href="test_integrated.html">test_integrated</a></li>
@@ -60,6 +61,7 @@
 <li class="toctree-l1"><a class="reference internal" href="introduction.html#qhx-package-overview">QhX Package Overview</a></li>
 <li class="toctree-l1 current"><a class="reference internal" href="package.html">Package Modules</a><ul class="current">
 <li class="toctree-l2"><a class="reference internal" href="data_manager.html">data_manager</a></li>
+<li class="toctree-l2"><a class="reference internal" href="dynamical_mode.html">Dynamical Mode Module</a></li>
 <li class="toctree-l2"><a class="reference internal" href="light_curve.html">light_curve</a></li>
 <li class="toctree-l2"><a class="reference internal" href="calculation.html">calculation</a></li>
 <li class="toctree-l2 current"><a class="current reference internal" href="#">detection</a><ul>
@@ -96,6 +98,7 @@
 </li>
 <li class="toctree-l1"><a class="reference internal" href="faq.html">Frequently Asked Questions</a></li>
 <li class="toctree-l1"><a class="reference internal" href="license.html">License</a></li>
+<li class="toctree-l1"><a class="reference internal" href="support_and_contact.html">Support and Contact Information</a></li>
 </ul>
 
         </div>
@@ -104,7 +107,7 @@
 
     <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu"  style="background: white" >
           <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
-          <a href="index.html">QhX</a>
+          <a href="index.html">QhX_dynamical</a>
       </nav>
 
       <div class="wy-nav-content">
@@ -230,30 +233,28 @@ If <cite>True</cite>, the function will enable parallel processing to speed up c
 <dl class="py function">
 <dt class="sig sig-object py" id="QhX.detection.process1_new">
 <span class="sig-prename descclassname"><span class="pre">QhX.detection.</span></span><span class="sig-name descname"><span class="pre">process1_new</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data_manager</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">set1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ntau</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ngrid</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">provided_minfq</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">provided_maxfq</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">include_errors</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">parallel</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/QhX/detection.html#process1_new"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#QhX.detection.process1_new" title="Link to this definition"></a></dt>
-<dd><p>Processes and analyzes light curve data from a single object to detect common periods across different bands.</p>
-<p>The process involves:</p>
-<ul class="simple">
-<li><p>Verifying the existence of the dataset.</p></li>
-<li><p>Retrieving and processing light curve data for different bands.</p></li>
-<li><p>Applying hybrid wavelet techniques to each band’s light curve data.</p></li>
-<li><p>Comparing periods detected in different bands to find common periods, if they do not differ more than 10%.</p></li>
-<li><p>Compiling the results, including period values, errors, and significance, into a structured format.</p></li>
-</ul>
+<dd><p>Processes and analyzes light curve data from a single object to detect common periods across different bands.
+The process involves:
+- Verifying the existence of the dataset.
+- Retrieving and processing light curve data for different bands.
+- Applying hybrid wavelet techniques to each band’s light curve data.
+- Comparing periods detected in different bands to find common periods, if they do not differ more than 10%.
+- Compiling the results, including period values, errors, and significance, into a structured format.
+:param set1: An identifier representing the dataset to be processed.
+:type set1: int
+:param ntau: Number of time delays in the wavelet analysis.
+:type ntau: int, optional
+:param ngrid: Number of grid points in the wavelet analysis.
+:type ngrid: int, optional
+:param provided_minfq: Period corresponding to the Minimum frequency for analysis, default is calculated from data.
+:type provided_minfq: float, optional
+:param provided_maxfq: Period corresponding to the Maximum frequency for analysis, default is calculated from data.
+:type provided_maxfq: float, optional
+:param include_errors: Include magnitude errors in analysis. Defaults to True.
+:type include_errors: bool, optional</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>set1</strong> (<em>int</em>) – An identifier representing the dataset to be processed.</p></li>
-<li><p><strong>ntau</strong> (<em>int</em><em>, </em><em>optional</em>) – Number of time delays in the wavelet analysis.</p></li>
-<li><p><strong>ngrid</strong> (<em>int</em><em>, </em><em>optional</em>) – Number of grid points in the wavelet analysis.</p></li>
-<li><p><strong>provided_minfq</strong> (<em>float</em><em>, </em><em>optional</em>) – Period correspondig to the Minimum frequency for analysis, default is calculated from data.</p></li>
-<li><p><strong>provided_maxfq</strong> (<em>float</em><em>, </em><em>optional</em>) – Period corresponding to the Maximum frequency for analysis, default is calculated from data.</p></li>
-<li><p><strong>include_errors</strong> (<em>bool</em><em>, </em><em>optional</em>) – Include magnitude errors in analysis. Defaults to True.</p></li>
-</ul>
-</dd>
-<dt class="field-even">Returns<span class="colon">:</span></dt>
-<dd class="field-even"><p><ul class="simple">
-<li><p><em>A list of dictionaries representing the results of the analysis performed on light curve data. Each dictionary contains</em> –</p>
-<ul>
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p><ul class="simple">
 <li><p>objectid (int): Identifier of the object ID.</p></li>
 <li><p>sampling_i (float): Mean sampling rate in the first band of the pair where a common period is detected.</p></li>
 <li><p>sampling_j (float): Mean sampling rate in the second band in the pair.</p></li>
@@ -263,14 +264,10 @@ If <cite>True</cite>, the function will enable parallel processing to speed up c
 <li><p>significance (float): Measure of the statistical significance of the detected period. NaN if no period is detected.</p></li>
 <li><p>label (str): Label identifying the pair of bands where the period was detected (e.g., ‘0-1’, ‘1-2’).</p></li>
 </ul>
-</li>
-<li><p><em>Example Usage</em></p></li>
-<li><p><em>————-</em></p></li>
-<li><p><em># results = process1_new(data_manager, ‘1384142’, ntau=80, ngrid=800, provided_minfq=2000, provided_maxfq=10, include_errors=False)</em></p></li>
-<li><p><em># df = pd.DataFrame(results)</em></p></li>
-<li><p><em># df.to_csv(‘light_curve_analysis.csv’, index=False)</em></p></li>
-</ul>
 </p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>A list of dictionaries representing the results of the analysis performed on light curve data. Each dictionary contains</p>
 </dd>
 </dl>
 </dd></dl>
@@ -284,48 +281,7 @@ If <cite>True</cite>, the function will enable parallel processing to speed up c
 <dt class="sig sig-object py" id="QhX.detection.same_periods">
 <span class="sig-prename descclassname"><span class="pre">QhX.detection.</span></span><span class="sig-name descname"><span class="pre">same_periods</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">r_periods0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">r_periods1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">up0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">low0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">up1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">low1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">peaks0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">hh0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">tt0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">yy0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">peaks1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">hh1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">tt1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">yy1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ntau</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ngrid</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">minfq</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">maxfq</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/QhX/detection.html#same_periods"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#QhX.detection.same_periods" title="Link to this definition"></a></dt>
 <dd><p>Analyzes and identifies common periods between two sets of light curve data,
-assessing their consistency and statistical significance based on a relative tolerance.
-Compares detected periods from two different light curve datasets to identify periods
-consistently observed in both, using a specified relative tolerance level for similarity judgment.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>r_periods0</strong> (<em>list</em>) – Arrays of detected periods from the first light curve dataset.</p></li>
-<li><p><strong>r_periods1</strong> (<em>list</em>) – Arrays of detected periods from the second light curve dataset.</p></li>
-<li><p><strong>up0</strong> (<em>list</em>) – Arrays of upper error bounds for detected periods in the first dataset.</p></li>
-<li><p><strong>low0</strong> (<em>list</em>) – Arrays of lower error bounds for detected periods in the first dataset.</p></li>
-<li><p><strong>up1</strong> (<em>list</em>) – Arrays of upper error bounds for detected periods in the second dataset.</p></li>
-<li><p><strong>low1</strong> (<em>list</em>) – Arrays of lower error bounds for detected periods in the second dataset.</p></li>
-<li><p><strong>peaks0</strong> (<em>list</em>) – Supplementary data including peak information, correlation matrices, and time and magnitude arrays for the first dataset.</p></li>
-<li><p><strong>hh0</strong> (<em>list</em>) – Supplementary data including peak information, correlation matrices, and time and magnitude arrays for the first dataset.</p></li>
-<li><p><strong>tt0</strong> (<em>list</em>) – Supplementary data including peak information, correlation matrices, and time and magnitude arrays for the first dataset.</p></li>
-<li><p><strong>yy0</strong> (<em>list</em>) – Supplementary data including peak information, correlation matrices, and time and magnitude arrays for the first dataset.</p></li>
-<li><p><strong>peaks1</strong> (<em>list</em>) – Supplementary data including peak information, correlation matrices, and time and magnitude arrays for the second dataset.</p></li>
-<li><p><strong>hh1</strong> (<em>list</em>) – Supplementary data including peak information, correlation matrices, and time and magnitude arrays for the second dataset.</p></li>
-<li><p><strong>tt1</strong> (<em>list</em>) – Supplementary data including peak information, correlation matrices, and time and magnitude arrays for the second dataset.</p></li>
-<li><p><strong>yy1</strong> (<em>list</em>) – Supplementary data including peak information, correlation matrices, and time and magnitude arrays for the second dataset.</p></li>
-<li><p><strong>ntau</strong> (<em>int</em>) – Number of time divisions for wavelet analysis.</p></li>
-<li><p><strong>ngrid</strong> (<em>int</em>) – Grid size (frequency resolution) for the analysis.</p></li>
-<li><p><strong>minfq</strong> (<em>float</em>) – Minimum frequency for the analysis.</p></li>
-<li><p><strong>maxfq</strong> (<em>float</em>) – Maximum frequency for the analysis.</p></li>
-</ul>
-</dd>
-<dt class="field-even">Returns<span class="colon">:</span></dt>
-<dd class="field-even"><p><ul class="simple">
-<li><p>r_periods_common (np.ndarray): Detected periods common to both datasets, determined within a 10% relative tolerance.</p></li>
-<li><p>up_common, low_common (np.ndarray): Upper and lower error bounds for these common periods, indicating uncertainty ranges.</p></li>
-<li><p>sig_common (np.ndarray): Significance values for each common period, assessed against shuffled data.</p></li>
-</ul>
-</p>
-</dd>
-<dt class="field-odd">Return type<span class="colon">:</span></dt>
-<dd class="field-odd"><p>A tuple containing arrays of common periods and their associated statistical data</p>
-</dd>
-</dl>
-<p class="rubric">Notes</p>
-<p>The function compares each period in one dataset against periods in the other dataset, using a relative tolerance of 10%.
-This tolerance level allows for minor variations in period detection between datasets. The significance of each common period
-is evaluated to determine if it is an intrinsic feature of the astronomical object or a result of random fluctuations.</p>
+assessing their consistency and statistical significance based on a relative tolerance.</p>
 </dd></dl>
 
 </section>

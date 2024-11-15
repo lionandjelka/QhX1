@@ -4,7 +4,7 @@
   <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Examples &mdash; QhX 0.1.1 documentation</title>
+  <title>Examples &mdash; QhX_dynamical 0.1.0 documentation</title>
       <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
   <!--[if lt IE 9]>
@@ -13,7 +13,7 @@
   
         <script src="_static/jquery.js?v=5d32c60e"></script>
         <script src="_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
-        <script src="_static/documentation_options.js?v=a58bc63e"></script>
+        <script src="_static/documentation_options.js?v=01f34227"></script>
         <script src="_static/doctools.js?v=888ff710"></script>
         <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
         <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
@@ -34,11 +34,11 @@
           
           
           <a href="index.html" class="icon icon-home">
-            QhX
+            QhX_dynamical
               <img src="_static/logo.png" class="logo" alt="Logo"/>
           </a>
               <div class="version">
-                0.1.1
+                0.1.0
               </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
@@ -50,15 +50,21 @@
         </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
               <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
 <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="important_note.html">Important Note</a></li>
 <li class="toctree-l1"><a class="reference internal" href="installation.html">Installation</a></li>
 <li class="toctree-l1"><a class="reference internal" href="quick_start.html">Quick Start Tutorial</a></li>
 <li class="toctree-l1"><a class="reference internal" href="test_integrated.html">test_integrated</a></li>
 <li class="toctree-l1 current"><a class="current reference internal" href="#">Examples</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="examples/Example1.html">SIMPLE TUTORIAL WITH MOCK LIGHT CURVE</a></li>
-<li class="toctree-l2"><a class="reference internal" href="examples/Example2.html">Educative Example of parallel processing using threading on local computer, QSO from LSST AGN Data Challenge database</a></li>
-<li class="toctree-l2"><a class="reference internal" href="examples/Example3.html">Example of using Parallelization module</a></li>
-<li class="toctree-l2"><a class="reference internal" href="examples/Example4.html">MERGER OF LARGE FILES</a></li>
-<li class="toctree-l2"><a class="reference internal" href="examples/Example5.html">Example of visualisation of large files obtained from HPC</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#notebook-examples-and-data-files">Notebook examples and data files</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="examples/Example1.html">SIMPLE TUTORIAL WITH MOCK LIGHT CURVE</a></li>
+<li class="toctree-l3"><a class="reference internal" href="examples/Example2.html">Educative example of parallel processing using threading on local computer, QSO from LSST AGN Data Challenge database</a></li>
+<li class="toctree-l3"><a class="reference internal" href="examples/Example3.html">Example of using Parallelization module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="examples/Example3.html#Solver-Modes:-Fixed-and-Dynamical">Solver Modes: Fixed and Dynamical</a></li>
+<li class="toctree-l3"><a class="reference internal" href="examples/Example4.html">MERGER OF LARGE FILES</a></li>
+<li class="toctree-l3"><a class="reference internal" href="examples/Example5.html">Example of visualisation of large files obtained from HPC</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#data-files-used-in-notebooks">Data Files Used in Notebooks</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="introduction.html">Motivation</a></li>
@@ -68,6 +74,7 @@
 <li class="toctree-l1"><a class="reference internal" href="package.html">Package Modules</a></li>
 <li class="toctree-l1"><a class="reference internal" href="faq.html">Frequently Asked Questions</a></li>
 <li class="toctree-l1"><a class="reference internal" href="license.html">License</a></li>
+<li class="toctree-l1"><a class="reference internal" href="support_and_contact.html">Support and Contact Information</a></li>
 </ul>
 
         </div>
@@ -76,7 +83,7 @@
 
     <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu"  style="background: white" >
           <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
-          <a href="index.html">QhX</a>
+          <a href="index.html">QhX_dynamical</a>
       </nav>
 
       <div class="wy-nav-content">
@@ -99,25 +106,50 @@
 <div class="admonition note">
 <p class="admonition-title">Note</p>
 <p><strong>Note to Users:</strong>
-The examples provided in this documentation (or repository) are intended to illustrate the usage of the QhX package and its functionalities. They are designed as general guides to help you understand how to implement the package in various scenarios.</p>
+The examples provided in this documentation (repository) are intended to illustrate the usage of the QhX package and its functionalities. They are designed as general guides to help you understand how to implement the package in various scenarios.</p>
 <p>However, it is important to recognize that:</p>
 <ul class="simple">
-<li><p><strong>Parameter Selection is Context-Dependent</strong>: The parameters used in these examples are not  optimal for  use cases. They are just toy examples. The selection of parameters (such as <cite>ntau</cite>, <cite>ngrid</cite>, <cite>minfq</cite>, <cite>maxfq</cite>, etc.) should be based on the specific characteristics and requirements of your data and the problem you are addressing.</p></li>
-<li><p><strong>Expert Judgment Required</strong>: We encourage users to apply their domain knowledge and expertise in choosing the most appropriate parameters. Experimentation and validation are key to determining the best configuration for your particular scenario.</p></li>
-<li><p><strong>Dynamic Nature of Data Analysis</strong>: As data analysis is often an iterative and exploratory process, we recommend iteratively adjusting and fine-tuning parameters based on the results and performance metrics relevant to your project.</p></li>
+<li><p><strong>Parameter selection is context-dependent</strong>: The parameters used in these examples are not optimal for real use cases. They are just toy examples. The selection of parameters (such as <cite>ntau</cite>, <cite>ngrid</cite>, <cite>minfq</cite>, <cite>maxfq</cite>, etc.) should be based on the specific characteristics and requirements of your data and the problem you are addressing.</p></li>
+<li><p><strong>Expert judgment required</strong>: We encourage users to apply their domain knowledge and expertise in choosing the most appropriate parameters. Experimentation and validation are key to determining the best configuration for your particular scenario.</p></li>
+<li><p><strong>Dynamic nature of data analysis</strong>: As data analysis is often an iterative and exploratory process, we recommend iteratively adjusting and fine-tuning parameters based on the results and performance metrics relevant to your project.</p></li>
 </ul>
 <p>We hope these examples serve as a starting point for your exploration of the QhX package. If you have any questions or need further guidance on parameter selection, please feel free to reach out to the LSST SER-SAG team or consult additional resources specific to your domain of application.</p>
 </div>
+<section id="notebook-examples-and-data-files">
+<h2>Notebook examples and data files<a class="headerlink" href="#notebook-examples-and-data-files" title="Link to this heading"></a></h2>
+<p>Each notebook uses specific data files that are included in the package. You can access these data files directly from the following links or programmatically within the notebooks.</p>
 <div class="toctree-wrapper compound">
 <p class="caption" role="heading"><span class="caption-text">Notebook Examples</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="examples/Example1.html">SIMPLE TUTORIAL WITH MOCK LIGHT CURVE</a></li>
-<li class="toctree-l1"><a class="reference internal" href="examples/Example2.html">Educative Example of parallel processing using threading on local computer, QSO from LSST AGN Data Challenge database</a></li>
+<li class="toctree-l1"><a class="reference internal" href="examples/Example2.html">Educative example of parallel processing using threading on local computer, QSO from LSST AGN Data Challenge database</a></li>
 <li class="toctree-l1"><a class="reference internal" href="examples/Example3.html">Example of using Parallelization module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="examples/Example3.html#Solver-Modes:-Fixed-and-Dynamical">Solver Modes: Fixed and Dynamical</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="examples/Example3.html#Fixed-Mode-Setup">Fixed Mode Setup</a></li>
+<li class="toctree-l2"><a class="reference internal" href="examples/Example3.html#Dynamical-Mode-Setup">Dynamical Mode Setup</a></li>
+</ul>
+</li>
 <li class="toctree-l1"><a class="reference internal" href="examples/Example4.html">MERGER OF LARGE FILES</a></li>
 <li class="toctree-l1"><a class="reference internal" href="examples/Example5.html">Example of visualisation of large files obtained from HPC</a></li>
 </ul>
 </div>
+</section>
+<section id="data-files-used-in-notebooks">
+<h2>Data Files Used in Notebooks<a class="headerlink" href="#data-files-used-in-notebooks" title="Link to this heading"></a></h2>
+<p>Here are the links to the data files used in the example notebooks:</p>
+<ul class="simple">
+<li><p><strong>Example 1</strong>:
+- Data file: autogenerated</p></li>
+<li><p><strong>Example 2</strong>:
+- Data file: access to LSST AGN DC</p></li>
+<li><p><strong>Example 3</strong>:
+- Data file:  access to LSST AGN DC</p></li>
+<li><p><strong>Example 4</strong>:
+- Batch data folder: <a class="reference external" href="https://drive.google.com/file/d/16b5ALlqNBt6PVXyLtjXu9QJaNgqXgR7e/view?usp=sharing">qhx-batch.zip</a></p></li>
+<li><p><strong>Example 5</strong>:
+- Data file: result.csv in qhx-batch.zip</p></li>
+</ul>
+</section>
 </section>
 
 

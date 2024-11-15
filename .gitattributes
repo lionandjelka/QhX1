@@ -1,0 +1,8 @@
+QhX_dynamical/data/GaiaQSOcandsLCNobsGgt900.pqt filter=lfs diff=lfs merge=lfs -text
+QhX_dynamical/source/_build/doctrees/environment.pickle filter=lfs diff=lfs merge=lfs -text
+QhX_project/data/GaiaQSOcandsLCNobsGgt900.pqt filter=lfs diff=lfs merge=lfs -text
+QhX_project/source/_build/doctrees/environment.pickle filter=lfs diff=lfs merge=lfs -text
+data/GaiaQSOcandsLCNobsGgt900.pqt filter=lfs diff=lfs merge=lfs -text
+source/_build/doctrees/environment.pickle filter=lfs diff=lfs merge=lfs -text
+data/qhx-batch.zip filter=lfs diff=lfs merge=lfs -text
+QhX/data/qhx-batch.zip filter=lfs diff=lfs merge=lfs -text

@@ -4,7 +4,7 @@
   <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Motivation &mdash; QhX 0.1.1 documentation</title>
+  <title>Motivation &mdash; QhX_dynamical 0.1.0 documentation</title>
       <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
   <!--[if lt IE 9]>
@@ -13,7 +13,7 @@
   
         <script src="_static/jquery.js?v=5d32c60e"></script>
         <script src="_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
-        <script src="_static/documentation_options.js?v=a58bc63e"></script>
+        <script src="_static/documentation_options.js?v=01f34227"></script>
         <script src="_static/doctools.js?v=888ff710"></script>
         <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
         <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
@@ -36,11 +36,11 @@
           
           
           <a href="index.html" class="icon icon-home">
-            QhX
+            QhX_dynamical
               <img src="_static/logo.png" class="logo" alt="Logo"/>
           </a>
               <div class="version">
-                0.1.1
+                0.1.0
               </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
@@ -52,6 +52,7 @@
         </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
               <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
 <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="important_note.html">Important Note</a></li>
 <li class="toctree-l1"><a class="reference internal" href="installation.html">Installation</a></li>
 <li class="toctree-l1"><a class="reference internal" href="quick_start.html">Quick Start Tutorial</a></li>
 <li class="toctree-l1"><a class="reference internal" href="test_integrated.html">test_integrated</a></li>
@@ -74,11 +75,14 @@
 <li class="toctree-l2"><a class="reference internal" href="#main-modules">Main Modules</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#core-components">Core Components</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#output-modules">Output Modules</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#new-dynamic-module-qhx-dynamical">New Dynamic Module: QhX_dynamical</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#usage-recommendations">Usage Recommendations</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="package.html">Package Modules</a></li>
 <li class="toctree-l1"><a class="reference internal" href="faq.html">Frequently Asked Questions</a></li>
 <li class="toctree-l1"><a class="reference internal" href="license.html">License</a></li>
+<li class="toctree-l1"><a class="reference internal" href="support_and_contact.html">Support and Contact Information</a></li>
 </ul>
 
         </div>
@@ -87,7 +91,7 @@
 
     <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu"  style="background: white" >
           <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
-          <a href="index.html">QhX</a>
+          <a href="index.html">QhX_dynamical</a>
       </nav>
 
       <div class="wy-nav-content">
@@ -206,43 +210,71 @@ The image visually outlines the 2DHybrid method used in our pipeline, from the <
 <section id="qhx-package-overview">
 <h1>QhX Package Overview<a class="headerlink" href="#qhx-package-overview" title="Link to this heading"></a></h1>
 <p>The QhX package is structured into several modules, each with a specific role as indicated in the architecture diagram below.</p>
-<img alt="QhX package architecture diagram" class="align-center" src="_images/diagram.png" />
+<img alt="QhX package architecture diagram" class="align-center" src="_images/qhxdiag.png" />
 <p>We adopt a modular approach to ensure optimal organization, scalability, and maintainability. By segmenting functionality into distinct modules, we prioritize the separation of concerns, allowing each part of the package to focus on specific aspects of data processing or analysis. This modularity not only facilitates parallel development—enabling different teams to work on separate components simultaneously—but also enhances the scalability of our system, as individual modules can be optimized or redeveloped independently to improve performance and resource management.</p>
 <p>Furthermore, the modular design enhances the reusability of our code. Modules crafted for particular tasks can be easily integrated across different parts of the project or reused in future projects, provided they have well-defined interfaces. This approach simplifies testing and maintenance, as each module can be tested and debugged in isolation, reducing the complexity involved in managing a large codebase. Additionally, our modular architecture offers flexibility in integration, making it straightforward to incorporate various components or third-party modules, ensuring they interact seamlessly through established interfaces.</p>
 <section id="main-modules">
 <h2>Main Modules<a class="headerlink" href="#main-modules" title="Link to this heading"></a></h2>
 <ul class="simple">
 <li><p><strong>Algorithms Module</strong>
-This module encompasses two algorithmic strategies: <code class="docutils literal notranslate"><span class="pre">wavelets</span></code> and <code class="docutils literal notranslate"><span class="pre">superlets</span></code>. The <code class="docutils literal notranslate"><span class="pre">superlets</span></code> submodule further divides into <code class="docutils literal notranslate"><span class="pre">superlet</span></code> and <code class="docutils literal notranslate"><span class="pre">superlets</span></code>.</p></li>
+The Algorithms module provides two primary strategies for time-series analysis: <code class="docutils literal notranslate"><span class="pre">wavelets</span></code> and <code class="docutils literal notranslate"><span class="pre">superlets</span></code>.
+- <code class="docutils literal notranslate"><span class="pre">wavelets</span></code>: Contains functions for performing wavelet transformations and analyzing time-domain data.
+- <code class="docutils literal notranslate"><span class="pre">superlets</span></code>: Extends the wavelet approach for higher frequency resolution, with submodules <code class="docutils literal notranslate"><span class="pre">superlet</span></code> and <code class="docutils literal notranslate"><span class="pre">superlets</span></code> for customized configurations.</p></li>
 <li><p><strong>Utilities Module</strong>
-The <code class="docutils literal notranslate"><span class="pre">utils</span></code> module contains essential utility functions, such as <code class="docutils literal notranslate"><span class="pre">mock_lc</span></code> for simulating individual red noise light curves for tests and <code class="docutils literal notranslate"><span class="pre">correlation</span></code> for statistical correlation operations on matrices of wavelet coefficients.</p></li>
+The <code class="docutils literal notranslate"><span class="pre">utils</span></code> module offers essential utility functions, including:
+- <code class="docutils literal notranslate"><span class="pre">mock_lc</span></code>: Simulates red noise light curves for testing purposes.
+- <code class="docutils literal notranslate"><span class="pre">correlation</span></code>: Computes statistical correlations on matrices of wavelet coefficients, aiding in the identification of periodicities.</p></li>
 <li><p><strong>Plots Module</strong>
-The <code class="docutils literal notranslate"><span class="pre">plots</span></code> module is designed for data visualization, with components for <code class="docutils literal notranslate"><span class="pre">interactive_plot</span></code> and <code class="docutils literal notranslate"><span class="pre">reg</span></code> for interactive plotting and simple plotting of mock light curves, respectively.</p></li>
+The <code class="docutils literal notranslate"><span class="pre">plots</span></code> module is designed for visualizing data, with components for:
+- <code class="docutils literal notranslate"><span class="pre">interactive_plot</span></code>: Enables interactive exploration of data, particularly useful for examining light curves in detail.
+- <code class="docutils literal notranslate"><span class="pre">reg</span></code>: A simpler plotting tool for static visualization of mock light curves and preliminary data checks.</p></li>
 </ul>
 </section>
 <section id="core-components">
 <h2>Core Components<a class="headerlink" href="#core-components" title="Link to this heading"></a></h2>
 <ul class="simple">
 <li><p><strong>Light Curve Handling</strong>
-The <code class="docutils literal notranslate"><span class="pre">light_curve</span></code> processes and returns light curves with an option to include magnitude errors for a given set ID.
-Also, it identifies and removes outliers from a light curve based on a Z-score threshold or Median Absolute Deviation (MAD).
-It can optionally consider errors in flux measurements for a more nuanced outlier detection.</p></li>
+The <code class="docutils literal notranslate"><span class="pre">light_curve</span></code> module processes and outputs light curves, with optional inclusion of magnitude errors for specific IDs.
+- Identifies and removes outliers using a Z-score threshold or Median Absolute Deviation (MAD).
+- Allows optional inclusion of flux measurement errors to enhance outlier detection accuracy.</p></li>
 <li><p><strong>Parallelization Components</strong>
-<code class="docutils literal notranslate"><span class="pre">parallelization_solver</span></code> and <code class="docutils literal notranslate"><span class="pre">iparallelization_solver</span></code> perform parallel computations on High Performance Computing sources using the data as structured as in given examples (<code class="docutils literal notranslate"><span class="pre">parallelization_solver</span></code>) and on more generalized input (<code class="docutils literal notranslate"><span class="pre">iparallelization_solver</span></code>).</p></li>
+This package supports high-performance computing through <code class="docutils literal notranslate"><span class="pre">parallelization_solver</span></code> and <code class="docutils literal notranslate"><span class="pre">iparallelization_solver</span></code>:
+- <code class="docutils literal notranslate"><span class="pre">parallelization_solver</span></code>: Executes parallel computations on structured data suited for high-performance environments.
+- <code class="docutils literal notranslate"><span class="pre">iparallelization_solver</span></code>: Performs parallel processing on more generalized data inputs, providing flexibility for various dataset structures.</p></li>
 <li><p><strong>Detection and Calculation</strong>
-These components, along with the <code class="docutils literal notranslate"><span class="pre">data_manager</span></code>, form the backbone of the package’s data processing capabilities. <code class="docutils literal notranslate"><span class="pre">Calculation</span></code> estimates the error of the determined period using the FWHM method. It also uses a 2D Hybrid method to analyze correlation data of wavelet transforms of light curves to determine periods. Significance is determined through <a class="reference external" href="https://academic.oup.com/mnras/article/484/1/19/5256646">Johnson et al. 2018</a> method by simulating a given number of artificial red noise light curves.
-<code class="docutils literal notranslate"><span class="pre">Detection</span></code> compares periods detected in different bands to find common periods, if they do not differ more than 10%.
-It compiles the results, including period values, errors, and significance, into a structured format.</p></li>
+These modules, along with <code class="docutils literal notranslate"><span class="pre">data_manager</span></code> and <code class="docutils literal notranslate"><span class="pre">data_manager_dynamical</span></code>, form the core processing capabilities of QhX.
+- <code class="docutils literal notranslate"><span class="pre">Calculation</span></code>: Estimates period errors using the Full Width at Half Maximum (FWHM) method and applies a 2D Hybrid approach for correlation analysis on wavelet-transformed light curves.
+- <code class="docutils literal notranslate"><span class="pre">Detection</span></code>: Identifies common periods across different bands, considering periods consistent within a 10% tolerance across bands. This module compiles period values, errors, and significance.
+- Significance is assessed following the methodology of <a class="reference external" href="https://academic.oup.com/mnras/article/484/1/19/5256646">Johnson et al. 2018</a> by simulating red noise light curves.</p></li>
 <li><p><strong>Batch Processing</strong>
-The <code class="docutils literal notranslate"><span class="pre">batch_processor</span></code> and <code class="docutils literal notranslate"><span class="pre">merge_batch_csv</span></code> handle the processing of data obtained on HPC in batches and the merging of outputs into a single CSV file.</p></li>
+The <code class="docutils literal notranslate"><span class="pre">batch_processor</span></code> and <code class="docutils literal notranslate"><span class="pre">merge_batch_csv</span></code> modules facilitate batch processing for high-performance computing (HPC) environments:
+- <code class="docutils literal notranslate"><span class="pre">batch_processor</span></code>: Manages data processing in batch mode for efficiency on large datasets.
+- <code class="docutils literal notranslate"><span class="pre">merge_batch_csv</span></code>: Aggregates output files from batch processes into a single CSV file for easier post-processing and analysis.</p></li>
 </ul>
 </section>
 <section id="output-modules">
 <h2>Output Modules<a class="headerlink" href="#output-modules" title="Link to this heading"></a></h2>
-<p>The <code class="docutils literal notranslate"><span class="pre">output</span></code> and <code class="docutils literal notranslate"><span class="pre">output_parallel</span></code> modules, although not directly connected to others in the diagram, serve as end points for the system’s process flow.
-The first module handles serialized data and calculates the <a class="reference external" href="_static/IoU_metric.pdf">Intersection over Union metric</a>.  It also classifies individually
-detected periods in band pairs as ‘reliable’, ‘medium reliable’, ‘poor’, or ‘NAN’ based on the significance of the detected period, the relative lower and
-upper errors, and the IoU of the error circles provided. The second module classifies and aggregates results from batches obtained from HPC.</p>
+<p>The <code class="docutils literal notranslate"><span class="pre">output</span></code> and <code class="docutils literal notranslate"><span class="pre">output_parallel</span></code> modules handle the final classification and output generation:
+- <strong>output</strong>: Serializes and classifies detected periods based on Intersection over Union (IoU) metrics. Each detected period in band pairs is classified as ‘reliable’, ‘medium reliable’, ‘poor’, or ‘NAN’ based on the period’s significance, error bounds, and IoU of error circles.
+- <strong>output_parallel</strong>: Aggregates and classifies results from HPC batch outputs, streamlining data processing for large-scale datasets.</p>
+</section>
+<section id="new-dynamic-module-qhx-dynamical">
+<h2>New Dynamic Module: QhX_dynamical<a class="headerlink" href="#new-dynamic-module-qhx-dynamical" title="Link to this heading"></a></h2>
+<ul class="simple">
+<li><p><strong>QhX_dynamical</strong> (Version 0.1.0) introduces capabilities for handling datasets with dynamic filter configurations.
+- Supports both dynamic and fixed modes, making it versatile for datasets with or without variable filters.
+- Includes <code class="docutils literal notranslate"><span class="pre">ParallelSolver</span></code> for efficient parallel processing of large datasets and an advanced seeding mechanism to ensure reproducibility.
+- For consistent filter configurations, users can select the ‘fixed’ mode, making all functionalities from <code class="docutils literal notranslate"><span class="pre">QhX</span></code> (Version 0.1.1) accessible.</p></li>
+</ul>
+</section>
+<section id="usage-recommendations">
+<h2>Usage Recommendations<a class="headerlink" href="#usage-recommendations" title="Link to this heading"></a></h2>
+<ul class="simple">
+<li><p>Use <strong>QhX (0.1.1)</strong> for datasets with consistent filter setups across all observations.</p></li>
+<li><p>Choose <strong>QhX_dynamical (0.1.0)</strong> for dynamic filter configurations or if you need flexibility in switching between fixed and dynamic modes.</p></li>
+</ul>
+<p>Both versions are open-source and licensed under the MIT License, ensuring accessibility and modifiability.</p>
+<p>—</p>
 </section>
 </section>
 

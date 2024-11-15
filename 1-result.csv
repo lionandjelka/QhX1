@@ -1,3 +1,7 @@
-ID,Sampling_1,Sampling_2,Common period (Band1 & Band1),Upper error bound,Lower error bound,Significance,Band1-Band2
-ID,Sampling_1,Sampling_2,Common period (Band1 & Band1),Upper error bound,Lower error bound,Significance,Band1-Band2
-
+ID,Sampling_1,Sampling_2,Common period (Band1 & Band2),Upper error bound,Lower error bound,Significance,Band1-Band2
+1,40.81632653061206,48.97959183673447,nan,nan,nan,nan,0-1
+1,40.81632653061206,44.89795918367381,nan,nan,nan,nan,0-2
+1,40.81632653061206,40.81632653061256,nan,nan,nan,nan,0-3
+1,48.97959183673447,44.89795918367381,nan,nan,nan,nan,1-2
+1,48.97959183673447,40.81632653061256,nan,nan,nan,nan,1-3
+1,44.89795918367381,40.81632653061256,nan,nan,nan,nan,2-3

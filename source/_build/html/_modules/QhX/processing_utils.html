@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>QhX.processing_utils &mdash; QhX 0.1.1 documentation</title>
+  <title>QhX.processing_utils &mdash; QhX_dynamical 0.1.0 documentation</title>
       <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
   <!--[if lt IE 9]>
@@ -12,7 +12,7 @@
   
         <script src="../../_static/jquery.js?v=5d32c60e"></script>
         <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
-        <script src="../../_static/documentation_options.js?v=a58bc63e"></script>
+        <script src="../../_static/documentation_options.js?v=01f34227"></script>
         <script src="../../_static/doctools.js?v=888ff710"></script>
         <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
         <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
@@ -31,11 +31,11 @@
           
           
           <a href="../../index.html" class="icon icon-home">
-            QhX
+            QhX_dynamical
               <img src="../../_static/logo.png" class="logo" alt="Logo"/>
           </a>
               <div class="version">
-                0.1.1
+                0.1.0
               </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
@@ -47,6 +47,7 @@
         </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
               <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
 <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../important_note.html">Important Note</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../installation.html">Installation</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../quick_start.html">Quick Start Tutorial</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../test_integrated.html">test_integrated</a></li>
@@ -58,6 +59,7 @@
 <li class="toctree-l1"><a class="reference internal" href="../../package.html">Package Modules</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../faq.html">Frequently Asked Questions</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../license.html">License</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../support_and_contact.html">Support and Contact Information</a></li>
 </ul>
 
         </div>
@@ -66,7 +68,7 @@
 
     <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu"  style="background: white" >
           <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
-          <a href="../../index.html">QhX</a>
+          <a href="../../index.html">QhX_dynamical</a>
       </nav>
 
       <div class="wy-nav-content">
@@ -124,22 +126,23 @@
 <span class="sd">&quot;&quot;&quot;</span>
 
 
-
-<span class="c1"># Import the necessary threading component from Python&#39;s standard library</span>
+<span class="c1"># Import necessary threading components</span>
 <span class="kn">from</span> <span class="nn">multiprocessing.dummy</span> <span class="kn">import</span> <span class="n">Pool</span> <span class="k">as</span> <span class="n">ThreadPool</span>
-<span class="c1"># Assuming process1_new is the function you want to execute in parallel</span>
+
+<span class="c1"># Import functions for both fixed and dynamical modes</span>
 <span class="kn">from</span> <span class="nn">QhX.detection</span> <span class="kn">import</span> <span class="n">process1_new</span>
+<span class="kn">from</span> <span class="nn">QhX.dynamical_mode</span> <span class="kn">import</span> <span class="n">process1_new_dyn</span>
 
 <div class="viewcode-block" id="process_pool">
 <a class="viewcode-back" href="../../processing_utils.html#QhX.processing_utils.process_pool">[docs]</a>
 <span class="k">def</span> <span class="nf">process_pool</span><span class="p">(</span><span class="n">args</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    This function is called by each thread in the pool, unpacking the arguments</span>
-<span class="sd">    and passing them to the actual processing function.</span>
+<span class="sd">    and passing them to the appropriate processing function based on the mode.</span>
 
 <span class="sd">    Args:</span>
 <span class="sd">        args (tuple): A tuple containing all the parameters needed for the </span>
-<span class="sd">                      process1_new function. This should include:</span>
+<span class="sd">                      processing function. This should include:</span>
 <span class="sd">                      - set_id (str)</span>
 <span class="sd">                      - data_manager (DataManager object)</span>
 <span class="sd">                      - ntau (int)</span>
@@ -147,20 +150,26 @@
 <span class="sd">                      - provided_minfq (float)</span>
 <span class="sd">                      - provided_maxfq (float)</span>
 <span class="sd">                      - include_errors (bool)</span>
+<span class="sd">                      - mode (str): Either &#39;fixed&#39; or &#39;dynamical&#39; to determine which function to call.</span>
 
 <span class="sd">    Returns:</span>
-<span class="sd">        dict: The result from the process1_new function.</span>
+<span class="sd">        dict: The result from the appropriate processing function.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="c1"># Unpack the arguments</span>
-    <span class="n">set_id</span><span class="p">,</span> <span class="n">data_manager</span><span class="p">,</span> <span class="n">ntau</span><span class="p">,</span> <span class="n">ngrid</span><span class="p">,</span> <span class="n">provided_minfq</span><span class="p">,</span> <span class="n">provided_maxfq</span><span class="p">,</span> <span class="n">include_errors</span> <span class="o">=</span> <span class="n">args</span>
-    
-    <span class="c1"># Call the processing function with the unpacked arguments</span>
-    <span class="k">return</span> <span class="n">process1_new</span><span class="p">(</span><span class="n">data_manager</span><span class="p">,</span> <span class="n">set_id</span><span class="p">,</span> <span class="n">ntau</span><span class="p">,</span> <span class="n">ngrid</span><span class="p">,</span> <span class="n">provided_minfq</span><span class="p">,</span> <span class="n">provided_maxfq</span><span class="p">,</span> <span class="n">include_errors</span><span class="p">)</span></div>
+    <span class="n">set_id</span><span class="p">,</span> <span class="n">data_manager</span><span class="p">,</span> <span class="n">ntau</span><span class="p">,</span> <span class="n">ngrid</span><span class="p">,</span> <span class="n">provided_minfq</span><span class="p">,</span> <span class="n">provided_maxfq</span><span class="p">,</span> <span class="n">include_errors</span><span class="p">,</span> <span class="n">mode</span> <span class="o">=</span> <span class="n">args</span>
+
+    <span class="c1"># Call the appropriate processing function based on the mode</span>
+    <span class="k">if</span> <span class="n">mode</span> <span class="o">==</span> <span class="s1">&#39;fixed&#39;</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">process1_new</span><span class="p">(</span><span class="n">data_manager</span><span class="p">,</span> <span class="n">set_id</span><span class="p">,</span> <span class="n">ntau</span><span class="p">,</span> <span class="n">ngrid</span><span class="p">,</span> <span class="n">provided_minfq</span><span class="p">,</span> <span class="n">provided_maxfq</span><span class="p">,</span> <span class="n">include_errors</span><span class="p">)</span>
+    <span class="k">elif</span> <span class="n">mode</span> <span class="o">==</span> <span class="s1">&#39;dynamical&#39;</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">process1_new_dyn</span><span class="p">(</span><span class="n">data_manager</span><span class="p">,</span> <span class="n">set_id</span><span class="p">,</span> <span class="n">ntau</span><span class="p">,</span> <span class="n">ngrid</span><span class="p">,</span> <span class="n">provided_minfq</span><span class="p">,</span> <span class="n">provided_maxfq</span><span class="p">,</span> <span class="n">include_errors</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Unknown mode: </span><span class="si">{</span><span class="n">mode</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span></div>
 
 
 <div class="viewcode-block" id="parallel_pool">
 <a class="viewcode-back" href="../../processing_utils.html#QhX.processing_utils.parallel_pool">[docs]</a>
-<span class="k">def</span> <span class="nf">parallel_pool</span><span class="p">(</span><span class="n">setids</span><span class="p">,</span> <span class="n">data_manager</span><span class="p">,</span> <span class="n">ntau</span><span class="p">,</span> <span class="n">ngrid</span><span class="p">,</span> <span class="n">provided_minfq</span><span class="p">,</span> <span class="n">provided_maxfq</span><span class="p">,</span> <span class="n">include_errors</span><span class="p">,</span> <span class="n">num_threads</span><span class="o">=</span><span class="mi">2</span><span class="p">):</span>
+<span class="k">def</span> <span class="nf">parallel_pool</span><span class="p">(</span><span class="n">setids</span><span class="p">,</span> <span class="n">data_manager</span><span class="p">,</span> <span class="n">ntau</span><span class="p">,</span> <span class="n">ngrid</span><span class="p">,</span> <span class="n">provided_minfq</span><span class="p">,</span> <span class="n">provided_maxfq</span><span class="p">,</span> <span class="n">include_errors</span><span class="p">,</span> <span class="n">mode</span><span class="o">=</span><span class="s1">&#39;fixed&#39;</span><span class="p">,</span> <span class="n">num_threads</span><span class="o">=</span><span class="mi">2</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Sets up the thread pool and manages the parallel execution of the processing function.</span>
 
@@ -171,18 +180,19 @@
 <span class="sd">        ngrid (int): Number of grid points.</span>
 <span class="sd">        provided_minfq (float): Period in days for calculating minimum frequency parameter for processing.</span>
 <span class="sd">        provided_maxfq (float): Period in days for calculating  maximum frequency parameter for processing.</span>
-<span class="sd">        include_errors (bool): Flag to indicate whether to include error of magnitudes  handling.</span>
+<span class="sd">        include_errors (bool): Flag to indicate whether to include error of magnitudes handling.</span>
+<span class="sd">        mode (str): Either &#39;fixed&#39; or &#39;dynamical&#39; to select which processing function to use.</span>
 <span class="sd">        num_threads (int): Number of threads to use for parallel processing.</span>
 
 <span class="sd">    Returns:</span>
 <span class="sd">        list: A list of results from processing each dataset identifier.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="c1"># Create a tuple for each set_id, pairing it with all other necessary parameters</span>
-    <span class="n">args</span> <span class="o">=</span> <span class="p">[(</span><span class="n">set_id</span><span class="p">,</span> <span class="n">data_manager</span><span class="p">,</span> <span class="n">ntau</span><span class="p">,</span> <span class="n">ngrid</span><span class="p">,</span> <span class="n">provided_minfq</span><span class="p">,</span> <span class="n">provided_maxfq</span><span class="p">,</span> <span class="n">include_errors</span><span class="p">)</span> <span class="k">for</span> <span class="n">set_id</span> <span class="ow">in</span> <span class="n">setids</span><span class="p">]</span>
+    <span class="n">args</span> <span class="o">=</span> <span class="p">[(</span><span class="n">set_id</span><span class="p">,</span> <span class="n">data_manager</span><span class="p">,</span> <span class="n">ntau</span><span class="p">,</span> <span class="n">ngrid</span><span class="p">,</span> <span class="n">provided_minfq</span><span class="p">,</span> <span class="n">provided_maxfq</span><span class="p">,</span> <span class="n">include_errors</span><span class="p">,</span> <span class="n">mode</span><span class="p">)</span> <span class="k">for</span> <span class="n">set_id</span> <span class="ow">in</span> <span class="n">setids</span><span class="p">]</span>
 
     <span class="c1"># Initialize the ThreadPool with the specified number of threads</span>
     <span class="k">with</span> <span class="n">ThreadPool</span><span class="p">(</span><span class="n">num_threads</span><span class="p">)</span> <span class="k">as</span> <span class="n">pool</span><span class="p">:</span>
-        <span class="c1"># Map the process_data function to each tuple of arguments</span>
+        <span class="c1"># Map the process_pool function to each tuple of arguments</span>
         <span class="n">results</span> <span class="o">=</span> <span class="n">pool</span><span class="o">.</span><span class="n">map</span><span class="p">(</span><span class="n">process_pool</span><span class="p">,</span> <span class="n">args</span><span class="p">)</span>
 
     <span class="k">return</span> <span class="n">results</span></div>
@@ -192,7 +202,6 @@
 <span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s2">&quot;__main__&quot;</span><span class="p">:</span>
     <span class="c1"># Example set IDs and parameters for the processing function</span>
     <span class="n">setids</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;1385092&#39;</span><span class="p">,</span> <span class="s1">&#39;1385097&#39;</span><span class="p">]</span>
-<span class="c1">#    data_manager = DataManager()  # Presumed to be a previously defined DataManager instance</span>
 
     <span class="c1"># Parameters for the processing function</span>
     <span class="n">ntau</span> <span class="o">=</span> <span class="mi">80</span>
@@ -201,9 +210,16 @@
     <span class="n">provided_maxfq</span> <span class="o">=</span> <span class="mi">10</span>
     <span class="n">include_errors</span> <span class="o">=</span> <span class="kc">False</span>
 
-    <span class="c1"># Execute the parallel processing function and print the results</span>
-    <span class="n">results</span> <span class="o">=</span> <span class="n">parallel_pool</span><span class="p">(</span><span class="n">setids</span><span class="p">,</span> <span class="n">data_manager</span><span class="p">,</span> <span class="n">ntau</span><span class="p">,</span> <span class="n">ngrid</span><span class="p">,</span> <span class="n">provided_minfq</span><span class="p">,</span> <span class="n">provided_maxfq</span><span class="p">,</span> <span class="n">include_errors</span><span class="p">,</span> <span class="n">num_threads</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
-    <span class="k">for</span> <span class="n">result</span> <span class="ow">in</span> <span class="n">results</span><span class="p">:</span>
+    <span class="c1"># Test the fixed mode</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Testing Fixed Filter Mode:&quot;</span><span class="p">)</span>
+    <span class="n">results_fixed</span> <span class="o">=</span> <span class="n">parallel_pool</span><span class="p">(</span><span class="n">setids</span><span class="p">,</span> <span class="n">data_manager</span><span class="p">,</span> <span class="n">ntau</span><span class="p">,</span> <span class="n">ngrid</span><span class="p">,</span> <span class="n">provided_minfq</span><span class="p">,</span> <span class="n">provided_maxfq</span><span class="p">,</span> <span class="n">include_errors</span><span class="p">,</span> <span class="n">mode</span><span class="o">=</span><span class="s1">&#39;fixed&#39;</span><span class="p">,</span> <span class="n">num_threads</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+    <span class="k">for</span> <span class="n">result</span> <span class="ow">in</span> <span class="n">results_fixed</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="n">result</span><span class="p">)</span>
+
+    <span class="c1"># Test the dynamical mode</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Testing Dynamical Filter Mode:&quot;</span><span class="p">)</span>
+    <span class="n">results_dynamical</span> <span class="o">=</span> <span class="n">parallel_pool</span><span class="p">(</span><span class="n">setids</span><span class="p">,</span> <span class="n">data_manager_dyn</span><span class="p">,</span> <span class="n">ntau</span><span class="p">,</span> <span class="n">ngrid</span><span class="p">,</span> <span class="n">provided_minfq</span><span class="p">,</span> <span class="n">provided_maxfq</span><span class="p">,</span> <span class="n">include_errors</span><span class="p">,</span> <span class="n">mode</span><span class="o">=</span><span class="s1">&#39;dynamical&#39;</span><span class="p">,</span> <span class="n">num_threads</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+    <span class="k">for</span> <span class="n">result</span> <span class="ow">in</span> <span class="n">results_dynamical</span><span class="p">:</span>
         <span class="nb">print</span><span class="p">(</span><span class="n">result</span><span class="p">)</span>
 </pre></div>
 

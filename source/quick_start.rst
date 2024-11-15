@@ -92,7 +92,7 @@ You should see output similar to the following, indicating that the tests have p
     platform darwin -- Python 3.10.9, pytest-7.1.2, pluggy-1.0.0
     rootdir: /Users/andjelka/Documents/QhX1
     plugins: anyio-3.5.0
-    collected 2 items                                                                                                                
+    collected 2 items
 
     QhX/tests/test_integrated.py Running integrated  test on simulation of single light curve, and functionalities of modules
     for Wavelet matrix coefficients calculations and period and its significance calculation. This may take time about 500-800 seconds...
@@ -100,13 +100,13 @@ You should see output similar to the following, indicating that the tests have p
 
     Pseudo sample frequency (median) is  0.203
     largest tau window is  46.124
-    8.05 seconds has passed to complete Weighted Wavelet Z-transform 
+    8.05 seconds has passed to complete Weighted Wavelet Z-transform
 
     *** Starting Weighted Wavelet Z-transform ***
 
     Pseudo sample frequency (median) is  0.203
     largest tau window is  46.124
-    8.49 seconds has passed to complete Weighted Wavelet Z-transform 
+    8.49 seconds has passed to complete Weighted Wavelet Z-transform
     .
     .
     .
@@ -116,15 +116,15 @@ You should see output similar to the following, indicating that the tests have p
     upper and lower errors in days [3.3403584182233317] [1.6831563583308196]
     number of simulated shuffled light curves 10
     experimental significance 1.0
-    
+
     ================================================= 1 passed in 114.15s (0:01:54) =================================================
-    
+
 For more advanced users, you may test the logger and parallel solver classes:
 
 .. code-block:: bash
 
     os@ubuntu:~/Desktop/qhx_astro/QhX1$ cd QhX/tests; pytest -s test_logger.py
-    
+
 You should see output resembling this:
 
 .. code-block:: text
@@ -133,17 +133,17 @@ You should see output resembling this:
    platform linux -- Python 3.10.11, pytest-8.1.1, pluggy-1.4.0
    rootdir: /home/os/Desktop/qhx_astro/QhX1
    plugins: anyio-4.3.0
-   collected 1 item                                                                        
-   
-   test_logger.py 
-   
+   collected 1 item
+
+   test_logger.py
+
    Log file created.
-   
+
    Time log found in file.
-   
+
    Output log found in file.
    .
-   
+
    ================================== 1 passed in 27.56s ===================================
 
 For the parallel solver (note we are in the QhX1 folder again):
@@ -151,7 +151,7 @@ For the parallel solver (note we are in the QhX1 folder again):
 .. code-block:: bash
 
     os@ubuntu:~/Desktop/qhx_astro/QhX1$ cd QhX/tests; pytest -s test_parallel_solver.py
-    
+
 The output should look similar to this:
 
 .. code-block:: text
@@ -160,23 +160,23 @@ The output should look similar to this:
     platform linux -- Python 3.10.11, pytest-8.1.1, pluggy-1.4.0
     rootdir: /home/os/Desktop/qhx_astro/QhX1
     plugins: anyio-4.3.0
-    collected 1 item                                                                        
-    
-    test_parallel_solver.py 
-    
+    collected 1 item
+
+    test_parallel_solver.py
+
     Log file for 0 created.
-    
+
     Log file for 1 created.
-    
+
     Log file for 2 created.
-    
+
     Log file for 3 created.
 
     Merged results file present.
-    
+
     Merged result file content correct.
     .
-    
+
     ================================== 1 passed in 23.84s ===================================
 
 Step 3: Importing the Package
@@ -201,7 +201,7 @@ Load your light curve data into QhX. For example importing parquet LSST AGN Data
 	data_manager = DataManager()
 	fs_df = data_manager.load_fs_df('https://zenodo.org/record/6878414/files/ForcedSourceTable.parquet')
 	fs_gp = data_manager.group_fs_df()
-	
+
 You should see the message like this, indicating that parquet is loaded
 
 .. code-block:: text
@@ -209,7 +209,7 @@ You should see the message like this, indicating that parquet is loaded
     Forced source data loaded successfully.
     Forced source data grouped successfully.
 
-.. code-block:: python   
+.. code-block:: python
 
     td_objects=data_manager.load_object_df("https://zenodo.org/record/6878414/files/ObjectTable.parquet")
     #Find quasars IDs
@@ -226,8 +226,8 @@ You should see the message like this, indicating that parquet is loaded
 	setindexnew=np.array(setindexnew)
 	df = pd.DataFrame({'objectId': setindexnew})
 	df.set_index('objectId', inplace=True)
-	setidnew=df.index 
-	
+	setidnew=df.index
+
 Importing light curve of one object ID=1384142
 
 .. code-block:: python
@@ -247,7 +247,7 @@ With the data loaded, you can start analyzing the light curve:
    # Ensure to import or define other necessary functions like hybrid2d, periods, same_periods, etc.
    from QhX.algorithms.wavelets.wwtz import *
    process1_results = process1_new(data_manager, '1384142', ntau=80, ngrid=800, provided_minfq=2000, provided_maxfq=10, include_errors=True)
-   
+
 The output dictionary `process1_results` contains:
 
 .. code-block:: text
@@ -320,7 +320,7 @@ Finally, examine the results of your analysis. Important that process1_results w
     outt=classify_periods([process1_results])
 	outt['classification'] =outt.apply(classify_period, axis=1)
 	print(outt)
-	
+
 This will print the detected periods, their errors, significance levels, iou metric, difference among detected periods, flags.
 
 .. table:: Example Analysis Results

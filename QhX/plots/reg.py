@@ -10,20 +10,20 @@ def plt_freq_heatmap(data, extent, label = 'correlation coefficient', xlabel = r
         ----------
         data: autocorrelation data (output of hybrid2d method)
         label: label for each points
-        xlabel, ylabel: text for x and y labels 
+        xlabel, ylabel: text for x and y labels
     """
-    
+
     fig, ax = plt.subplots(figsize=[5, 4])
     im=ax.imshow(np.rot90(data).T/np.rot90(data).T.max(),extent=extent)#,ax.colorbar()
     ax.set_xlabel(xlabel)
     ax.set_ylabel(ylabel)
-    
-    
+
+
     clb=fig.colorbar(im, orientation='vertical')
-    
+
     clb.ax.set_ylabel(label,fontsize=13)
     plt.show()
-    
+
 
 
 def fig_plot(tt, yy, xlabel='t [days]', ylabel='magnitude [mag]'):
@@ -34,7 +34,7 @@ def fig_plot(tt, yy, xlabel='t [days]', ylabel='magnitude [mag]'):
     ----------
     tt: x-axis data (usually time)
     yy: y-axis data (magnitude)
-    xlabel, ylabel: text for x and y labels 
+    xlabel, ylabel: text for x and y labels
     """
 
     # Calculate the mean difference for the sampling

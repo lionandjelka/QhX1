@@ -5,7 +5,7 @@ class DataManager:
     """
     A class for managing and processing astronomical data sets.
 
-    This class provides methods to load and process forced source data and object data, 
+    This class provides methods to load and process forced source data and object data,
     specifically focusing on time-domain objects and quasars.
 
     Attributes

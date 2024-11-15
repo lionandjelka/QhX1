@@ -1,4 +1,4 @@
-output_parallel 
+output_parallel
 =======================
 
 .. automodule:: QhX.output_parallel

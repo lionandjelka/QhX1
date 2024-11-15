@@ -4,7 +4,7 @@
   <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Parallelization Solver module &mdash; QhX 0.1.1 documentation</title>
+  <title>Parallelization Solver module &mdash; QhX_dynamical 0.1.0 documentation</title>
       <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
   <!--[if lt IE 9]>
@@ -13,7 +13,7 @@
   
         <script src="_static/jquery.js?v=5d32c60e"></script>
         <script src="_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
-        <script src="_static/documentation_options.js?v=a58bc63e"></script>
+        <script src="_static/documentation_options.js?v=01f34227"></script>
         <script src="_static/doctools.js?v=888ff710"></script>
         <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
         <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
@@ -34,11 +34,11 @@
           
           
           <a href="index.html" class="icon icon-home">
-            QhX
+            QhX_dynamical
               <img src="_static/logo.png" class="logo" alt="Logo"/>
           </a>
               <div class="version">
-                0.1.1
+                0.1.0
               </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
@@ -50,6 +50,7 @@
         </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
               <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
 <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="important_note.html">Important Note</a></li>
 <li class="toctree-l1"><a class="reference internal" href="installation.html">Installation</a></li>
 <li class="toctree-l1"><a class="reference internal" href="quick_start.html">Quick Start Tutorial</a></li>
 <li class="toctree-l1"><a class="reference internal" href="test_integrated.html">test_integrated</a></li>
@@ -60,6 +61,7 @@
 <li class="toctree-l1"><a class="reference internal" href="introduction.html#qhx-package-overview">QhX Package Overview</a></li>
 <li class="toctree-l1 current"><a class="reference internal" href="package.html">Package Modules</a><ul class="current">
 <li class="toctree-l2"><a class="reference internal" href="data_manager.html">data_manager</a></li>
+<li class="toctree-l2"><a class="reference internal" href="dynamical_mode.html">Dynamical Mode Module</a></li>
 <li class="toctree-l2"><a class="reference internal" href="light_curve.html">light_curve</a></li>
 <li class="toctree-l2"><a class="reference internal" href="calculation.html">calculation</a></li>
 <li class="toctree-l2"><a class="reference internal" href="detection.html">detection</a></li>
@@ -72,21 +74,7 @@
 <li class="toctree-l2"><a class="reference internal" href="interactive_plt.html">interactive_plt</a></li>
 <li class="toctree-l2"><a class="reference internal" href="iparallelization_solver.html">iparallelization_solver module</a></li>
 <li class="toctree-l2 current"><a class="current reference internal" href="#">Parallelization Solver module</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#example-usage">Example usage:</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#author">Author:</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#QhX.parallelization_solver.ParallelSolver"><code class="docutils literal notranslate"><span class="pre">ParallelSolver</span></code></a><ul>
-<li class="toctree-l4"><a class="reference internal" href="#QhX.parallelization_solver.ParallelSolver.delta_seconds"><code class="docutils literal notranslate"><span class="pre">ParallelSolver.delta_seconds</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="#QhX.parallelization_solver.ParallelSolver.num_workers"><code class="docutils literal notranslate"><span class="pre">ParallelSolver.num_workers</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="#QhX.parallelization_solver.ParallelSolver.data_manager"><code class="docutils literal notranslate"><span class="pre">ParallelSolver.data_manager</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="#QhX.parallelization_solver.ParallelSolver.log_time"><code class="docutils literal notranslate"><span class="pre">ParallelSolver.log_time</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="#QhX.parallelization_solver.ParallelSolver.log_files"><code class="docutils literal notranslate"><span class="pre">ParallelSolver.log_files</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="#QhX.parallelization_solver.ParallelSolver.save_results"><code class="docutils literal notranslate"><span class="pre">ParallelSolver.save_results</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="#QhX.parallelization_solver.ParallelSolver.process_function"><code class="docutils literal notranslate"><span class="pre">ParallelSolver.process_function</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="#QhX.parallelization_solver.ParallelSolver.parallel_arithmetic"><code class="docutils literal notranslate"><span class="pre">ParallelSolver.parallel_arithmetic</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="#QhX.parallelization_solver.ParallelSolver.ntau"><code class="docutils literal notranslate"><span class="pre">ParallelSolver.ntau</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="#QhX.parallelization_solver.ParallelSolver.ngrid"><code class="docutils literal notranslate"><span class="pre">ParallelSolver.ngrid</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="#QhX.parallelization_solver.ParallelSolver.provided_minfq"><code class="docutils literal notranslate"><span class="pre">ParallelSolver.provided_minfq</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="#QhX.parallelization_solver.ParallelSolver.provided_maxfq"><code class="docutils literal notranslate"><span class="pre">ParallelSolver.provided_maxfq</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="#QhX.parallelization_solver.ParallelSolver.aggregate_process_function_result"><code class="docutils literal notranslate"><span class="pre">ParallelSolver.aggregate_process_function_result()</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="#QhX.parallelization_solver.ParallelSolver.get_process_function_result"><code class="docutils literal notranslate"><span class="pre">ParallelSolver.get_process_function_result()</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="#QhX.parallelization_solver.ParallelSolver.maybe_begin_logging"><code class="docutils literal notranslate"><span class="pre">ParallelSolver.maybe_begin_logging()</span></code></a></li>
@@ -95,6 +83,7 @@
 <li class="toctree-l4"><a class="reference internal" href="#QhX.parallelization_solver.ParallelSolver.maybe_stop_logging"><code class="docutils literal notranslate"><span class="pre">ParallelSolver.maybe_stop_logging()</span></code></a></li>
 </ul>
 </li>
+<li class="toctree-l3"><a class="reference internal" href="#example-usage">Example Usage</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="batch_processor.html">Batch Processor Module</a></li>
@@ -111,6 +100,7 @@
 </li>
 <li class="toctree-l1"><a class="reference internal" href="faq.html">Frequently Asked Questions</a></li>
 <li class="toctree-l1"><a class="reference internal" href="license.html">License</a></li>
+<li class="toctree-l1"><a class="reference internal" href="support_and_contact.html">Support and Contact Information</a></li>
 </ul>
 
         </div>
@@ -119,7 +109,7 @@
 
     <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu"  style="background: white" >
           <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
-          <a href="index.html">QhX</a>
+          <a href="index.html">QhX_dynamical</a>
       </nav>
 
       <div class="wy-nav-content">
@@ -141,225 +131,39 @@
   <section id="parallelization-solver-module">
 <h1>Parallelization Solver module<a class="headerlink" href="#parallelization-solver-module" title="Link to this heading"></a></h1>
 <p>The <code class="docutils literal notranslate"><span class="pre">parallelization_solver</span></code> module is designed for parallel processing of data sets, using multiprocessing. Below is the documentation for the module and its classes.</p>
-<p id="module-QhX.parallelization_solver">The <cite>parallelization_solver</cite> module is designed for parallel processing of astronomical data sets.
-It utilizes multiprocessing to expedite the processing of large data sets across multiple CPUs.</p>
-<p>This module defines the <cite>ParallelSolver</cite> class, which orchestrates the parallel execution and result processing of a
-specified processing function across different subsets of data. It features mechanisms for time
-logging and result aggregation, facilitating comprehensive analysis workflows.</p>
-<section id="example-usage">
-<h2>Example usage:<a class="headerlink" href="#example-usage" title="Link to this heading"></a></h2>
-<blockquote>
-<div><p>from QhX.detection import process1
-from QhX.parallelization_solver import ParallelSolver
-from QhX.data_manager import DataManager</p>
-<p>data_manager = DataManager()
-fs_df = data_manager.load_fs_df(‘ForcedSourceTable.parquet’)
-fs_gp = data_manager.group_fs_df()
-fs_df = data_manager.fs_df</p>
-<p>setids = [‘1384177’, ‘1384184’, ‘1460382’]
-solver = ParallelSolver(data_manager=data_manager, delta_seconds=12.0, num_workers=2, log_files=True)
-solver.process_ids(setids, ‘results.csv’)</p>
-</div></blockquote>
-</section>
-<section id="author">
-<h2>Author:<a class="headerlink" href="#author" title="Link to this heading"></a></h2>
-<p>Momcilo Tosic
-Astroinformatics student
-Faculty of Mathematics, University of Belgrade</p>
-</section>
-<dl class="py class">
+<dl class="py class" id="module-QhX.parallelization_solver">
 <dt class="sig sig-object py" id="QhX.parallelization_solver.ParallelSolver">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">QhX.parallelization_solver.</span></span><span class="sig-name descname"><span class="pre">ParallelSolver</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">delta_seconds=10</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">num_workers=4</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">data_manager=None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">log_time=True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">log_files=False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">save_results=True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">process_function=&lt;function</span> <span class="pre">process1_new&gt;</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">parallel_arithmetic=False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ntau=80</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ngrid=800</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">provided_minfq=2000</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">provided_maxfq=10</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/QhX/parallelization_solver.html#ParallelSolver"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#QhX.parallelization_solver.ParallelSolver" title="Link to this definition"></a></dt>
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">QhX.parallelization_solver.</span></span><span class="sig-name descname"><span class="pre">ParallelSolver</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">delta_seconds=10.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">num_workers=4</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">data_manager=None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">log_time=True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">log_files=False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">save_results=True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">process_function=&lt;function</span> <span class="pre">process1_new&gt;</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">parallel_arithmetic=False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ntau=None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ngrid=None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">provided_minfq=None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">provided_maxfq=None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">mode='fixed'</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/QhX/parallelization_solver.html#ParallelSolver"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#QhX.parallelization_solver.ParallelSolver" title="Link to this definition"></a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">IParallelSolver</span></code></p>
 <p>A class to manage parallel execution of data processing functions.</p>
-<dl class="py attribute">
-<dt class="sig sig-object py" id="QhX.parallelization_solver.ParallelSolver.delta_seconds">
-<span class="sig-name descname"><span class="pre">delta_seconds</span></span><a class="headerlink" href="#QhX.parallelization_solver.ParallelSolver.delta_seconds" title="Link to this definition"></a></dt>
-<dd><p>Interval in seconds between log messages.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Type<span class="colon">:</span></dt>
-<dd class="field-odd"><p>float</p>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="py attribute">
-<dt class="sig sig-object py" id="QhX.parallelization_solver.ParallelSolver.num_workers">
-<span class="sig-name descname"><span class="pre">num_workers</span></span><a class="headerlink" href="#QhX.parallelization_solver.ParallelSolver.num_workers" title="Link to this definition"></a></dt>
-<dd><p>Number of worker processes to spawn.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Type<span class="colon">:</span></dt>
-<dd class="field-odd"><p>int</p>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="py attribute">
-<dt class="sig sig-object py" id="QhX.parallelization_solver.ParallelSolver.data_manager">
-<span class="sig-name descname"><span class="pre">data_manager</span></span><a class="headerlink" href="#QhX.parallelization_solver.ParallelSolver.data_manager" title="Link to this definition"></a></dt>
-<dd><p>Instance of DataManager for data retrieval.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Type<span class="colon">:</span></dt>
-<dd class="field-odd"><p><a class="reference internal" href="data_manager.html#QhX.data_manager.DataManager" title="QhX.data_manager.DataManager">DataManager</a></p>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="py attribute">
-<dt class="sig sig-object py" id="QhX.parallelization_solver.ParallelSolver.log_time">
-<span class="sig-name descname"><span class="pre">log_time</span></span><a class="headerlink" href="#QhX.parallelization_solver.ParallelSolver.log_time" title="Link to this definition"></a></dt>
-<dd><p>Enable/disable time logging.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Type<span class="colon">:</span></dt>
-<dd class="field-odd"><p>bool</p>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="py attribute">
-<dt class="sig sig-object py" id="QhX.parallelization_solver.ParallelSolver.log_files">
-<span class="sig-name descname"><span class="pre">log_files</span></span><a class="headerlink" href="#QhX.parallelization_solver.ParallelSolver.log_files" title="Link to this definition"></a></dt>
-<dd><p>Enable/disable logging to files.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Type<span class="colon">:</span></dt>
-<dd class="field-odd"><p>bool</p>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="py attribute">
-<dt class="sig sig-object py" id="QhX.parallelization_solver.ParallelSolver.save_results">
-<span class="sig-name descname"><span class="pre">save_results</span></span><a class="headerlink" href="#QhX.parallelization_solver.ParallelSolver.save_results" title="Link to this definition"></a></dt>
-<dd><p>Enable/disable saving of results to files.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Type<span class="colon">:</span></dt>
-<dd class="field-odd"><p>bool</p>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="py attribute">
-<dt class="sig sig-object py" id="QhX.parallelization_solver.ParallelSolver.process_function">
-<span class="sig-name descname"><span class="pre">process_function</span></span><a class="headerlink" href="#QhX.parallelization_solver.ParallelSolver.process_function" title="Link to this definition"></a></dt>
-<dd><p>Data processing function to be parallelized.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Type<span class="colon">:</span></dt>
-<dd class="field-odd"><p>function</p>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="py attribute">
-<dt class="sig sig-object py" id="QhX.parallelization_solver.ParallelSolver.parallel_arithmetic">
-<span class="sig-name descname"><span class="pre">parallel_arithmetic</span></span><a class="headerlink" href="#QhX.parallelization_solver.ParallelSolver.parallel_arithmetic" title="Link to this definition"></a></dt>
-<dd><p>Use parallel arithmetic within processing function.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Type<span class="colon">:</span></dt>
-<dd class="field-odd"><p>bool</p>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="py attribute">
-<dt class="sig sig-object py" id="QhX.parallelization_solver.ParallelSolver.ntau">
-<span class="sig-name descname"><span class="pre">ntau</span></span><a class="headerlink" href="#QhX.parallelization_solver.ParallelSolver.ntau" title="Link to this definition"></a></dt>
-<dd><p>Parameter ntau for process_function.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Type<span class="colon">:</span></dt>
-<dd class="field-odd"><p>int</p>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="py attribute">
-<dt class="sig sig-object py" id="QhX.parallelization_solver.ParallelSolver.ngrid">
-<span class="sig-name descname"><span class="pre">ngrid</span></span><a class="headerlink" href="#QhX.parallelization_solver.ParallelSolver.ngrid" title="Link to this definition"></a></dt>
-<dd><p>Parameter ngrid for process_function.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Type<span class="colon">:</span></dt>
-<dd class="field-odd"><p>int</p>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="py attribute">
-<dt class="sig sig-object py" id="QhX.parallelization_solver.ParallelSolver.provided_minfq">
-<span class="sig-name descname"><span class="pre">provided_minfq</span></span><a class="headerlink" href="#QhX.parallelization_solver.ParallelSolver.provided_minfq" title="Link to this definition"></a></dt>
-<dd><p>Parameter provided_minfq for process_function.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Type<span class="colon">:</span></dt>
-<dd class="field-odd"><p>int</p>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="py attribute">
-<dt class="sig sig-object py" id="QhX.parallelization_solver.ParallelSolver.provided_maxfq">
-<span class="sig-name descname"><span class="pre">provided_maxfq</span></span><a class="headerlink" href="#QhX.parallelization_solver.ParallelSolver.provided_maxfq" title="Link to this definition"></a></dt>
-<dd><p>Parameters provided_maxfq for process_function.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Type<span class="colon">:</span></dt>
-<dd class="field-odd"><p>int</p>
-</dd>
-</dl>
-</dd></dl>
-
 <dl class="py method">
 <dt class="sig sig-object py" id="QhX.parallelization_solver.ParallelSolver.aggregate_process_function_result">
 <span class="sig-name descname"><span class="pre">aggregate_process_function_result</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">result</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/QhX/parallelization_solver.html#ParallelSolver.aggregate_process_function_result"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#QhX.parallelization_solver.ParallelSolver.aggregate_process_function_result" title="Link to this definition"></a></dt>
 <dd><p>Places the result dict into a string</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><p><strong>result</strong> (<em>dict</em><em>, </em><em>list</em>) – Result from QhX detection function</p>
-</dd>
-</dl>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="QhX.parallelization_solver.ParallelSolver.get_process_function_result">
 <span class="sig-name descname"><span class="pre">get_process_function_result</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">set_id</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/QhX/parallelization_solver.html#ParallelSolver.get_process_function_result"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#QhX.parallelization_solver.ParallelSolver.get_process_function_result" title="Link to this definition"></a></dt>
-<dd><p>Run the QhX detection function and return the result</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><p><strong>set_id</strong> (<em>str</em>) – Set ID to process</p>
-</dd>
-</dl>
+<dd><p>Run the detection function and return the result</p>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="QhX.parallelization_solver.ParallelSolver.maybe_begin_logging">
 <span class="sig-name descname"><span class="pre">maybe_begin_logging</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">set_id</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/QhX/parallelization_solver.html#ParallelSolver.maybe_begin_logging"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#QhX.parallelization_solver.ParallelSolver.maybe_begin_logging" title="Link to this definition"></a></dt>
 <dd><p>Starts a logging thread</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><p><strong>set_id</strong> (<em>str</em>) – ID of set to be processed</p>
-</dd>
-</dl>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="QhX.parallelization_solver.ParallelSolver.maybe_save_local_results">
 <span class="sig-name descname"><span class="pre">maybe_save_local_results</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">set_id</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">res_string</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/QhX/parallelization_solver.html#ParallelSolver.maybe_save_local_results"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#QhX.parallelization_solver.ParallelSolver.maybe_save_local_results" title="Link to this definition"></a></dt>
 <dd><p>Saves local results of set ID formed into a string</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>set_id</strong> (<em>str</em>) – ID which was processed</p></li>
-<li><p><strong>res_string</strong> (<em>str</em>) – The string the result was aggregated into</p></li>
-</ul>
-</dd>
-</dl>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="QhX.parallelization_solver.ParallelSolver.maybe_save_results">
 <span class="sig-name descname"><span class="pre">maybe_save_results</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">results_file</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/QhX/parallelization_solver.html#ParallelSolver.maybe_save_results"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#QhX.parallelization_solver.ParallelSolver.maybe_save_results" title="Link to this definition"></a></dt>
 <dd><p>If results file is set, saves the full results queue to it.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><p><strong>result_file</strong> (<em>str</em><em>, </em><em>optional</em>) – Filename of the result file</p>
-</dd>
-</dl>
 </dd></dl>
 
 <dl class="py method">
@@ -370,6 +174,52 @@ Faculty of Mathematics, University of Belgrade</p>
 
 </dd></dl>
 
+<section id="example-usage">
+<h2>Example Usage<a class="headerlink" href="#example-usage" title="Link to this heading"></a></h2>
+<p>The following example demonstrates how to use the <cite>ParallelSolver</cite> class with the <cite>DataManagerDynamical</cite> class for parallel processing in the dynamical mode.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">QhX</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">from</span> <span class="nn">QhX.parallelization_solver</span> <span class="kn">import</span> <span class="n">ParallelSolver</span>
+<span class="kn">from</span> <span class="nn">QhX</span> <span class="kn">import</span> <span class="n">DataManagerDynamical</span><span class="p">,</span> <span class="n">get_lc_dyn</span><span class="p">,</span> <span class="n">process1_new_dyn</span>
+
+<span class="c1"># Define mappings for AGN DC data</span>
+<span class="n">agn_dc_mapping</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s1">&#39;column_mapping&#39;</span><span class="p">:</span> <span class="p">{</span><span class="s1">&#39;flux&#39;</span><span class="p">:</span> <span class="s1">&#39;psMag&#39;</span><span class="p">,</span> <span class="s1">&#39;time&#39;</span><span class="p">:</span> <span class="s1">&#39;mjd&#39;</span><span class="p">,</span> <span class="s1">&#39;band&#39;</span><span class="p">:</span> <span class="s1">&#39;filter&#39;</span><span class="p">},</span>  <span class="c1"># Map AGN DC columns</span>
+    <span class="s1">&#39;group_by_key&#39;</span><span class="p">:</span> <span class="s1">&#39;objectId&#39;</span><span class="p">,</span>  <span class="c1"># Group by &#39;objectId&#39; for AGN DC</span>
+    <span class="s1">&#39;filter_mapping&#39;</span><span class="p">:</span> <span class="p">{</span><span class="mi">0</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">:</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">:</span> <span class="mi">3</span><span class="p">}</span>  <span class="c1"># Map AGN DC filters</span>
+<span class="p">}</span>
+
+<span class="c1"># Initialize the DataManager with AGN DC mappings</span>
+<span class="n">data_manager_agn_dc</span> <span class="o">=</span> <span class="n">DataManagerDynamical</span><span class="p">(</span>
+    <span class="n">column_mapping</span><span class="o">=</span><span class="n">agn_dc_mapping</span><span class="p">[</span><span class="s1">&#39;column_mapping&#39;</span><span class="p">],</span>
+    <span class="n">group_by_key</span><span class="o">=</span><span class="n">agn_dc_mapping</span><span class="p">[</span><span class="s1">&#39;group_by_key&#39;</span><span class="p">],</span>
+    <span class="n">filter_mapping</span><span class="o">=</span><span class="n">agn_dc_mapping</span><span class="p">[</span><span class="s1">&#39;filter_mapping&#39;</span><span class="p">]</span>
+<span class="p">)</span>
+
+<span class="c1"># Load data from a remote source</span>
+<span class="n">data_manager_agn_dc</span><span class="o">.</span><span class="n">load_data</span><span class="p">(</span><span class="s1">&#39;https://zenodo.org/record/6878414/files/ForcedSourceTable.parquet&#39;</span><span class="p">)</span>
+<span class="n">data_manager_agn_dc</span><span class="o">.</span><span class="n">group_data</span><span class="p">()</span>
+
+<span class="c1"># Setup and run the parallel solver</span>
+<span class="n">setids</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;0458387&#39;</span><span class="p">]</span>
+<span class="n">solver_dynamical</span> <span class="o">=</span> <span class="n">ParallelSolver</span><span class="p">(</span>
+    <span class="n">delta_seconds</span><span class="o">=</span><span class="mf">12.0</span><span class="p">,</span> <span class="n">num_workers</span><span class="o">=</span><span class="mi">4</span><span class="p">,</span> <span class="n">data_manager</span><span class="o">=</span><span class="n">data_manager_agn_dc</span><span class="p">,</span> <span class="n">log_time</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">log_files</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+    <span class="n">save_results</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">process_function</span><span class="o">=</span><span class="n">process1_new_dyn</span><span class="p">,</span> <span class="n">parallel_arithmetic</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">ntau</span><span class="o">=</span><span class="mi">80</span><span class="p">,</span> <span class="n">ngrid</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span>
+    <span class="n">provided_minfq</span><span class="o">=</span><span class="mi">500</span><span class="p">,</span> <span class="n">provided_maxfq</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">mode</span><span class="o">=</span><span class="s1">&#39;dynamical&#39;</span>
+<span class="p">)</span>
+<span class="n">solver_dynamical</span><span class="o">.</span><span class="n">process_ids</span><span class="p">(</span><span class="n">setids</span><span class="p">,</span> <span class="s1">&#39;results2.csv&#39;</span><span class="p">)</span>
+
+<span class="c1"># Print the results</span>
+<span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s1">&#39;results2.csv&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">results_file</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">results_file</span><span class="o">.</span><span class="n">read</span><span class="p">())</span>
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Ensure the data file is correctly accessible at the URL or path specified for loading. This example uses data available online for demonstration.</p>
+</div>
+</section>
 </section>
 
 

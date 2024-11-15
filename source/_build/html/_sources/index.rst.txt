@@ -1,10 +1,11 @@
-Welcome to Quasar harmonic eXplorer (QhX's) documentation!
-==========================================================
+Welcome to Quasar harmonic eXplorer dynamical version (QhX's) documentation!
+============================================================================
 
 .. toctree::
    :maxdepth: 2
    :caption: Contents:
 
+   important_note
    installation
    quick_start
    test_integrated
@@ -13,6 +14,7 @@ Welcome to Quasar harmonic eXplorer (QhX's) documentation!
    package
    faq
    license
+   support_and_contact
 
 
 

@@ -8,7 +8,7 @@ colorednoise
 tqdm
 pyarrow
 panel
-hvplot 
+hvplot
 datashader
 bokeh
 dask[dataframe]

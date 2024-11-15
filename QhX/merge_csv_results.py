@@ -1,3 +1,4 @@
+# pylint: disable=R0801
 # File: QhX/merge_csv_results.py
 
 import os
@@ -34,7 +35,7 @@ def merge_csv_results(directory="/Users/andjelka/Downloads/qhx-batch", output_fi
         print(f"All CSV files merged into '{output_file}' successfully! Counted {cnt} files.")
     else:
         print("No suitable CSV files found to merge.")
-    
+
     return cnt
 
 if __name__ == "__main__":

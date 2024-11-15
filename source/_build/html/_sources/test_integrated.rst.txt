@@ -18,9 +18,9 @@ Key Aspects of the Tests
 ------------------------
 - on local machine run test as:  pytest -s QhX/tests/test_integrated.py
 - on google run test as:!python -m unittest discover -s tests
-- **Scope**: Tests cover all essential functionalities related to the period analysis in light curves, 
+- **Scope**: Tests cover all essential functionalities related to the period analysis in light curves,
   ensuring reliability and accuracy of the algorithms implemented in the QhX package.
-- **Efficiency**: The testing procedure demonstrates the package's capability to process and analyze  light curve data efficiently. 
+- **Efficiency**: The testing procedure demonstrates the package's capability to process and analyze  light curve data efficiently.
    The average execution time for the complete test suite is approximately 1 minute and 54 seconds, indicative of the package's optimized performance.
 - **Results**: All tests within the module successfully pass, confirming the correct implementation and expected behavior of the period analysis algorithms.      This includes generating synthetic light curve, validation of the Hybrid2D and the estimation of period errors, significance using shuffled light curve simulations.
 

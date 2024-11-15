@@ -4,11 +4,12 @@ Package Modules
 
 .. toctree::
    :maxdepth: 2
-   :caption: Package Modules:
+
 
    data_manager
+   dynamical_mode
    light_curve
-   calculation  
+   calculation
    detection
    wwtz
    superlet

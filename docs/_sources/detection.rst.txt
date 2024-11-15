@@ -35,40 +35,40 @@ This function simulates a signal with damping factors applied to both its amplit
 
 ### Parameters
 
-- **data_manager** : object  
+- **data_manager** : object
   The data manager that handles access to the dataset.
-  
-- **set1** : int  
+
+- **set1** : int
   Identifier representing the dataset to be processed.
 
-- **initial_period** : float  
+- **initial_period** : float
   The initial period of the signal injected into the light curve data.
 
-- **damping_factor_amplitude** : float  
+- **damping_factor_amplitude** : float
   Damping factor that modifies the amplitude of the injected signal over time.
 
-- **damping_factor_frequency** : float  
+- **damping_factor_frequency** : float
   Damping factor that modifies the frequency of the injected signal over time.
 
-- **snr** : float, optional  
+- **snr** : float, optional
   Signal-to-noise ratio of the injected signal. Default is None.
 
-- **inject_signal** : bool, optional  
+- **inject_signal** : bool, optional
   If `True`, the function will inject the damped oscillating signal into the light curve data. Default is `False`.
 
-- **ntau** : int, optional  
+- **ntau** : int, optional
   Number of time delays for wavelet analysis. Default is None.
 
-- **ngrid** : int, optional  
+- **ngrid** : int, optional
   Number of grid points for wavelet analysis. Default is None.
 
-- **minfq** : float, optional  
+- **minfq** : float, optional
   Minimum frequency for the wavelet analysis. If `None`, it is estimated from the data.
 
-- **maxfq** : float, optional  
+- **maxfq** : float, optional
   Maximum frequency for the wavelet analysis. If `None`, it is estimated from the data.
 
-- **parallel** : bool, optional  
+- **parallel** : bool, optional
   If `True`, the function will enable parallel processing to speed up calculations. Default is `False`.
 
 ### Returns

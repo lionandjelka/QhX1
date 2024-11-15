@@ -27,12 +27,12 @@ Navigate to the package directory and execute:
 .. code-block:: python
 
     from QhX.merge_batch_csv import merge_batch_csv
-    
+
     directory_to_search = "./data"
     output_file_name = "final_merged_results.csv"
-    
+
     merge_batch_csv(directory=directory_to_search, output_file=output_file_name)
-    
+
     print("CSV files have been merged successfully.")
 
 Parameters
