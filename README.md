@@ -1,6 +1,6 @@
 # QhX: Quasar harmonics eXplorer
-[![Python CI Workflow](https://github.com/lionandjelka/QhX_new_dynamical/actions/workflows/CI-pylint.yml/badge.svg)](https://github.com/lionandjelka/QhX_new_dynamical/actions/workflows/CI-pylint.yml)
-[![pages-build-deployment](https://github.com/lionandjelka/QhX_new_dynamical/actions/workflows/pages/pages-build-deployment/badge.svg)](https://github.com/lionandjelka/QhX_new_dynamical/actions/workflows/pages/pages-build-deployment)
+[![Python CI and pylint Workflow](https://github.com/lionandjelka/QhX1/actions/workflows/CI-pylint.yml/badge.svg)](https://github.com/lionandjelka/QhX1/actions/workflows/CI-pylint.yml)
+[![pages-build-deployment](https://github.com/lionandjelka/QhX1/actions/workflows/pages/pages-build-deployment/badge.svg)](https://github.com/lionandjelka/QhX1/actions/workflows/pages/pages-build-deployment)
 
 Framework for 2D Hybrid Method.
 
@@ -23,13 +23,13 @@ The package will be separated into a few different modules:
     - Numerical catalogue of objects with detected periods and flags related to robustness.
     - Visualization of numerical catalogue.
 
-    For more information, please refer to the [documentation](https://lionandjelka.github.io/QhX_new_dynamical/) for a usage guide.
+    For more information, please refer to the [documentation](https://lionandjelka.github.io/QhX1/) for a usage guide.
 
 ## Quick Links
 
 - [Introduction to package](#intro)
 - [Introduction to in-kind proposal](#inkind)
-- [Documentation](https://lionandjelka.github.io/QhX_new_dynamical/)
+- [Documentation](https://lionandjelka.github.io/QhX1/)
 
 ## QhX Project History
 

@@ -1,12 +1,15 @@
 Important Note
 ==============
 
-Distinction between QhX (Version 0.1.1) and QhX_dynamical (Version 0.1.0)
+Distinction between QhX Version 0.1.1 and   Version 0.2.0
 -------------------------------------------------------------------------
 
 Both versions are standalone and can be used independently, depending on your dataset and computational requirements.
 
-**QhX (Version 0.1.1)**
+In this documentation, we will refer to **QhX Version 0.2.0** as **QhX_dynamical** for brevity. Any references to `QhX_dynamical` indicate features and updates specific to Version 0.2.0 and onward.
+
+
+**QhX Version 0.1.1**
 -----------------------
 - Focused on analyzing datasets with consistent filter configurations.
 - Ideal for static time-domain surveys where filter sets remain unchanged across observations.
@@ -14,8 +17,8 @@ Both versions are standalone and can be used independently, depending on your da
   - Photometric reverberation mapping.
   - Multi-periodicity detection within red noise environments.
 
-**QhX_dynamical (Version 0.1.0)**
----------------------------------
+**QhX Version 0.2.0 (`QhX_dynamical`)**
+---------------------------------------
 - Extends the capabilities of `QhX` to support datasets with dynamic filter changes across observations.
 - Fully supports fixed-mode functionalities when the mode is set to 'fixed', making it versatile for both dynamic and static datasets.
 - Integrates a parallel processing solver (`ParallelSolver`) for efficient computation and handling of large datasets.
@@ -24,7 +27,7 @@ Both versions are standalone and can be used independently, depending on your da
 Usage Recommendations
 ---------------------
 - **Use `QhX (0.1.1)`**: When your dataset has consistent filters across all observations and does not require dynamic processing.
-- **Use `QhX_dynamical (0.1.0)`**: For flexible handling of datasets that may have variable filters or for when you prefer the option to switch between dynamic and fixed modes seamlessly.
+- **Use `QhX_dynamical`**: For flexible handling of datasets that may have variable filters or for when you prefer the option to switch between dynamic and fixed modes seamlessly.
 
 Examples and Support for Both Modes
 -----------------------------------

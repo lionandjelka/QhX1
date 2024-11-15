@@ -6,13 +6,13 @@
 # -- Project information -----------------------------------------------------
 # https://www.sphinx-doc.org/en/master/usage/configuration.html#project-information
 
-project = 'QhX_dynamical'
+project = 'QhX1'
 copyright = '2023, Andjelka Kovacevic'
 author = 'Andjelka Kovacevic, LSST SER-SAG-S1 team'
 release = '2024'
 
-version = '0.1.0'  # The short X.Y version
-release = '0.1.0'  # The full version, including alpha/beta/rc tags
+version = '0.2.0'  # The short X.Y version
+release = '0.2.0'  # The full version, including alpha/beta/rc tags
 
 # -- General configuration ---------------------------------------------------
 # https://www.sphinx-doc.org/en/master/usage/configuration.html#general-configuration

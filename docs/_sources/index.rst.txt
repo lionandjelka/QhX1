@@ -6,6 +6,7 @@ Welcome to Quasar harmonic eXplorer dynamical version (QhX's) documentation!
    :caption: Contents:
 
    important_note
+   LargeData
    installation
    quick_start
    test_integrated
