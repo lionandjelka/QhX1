@@ -91,8 +91,8 @@
 <span></span><span class="c1"># Superlet package included in this package</span>
 <span class="c1"># Reference: Implementation by Gregor Mönke: github.com/tensionhead</span>
 <span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
-<span class="kn">from</span> <span class="nn">.superlet</span> <span class="kn">import</span> <span class="n">superlet</span><span class="p">,</span> <span class="n">scale_from_period</span>
 <span class="kn">from</span> <span class="nn">QhX.utils.correlation</span> <span class="kn">import</span> <span class="n">correlation_nd</span>
+<span class="kn">from</span> <span class="nn">.superlet</span> <span class="kn">import</span> <span class="n">superlet</span><span class="p">,</span> <span class="n">scale_from_period</span>
 
 <div class="viewcode-block" id="superlets_methods">
 <a class="viewcode-back" href="../../../../superlets.html#QhX.algorithms.superlets.superlets.superlets_methods">[docs]</a>
@@ -100,8 +100,8 @@
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Perform a hybrid 2D method using superlets on time-series data.</span>
 
-<span class="sd">    This function applies the superlet transform to the provided time-series data and </span>
-<span class="sd">    then computes a correlation matrix using the resulting transformed data. It&#39;s </span>
+<span class="sd">    This function applies the superlet transform to the provided time-series data and</span>
+<span class="sd">    then computes a correlation matrix using the resulting transformed data. It&#39;s</span>
 <span class="sd">    particularly useful for time-frequency analysis with high resolution.</span>
 
 <span class="sd">    Parameters</span>
@@ -131,14 +131,14 @@
 <span class="sd">    &gt;&gt;&gt; corr, extent = superlets_methods(tt, mag, 100)</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="c1"># Function implementation...</span>
-    
+
     <span class="n">mx</span> <span class="o">=</span> <span class="p">(</span><span class="n">tt</span><span class="o">.</span><span class="n">max</span><span class="p">()</span><span class="o">-</span><span class="n">tt</span><span class="o">.</span><span class="n">min</span><span class="p">())</span><span class="o">/</span><span class="mf">2.</span>
     <span class="n">mn</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">min</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">diff</span><span class="p">(</span><span class="n">tt</span><span class="p">))</span>
     <span class="n">fmin</span> <span class="o">=</span> <span class="mf">1.</span><span class="o">/</span><span class="n">minfq</span>
     <span class="n">fmax</span> <span class="o">=</span> <span class="mf">1.</span><span class="o">/</span><span class="n">maxfq</span>
     <span class="n">df</span> <span class="o">=</span> <span class="p">(</span><span class="n">fmax</span><span class="o">-</span><span class="n">fmin</span><span class="p">)</span> <span class="o">/</span> <span class="n">ntau</span>
     <span class="n">flist</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">fmin</span><span class="p">,</span> <span class="n">fmax</span> <span class="o">+</span> <span class="n">df</span><span class="p">,</span> <span class="n">df</span><span class="p">)</span>
-    
+
     <span class="nb">print</span><span class="p">(</span><span class="n">scale_from_period</span><span class="p">(</span><span class="mi">1</span><span class="o">/</span><span class="n">flist</span><span class="p">))</span>
     <span class="c1"># Superlet calculation</span>
     <span class="n">gg</span><span class="o">=</span><span class="n">superlet</span><span class="p">(</span>
@@ -150,7 +150,7 @@
         <span class="n">c_1</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span>
         <span class="n">adaptive</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
     <span class="p">)</span>
-    
+
     <span class="c1"># Hybrid 2D method</span>
     <span class="n">gg1</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">gg</span><span class="p">)</span>
     <span class="n">corr</span> <span class="o">=</span> <span class="n">correlation_nd</span><span class="p">(</span><span class="n">gg1</span><span class="p">,</span> <span class="n">gg1</span><span class="p">)</span>
@@ -158,7 +158,7 @@
     <span class="n">extentmax</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">max</span><span class="p">(</span><span class="n">corr</span><span class="p">)</span>
 
     <span class="n">extent</span><span class="o">=</span><span class="p">[</span><span class="n">extentmin</span><span class="p">,</span><span class="n">extentmax</span><span class="p">,</span><span class="n">extentmin</span><span class="p">,</span><span class="n">extentmax</span><span class="p">]</span>
-    
+
 
     <span class="k">return</span>  <span class="n">corr</span><span class="p">,</span>  <span class="n">extent</span></div>
 

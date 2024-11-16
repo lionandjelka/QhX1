@@ -1,11 +1,13 @@
 LICENSE.txt
 README.md
+pyproject.toml
 setup.py
 QhX/__init__.py
 QhX/batch_processor.py
 QhX/calculation.py
 QhX/data_manager.py
 QhX/detection.py
+QhX/dynamical_mode.py
 QhX/interactive_plot_large_files.py
 QhX/iparallelization_solver.py
 QhX/light_curve.py
@@ -38,4 +40,3 @@ QhX/utils/__init__.py
 QhX/utils/correlation.py
 QhX/utils/logger.py
 QhX/utils/mock_lc.py
-QhX/utils/mock_lc_old.py

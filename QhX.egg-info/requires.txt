@@ -13,3 +13,6 @@ datashader
 pyarrow
 dask[dataframe]
 traitlets
+
+[tests]
+pytest

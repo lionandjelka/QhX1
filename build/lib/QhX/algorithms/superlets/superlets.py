@@ -1,15 +1,15 @@
 # Superlet package included in this package
 # Reference: Implementation by Gregor Mönke: github.com/tensionhead
 import numpy as np
-from .superlet import superlet, scale_from_period
 from QhX.utils.correlation import correlation_nd
+from .superlet import superlet, scale_from_period
 
 def superlets_methods(tt, mag, ntau, minfq=10, maxfq=500):
     """
     Perform a hybrid 2D method using superlets on time-series data.
 
-    This function applies the superlet transform to the provided time-series data and 
-    then computes a correlation matrix using the resulting transformed data. It's 
+    This function applies the superlet transform to the provided time-series data and
+    then computes a correlation matrix using the resulting transformed data. It's
     particularly useful for time-frequency analysis with high resolution.
 
     Parameters
@@ -39,14 +39,14 @@ def superlets_methods(tt, mag, ntau, minfq=10, maxfq=500):
     >>> corr, extent = superlets_methods(tt, mag, 100)
     """
     # Function implementation...
-    
+
     mx = (tt.max()-tt.min())/2.
     mn = np.min(np.diff(tt))
     fmin = 1./minfq
     fmax = 1./maxfq
     df = (fmax-fmin) / ntau
     flist=np.arange(fmin, fmax + df, df)
-    
+
     print(scale_from_period(1/flist))
     # Superlet calculation
     gg=superlet(
@@ -58,7 +58,7 @@ def superlets_methods(tt, mag, ntau, minfq=10, maxfq=500):
         c_1=3,
         adaptive=True,
     )
-    
+
     # Hybrid 2D method
     gg1=np.abs(gg)
     corr = correlation_nd(gg1, gg1)
@@ -66,6 +66,6 @@ def superlets_methods(tt, mag, ntau, minfq=10, maxfq=500):
     extentmax=np.max(corr)
 
     extent=[extentmin,extentmax,extentmin,extentmax]
-    
+
 
     return  corr,  extent

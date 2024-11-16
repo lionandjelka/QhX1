@@ -95,23 +95,23 @@
 <div class="viewcode-block" id="TestUnitLogger">
 <a class="viewcode-back" href="../../../test_logger.html#QhX.tests.test_logger.TestUnitLogger">[docs]</a>
 <span class="k">class</span> <span class="nc">TestUnitLogger</span><span class="p">(</span><span class="n">unittest</span><span class="o">.</span><span class="n">TestCase</span><span class="p">):</span>
-        
+
 <div class="viewcode-block" id="TestUnitLogger.test_logger_both_flags">
 <a class="viewcode-back" href="../../../test_logger.html#QhX.tests.test_logger.TestUnitLogger.test_logger_both_flags">[docs]</a>
     <span class="k">def</span> <span class="nf">test_logger_both_flags</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="c1"># Create instace of logger</span>
         <span class="n">logger</span> <span class="o">=</span> <span class="n">Logger</span><span class="p">(</span><span class="kc">True</span><span class="p">,</span> <span class="kc">True</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
         <span class="n">setid</span> <span class="o">=</span> <span class="s1">&#39;TEST&#39;</span>
-        
+
         <span class="n">logger</span><span class="o">.</span><span class="n">start</span><span class="p">(</span><span class="n">setid</span><span class="p">)</span>
         <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;REDIRECT&#39;</span><span class="p">)</span>
         <span class="n">time</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span> <span class="c1"># should log 2 as total time at some point</span>
         <span class="n">logger</span><span class="o">.</span><span class="n">stop</span><span class="p">()</span>
-            
+
         <span class="c1"># Assert the presence of log file, and its contents</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">assertTrue</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">isfile</span><span class="p">(</span><span class="n">setid</span><span class="p">),</span> <span class="s2">&quot;Log file missing&quot;</span><span class="p">)</span>
         <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;</span><span class="se">\n\n</span><span class="s1">Log file created.&#39;</span><span class="p">)</span>
-        
+
         <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">setid</span><span class="p">)</span> <span class="k">as</span> <span class="n">log_file</span><span class="p">:</span>
             <span class="n">res</span> <span class="o">=</span> <span class="n">log_file</span><span class="o">.</span><span class="n">read</span><span class="p">()</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">assertIn</span><span class="p">(</span><span class="s1">&#39;2&#39;</span><span class="p">,</span> <span class="n">res</span><span class="p">)</span>

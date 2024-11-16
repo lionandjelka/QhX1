@@ -186,7 +186,7 @@ The ``output`` and ``output_parallel`` modules handle the final classification a
 New Dynamic Module: QhX_dynamical
 ---------------------------------
 
-- **QhX_dynamical** (Version 0.1.0) introduces capabilities for handling datasets with dynamic filter configurations.
+- **QhX_dynamical** (QhX Version 0.2.0) introduces capabilities for handling datasets with dynamic filter configurations.
   - Supports both dynamic and fixed modes, making it versatile for datasets with or without variable filters.
   - Includes ``ParallelSolver`` for efficient parallel processing of large datasets and an advanced seeding mechanism to ensure reproducibility.
   - For consistent filter configurations, users can select the 'fixed' mode, making all functionalities from ``QhX`` (Version 0.1.1) accessible.
@@ -195,7 +195,7 @@ Usage Recommendations
 ---------------------
 
 - Use **QhX (0.1.1)** for datasets with consistent filter setups across all observations.
-- Choose **QhX_dynamical (0.1.0)** for dynamic filter configurations or if you need flexibility in switching between fixed and dynamic modes.
+- Choose **QhX_dynamical** for dynamic filter configurations or if you need flexibility in switching between fixed and dynamic modes.
 
 Both versions are open-source and licensed under the MIT License, ensuring accessibility and modifiability.
 

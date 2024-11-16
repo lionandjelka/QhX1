@@ -1,50 +1,113 @@
-import unittest
-from unittest.mock import Mock
 import os
-from QhX.parallelization_solver import *
+import gc
+import threading
+import matplotlib.pyplot as plt
+import pandas as pd
+import numpy as np
+import unittest
+from QhX.parallelization_solver import ParallelSolver
+from QhX import DataManagerDynamical, process1_new_dyn
 
-# Define a fake function which returns setids given as all column values
-def function_fake(*args, **kwargs):
-    setid = 'fake'
-    if len(args) > 1:
-        setid = args[1]
-    return [dict([(i, setid) for i, x in enumerate(HEADER.split(','))])]
-
-class TestUnitParallelSolver(unittest.TestCase):
+class TestParallelSolver(unittest.TestCase):
     def setUp(self):
-        # Mock setids
-        self.mock_setids = ['0','1','2','3']
-        
-        # Instance of ParallelSolver with file loggings
-        self.solver = ParallelSolver(process_function=function_fake, log_files=True)
-        
-        # Expected result, to have a header and all lines with fake function results
-        self.expected_result = HEADER +\
-        '\n'.join([','.join(
-           function_fake(None, setid)[0].values())
-         for setid in self.mock_setids]) + '\n'
-        
-    def test_parallel_solver_process_and_merge(self):
-        # Run the process ids
-        self.solver.process_ids(set_ids=self.mock_setids, results_file='mock_results_file.csv')
-        
-        # Read the processing result from file
-        process_result = None
-        with open('mock_results_file.csv') as f:
-            process_result = f.read()
-            
-        # Assert the presence of log files, process result data and its corectness
-        for setid in self.mock_setids:
-            self.assertTrue(os.path.isfile(setid), "Log file missing")
-            print(f'\n\nLog file for {setid} created.',end='')
+        print("Running setUp...")  # Debugging print
+        agn_dc_mapping = {
+            'column_mapping': {'flux': 'psMag', 'time': 'mjd', 'band': 'filter'},
+            'group_by_key': 'objectId',
+            'filter_mapping': {0: 0, 1: 1, 2: 2, 3: 3}
+        }
+        self.data_manager = DataManagerDynamical(
+            column_mapping=agn_dc_mapping['column_mapping'],
+            group_by_key=agn_dc_mapping['group_by_key'],
+            filter_mapping=agn_dc_mapping['filter_mapping']
+        )
+        self.synthetic_data = self.create_synthetic_data()
+        self.synthetic_data_file = 'synthetic_test_data.parquet'
+        self.synthetic_data.to_parquet(self.synthetic_data_file)
+        self.data_manager.load_data(self.synthetic_data_file)
+        self.data_manager.group_data()
+        self.solver = ParallelSolver(
+            delta_seconds=12.0,
+            num_workers=2,
+            data_manager=self.data_manager,
+            log_time=True,
+            log_files=False,
+            save_results=True,
+            process_function=process1_new_dyn,
+            parallel_arithmetic=True,
+            ntau=80,
+            ngrid=100,
+            provided_minfq=500,
+            provided_maxfq=10,
+            mode='dynamical'
+        )
+        self.setids = ['1']
 
-        self.assertIsNotNone(process_result, "Merged file missing or cannot be read")
-        print('\n\nMerged results file present.')        
-        
-        # Assert sorted equality because working in different processes may lead to different set ID order in result file
-        self.assertEqual(sorted(self.expected_result), sorted(process_result), "Merged result does not match expected result")
-        print('\nMerged result file content correct.')
+    def create_synthetic_data(self):
+        np.random.seed(42)
+        object_id = '1'
+        num_measurements = 50
+        mjd_values = np.linspace(50000, 50500, num=num_measurements)
+        psMag_values = np.random.normal(loc=20.0, scale=0.5, size=num_measurements)
+        psMagErr_values = np.random.uniform(0.02, 0.1, size=num_measurements)
+        filter_values = np.tile([0, 1, 2, 3], int(num_measurements / 4) + 1)[:num_measurements]
+        data = {
+            'objectId': [object_id] * num_measurements,
+            'mjd': mjd_values,
+            'psMag': psMag_values,
+            'psMagErr': psMagErr_values,
+            'filter': filter_values
+        }
+        return pd.DataFrame(data)
+
+    def test_parallel_solver_process_and_merge(self):
+        print("Running test_parallel_solver_process_and_merge...")  # Debugging print
+        try:
+            self.solver.process_ids(set_ids=self.setids, results_file='1-reslut.csv')
+            print("Solver processed IDs successfully.")  # Debugging print
+        except Exception as e:
+            self.fail(f"Error processing/saving data: {e}")
+
+        if not os.path.exists('1-reslut.csv'):
+            self.fail("Processed result file missing or cannot be read")
+
+        # Read the processing result and check structure
+        actual_df = pd.read_csv('1-reslut.csv')
+        print("Actual DataFrame read successfully.")  # Debugging print
+
+        # Check that the DataFrame has the expected columns
+        expected_columns = [
+            "ID", "Sampling_1", "Sampling_2", "Common period (Band1 & Band2)",
+            "Upper error bound", "Lower error bound", "Significance", "Band1-Band2"
+        ]
+        self.assertListEqual(list(actual_df.columns), expected_columns)
+
+        # Optional: Check if numerical values fall within expected ranges
+        self.assertTrue((actual_df["Sampling_1"] > 0).all())
+        self.assertTrue((actual_df["Sampling_2"] > 0).all())
+        self.assertTrue((actual_df["Significance"].fillna(0) >= 0).all())  # Allow NaN, otherwise check non-negative
+
+        # Print the result DataFrame for inspection
+        print("\nContents of 1-reslut.csv:")
+        print(actual_df.to_string(index=False))  # Print DataFrame without row indices
+    
+
+    def tearDown(self):
+        print("Cleaning up...")  # Debugging print
+        if hasattr(self.solver, 'executor') and self.solver.executor:
+            try:
+                self.solver.executor.shutdown(wait=True)
+                print("Executor shutdown successfully.")  # Debugging print
+            except Exception as e:
+                print(f"Error during executor shutdown: {e}")
+        if os.path.isfile(self.synthetic_data_file):
+            os.remove(self.synthetic_data_file)
+        if os.path.isfile('1-reslut.csv'):
+            os.remove('1-reslut.csv')
+        gc.collect()
+        for thread in threading.enumerate():
+            if thread.name != "MainThread":
+                print(f"Thread {thread.name} is still active.")  # Debugging print
 
 if __name__ == '__main__':
     unittest.main()
-

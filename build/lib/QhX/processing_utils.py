@@ -37,20 +37,21 @@ Rapid Task Switching Needs:
 """
 
 
-
-# Import the necessary threading component from Python's standard library
+# Import necessary threading components
 from multiprocessing.dummy import Pool as ThreadPool
-# Assuming process1_new is the function you want to execute in parallel
+
+# Import functions for both fixed and dynamical modes
 from QhX.detection import process1_new
+from QhX.dynamical_mode import process1_new_dyn
 
 def process_pool(args):
     """
     This function is called by each thread in the pool, unpacking the arguments
-    and passing them to the actual processing function.
+    and passing them to the appropriate processing function based on the mode.
 
     Args:
-        args (tuple): A tuple containing all the parameters needed for the 
-                      process1_new function. This should include:
+        args (tuple): A tuple containing all the parameters needed for the
+                      processing function. This should include:
                       - set_id (str)
                       - data_manager (DataManager object)
                       - ntau (int)
@@ -58,17 +59,23 @@ def process_pool(args):
                       - provided_minfq (float)
                       - provided_maxfq (float)
                       - include_errors (bool)
+                      - mode (str): Either 'fixed' or 'dynamical' to determine which function to call.
 
     Returns:
-        dict: The result from the process1_new function.
+        dict: The result from the appropriate processing function.
     """
     # Unpack the arguments
-    set_id, data_manager, ntau, ngrid, provided_minfq, provided_maxfq, include_errors = args
-    
-    # Call the processing function with the unpacked arguments
-    return process1_new(data_manager, set_id, ntau, ngrid, provided_minfq, provided_maxfq, include_errors)
+    set_id, data_manager, ntau, ngrid, provided_minfq, provided_maxfq, include_errors, mode = args
 
-def parallel_pool(setids, data_manager, ntau, ngrid, provided_minfq, provided_maxfq, include_errors, num_threads=2):
+    # Call the appropriate processing function based on the mode
+    if mode == 'fixed':
+        return process1_new(data_manager, set_id, ntau, ngrid, provided_minfq, provided_maxfq, include_errors)
+    elif mode == 'dynamical':
+        return process1_new_dyn(data_manager, set_id, ntau, ngrid, provided_minfq, provided_maxfq, include_errors)
+    else:
+        raise ValueError(f"Unknown mode: {mode}")
+
+def parallel_pool(setids, data_manager, ntau, ngrid, provided_minfq, provided_maxfq, include_errors, mode='fixed', num_threads=2):
     """
     Sets up the thread pool and manages the parallel execution of the processing function.
 
@@ -79,18 +86,19 @@ def parallel_pool(setids, data_manager, ntau, ngrid, provided_minfq, provided_ma
         ngrid (int): Number of grid points.
         provided_minfq (float): Period in days for calculating minimum frequency parameter for processing.
         provided_maxfq (float): Period in days for calculating  maximum frequency parameter for processing.
-        include_errors (bool): Flag to indicate whether to include error of magnitudes  handling.
+        include_errors (bool): Flag to indicate whether to include error of magnitudes handling.
+        mode (str): Either 'fixed' or 'dynamical' to select which processing function to use.
         num_threads (int): Number of threads to use for parallel processing.
 
     Returns:
         list: A list of results from processing each dataset identifier.
     """
     # Create a tuple for each set_id, pairing it with all other necessary parameters
-    args = [(set_id, data_manager, ntau, ngrid, provided_minfq, provided_maxfq, include_errors) for set_id in setids]
+    args = [(set_id, data_manager, ntau, ngrid, provided_minfq, provided_maxfq, include_errors, mode) for set_id in setids]
 
     # Initialize the ThreadPool with the specified number of threads
     with ThreadPool(num_threads) as pool:
-        # Map the process_data function to each tuple of arguments
+        # Map the process_pool function to each tuple of arguments
         results = pool.map(process_pool, args)
 
     return results
@@ -99,7 +107,6 @@ def parallel_pool(setids, data_manager, ntau, ngrid, provided_minfq, provided_ma
 if __name__ == "__main__":
     # Example set IDs and parameters for the processing function
     setids = ['1385092', '1385097']
-#    data_manager = DataManager()  # Presumed to be a previously defined DataManager instance
 
     # Parameters for the processing function
     ntau = 80
@@ -108,7 +115,14 @@ if __name__ == "__main__":
     provided_maxfq = 10
     include_errors = False
 
-    # Execute the parallel processing function and print the results
-    results = parallel_pool(setids, data_manager, ntau, ngrid, provided_minfq, provided_maxfq, include_errors, num_threads=2)
-    for result in results:
+    # Test the fixed mode
+    print("Testing Fixed Filter Mode:")
+    results_fixed = parallel_pool(setids, data_manager, ntau, ngrid, provided_minfq, provided_maxfq, include_errors, mode='fixed', num_threads=2)
+    for result in results_fixed:
+        print(result)
+
+    # Test the dynamical mode
+    print("Testing Dynamical Filter Mode:")
+    results_dynamical = parallel_pool(setids, data_manager_dyn, ntau, ngrid, provided_minfq, provided_maxfq, include_errors, mode='dynamical', num_threads=2)
+    for result in results_dynamical:
         print(result)

@@ -63,6 +63,7 @@
 <li class="toctree-l1 current"><a class="reference internal" href="package.html">Package Modules</a><ul class="current">
 <li class="toctree-l2"><a class="reference internal" href="data_manager.html">data_manager</a></li>
 <li class="toctree-l2"><a class="reference internal" href="dynamical_mode.html">Dynamical Mode Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="dynamical_mode.html#lsst-agn-data-challenge-example">LSST AGN Data Challenge Example</a></li>
 <li class="toctree-l2"><a class="reference internal" href="light_curve.html">light_curve</a></li>
 <li class="toctree-l2"><a class="reference internal" href="calculation.html">calculation</a></li>
 <li class="toctree-l2"><a class="reference internal" href="detection.html">detection</a></li>
@@ -122,10 +123,26 @@
              
   <section id="module-QhX.utils.correlation">
 <span id="correlation"></span><h1>correlation<a class="headerlink" href="#module-QhX.utils.correlation" title="Link to this heading"></a></h1>
+<p>This module provides functions for calculating correlations between n-dimensional arrays.</p>
 <dl class="py function">
 <dt class="sig sig-object py" id="QhX.utils.correlation.correlation_nd">
 <span class="sig-prename descclassname"><span class="pre">QhX.utils.correlation.</span></span><span class="sig-name descname"><span class="pre">correlation_nd</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">A</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">B</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/QhX/utils/correlation.html#correlation_nd"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#QhX.utils.correlation.correlation_nd" title="Link to this definition"></a></dt>
-<dd></dd></dl>
+<dd><p>Computes the correlation between two n-dimensional arrays, A and B.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>A</strong> (<em>ndarray</em>) – First input array with shape (n, m).</p></li>
+<li><p><strong>B</strong> (<em>ndarray</em>) – Second input array with shape (n, m).</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>The correlation matrix between A and B.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>ndarray</p>
+</dd>
+</dl>
+</dd></dl>
 
 </section>
 

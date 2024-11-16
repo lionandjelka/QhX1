@@ -88,11 +88,17 @@
            <div itemprop="articleBody">
              
   <h1>Source code for QhX.merge_batch_csv</h1><div class="highlight"><pre>
-<span></span><span class="c1"># File: QhX/merge_csv_results.py</span>
+<span></span><span class="c1"># pylint: disable=R0801</span>
+<span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">This module provides functionality to merge CSV files named &#39;result.csv&#39; found in directories </span>
+<span class="sd">with specific batch sizes (e.g., folders ending in &#39;sz100&#39;, &#39;sz200&#39;). The merged result is saved </span>
+<span class="sd">to a specified output file.</span>
+
+<span class="sd">&quot;&quot;&quot;</span>
 
 <span class="kn">import</span> <span class="nn">os</span>
-<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
 <span class="kn">import</span> <span class="nn">sys</span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
 
 <span class="n">DEFAULT_SIZES</span> <span class="o">=</span> <span class="p">[</span><span class="mi">100</span><span class="p">,</span> <span class="mi">200</span><span class="p">]</span>
 <span class="n">DEFAULT_MERGED_FILENAME</span> <span class="o">=</span> <span class="s1">&#39;merged_result.csv&#39;</span>
@@ -100,6 +106,16 @@
 <div class="viewcode-block" id="check_endings">
 <a class="viewcode-back" href="../../merge_batch_csv.html#QhX.merge_batch_csv.check_endings">[docs]</a>
 <span class="k">def</span> <span class="nf">check_endings</span><span class="p">(</span><span class="n">root</span><span class="p">,</span> <span class="n">all_sizes</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Checks if a directory path ends with any of the specified batch size suffixes.</span>
+
+<span class="sd">    Parameters:</span>
+<span class="sd">        root (str): The directory path to check.</span>
+<span class="sd">        all_sizes (list of int): The list of batch sizes to look for in directory endings.</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        bool: True if the directory ends with one of the specified sizes, False otherwise.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
     <span class="k">for</span> <span class="n">size</span> <span class="ow">in</span> <span class="n">all_sizes</span><span class="p">:</span>
         <span class="k">if</span> <span class="n">root</span><span class="o">.</span><span class="n">endswith</span><span class="p">(</span><span class="s1">&#39;sz&#39;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">size</span><span class="p">)):</span>
             <span class="k">return</span> <span class="kc">True</span>
@@ -108,19 +124,24 @@
 
 <div class="viewcode-block" id="merge_batch_csv">
 <a class="viewcode-back" href="../../merge_batch_csv.html#QhX.merge_batch_csv.merge_batch_csv">[docs]</a>
-<span class="k">def</span> <span class="nf">merge_batch_csv</span><span class="p">(</span><span class="n">all_sizes</span><span class="o">=</span><span class="n">DEFAULT_SIZES</span><span class="p">,</span> <span class="n">directory</span><span class="o">=</span><span class="s2">&quot;.&quot;</span><span class="p">,</span> <span class="n">output_file</span><span class="o">=</span><span class="n">DEFAULT_MERGED_FILENAME</span><span class="p">):</span>
+<span class="k">def</span> <span class="nf">merge_batch_csv</span><span class="p">(</span><span class="n">all_sizes</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">directory</span><span class="o">=</span><span class="s2">&quot;.&quot;</span><span class="p">,</span> <span class="n">output_file</span><span class="o">=</span><span class="n">DEFAULT_MERGED_FILENAME</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    Merges CSV files named &#39;result.csv&#39; found in directories ending with szX, where X is a number from all_sizes</span>
-<span class="sd">    into a single CSV file.</span>
+<span class="sd">    Merges CSV files named &#39;result.csv&#39; found in directories ending with szX, where X is a number </span>
+<span class="sd">    from all_sizes, into a single CSV file.</span>
 
 <span class="sd">    Parameters:</span>
-<span class="sd">        all_sizes (list of int): The list of all batch sizes whose folders we need to merge</span>
+<span class="sd">        all_sizes (list of int, optional): List of all batch sizes whose folders we need to merge.</span>
+<span class="sd">                                           Defaults to [100, 200].</span>
 <span class="sd">        directory (str): The root directory to search for CSV files. Defaults to the current directory.</span>
-<span class="sd">        output_file (str): The name of the output file where the merged results will be saved. Defaults to &#39;merged_result.csv&#39;.</span>
+<span class="sd">        output_file (str): The name of the output file where the merged results will be saved. </span>
+<span class="sd">                           Defaults to &#39;merged_result.csv&#39;.</span>
 
 <span class="sd">    Returns:</span>
 <span class="sd">        int: The number of files successfully merged.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">if</span> <span class="n">all_sizes</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">all_sizes</span> <span class="o">=</span> <span class="n">DEFAULT_SIZES</span>
+
     <span class="n">all_dfs</span> <span class="o">=</span> <span class="p">[]</span>  <span class="c1"># List to store DataFrames</span>
     <span class="n">cnt</span> <span class="o">=</span> <span class="mi">0</span>  <span class="c1"># Counter for files</span>
 
@@ -140,25 +161,25 @@
         <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;All CSV files merged into &#39;</span><span class="si">{</span><span class="n">output_file</span><span class="si">}</span><span class="s2">&#39; successfully! Counted </span><span class="si">{</span><span class="n">cnt</span><span class="si">}</span><span class="s2"> files.&quot;</span><span class="p">)</span>
     <span class="k">else</span><span class="p">:</span>
         <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;No suitable CSV files found to merge.&quot;</span><span class="p">)</span>
-    
+
     <span class="k">return</span> <span class="n">cnt</span></div>
 
 
 <span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s2">&quot;__main__&quot;</span><span class="p">:</span>
-    <span class="c1"># Example usage: python -m QhX.merge_csv_results</span>
+    <span class="c1"># Initialize the all_sizes list from command-line arguments</span>
     <span class="n">all_sizes</span> <span class="o">=</span> <span class="p">[]</span>
-    <span class="k">try</span><span class="p">:</span>
-        <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">sys</span><span class="o">.</span><span class="n">argv</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">1</span><span class="p">:</span>
-            <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">sys</span><span class="o">.</span><span class="n">argv</span><span class="p">)):</span>
-                <span class="n">all_sizes</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="nb">int</span><span class="p">(</span><span class="n">sys</span><span class="o">.</span><span class="n">argv</span><span class="p">[</span><span class="n">i</span><span class="p">]))</span>
-    <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
-        <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Args parsing error &#39;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">e</span><span class="p">))</span>
+    <span class="k">for</span> <span class="n">arg</span> <span class="ow">in</span> <span class="n">sys</span><span class="o">.</span><span class="n">argv</span><span class="p">[</span><span class="mi">1</span><span class="p">:]:</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="n">all_sizes</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="nb">int</span><span class="p">(</span><span class="n">arg</span><span class="p">))</span>
+        <span class="k">except</span> <span class="ne">ValueError</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+            <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Warning: Skipping invalid argument &quot;</span><span class="si">{</span><span class="n">arg</span><span class="si">}</span><span class="s1">&quot; - </span><span class="si">{</span><span class="n">e</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
 
-    <span class="c1"># Default all_sizes in case of no/invalid args</span>
+    <span class="c1"># Use default sizes if no valid sizes were provided</span>
     <span class="k">if</span> <span class="ow">not</span> <span class="n">all_sizes</span><span class="p">:</span>
         <span class="n">all_sizes</span> <span class="o">=</span> <span class="n">DEFAULT_SIZES</span>
-    <span class="n">merge_batch_csv</span><span class="p">(</span><span class="n">all_sizes</span><span class="p">)</span> <span class="c1"># Call merge function</span>
     
+    <span class="c1"># Call the merge function</span>
+    <span class="n">merge_batch_csv</span><span class="p">(</span><span class="n">all_sizes</span><span class="p">)</span>
 </pre></div>
 
            </div>

@@ -90,8 +90,7 @@
   <h1>Source code for QhX.parallelization_solver</h1><div class="highlight"><pre>
 <span></span><span class="kn">import</span> <span class="nn">sys</span>
 <span class="kn">import</span> <span class="nn">time</span>
-<span class="kn">from</span> <span class="nn">multiprocessing</span> <span class="kn">import</span> <span class="n">Process</span>
-<span class="kn">from</span> <span class="nn">multiprocessing</span> <span class="kn">import</span> <span class="n">Queue</span>
+<span class="kn">from</span> <span class="nn">multiprocessing</span> <span class="kn">import</span> <span class="n">Process</span><span class="p">,</span> <span class="n">Queue</span>
 <span class="kn">from</span> <span class="nn">QhX.detection</span> <span class="kn">import</span> <span class="n">process1_new</span>  <span class="c1"># Fixed mode</span>
 <span class="kn">from</span> <span class="nn">QhX.dynamical_mode</span> <span class="kn">import</span> <span class="n">process1_new_dyn</span>  <span class="c1"># Dynamical mode</span>
 <span class="kn">from</span> <span class="nn">QhX.iparallelization_solver</span> <span class="kn">import</span> <span class="n">IParallelSolver</span>
@@ -112,24 +111,25 @@
 <span class="k">class</span> <span class="nc">ParallelSolver</span><span class="p">(</span><span class="n">IParallelSolver</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    A class to manage parallel execution of data processing functions.</span>
-<span class="sd">    &quot;&quot;&quot;</span>    
+<span class="sd">    &quot;&quot;&quot;</span>
     <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span>
-                 <span class="n">delta_seconds</span><span class="o">=</span><span class="n">DEFAULT_LOG_PERIOD</span><span class="p">,</span> 
+                 <span class="n">delta_seconds</span><span class="o">=</span><span class="n">DEFAULT_LOG_PERIOD</span><span class="p">,</span>
                  <span class="n">num_workers</span><span class="o">=</span><span class="n">DEFAULT_NUM_WORKERS</span><span class="p">,</span>
                  <span class="n">data_manager</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
-                 <span class="n">log_time</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> 
+                 <span class="n">log_time</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
                  <span class="n">log_files</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
                  <span class="n">save_results</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
                  <span class="n">process_function</span><span class="o">=</span><span class="n">process1_new</span><span class="p">,</span>  <span class="c1"># Default is fixed mode</span>
                  <span class="n">parallel_arithmetic</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
                  <span class="n">ntau</span><span class="o">=</span><span class="n">DEFAULT_NTAU</span><span class="p">,</span>
-                 <span class="n">ngrid</span><span class="o">=</span><span class="n">DEFAULT_NGRID</span><span class="p">,</span> 
-                 <span class="n">provided_minfq</span><span class="o">=</span><span class="n">DEFAULT_PROVIDED_MINFQ</span><span class="p">,</span> 
+                 <span class="n">ngrid</span><span class="o">=</span><span class="n">DEFAULT_NGRID</span><span class="p">,</span>
+                 <span class="n">provided_minfq</span><span class="o">=</span><span class="n">DEFAULT_PROVIDED_MINFQ</span><span class="p">,</span>
                  <span class="n">provided_maxfq</span><span class="o">=</span><span class="n">DEFAULT_PROVIDED_MAXFQ</span><span class="p">,</span>
                  <span class="n">mode</span><span class="o">=</span><span class="s1">&#39;fixed&#39;</span>  <span class="c1"># New mode parameter, default to &#39;fixed&#39;</span>
                 <span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Initialize the ParallelSolver with the specified configuration.&quot;&quot;&quot;</span>
         <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">num_workers</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Initializing ParallelSolver with mode &#39;</span><span class="si">{</span><span class="n">mode</span><span class="si">}</span><span class="s2">&#39; and </span><span class="si">{</span><span class="n">num_workers</span><span class="si">}</span><span class="s2"> workers.&quot;</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">delta_seconds</span> <span class="o">=</span> <span class="n">delta_seconds</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">data_manager</span> <span class="o">=</span> <span class="n">data_manager</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">save_results</span> <span class="o">=</span> <span class="n">save_results</span>
@@ -144,8 +144,10 @@
         <span class="c1"># Determine the processing function based on the mode</span>
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">mode</span> <span class="o">==</span> <span class="s1">&#39;fixed&#39;</span><span class="p">:</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">process_function</span> <span class="o">=</span> <span class="n">process1_new</span>  <span class="c1"># Use the fixed mode function</span>
+            <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Using fixed mode processing function.&quot;</span><span class="p">)</span>
         <span class="k">elif</span> <span class="bp">self</span><span class="o">.</span><span class="n">mode</span> <span class="o">==</span> <span class="s1">&#39;dynamical&#39;</span><span class="p">:</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">process_function</span> <span class="o">=</span> <span class="n">process1_new_dyn</span>  <span class="c1"># Use the dynamical mode function</span>
+            <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Using dynamical mode processing function.&quot;</span><span class="p">)</span>
         <span class="k">else</span><span class="p">:</span>
             <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Unknown mode: </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">mode</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
 
@@ -154,38 +156,60 @@
     <span class="k">def</span> <span class="nf">aggregate_process_function_result</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">result</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Places the result dict into a string&quot;&quot;&quot;</span>
         <span class="n">res</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Aggregating results...&quot;</span><span class="p">)</span>
         <span class="k">for</span> <span class="n">row</span> <span class="ow">in</span> <span class="n">result</span><span class="p">:</span>
             <span class="n">row_values</span> <span class="o">=</span> <span class="n">row</span><span class="o">.</span><span class="n">values</span><span class="p">()</span> <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">row</span><span class="p">,</span> <span class="nb">dict</span><span class="p">)</span> <span class="k">else</span> <span class="n">row</span>
             <span class="n">res</span> <span class="o">+=</span> <span class="s1">&#39;,&#39;</span><span class="o">.</span><span class="n">join</span><span class="p">([</span><span class="nb">str</span><span class="p">(</span><span class="n">v</span><span class="p">)</span> <span class="k">for</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">row_values</span><span class="p">])</span> <span class="o">+</span> <span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Aggregation complete.&quot;</span><span class="p">)</span>
         <span class="k">return</span> <span class="n">res</span></div>
 
 
 <div class="viewcode-block" id="ParallelSolver.get_process_function_result">
 <a class="viewcode-back" href="../../parallelization_solver.html#QhX.parallelization_solver.ParallelSolver.get_process_function_result">[docs]</a>
     <span class="k">def</span> <span class="nf">get_process_function_result</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">set_id</span><span class="p">):</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;Run the detection function and return the result&quot;&quot;&quot;</span>
-        <span class="n">result</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">process_function</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">data_manager</span><span class="p">,</span>
-                                       <span class="n">set_id</span><span class="p">,</span> 
-                                       <span class="n">ntau</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">ntau</span><span class="p">,</span> 
-                                       <span class="n">ngrid</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">ngrid</span><span class="p">,</span> 
-                                       <span class="n">provided_minfq</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">provided_minfq</span><span class="p">,</span> 
-                                       <span class="n">provided_maxfq</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">provided_maxfq</span><span class="p">,</span> 
-                                       <span class="n">parallel</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">parallel_arithmetic</span><span class="p">,</span> 
-                                       <span class="n">include_errors</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Run the detection function and return the result based on the mode&quot;&quot;&quot;</span>
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Processing set ID: </span><span class="si">{</span><span class="n">set_id</span><span class="si">}</span><span class="s2"> in mode &#39;</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">mode</span><span class="si">}</span><span class="s2">&#39;.&quot;</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">mode</span> <span class="o">==</span> <span class="s1">&#39;fixed&#39;</span><span class="p">:</span>
+            <span class="c1"># Call the fixed mode function</span>
+            <span class="n">result</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">process_function</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">data_manager</span><span class="p">,</span>
+                                           <span class="n">set_id</span><span class="p">,</span>
+                                           <span class="n">ntau</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">ntau</span><span class="p">,</span>
+                                           <span class="n">ngrid</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">ngrid</span><span class="p">,</span>
+                                           <span class="n">provided_minfq</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">provided_minfq</span><span class="p">,</span>
+                                           <span class="n">provided_maxfq</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">provided_maxfq</span><span class="p">,</span>
+                                           <span class="n">parallel</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">parallel_arithmetic</span><span class="p">,</span>
+                                           <span class="n">include_errors</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+        <span class="k">elif</span> <span class="bp">self</span><span class="o">.</span><span class="n">mode</span> <span class="o">==</span> <span class="s1">&#39;dynamical&#39;</span><span class="p">:</span>
+            <span class="c1"># Call the dynamical mode function with parameters specific to dynamical mode</span>
+            <span class="n">result</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">process_function</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">data_manager</span><span class="p">,</span>
+                                           <span class="n">set_id</span><span class="p">,</span>
+                                           <span class="n">ntau</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">ntau</span><span class="p">,</span>
+                                           <span class="n">ngrid</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">ngrid</span><span class="p">,</span>
+                                           <span class="n">provided_minfq</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">provided_minfq</span><span class="p">,</span>
+                                           <span class="n">provided_maxfq</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">provided_maxfq</span><span class="p">,</span>
+                                           <span class="n">parallel</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">parallel_arithmetic</span><span class="p">,</span>
+                                           <span class="n">include_errors</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>  <span class="c1"># Or other mode-specific parameters</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Unknown mode: </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">mode</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Processing for set ID </span><span class="si">{</span><span class="n">set_id</span><span class="si">}</span><span class="s2"> in mode &#39;</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">mode</span><span class="si">}</span><span class="s2">&#39; completed.&quot;</span><span class="p">)</span>
         <span class="k">return</span> <span class="n">result</span></div>
 
-    
+
 <div class="viewcode-block" id="ParallelSolver.maybe_begin_logging">
 <a class="viewcode-back" href="../../parallelization_solver.html#QhX.parallelization_solver.ParallelSolver.maybe_begin_logging">[docs]</a>
     <span class="k">def</span> <span class="nf">maybe_begin_logging</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">set_id</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Starts a logging thread&quot;&quot;&quot;</span>
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Starting logging for set ID </span><span class="si">{</span><span class="n">set_id</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">start</span><span class="p">(</span><span class="n">set_id</span><span class="p">)</span></div>
 
-    
+
 <div class="viewcode-block" id="ParallelSolver.maybe_stop_logging">
 <a class="viewcode-back" href="../../parallelization_solver.html#QhX.parallelization_solver.ParallelSolver.maybe_stop_logging">[docs]</a>
     <span class="k">def</span> <span class="nf">maybe_stop_logging</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Stops the logger&quot;&quot;&quot;</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Stopping logger.&quot;</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">stop</span><span class="p">()</span></div>
 
 
@@ -194,8 +218,13 @@
     <span class="k">def</span> <span class="nf">maybe_save_local_results</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">set_id</span><span class="p">,</span> <span class="n">res_string</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Saves local results of set ID formed into a string&quot;&quot;&quot;</span>
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">save_results</span><span class="p">:</span>
-            <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">set_id</span><span class="si">}</span><span class="s1">-result.csv&#39;</span><span class="p">,</span> <span class="s1">&#39;w&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">saving_file</span><span class="p">:</span>
-                <span class="n">saving_file</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">HEADER</span> <span class="o">+</span> <span class="n">res_string</span><span class="p">)</span></div>
+            <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Saving local results for set ID </span><span class="si">{</span><span class="n">set_id</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+            <span class="k">try</span><span class="p">:</span>
+                <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">set_id</span><span class="si">}</span><span class="s1">-result.csv&#39;</span><span class="p">,</span> <span class="s1">&#39;w&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">saving_file</span><span class="p">:</span>
+                    <span class="n">saving_file</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">HEADER</span> <span class="o">+</span> <span class="n">res_string</span><span class="p">)</span>
+                <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Results saved successfully for set ID </span><span class="si">{</span><span class="n">set_id</span><span class="si">}</span><span class="s2">.&quot;</span><span class="p">)</span>
+            <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+                <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Error saving results for set ID </span><span class="si">{</span><span class="n">set_id</span><span class="si">}</span><span class="s2">: </span><span class="si">{</span><span class="n">e</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span></div>
 
 
 <div class="viewcode-block" id="ParallelSolver.maybe_save_results">
@@ -203,14 +232,16 @@
     <span class="k">def</span> <span class="nf">maybe_save_results</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">results_file</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;If results file is set, saves the full results queue to it.&quot;&quot;&quot;</span>
         <span class="k">if</span> <span class="n">results_file</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Saving all results to </span><span class="si">{</span><span class="n">results_file</span><span class="si">}</span><span class="s2">.&quot;</span><span class="p">)</span>
             <span class="k">try</span><span class="p">:</span>
                 <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">results_file</span><span class="p">,</span> <span class="s1">&#39;w&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
                     <span class="n">f</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">HEADER</span><span class="p">)</span>
                     <span class="k">while</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">results_</span><span class="o">.</span><span class="n">empty</span><span class="p">():</span>
                         <span class="n">result</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">results_</span><span class="o">.</span><span class="n">get</span><span class="p">()</span>
                         <span class="n">f</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">result</span><span class="p">)</span>
+                <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;All results saved successfully.&quot;</span><span class="p">)</span>
             <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
-                <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Error while saving:&#39;</span><span class="p">,</span> <span class="n">e</span><span class="p">)</span></div>
+                <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Error while saving to </span><span class="si">{</span><span class="n">results_file</span><span class="si">}</span><span class="s2">: </span><span class="si">{</span><span class="n">e</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span></div>
 </div>
 
 </pre></div>

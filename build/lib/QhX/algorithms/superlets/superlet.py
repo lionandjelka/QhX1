@@ -16,10 +16,10 @@ def superlet(data_arr, samplerate, scales, order_max, order_min=1, c_1=3, adapti
     """
     Performs Superlet Transform (SLT) on time-series data.
 
-    This function computes either a multiplicative SLT or a fractional adaptive SLT (FASLT), 
-    based on the 'adaptive' flag. Multiplicative SLT is recommended for analysis within a narrow 
-    frequency band, while FASLT is suitable for a broader range of frequencies. The transform 
-    combines multiple Morlet wavelets with varying cycles to achieve super-resolution in 
+    This function computes either a multiplicative SLT or a fractional adaptive SLT (FASLT),
+    based on the 'adaptive' flag. Multiplicative SLT is recommended for analysis within a narrow
+    frequency band, while FASLT is suitable for a broader range of frequencies. The transform
+    combines multiple Morlet wavelets with varying cycles to achieve super-resolution in
     time-frequency analysis.
 
     Parameters
@@ -45,7 +45,7 @@ def superlet(data_arr, samplerate, scales, order_max, order_min=1, c_1=3, adapti
 
     References
     ----------
-    
+
     - `Moca, Vasile V., et al. 2021,Time-frequency super-resolution with superlets, Nat. Comm. 12.1, 1-18 <https://www.nature.com/articles/s41467-020-20539-9>`_.
     """
     # Function implementation...
@@ -207,7 +207,7 @@ class MorletSL:
         """
         Represents a Morlet wavelet used in Superlet Transform.
 
-        The Morlet wavelet in Superlet formulation has a specific number of cycles within 
+        The Morlet wavelet in Superlet formulation has a specific number of cycles within
         its Gaussian envelope, influencing its time and frequency resolution.
 
         Parameters
@@ -360,7 +360,7 @@ def compute_adaptive_order(freq, order_min, order_max):
     """
     Computes the superlet order for given frequencies in the Fractional Adaptive SLT.
 
-    This is a linear mapping between the minimal and maximal order onto the 
+    This is a linear mapping between the minimal and maximal order onto the
     respective minimal and maximal frequencies.
 
     Parameters
@@ -397,9 +397,9 @@ def gen_superlet_testdata(freqs=[20, 40, 60], cycles=11, fs=1000, eps=0):
     """
     Generates test data for superlet analysis, consisting of harmonic superpositions.
 
-    This function creates a signal composed of multiple oscillations with specified 
-    frequencies. Each oscillation is a few-cycle harmonic with an optional addition 
-    of white noise. It is useful for demonstrating and testing superlet transform 
+    This function creates a signal composed of multiple oscillations with specified
+    frequencies. Each oscillation is a few-cycle harmonic with an optional addition
+    of white noise. It is useful for demonstrating and testing superlet transform
     functionality.
 
     Parameters
@@ -420,12 +420,12 @@ def gen_superlet_testdata(freqs=[20, 40, 60], cycles=11, fs=1000, eps=0):
 
     Examples
     --------
-    
+
     >>> import numpy as np
     >>> from mymodule import gen_superlet_testdata
     >>> signal = gen_superlet_testdata(freqs=[20, 40, 60], cycles=10, fs=1000, eps=0.1)
     """
-  
+
     # Function implementation...
 
     signal = []
@@ -465,7 +465,7 @@ if __name__ == "__main__":
     fs = 1000  # sampling frequency
     A = 10 # amplitude
     signal = A * gen_superlet_testdata(fs=fs, eps=0)  # 20Hz, 40Hz and 60Hz
-    
+
     # frequencies of interest in Hz
     foi = np.linspace(1, 100, 50)
     scales = scale_from_period(1 / foi)
@@ -490,18 +490,18 @@ if __name__ == "__main__":
 
     ax1.plot(np.arange(signal.size) / fs, signal, c='cornflowerblue')
     ax1.set_ylabel('signal (a.u.)')
-    
+
     extent = [0, len(signal) / fs, foi[0], foi[-1]]
     im = ax2.imshow(ampls, cmap="magma", aspect="auto", extent=extent, origin='lower')
-    
+
     ppl.colorbar(im,ax = ax2, orientation='horizontal',
                  shrink=0.7, pad=0.2, label='amplitude (a.u.)')
-    
+
     ax2.plot([0, len(signal) / fs], [20, 20], "--", c='0.5')
     ax2.plot([0, len(signal) / fs], [40, 40], "--", c='0.5')
     ax2.plot([0, len(signal) / fs], [60, 60], "--", c='0.5')
-    
-    ax2.set_xlabel("time (s)")    
+
+    ax2.set_xlabel("time (s)")
     ax2.set_ylabel("frequency (Hz)")
 
     fig.tight_layout()

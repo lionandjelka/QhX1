@@ -63,6 +63,7 @@
 <li class="toctree-l1 current"><a class="reference internal" href="package.html">Package Modules</a><ul class="current">
 <li class="toctree-l2"><a class="reference internal" href="data_manager.html">data_manager</a></li>
 <li class="toctree-l2"><a class="reference internal" href="dynamical_mode.html">Dynamical Mode Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="dynamical_mode.html#lsst-agn-data-challenge-example">LSST AGN Data Challenge Example</a></li>
 <li class="toctree-l2"><a class="reference internal" href="light_curve.html">light_curve</a></li>
 <li class="toctree-l2"><a class="reference internal" href="calculation.html">calculation</a></li>
 <li class="toctree-l2"><a class="reference internal" href="detection.html">detection</a></li>
@@ -126,22 +127,42 @@
   <section id="merge-batch-csv-module">
 <h1>merge_batch_csv Module<a class="headerlink" href="#merge-batch-csv-module" title="Link to this heading"></a></h1>
 <p>The <code class="docutils literal notranslate"><span class="pre">merge_batch_csv</span></code> module provides functionality for merging CSV files generated from batch processes into a single consolidated CSV file. This is particularly useful for analyzing results that are split across multiple batch output files.</p>
-<dl class="py function" id="module-QhX.merge_batch_csv">
+<p id="module-QhX.merge_batch_csv">This module provides functionality to merge CSV files named ‘result.csv’ found in directories
+with specific batch sizes (e.g., folders ending in ‘sz100’, ‘sz200’). The merged result is saved
+to a specified output file.</p>
+<dl class="py function">
 <dt class="sig sig-object py" id="QhX.merge_batch_csv.check_endings">
 <span class="sig-prename descclassname"><span class="pre">QhX.merge_batch_csv.</span></span><span class="sig-name descname"><span class="pre">check_endings</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">root</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">all_sizes</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/QhX/merge_batch_csv.html#check_endings"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#QhX.merge_batch_csv.check_endings" title="Link to this definition"></a></dt>
-<dd></dd></dl>
-
-<dl class="py function">
-<dt class="sig sig-object py" id="QhX.merge_batch_csv.merge_batch_csv">
-<span class="sig-prename descclassname"><span class="pre">QhX.merge_batch_csv.</span></span><span class="sig-name descname"><span class="pre">merge_batch_csv</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">all_sizes</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">[100,</span> <span class="pre">200]</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">directory</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'.'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">output_file</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'merged_result.csv'</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/QhX/merge_batch_csv.html#merge_batch_csv"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#QhX.merge_batch_csv.merge_batch_csv" title="Link to this definition"></a></dt>
-<dd><p>Merges CSV files named ‘result.csv’ found in directories ending with szX, where X is a number from all_sizes
-into a single CSV file.</p>
+<dd><p>Checks if a directory path ends with any of the specified batch size suffixes.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>all_sizes</strong> (<em>list</em><em> of </em><em>int</em>) – The list of all batch sizes whose folders we need to merge</p></li>
+<li><p><strong>root</strong> (<em>str</em>) – The directory path to check.</p></li>
+<li><p><strong>all_sizes</strong> (<em>list</em><em> of </em><em>int</em>) – The list of batch sizes to look for in directory endings.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>True if the directory ends with one of the specified sizes, False otherwise.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>bool</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="QhX.merge_batch_csv.merge_batch_csv">
+<span class="sig-prename descclassname"><span class="pre">QhX.merge_batch_csv.</span></span><span class="sig-name descname"><span class="pre">merge_batch_csv</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">all_sizes</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">directory</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'.'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">output_file</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'merged_result.csv'</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/QhX/merge_batch_csv.html#merge_batch_csv"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#QhX.merge_batch_csv.merge_batch_csv" title="Link to this definition"></a></dt>
+<dd><p>Merges CSV files named ‘result.csv’ found in directories ending with szX, where X is a number
+from all_sizes, into a single CSV file.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>all_sizes</strong> (<em>list</em><em> of </em><em>int</em><em>, </em><em>optional</em>) – List of all batch sizes whose folders we need to merge.
+Defaults to [100, 200].</p></li>
 <li><p><strong>directory</strong> (<em>str</em>) – The root directory to search for CSV files. Defaults to the current directory.</p></li>
-<li><p><strong>output_file</strong> (<em>str</em>) – The name of the output file where the merged results will be saved. Defaults to ‘merged_result.csv’.</p></li>
+<li><p><strong>output_file</strong> (<em>str</em>) – The name of the output file where the merged results will be saved.
+Defaults to ‘merged_result.csv’.</p></li>
 </ul>
 </dd>
 <dt class="field-even">Returns<span class="colon">:</span></dt>

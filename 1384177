@@ -1,59 +1,1637 @@
-Starting time for ID 1384177 : 2024-11-09 16:37:16.776045
+Starting time for ID 1384177 : 2024-11-16 13:04:09.024570
 
 Processing set ID: 1384177 in mode 'fixed'.
 *** Starting Weighted Wavelet Z-transform ***
 
 Pseudo sample frequency (median) is  0.505
 largest tau window is  33.101
-Processing 1384177
-PID 7234
-Duration: 1.0 ticks
-12.0 seconds each
-Time so far 12.0s
-
-2.36 seconds has passed to complete Weighted Wavelet Z-transform 
+2.59 seconds has passed to complete Weighted Wavelet Z-transform 
 
 *** Starting Weighted Wavelet Z-transform ***
 
 Pseudo sample frequency (median) is  0.51
 largest tau window is  33.101
-2.34 seconds has passed to complete Weighted Wavelet Z-transform 
+2.65 seconds has passed to complete Weighted Wavelet Z-transform 
 
 *** Starting Weighted Wavelet Z-transform ***
 
 Pseudo sample frequency (median) is  0.508
 largest tau window is  33.101
-2.6 seconds has passed to complete Weighted Wavelet Z-transform 
+3.05 seconds has passed to complete Weighted Wavelet Z-transform 
 
 *** Starting Weighted Wavelet Z-transform ***
 
 Pseudo sample frequency (median) is  0.505
 largest tau window is  28.633
-2.71 seconds has passed to complete Weighted Wavelet Z-transform 
+Processing 1384177
+PID 53868
+Duration: 1.0 ticks
+12.0 seconds each
+Time so far 12.0s
+
+3.73 seconds has passed to complete Weighted Wavelet Z-transform 
 
 *** Starting Weighted Wavelet Z-transform ***
 
 Pseudo sample frequency (median) is  0.505
 largest tau window is  33.101
-2.75 seconds has passed to complete Weighted Wavelet Z-transform 
+3.07 seconds has passed to complete Weighted Wavelet Z-transform 
+
+*** Starting Weighted Wavelet Z-transform ***
+
+Pseudo sample frequency (median) is  0.505
+largest tau window is  33.101
+2.89 seconds has passed to complete Weighted Wavelet Z-transform 
+
+*** Starting Weighted Wavelet Z-transform ***
+
+Pseudo sample frequency (median) is  0.505
+largest tau window is  33.101
+3.54 seconds has passed to complete Weighted Wavelet Z-transform 
 
 *** Starting Weighted Wavelet Z-transform ***
 
 Pseudo sample frequency (median) is  0.505
 largest tau window is  33.101
 Processing 1384177
-PID 7234
+PID 53868
 Duration: 2.0 ticks
 12.0 seconds each
 Time so far 24.0s
 
-2.92 seconds has passed to complete Weighted Wavelet Z-transform 
+3.47 seconds has passed to complete Weighted Wavelet Z-transform 
+
+*** Starting Weighted Wavelet Z-transform ***
+
+Pseudo sample frequency (median) is  0.505
+largest tau window is  33.101
+3.03 seconds has passed to complete Weighted Wavelet Z-transform 
+
+*** Starting Weighted Wavelet Z-transform ***
+
+Pseudo sample frequency (median) is  0.505
+largest tau window is  33.101
+3.09 seconds has passed to complete Weighted Wavelet Z-transform 
+
+*** Starting Weighted Wavelet Z-transform ***
+
+Pseudo sample frequency (median) is  0.505
+largest tau window is  33.101
+2.95 seconds has passed to complete Weighted Wavelet Z-transform 
+
+*** Starting Weighted Wavelet Z-transform ***
+
+Pseudo sample frequency (median) is  0.505
+largest tau window is  33.101
+Processing 1384177
+PID 53868
+Duration: 3.0 ticks
+12.0 seconds each
+Time so far 36.0s
+
+2.88 seconds has passed to complete Weighted Wavelet Z-transform 
+
+*** Starting Weighted Wavelet Z-transform ***
+
+Pseudo sample frequency (median) is  0.505
+largest tau window is  33.101
+2.84 seconds has passed to complete Weighted Wavelet Z-transform 
+
+*** Starting Weighted Wavelet Z-transform ***
+
+Pseudo sample frequency (median) is  0.505
+largest tau window is  33.101
+2.81 seconds has passed to complete Weighted Wavelet Z-transform 
+
+*** Starting Weighted Wavelet Z-transform ***
+
+Pseudo sample frequency (median) is  0.505
+largest tau window is  33.101
+2.88 seconds has passed to complete Weighted Wavelet Z-transform 
+
+*** Starting Weighted Wavelet Z-transform ***
+
+Pseudo sample frequency (median) is  0.505
+largest tau window is  33.101
+Processing 1384177
+PID 53868
+Duration: 4.0 ticks
+12.0 seconds each
+Time so far 48.0s
+
+3.02 seconds has passed to complete Weighted Wavelet Z-transform 
+
+*** Starting Weighted Wavelet Z-transform ***
+
+Pseudo sample frequency (median) is  0.505
+largest tau window is  33.101
+3.45 seconds has passed to complete Weighted Wavelet Z-transform 
+
+*** Starting Weighted Wavelet Z-transform ***
+
+Pseudo sample frequency (median) is  0.505
+largest tau window is  33.101
+3.48 seconds has passed to complete Weighted Wavelet Z-transform 
 
 *** Starting Weighted Wavelet Z-transform ***
 
 Pseudo sample frequency (median) is  0.505
 largest tau window is  33.101
 2.96 seconds has passed to complete Weighted Wavelet Z-transform 
+
+*** Starting Weighted Wavelet Z-transform ***
+
+Pseudo sample frequency (median) is  0.505
+largest tau window is  33.101
+Processing 1384177
+PID 53868
+Duration: 5.0 ticks
+12.0 seconds each
+Time so far 60.0s
+
+2.84 seconds has passed to complete Weighted Wavelet Z-transform 
+
+*** Starting Weighted Wavelet Z-transform ***
+
+Pseudo sample frequency (median) is  0.505
+largest tau window is  33.101
+2.83 seconds has passed to complete Weighted Wavelet Z-transform 
+
+*** Starting Weighted Wavelet Z-transform ***
+
+Pseudo sample frequency (median) is  0.505
+largest tau window is  33.101
+3.01 seconds has passed to complete Weighted Wavelet Z-transform 
+
+*** Starting Weighted Wavelet Z-transform ***
+
+Pseudo sample frequency (median) is  0.505
+largest tau window is  33.101
+3.05 seconds has passed to complete Weighted Wavelet Z-transform 
+
+*** Starting Weighted Wavelet Z-transform ***
+
+Pseudo sample frequency (median) is  0.505
+largest tau window is  33.101
+Processing 1384177
+PID 53868
+Duration: 6.0 ticks
+12.0 seconds each
+Time so far 72.0s
+
+3.04 seconds has passed to complete Weighted Wavelet Z-transform 
+
+*** Starting Weighted Wavelet Z-transform ***
+
+Pseudo sample frequency (median) is  0.505
+largest tau window is  33.101
+3.03 seconds has passed to complete Weighted Wavelet Z-transform 
+
+*** Starting Weighted Wavelet Z-transform ***
+
+Pseudo sample frequency (median) is  0.505
+largest tau window is  33.101
+3.08 seconds has passed to complete Weighted Wavelet Z-transform 
+
+*** Starting Weighted Wavelet Z-transform ***
+
+Pseudo sample frequency (median) is  0.505
+largest tau window is  33.101
+3.21 seconds has passed to complete Weighted Wavelet Z-transform 
+
+*** Starting Weighted Wavelet Z-transform ***
+
+Pseudo sample frequency (median) is  0.505
+largest tau window is  33.101
+Processing 1384177
+PID 53868
+Duration: 7.0 ticks
+12.0 seconds each
+Time so far 84.0s
+
+3.11 seconds has passed to complete Weighted Wavelet Z-transform 
+
+*** Starting Weighted Wavelet Z-transform ***
+
+Pseudo sample frequency (median) is  0.505
+largest tau window is  33.101
+3.01 seconds has passed to complete Weighted Wavelet Z-transform 
+
+*** Starting Weighted Wavelet Z-transform ***
+
+Pseudo sample frequency (median) is  0.505
+largest tau window is  33.101
+2.57 seconds has passed to complete Weighted Wavelet Z-transform 
+
+*** Starting Weighted Wavelet Z-transform ***
+
+Pseudo sample frequency (median) is  0.505
+largest tau window is  33.101
+2.51 seconds has passed to complete Weighted Wavelet Z-transform 
+
+*** Starting Weighted Wavelet Z-transform ***
+
+Pseudo sample frequency (median) is  0.505
+largest tau window is  33.101
+Processing 1384177
+PID 53868
+Duration: 8.0 ticks
+12.0 seconds each
+Time so far 96.0s
+
+2.48 seconds has passed to complete Weighted Wavelet Z-transform 
+
+*** Starting Weighted Wavelet Z-transform ***
+
+Pseudo sample frequency (median) is  0.505
+largest tau window is  33.101
+2.56 seconds has passed to complete Weighted Wavelet Z-transform 
+
+*** Starting Weighted Wavelet Z-transform ***
+
+Pseudo sample frequency (median) is  0.505
+largest tau window is  33.101
+2.53 seconds has passed to complete Weighted Wavelet Z-transform 
+
+*** Starting Weighted Wavelet Z-transform ***
+
+Pseudo sample frequency (median) is  0.505
+largest tau window is  33.101
+2.46 seconds has passed to complete Weighted Wavelet Z-transform 
+
+*** Starting Weighted Wavelet Z-transform ***
+
+Pseudo sample frequency (median) is  0.505
+largest tau window is  33.101
+2.47 seconds has passed to complete Weighted Wavelet Z-transform 
+
+*** Starting Weighted Wavelet Z-transform ***
+
+Pseudo sample frequency (median) is  0.505
+largest tau window is  33.101
+Processing 1384177
+PID 53868
+Duration: 9.0 ticks
+12.0 seconds each
+Time so far 108.0s
+
+2.45 seconds has passed to complete Weighted Wavelet Z-transform 
+
+*** Starting Weighted Wavelet Z-transform ***
+
+Pseudo sample frequency (median) is  0.505
+largest tau window is  33.101
+2.47 seconds has passed to complete Weighted Wavelet Z-transform 
+
+*** Starting Weighted Wavelet Z-transform ***
+
+Pseudo sample frequency (median) is  0.505
+largest tau window is  33.101
+2.46 seconds has passed to complete Weighted Wavelet Z-transform 
+
+*** Starting Weighted Wavelet Z-transform ***
+
+Pseudo sample frequency (median) is  0.505
+largest tau window is  33.101
+2.46 seconds has passed to complete Weighted Wavelet Z-transform 
+
+*** Starting Weighted Wavelet Z-transform ***
+
+Pseudo sample frequency (median) is  0.505
+largest tau window is  33.101
+2.46 seconds has passed to complete Weighted Wavelet Z-transform 
+
+*** Starting Weighted Wavelet Z-transform ***
+
+Pseudo sample frequency (median) is  0.505
+largest tau window is  33.101
+Processing 1384177
+PID 53868
+Duration: 10.0 ticks
+12.0 seconds each
+Time so far 120.0s
+
+2.46 seconds has passed to complete Weighted Wavelet Z-transform 
+
+*** Starting Weighted Wavelet Z-transform ***
+
+Pseudo sample frequency (median) is  0.505
+largest tau window is  33.101
+2.48 seconds has passed to complete Weighted Wavelet Z-transform 
+
+*** Starting Weighted Wavelet Z-transform ***
+
+Pseudo sample frequency (median) is  0.505
+largest tau window is  33.101
+2.6 seconds has passed to complete Weighted Wavelet Z-transform 
+
+*** Starting Weighted Wavelet Z-transform ***
+
+Pseudo sample frequency (median) is  0.505
+largest tau window is  33.101
+2.6 seconds has passed to complete Weighted Wavelet Z-transform 
+
+*** Starting Weighted Wavelet Z-transform ***
+
+Pseudo sample frequency (median) is  0.505
+largest tau window is  33.101
+2.58 seconds has passed to complete Weighted Wavelet Z-transform 
+
+*** Starting Weighted Wavelet Z-transform ***
+
+Pseudo sample frequency (median) is  0.505
+largest tau window is  33.101
+Processing 1384177
+PID 53868
+Duration: 11.0 ticks
+12.0 seconds each
+Time so far 132.0s
+
+2.47 seconds has passed to complete Weighted Wavelet Z-transform 
+
+*** Starting Weighted Wavelet Z-transform ***
+
+Pseudo sample frequency (median) is  0.505
+largest tau window is  33.101
+2.58 seconds has passed to complete Weighted Wavelet Z-transform 
+
+*** Starting Weighted Wavelet Z-transform ***
+
+Pseudo sample frequency (median) is  0.505
+largest tau window is  33.101
+2.47 seconds has passed to complete Weighted Wavelet Z-transform 
+
+*** Starting Weighted Wavelet Z-transform ***
+
+Pseudo sample frequency (median) is  0.505
+largest tau window is  33.101
+2.51 seconds has passed to complete Weighted Wavelet Z-transform 
+
+*** Starting Weighted Wavelet Z-transform ***
+
+Pseudo sample frequency (median) is  0.505
+largest tau window is  33.101
+2.46 seconds has passed to complete Weighted Wavelet Z-transform 
+
+*** Starting Weighted Wavelet Z-transform ***
+
+Pseudo sample frequency (median) is  0.505
+largest tau window is  33.101
+Processing 1384177
+PID 53868
+Duration: 12.0 ticks
+12.0 seconds each
+Time so far 144.0s
+
+2.49 seconds has passed to complete Weighted Wavelet Z-transform 
+
+*** Starting Weighted Wavelet Z-transform ***
+
+Pseudo sample frequency (median) is  0.505
+largest tau window is  33.101
+2.46 seconds has passed to complete Weighted Wavelet Z-transform 
+
+*** Starting Weighted Wavelet Z-transform ***
+
+Pseudo sample frequency (median) is  0.505
+largest tau window is  33.101
+2.49 seconds has passed to complete Weighted Wavelet Z-transform 
+
+*** Starting Weighted Wavelet Z-transform ***
+
+Pseudo sample frequency (median) is  0.505
+largest tau window is  33.101
+2.46 seconds has passed to complete Weighted Wavelet Z-transform 
+
+*** Starting Weighted Wavelet Z-transform ***
+
+Pseudo sample frequency (median) is  0.505
+largest tau window is  33.101
+Processing 1384177
+PID 53868
+Duration: 13.0 ticks
+12.0 seconds each
+Time so far 156.0s
+
+2.5 seconds has passed to complete Weighted Wavelet Z-transform 
+
+*** Starting Weighted Wavelet Z-transform ***
+
+Pseudo sample frequency (median) is  0.505
+largest tau window is  33.101
+2.59 seconds has passed to complete Weighted Wavelet Z-transform 
+
+*** Starting Weighted Wavelet Z-transform ***
+
+Pseudo sample frequency (median) is  0.505
+largest tau window is  33.101
+2.58 seconds has passed to complete Weighted Wavelet Z-transform 
+
+*** Starting Weighted Wavelet Z-transform ***
+
+Pseudo sample frequency (median) is  0.505
+largest tau window is  33.101
+2.49 seconds has passed to complete Weighted Wavelet Z-transform 
+
+*** Starting Weighted Wavelet Z-transform ***
+
+Pseudo sample frequency (median) is  0.505
+largest tau window is  33.101
+2.51 seconds has passed to complete Weighted Wavelet Z-transform 
+
+*** Starting Weighted Wavelet Z-transform ***
+
+Pseudo sample frequency (median) is  0.505
+largest tau window is  33.101
+Processing 1384177
+PID 53868
+Duration: 14.0 ticks
+12.0 seconds each
+Time so far 168.0s
+
+2.48 seconds has passed to complete Weighted Wavelet Z-transform 
+
+*** Starting Weighted Wavelet Z-transform ***
+
+Pseudo sample frequency (median) is  0.505
+largest tau window is  33.101
+2.5 seconds has passed to complete Weighted Wavelet Z-transform 
+
+*** Starting Weighted Wavelet Z-transform ***
+
+Pseudo sample frequency (median) is  0.505
+largest tau window is  33.101
+2.47 seconds has passed to complete Weighted Wavelet Z-transform 
+
+*** Starting Weighted Wavelet Z-transform ***
+
+Pseudo sample frequency (median) is  0.505
+largest tau window is  33.101
+2.6 seconds has passed to complete Weighted Wavelet Z-transform 
+
+*** Starting Weighted Wavelet Z-transform ***
+
+Pseudo sample frequency (median) is  0.505
+largest tau window is  33.101
+2.54 seconds has passed to complete Weighted Wavelet Z-transform 
+
+*** Starting Weighted Wavelet Z-transform ***
+
+Pseudo sample frequency (median) is  0.505
+largest tau window is  33.101
+Processing 1384177
+PID 53868
+Duration: 15.0 ticks
+12.0 seconds each
+Time so far 180.0s
+
+2.46 seconds has passed to complete Weighted Wavelet Z-transform 
+
+*** Starting Weighted Wavelet Z-transform ***
+
+Pseudo sample frequency (median) is  0.505
+largest tau window is  33.101
+2.47 seconds has passed to complete Weighted Wavelet Z-transform 
+
+*** Starting Weighted Wavelet Z-transform ***
+
+Pseudo sample frequency (median) is  0.505
+largest tau window is  33.101
+2.46 seconds has passed to complete Weighted Wavelet Z-transform 
+
+*** Starting Weighted Wavelet Z-transform ***
+
+Pseudo sample frequency (median) is  0.505
+largest tau window is  33.101
+2.61 seconds has passed to complete Weighted Wavelet Z-transform 
+
+*** Starting Weighted Wavelet Z-transform ***
+
+Pseudo sample frequency (median) is  0.505
+largest tau window is  33.101
+2.51 seconds has passed to complete Weighted Wavelet Z-transform 
+
+*** Starting Weighted Wavelet Z-transform ***
+
+Pseudo sample frequency (median) is  0.505
+largest tau window is  33.101
+Processing 1384177
+PID 53868
+Duration: 16.0 ticks
+12.0 seconds each
+Time so far 192.0s
+
+2.47 seconds has passed to complete Weighted Wavelet Z-transform 
+
+*** Starting Weighted Wavelet Z-transform ***
+
+Pseudo sample frequency (median) is  0.505
+largest tau window is  33.101
+2.52 seconds has passed to complete Weighted Wavelet Z-transform 
+
+*** Starting Weighted Wavelet Z-transform ***
+
+Pseudo sample frequency (median) is  0.505
+largest tau window is  33.101
+2.45 seconds has passed to complete Weighted Wavelet Z-transform 
+
+*** Starting Weighted Wavelet Z-transform ***
+
+Pseudo sample frequency (median) is  0.505
+largest tau window is  33.101
+2.46 seconds has passed to complete Weighted Wavelet Z-transform 
+
+*** Starting Weighted Wavelet Z-transform ***
+
+Pseudo sample frequency (median) is  0.505
+largest tau window is  33.101
+2.47 seconds has passed to complete Weighted Wavelet Z-transform 
+
+*** Starting Weighted Wavelet Z-transform ***
+
+Pseudo sample frequency (median) is  0.505
+largest tau window is  33.101
+Processing 1384177
+PID 53868
+Duration: 17.0 ticks
+12.0 seconds each
+Time so far 204.0s
+
+2.48 seconds has passed to complete Weighted Wavelet Z-transform 
+
+*** Starting Weighted Wavelet Z-transform ***
+
+Pseudo sample frequency (median) is  0.505
+largest tau window is  33.101
+2.48 seconds has passed to complete Weighted Wavelet Z-transform 
+
+*** Starting Weighted Wavelet Z-transform ***
+
+Pseudo sample frequency (median) is  0.505
+largest tau window is  33.101
+2.5 seconds has passed to complete Weighted Wavelet Z-transform 
+
+*** Starting Weighted Wavelet Z-transform ***
+
+Pseudo sample frequency (median) is  0.505
+largest tau window is  33.101
+2.46 seconds has passed to complete Weighted Wavelet Z-transform 
+
+*** Starting Weighted Wavelet Z-transform ***
+
+Pseudo sample frequency (median) is  0.505
+largest tau window is  33.101
+Processing 1384177
+PID 53868
+Duration: 18.0 ticks
+12.0 seconds each
+Time so far 216.0s
+
+2.7 seconds has passed to complete Weighted Wavelet Z-transform 
+
+*** Starting Weighted Wavelet Z-transform ***
+
+Pseudo sample frequency (median) is  0.505
+largest tau window is  33.101
+2.65 seconds has passed to complete Weighted Wavelet Z-transform 
+
+*** Starting Weighted Wavelet Z-transform ***
+
+Pseudo sample frequency (median) is  0.505
+largest tau window is  33.101
+2.57 seconds has passed to complete Weighted Wavelet Z-transform 
+
+*** Starting Weighted Wavelet Z-transform ***
+
+Pseudo sample frequency (median) is  0.505
+largest tau window is  33.101
+2.47 seconds has passed to complete Weighted Wavelet Z-transform 
+
+*** Starting Weighted Wavelet Z-transform ***
+
+Pseudo sample frequency (median) is  0.505
+largest tau window is  33.101
+2.5 seconds has passed to complete Weighted Wavelet Z-transform 
+
+*** Starting Weighted Wavelet Z-transform ***
+
+Pseudo sample frequency (median) is  0.505
+largest tau window is  33.101
+Processing 1384177
+PID 53868
+Duration: 19.0 ticks
+12.0 seconds each
+Time so far 228.0s
+
+2.48 seconds has passed to complete Weighted Wavelet Z-transform 
+
+*** Starting Weighted Wavelet Z-transform ***
+
+Pseudo sample frequency (median) is  0.505
+largest tau window is  33.101
+2.49 seconds has passed to complete Weighted Wavelet Z-transform 
+
+*** Starting Weighted Wavelet Z-transform ***
+
+Pseudo sample frequency (median) is  0.505
+largest tau window is  33.101
+2.49 seconds has passed to complete Weighted Wavelet Z-transform 
+
+*** Starting Weighted Wavelet Z-transform ***
+
+Pseudo sample frequency (median) is  0.505
+largest tau window is  33.101
+2.48 seconds has passed to complete Weighted Wavelet Z-transform 
+
+*** Starting Weighted Wavelet Z-transform ***
+
+Pseudo sample frequency (median) is  0.505
+largest tau window is  33.101
+2.47 seconds has passed to complete Weighted Wavelet Z-transform 
+
+*** Starting Weighted Wavelet Z-transform ***
+
+Pseudo sample frequency (median) is  0.505
+largest tau window is  33.101
+Processing 1384177
+PID 53868
+Duration: 20.0 ticks
+12.0 seconds each
+Time so far 240.0s
+
+2.45 seconds has passed to complete Weighted Wavelet Z-transform 
+
+*** Starting Weighted Wavelet Z-transform ***
+
+Pseudo sample frequency (median) is  0.505
+largest tau window is  33.101
+2.48 seconds has passed to complete Weighted Wavelet Z-transform 
+
+*** Starting Weighted Wavelet Z-transform ***
+
+Pseudo sample frequency (median) is  0.505
+largest tau window is  33.101
+2.53 seconds has passed to complete Weighted Wavelet Z-transform 
+
+*** Starting Weighted Wavelet Z-transform ***
+
+Pseudo sample frequency (median) is  0.505
+largest tau window is  33.101
+2.58 seconds has passed to complete Weighted Wavelet Z-transform 
+
+*** Starting Weighted Wavelet Z-transform ***
+
+Pseudo sample frequency (median) is  0.505
+largest tau window is  33.101
+2.5 seconds has passed to complete Weighted Wavelet Z-transform 
+
+*** Starting Weighted Wavelet Z-transform ***
+
+Pseudo sample frequency (median) is  0.505
+largest tau window is  33.101
+Processing 1384177
+PID 53868
+Duration: 21.0 ticks
+12.0 seconds each
+Time so far 252.0s
+
+2.46 seconds has passed to complete Weighted Wavelet Z-transform 
+
+*** Starting Weighted Wavelet Z-transform ***
+
+Pseudo sample frequency (median) is  0.505
+largest tau window is  33.101
+2.47 seconds has passed to complete Weighted Wavelet Z-transform 
+
+*** Starting Weighted Wavelet Z-transform ***
+
+Pseudo sample frequency (median) is  0.505
+largest tau window is  33.101
+2.48 seconds has passed to complete Weighted Wavelet Z-transform 
+
+*** Starting Weighted Wavelet Z-transform ***
+
+Pseudo sample frequency (median) is  0.505
+largest tau window is  33.101
+2.47 seconds has passed to complete Weighted Wavelet Z-transform 
+
+*** Starting Weighted Wavelet Z-transform ***
+
+Pseudo sample frequency (median) is  0.505
+largest tau window is  33.101
+Processing 1384177
+PID 53868
+Duration: 22.0 ticks
+12.0 seconds each
+Time so far 264.0s
+
+2.48 seconds has passed to complete Weighted Wavelet Z-transform 
+
+*** Starting Weighted Wavelet Z-transform ***
+
+Pseudo sample frequency (median) is  0.505
+largest tau window is  33.101
+2.47 seconds has passed to complete Weighted Wavelet Z-transform 
+
+*** Starting Weighted Wavelet Z-transform ***
+
+Pseudo sample frequency (median) is  0.505
+largest tau window is  33.101
+2.47 seconds has passed to complete Weighted Wavelet Z-transform 
+
+*** Starting Weighted Wavelet Z-transform ***
+
+Pseudo sample frequency (median) is  0.505
+largest tau window is  33.101
+2.48 seconds has passed to complete Weighted Wavelet Z-transform 
+
+*** Starting Weighted Wavelet Z-transform ***
+
+Pseudo sample frequency (median) is  0.505
+largest tau window is  33.101
+2.46 seconds has passed to complete Weighted Wavelet Z-transform 
+
+*** Starting Weighted Wavelet Z-transform ***
+
+Pseudo sample frequency (median) is  0.505
+largest tau window is  33.101
+Processing 1384177
+PID 53868
+Duration: 23.0 ticks
+12.0 seconds each
+Time so far 276.0s
+
+2.57 seconds has passed to complete Weighted Wavelet Z-transform 
+
+*** Starting Weighted Wavelet Z-transform ***
+
+Pseudo sample frequency (median) is  0.505
+largest tau window is  33.101
+2.58 seconds has passed to complete Weighted Wavelet Z-transform 
+
+*** Starting Weighted Wavelet Z-transform ***
+
+Pseudo sample frequency (median) is  0.505
+largest tau window is  33.101
+2.55 seconds has passed to complete Weighted Wavelet Z-transform 
+
+*** Starting Weighted Wavelet Z-transform ***
+
+Pseudo sample frequency (median) is  0.505
+largest tau window is  33.101
+2.56 seconds has passed to complete Weighted Wavelet Z-transform 
+
+*** Starting Weighted Wavelet Z-transform ***
+
+Pseudo sample frequency (median) is  0.505
+largest tau window is  33.101
+2.57 seconds has passed to complete Weighted Wavelet Z-transform 
+
+*** Starting Weighted Wavelet Z-transform ***
+
+Pseudo sample frequency (median) is  0.505
+largest tau window is  33.101
+Processing 1384177
+PID 53868
+Duration: 24.0 ticks
+12.0 seconds each
+Time so far 288.0s
+
+2.56 seconds has passed to complete Weighted Wavelet Z-transform 
+
+*** Starting Weighted Wavelet Z-transform ***
+
+Pseudo sample frequency (median) is  0.505
+largest tau window is  33.101
+2.52 seconds has passed to complete Weighted Wavelet Z-transform 
+
+*** Starting Weighted Wavelet Z-transform ***
+
+Pseudo sample frequency (median) is  0.505
+largest tau window is  33.101
+2.56 seconds has passed to complete Weighted Wavelet Z-transform 
+
+*** Starting Weighted Wavelet Z-transform ***
+
+Pseudo sample frequency (median) is  0.505
+largest tau window is  33.101
+2.56 seconds has passed to complete Weighted Wavelet Z-transform 
+
+*** Starting Weighted Wavelet Z-transform ***
+
+Pseudo sample frequency (median) is  0.505
+largest tau window is  33.101
+2.45 seconds has passed to complete Weighted Wavelet Z-transform 
+
+*** Starting Weighted Wavelet Z-transform ***
+
+Pseudo sample frequency (median) is  0.505
+largest tau window is  33.101
+Processing 1384177
+PID 53868
+Duration: 25.0 ticks
+12.0 seconds each
+Time so far 300.0s
+
+2.44 seconds has passed to complete Weighted Wavelet Z-transform 
+
+*** Starting Weighted Wavelet Z-transform ***
+
+Pseudo sample frequency (median) is  0.505
+largest tau window is  33.101
+2.48 seconds has passed to complete Weighted Wavelet Z-transform 
+
+*** Starting Weighted Wavelet Z-transform ***
+
+Pseudo sample frequency (median) is  0.505
+largest tau window is  33.101
+2.55 seconds has passed to complete Weighted Wavelet Z-transform 
+
+*** Starting Weighted Wavelet Z-transform ***
+
+Pseudo sample frequency (median) is  0.505
+largest tau window is  33.101
+2.62 seconds has passed to complete Weighted Wavelet Z-transform 
+
+*** Starting Weighted Wavelet Z-transform ***
+
+Pseudo sample frequency (median) is  0.505
+largest tau window is  33.101
+Processing 1384177
+PID 53868
+Duration: 26.0 ticks
+12.0 seconds each
+Time so far 312.0s
+
+2.53 seconds has passed to complete Weighted Wavelet Z-transform 
+
+*** Starting Weighted Wavelet Z-transform ***
+
+Pseudo sample frequency (median) is  0.505
+largest tau window is  33.101
+2.47 seconds has passed to complete Weighted Wavelet Z-transform 
+
+*** Starting Weighted Wavelet Z-transform ***
+
+Pseudo sample frequency (median) is  0.505
+largest tau window is  33.101
+2.59 seconds has passed to complete Weighted Wavelet Z-transform 
+
+*** Starting Weighted Wavelet Z-transform ***
+
+Pseudo sample frequency (median) is  0.505
+largest tau window is  33.101
+2.49 seconds has passed to complete Weighted Wavelet Z-transform 
+
+*** Starting Weighted Wavelet Z-transform ***
+
+Pseudo sample frequency (median) is  0.505
+largest tau window is  33.101
+2.48 seconds has passed to complete Weighted Wavelet Z-transform 
+
+*** Starting Weighted Wavelet Z-transform ***
+
+Pseudo sample frequency (median) is  0.505
+largest tau window is  33.101
+Processing 1384177
+PID 53868
+Duration: 27.0 ticks
+12.0 seconds each
+Time so far 324.0s
+
+2.46 seconds has passed to complete Weighted Wavelet Z-transform 
+
+*** Starting Weighted Wavelet Z-transform ***
+
+Pseudo sample frequency (median) is  0.505
+largest tau window is  33.101
+2.46 seconds has passed to complete Weighted Wavelet Z-transform 
+
+*** Starting Weighted Wavelet Z-transform ***
+
+Pseudo sample frequency (median) is  0.505
+largest tau window is  33.101
+2.45 seconds has passed to complete Weighted Wavelet Z-transform 
+
+*** Starting Weighted Wavelet Z-transform ***
+
+Pseudo sample frequency (median) is  0.505
+largest tau window is  33.101
+2.46 seconds has passed to complete Weighted Wavelet Z-transform 
+
+*** Starting Weighted Wavelet Z-transform ***
+
+Pseudo sample frequency (median) is  0.505
+largest tau window is  33.101
+2.54 seconds has passed to complete Weighted Wavelet Z-transform 
+
+*** Starting Weighted Wavelet Z-transform ***
+
+Pseudo sample frequency (median) is  0.505
+largest tau window is  33.101
+Processing 1384177
+PID 53868
+Duration: 28.0 ticks
+12.0 seconds each
+Time so far 336.0s
+
+2.61 seconds has passed to complete Weighted Wavelet Z-transform 
+
+*** Starting Weighted Wavelet Z-transform ***
+
+Pseudo sample frequency (median) is  0.505
+largest tau window is  33.101
+2.62 seconds has passed to complete Weighted Wavelet Z-transform 
+
+*** Starting Weighted Wavelet Z-transform ***
+
+Pseudo sample frequency (median) is  0.505
+largest tau window is  33.101
+2.51 seconds has passed to complete Weighted Wavelet Z-transform 
+
+*** Starting Weighted Wavelet Z-transform ***
+
+Pseudo sample frequency (median) is  0.505
+largest tau window is  33.101
+2.47 seconds has passed to complete Weighted Wavelet Z-transform 
+
+*** Starting Weighted Wavelet Z-transform ***
+
+Pseudo sample frequency (median) is  0.505
+largest tau window is  33.101
+2.45 seconds has passed to complete Weighted Wavelet Z-transform 
+
+*** Starting Weighted Wavelet Z-transform ***
+
+Pseudo sample frequency (median) is  0.505
+largest tau window is  33.101
+Processing 1384177
+PID 53868
+Duration: 29.0 ticks
+12.0 seconds each
+Time so far 348.0s
+
+2.48 seconds has passed to complete Weighted Wavelet Z-transform 
+
+*** Starting Weighted Wavelet Z-transform ***
+
+Pseudo sample frequency (median) is  0.505
+largest tau window is  33.101
+2.62 seconds has passed to complete Weighted Wavelet Z-transform 
+
+*** Starting Weighted Wavelet Z-transform ***
+
+Pseudo sample frequency (median) is  0.505
+largest tau window is  33.101
+2.57 seconds has passed to complete Weighted Wavelet Z-transform 
+
+*** Starting Weighted Wavelet Z-transform ***
+
+Pseudo sample frequency (median) is  0.505
+largest tau window is  33.101
+2.46 seconds has passed to complete Weighted Wavelet Z-transform 
+
+*** Starting Weighted Wavelet Z-transform ***
+
+Pseudo sample frequency (median) is  0.505
+largest tau window is  33.101
+2.7 seconds has passed to complete Weighted Wavelet Z-transform 
+
+*** Starting Weighted Wavelet Z-transform ***
+
+Pseudo sample frequency (median) is  0.505
+largest tau window is  33.101
+Processing 1384177
+PID 53868
+Duration: 30.0 ticks
+12.0 seconds each
+Time so far 360.0s
+
+2.5 seconds has passed to complete Weighted Wavelet Z-transform 
+
+*** Starting Weighted Wavelet Z-transform ***
+
+Pseudo sample frequency (median) is  0.505
+largest tau window is  33.101
+2.49 seconds has passed to complete Weighted Wavelet Z-transform 
+
+*** Starting Weighted Wavelet Z-transform ***
+
+Pseudo sample frequency (median) is  0.505
+largest tau window is  33.101
+2.64 seconds has passed to complete Weighted Wavelet Z-transform 
+
+*** Starting Weighted Wavelet Z-transform ***
+
+Pseudo sample frequency (median) is  0.505
+largest tau window is  33.101
+2.53 seconds has passed to complete Weighted Wavelet Z-transform 
+
+*** Starting Weighted Wavelet Z-transform ***
+
+Pseudo sample frequency (median) is  0.505
+largest tau window is  33.101
+Processing 1384177
+PID 53868
+Duration: 31.0 ticks
+12.0 seconds each
+Time so far 372.0s
+
+2.46 seconds has passed to complete Weighted Wavelet Z-transform 
+
+*** Starting Weighted Wavelet Z-transform ***
+
+Pseudo sample frequency (median) is  0.505
+largest tau window is  33.101
+2.47 seconds has passed to complete Weighted Wavelet Z-transform 
+
+*** Starting Weighted Wavelet Z-transform ***
+
+Pseudo sample frequency (median) is  0.505
+largest tau window is  33.101
+2.48 seconds has passed to complete Weighted Wavelet Z-transform 
+
+*** Starting Weighted Wavelet Z-transform ***
+
+Pseudo sample frequency (median) is  0.505
+largest tau window is  33.101
+2.47 seconds has passed to complete Weighted Wavelet Z-transform 
+
+*** Starting Weighted Wavelet Z-transform ***
+
+Pseudo sample frequency (median) is  0.505
+largest tau window is  33.101
+2.44 seconds has passed to complete Weighted Wavelet Z-transform 
+
+*** Starting Weighted Wavelet Z-transform ***
+
+Pseudo sample frequency (median) is  0.505
+largest tau window is  33.101
+Processing 1384177
+PID 53868
+Duration: 32.0 ticks
+12.0 seconds each
+Time so far 384.0s
+
+2.47 seconds has passed to complete Weighted Wavelet Z-transform 
+
+*** Starting Weighted Wavelet Z-transform ***
+
+Pseudo sample frequency (median) is  0.505
+largest tau window is  33.101
+2.51 seconds has passed to complete Weighted Wavelet Z-transform 
+
+*** Starting Weighted Wavelet Z-transform ***
+
+Pseudo sample frequency (median) is  0.505
+largest tau window is  33.101
+2.55 seconds has passed to complete Weighted Wavelet Z-transform 
+
+*** Starting Weighted Wavelet Z-transform ***
+
+Pseudo sample frequency (median) is  0.505
+largest tau window is  33.101
+2.5 seconds has passed to complete Weighted Wavelet Z-transform 
+
+*** Starting Weighted Wavelet Z-transform ***
+
+Pseudo sample frequency (median) is  0.505
+largest tau window is  33.101
+2.47 seconds has passed to complete Weighted Wavelet Z-transform 
+
+*** Starting Weighted Wavelet Z-transform ***
+
+Pseudo sample frequency (median) is  0.505
+largest tau window is  33.101
+Processing 1384177
+PID 53868
+Duration: 33.0 ticks
+12.0 seconds each
+Time so far 396.0s
+
+2.57 seconds has passed to complete Weighted Wavelet Z-transform 
+
+*** Starting Weighted Wavelet Z-transform ***
+
+Pseudo sample frequency (median) is  0.505
+largest tau window is  33.101
+2.59 seconds has passed to complete Weighted Wavelet Z-transform 
+
+*** Starting Weighted Wavelet Z-transform ***
+
+Pseudo sample frequency (median) is  0.505
+largest tau window is  33.101
+2.5 seconds has passed to complete Weighted Wavelet Z-transform 
+
+*** Starting Weighted Wavelet Z-transform ***
+
+Pseudo sample frequency (median) is  0.505
+largest tau window is  33.101
+2.5 seconds has passed to complete Weighted Wavelet Z-transform 
+
+*** Starting Weighted Wavelet Z-transform ***
+
+Pseudo sample frequency (median) is  0.505
+largest tau window is  33.101
+2.49 seconds has passed to complete Weighted Wavelet Z-transform 
+
+*** Starting Weighted Wavelet Z-transform ***
+
+Pseudo sample frequency (median) is  0.505
+largest tau window is  33.101
+Processing 1384177
+PID 53868
+Duration: 34.0 ticks
+12.0 seconds each
+Time so far 408.0s
+
+2.48 seconds has passed to complete Weighted Wavelet Z-transform 
+
+*** Starting Weighted Wavelet Z-transform ***
+
+Pseudo sample frequency (median) is  0.505
+largest tau window is  33.101
+2.53 seconds has passed to complete Weighted Wavelet Z-transform 
+
+*** Starting Weighted Wavelet Z-transform ***
+
+Pseudo sample frequency (median) is  0.505
+largest tau window is  33.101
+2.57 seconds has passed to complete Weighted Wavelet Z-transform 
+
+*** Starting Weighted Wavelet Z-transform ***
+
+Pseudo sample frequency (median) is  0.505
+largest tau window is  33.101
+2.54 seconds has passed to complete Weighted Wavelet Z-transform 
+
+*** Starting Weighted Wavelet Z-transform ***
+
+Pseudo sample frequency (median) is  0.505
+largest tau window is  33.101
+Processing 1384177
+PID 53868
+Duration: 35.0 ticks
+12.0 seconds each
+Time so far 420.0s
+
+2.46 seconds has passed to complete Weighted Wavelet Z-transform 
+
+*** Starting Weighted Wavelet Z-transform ***
+
+Pseudo sample frequency (median) is  0.505
+largest tau window is  33.101
+2.46 seconds has passed to complete Weighted Wavelet Z-transform 
+
+*** Starting Weighted Wavelet Z-transform ***
+
+Pseudo sample frequency (median) is  0.505
+largest tau window is  33.101
+2.45 seconds has passed to complete Weighted Wavelet Z-transform 
+
+*** Starting Weighted Wavelet Z-transform ***
+
+Pseudo sample frequency (median) is  0.505
+largest tau window is  33.101
+2.58 seconds has passed to complete Weighted Wavelet Z-transform 
+
+*** Starting Weighted Wavelet Z-transform ***
+
+Pseudo sample frequency (median) is  0.505
+largest tau window is  33.101
+2.52 seconds has passed to complete Weighted Wavelet Z-transform 
+
+*** Starting Weighted Wavelet Z-transform ***
+
+Pseudo sample frequency (median) is  0.505
+largest tau window is  33.101
+Processing 1384177
+PID 53868
+Duration: 36.0 ticks
+12.0 seconds each
+Time so far 432.0s
+
+2.44 seconds has passed to complete Weighted Wavelet Z-transform 
+
+*** Starting Weighted Wavelet Z-transform ***
+
+Pseudo sample frequency (median) is  0.505
+largest tau window is  33.101
+2.46 seconds has passed to complete Weighted Wavelet Z-transform 
+
+*** Starting Weighted Wavelet Z-transform ***
+
+Pseudo sample frequency (median) is  0.505
+largest tau window is  33.101
+2.45 seconds has passed to complete Weighted Wavelet Z-transform 
+
+*** Starting Weighted Wavelet Z-transform ***
+
+Pseudo sample frequency (median) is  0.505
+largest tau window is  33.101
+2.5 seconds has passed to complete Weighted Wavelet Z-transform 
+
+*** Starting Weighted Wavelet Z-transform ***
+
+Pseudo sample frequency (median) is  0.505
+largest tau window is  33.101
+2.48 seconds has passed to complete Weighted Wavelet Z-transform 
+
+*** Starting Weighted Wavelet Z-transform ***
+
+Pseudo sample frequency (median) is  0.505
+largest tau window is  33.101
+Processing 1384177
+PID 53868
+Duration: 37.0 ticks
+12.0 seconds each
+Time so far 444.0s
+
+2.52 seconds has passed to complete Weighted Wavelet Z-transform 
+
+*** Starting Weighted Wavelet Z-transform ***
+
+Pseudo sample frequency (median) is  0.505
+largest tau window is  33.101
+2.47 seconds has passed to complete Weighted Wavelet Z-transform 
+
+*** Starting Weighted Wavelet Z-transform ***
+
+Pseudo sample frequency (median) is  0.505
+largest tau window is  33.101
+2.5 seconds has passed to complete Weighted Wavelet Z-transform 
+
+*** Starting Weighted Wavelet Z-transform ***
+
+Pseudo sample frequency (median) is  0.505
+largest tau window is  33.101
+2.5 seconds has passed to complete Weighted Wavelet Z-transform 
+
+*** Starting Weighted Wavelet Z-transform ***
+
+Pseudo sample frequency (median) is  0.505
+largest tau window is  33.101
+2.44 seconds has passed to complete Weighted Wavelet Z-transform 
+
+*** Starting Weighted Wavelet Z-transform ***
+
+Pseudo sample frequency (median) is  0.505
+largest tau window is  33.101
+Processing 1384177
+PID 53868
+Duration: 38.0 ticks
+12.0 seconds each
+Time so far 456.0s
+
+2.59 seconds has passed to complete Weighted Wavelet Z-transform 
+
+*** Starting Weighted Wavelet Z-transform ***
+
+Pseudo sample frequency (median) is  0.505
+largest tau window is  33.101
+2.59 seconds has passed to complete Weighted Wavelet Z-transform 
+
+*** Starting Weighted Wavelet Z-transform ***
+
+Pseudo sample frequency (median) is  0.505
+largest tau window is  33.101
+2.5 seconds has passed to complete Weighted Wavelet Z-transform 
+
+*** Starting Weighted Wavelet Z-transform ***
+
+Pseudo sample frequency (median) is  0.505
+largest tau window is  33.101
+2.46 seconds has passed to complete Weighted Wavelet Z-transform 
+
+*** Starting Weighted Wavelet Z-transform ***
+
+Pseudo sample frequency (median) is  0.505
+largest tau window is  33.101
+2.46 seconds has passed to complete Weighted Wavelet Z-transform 
+
+*** Starting Weighted Wavelet Z-transform ***
+
+Pseudo sample frequency (median) is  0.505
+largest tau window is  33.101
+Processing 1384177
+PID 53868
+Duration: 39.0 ticks
+12.0 seconds each
+Time so far 468.0s
+
+2.47 seconds has passed to complete Weighted Wavelet Z-transform 
+
+*** Starting Weighted Wavelet Z-transform ***
+
+Pseudo sample frequency (median) is  0.505
+largest tau window is  33.101
+2.47 seconds has passed to complete Weighted Wavelet Z-transform 
+
+*** Starting Weighted Wavelet Z-transform ***
+
+Pseudo sample frequency (median) is  0.505
+largest tau window is  33.101
+2.46 seconds has passed to complete Weighted Wavelet Z-transform 
+
+*** Starting Weighted Wavelet Z-transform ***
+
+Pseudo sample frequency (median) is  0.505
+largest tau window is  33.101
+2.46 seconds has passed to complete Weighted Wavelet Z-transform 
+
+*** Starting Weighted Wavelet Z-transform ***
+
+Pseudo sample frequency (median) is  0.505
+largest tau window is  33.101
+2.47 seconds has passed to complete Weighted Wavelet Z-transform 
+
+*** Starting Weighted Wavelet Z-transform ***
+
+Pseudo sample frequency (median) is  0.505
+largest tau window is  33.101
+Processing 1384177
+PID 53868
+Duration: 40.0 ticks
+12.0 seconds each
+Time so far 480.0s
+
+2.48 seconds has passed to complete Weighted Wavelet Z-transform 
+
+*** Starting Weighted Wavelet Z-transform ***
+
+Pseudo sample frequency (median) is  0.505
+largest tau window is  33.101
+2.47 seconds has passed to complete Weighted Wavelet Z-transform 
+
+*** Starting Weighted Wavelet Z-transform ***
+
+Pseudo sample frequency (median) is  0.505
+largest tau window is  33.101
+2.58 seconds has passed to complete Weighted Wavelet Z-transform 
+
+*** Starting Weighted Wavelet Z-transform ***
+
+Pseudo sample frequency (median) is  0.505
+largest tau window is  33.101
+2.61 seconds has passed to complete Weighted Wavelet Z-transform 
+
+*** Starting Weighted Wavelet Z-transform ***
+
+Pseudo sample frequency (median) is  0.505
+largest tau window is  33.101
+Processing 1384177
+PID 53868
+Duration: 41.0 ticks
+12.0 seconds each
+Time so far 492.0s
+
+2.49 seconds has passed to complete Weighted Wavelet Z-transform 
+
+*** Starting Weighted Wavelet Z-transform ***
+
+Pseudo sample frequency (median) is  0.505
+largest tau window is  33.101
+2.47 seconds has passed to complete Weighted Wavelet Z-transform 
+
+*** Starting Weighted Wavelet Z-transform ***
+
+Pseudo sample frequency (median) is  0.505
+largest tau window is  33.101
+2.46 seconds has passed to complete Weighted Wavelet Z-transform 
+
+*** Starting Weighted Wavelet Z-transform ***
+
+Pseudo sample frequency (median) is  0.505
+largest tau window is  33.101
+2.47 seconds has passed to complete Weighted Wavelet Z-transform 
+
+*** Starting Weighted Wavelet Z-transform ***
+
+Pseudo sample frequency (median) is  0.505
+largest tau window is  33.101
+2.55 seconds has passed to complete Weighted Wavelet Z-transform 
+
+*** Starting Weighted Wavelet Z-transform ***
+
+Pseudo sample frequency (median) is  0.505
+largest tau window is  33.101
+Processing 1384177
+PID 53868
+Duration: 42.0 ticks
+12.0 seconds each
+Time so far 504.0s
+
+2.5 seconds has passed to complete Weighted Wavelet Z-transform 
+
+*** Starting Weighted Wavelet Z-transform ***
+
+Pseudo sample frequency (median) is  0.505
+largest tau window is  33.101
+2.56 seconds has passed to complete Weighted Wavelet Z-transform 
+
+*** Starting Weighted Wavelet Z-transform ***
+
+Pseudo sample frequency (median) is  0.505
+largest tau window is  33.101
+2.62 seconds has passed to complete Weighted Wavelet Z-transform 
+
+*** Starting Weighted Wavelet Z-transform ***
+
+Pseudo sample frequency (median) is  0.505
+largest tau window is  33.101
+2.58 seconds has passed to complete Weighted Wavelet Z-transform 
+
+*** Starting Weighted Wavelet Z-transform ***
+
+Pseudo sample frequency (median) is  0.505
+largest tau window is  33.101
+2.82 seconds has passed to complete Weighted Wavelet Z-transform 
+
+*** Starting Weighted Wavelet Z-transform ***
+
+Pseudo sample frequency (median) is  0.505
+largest tau window is  33.101
+Processing 1384177
+PID 53868
+Duration: 43.0 ticks
+12.0 seconds each
+Time so far 516.0s
+
+2.69 seconds has passed to complete Weighted Wavelet Z-transform 
+
+*** Starting Weighted Wavelet Z-transform ***
+
+Pseudo sample frequency (median) is  0.505
+largest tau window is  33.101
+2.56 seconds has passed to complete Weighted Wavelet Z-transform 
+
+*** Starting Weighted Wavelet Z-transform ***
+
+Pseudo sample frequency (median) is  0.505
+largest tau window is  33.101
+2.66 seconds has passed to complete Weighted Wavelet Z-transform 
+
+*** Starting Weighted Wavelet Z-transform ***
+
+Pseudo sample frequency (median) is  0.505
+largest tau window is  33.101
+2.48 seconds has passed to complete Weighted Wavelet Z-transform 
+
+*** Starting Weighted Wavelet Z-transform ***
+
+Pseudo sample frequency (median) is  0.505
+largest tau window is  33.101
+Processing 1384177
+PID 53868
+Duration: 44.0 ticks
+12.0 seconds each
+Time so far 528.0s
+
+2.5 seconds has passed to complete Weighted Wavelet Z-transform 
+
+*** Starting Weighted Wavelet Z-transform ***
+
+Pseudo sample frequency (median) is  0.505
+largest tau window is  33.101
+2.68 seconds has passed to complete Weighted Wavelet Z-transform 
+
+*** Starting Weighted Wavelet Z-transform ***
+
+Pseudo sample frequency (median) is  0.505
+largest tau window is  33.101
+2.82 seconds has passed to complete Weighted Wavelet Z-transform 
+
+*** Starting Weighted Wavelet Z-transform ***
+
+Pseudo sample frequency (median) is  0.505
+largest tau window is  33.101
+2.65 seconds has passed to complete Weighted Wavelet Z-transform 
+
+*** Starting Weighted Wavelet Z-transform ***
+
+Pseudo sample frequency (median) is  0.505
+largest tau window is  33.101
+2.71 seconds has passed to complete Weighted Wavelet Z-transform 
+
+*** Starting Weighted Wavelet Z-transform ***
+
+Pseudo sample frequency (median) is  0.505
+largest tau window is  33.101
+Processing 1384177
+PID 53868
+Duration: 45.0 ticks
+12.0 seconds each
+Time so far 540.0s
+
+2.65 seconds has passed to complete Weighted Wavelet Z-transform 
+
+*** Starting Weighted Wavelet Z-transform ***
+
+Pseudo sample frequency (median) is  0.505
+largest tau window is  33.101
+2.54 seconds has passed to complete Weighted Wavelet Z-transform 
+
+*** Starting Weighted Wavelet Z-transform ***
+
+Pseudo sample frequency (median) is  0.505
+largest tau window is  33.101
+3.09 seconds has passed to complete Weighted Wavelet Z-transform 
+
+*** Starting Weighted Wavelet Z-transform ***
+
+Pseudo sample frequency (median) is  0.505
+largest tau window is  33.101
+2.6 seconds has passed to complete Weighted Wavelet Z-transform 
+
+*** Starting Weighted Wavelet Z-transform ***
+
+Pseudo sample frequency (median) is  0.505
+largest tau window is  33.101
+Processing 1384177
+PID 53868
+Duration: 46.0 ticks
+12.0 seconds each
+Time so far 552.0s
+
+2.8 seconds has passed to complete Weighted Wavelet Z-transform 
+
+*** Starting Weighted Wavelet Z-transform ***
+
+Pseudo sample frequency (median) is  0.505
+largest tau window is  33.101
+2.91 seconds has passed to complete Weighted Wavelet Z-transform 
+
+*** Starting Weighted Wavelet Z-transform ***
+
+Pseudo sample frequency (median) is  0.505
+largest tau window is  33.101
+2.55 seconds has passed to complete Weighted Wavelet Z-transform 
+
+*** Starting Weighted Wavelet Z-transform ***
+
+Pseudo sample frequency (median) is  0.505
+largest tau window is  33.101
+2.58 seconds has passed to complete Weighted Wavelet Z-transform 
+
+*** Starting Weighted Wavelet Z-transform ***
+
+Pseudo sample frequency (median) is  0.505
+largest tau window is  33.101
+2.8 seconds has passed to complete Weighted Wavelet Z-transform 
+
+*** Starting Weighted Wavelet Z-transform ***
+
+Pseudo sample frequency (median) is  0.505
+largest tau window is  33.101
+Processing 1384177
+PID 53868
+Duration: 47.0 ticks
+12.0 seconds each
+Time so far 564.0s
+
+2.63 seconds has passed to complete Weighted Wavelet Z-transform 
+
+*** Starting Weighted Wavelet Z-transform ***
+
+Pseudo sample frequency (median) is  0.505
+largest tau window is  33.101
+2.6 seconds has passed to complete Weighted Wavelet Z-transform 
+
+*** Starting Weighted Wavelet Z-transform ***
+
+Pseudo sample frequency (median) is  0.505
+largest tau window is  33.101
+2.71 seconds has passed to complete Weighted Wavelet Z-transform 
+
+*** Starting Weighted Wavelet Z-transform ***
+
+Pseudo sample frequency (median) is  0.505
+largest tau window is  33.101
+2.6 seconds has passed to complete Weighted Wavelet Z-transform 
+
+*** Starting Weighted Wavelet Z-transform ***
+
+Pseudo sample frequency (median) is  0.505
+largest tau window is  33.101
+Processing 1384177
+PID 53868
+Duration: 48.0 ticks
+12.0 seconds each
+Time so far 576.0s
+
+2.83 seconds has passed to complete Weighted Wavelet Z-transform 
+
+*** Starting Weighted Wavelet Z-transform ***
+
+Pseudo sample frequency (median) is  0.505
+largest tau window is  33.101
+2.76 seconds has passed to complete Weighted Wavelet Z-transform 
+
+*** Starting Weighted Wavelet Z-transform ***
+
+Pseudo sample frequency (median) is  0.505
+largest tau window is  33.101
+2.64 seconds has passed to complete Weighted Wavelet Z-transform 
 
 *** Starting Weighted Wavelet Z-transform ***
 
@@ -72,732 +1650,18 @@ largest tau window is  33.101
 Pseudo sample frequency (median) is  0.505
 largest tau window is  33.101
 Processing 1384177
-PID 7234
-Duration: 3.0 ticks
+PID 53868
+Duration: 49.0 ticks
 12.0 seconds each
-Time so far 36.0s
+Time so far 588.0s
 
+2.58 seconds has passed to complete Weighted Wavelet Z-transform 
+
+*** Starting Weighted Wavelet Z-transform ***
+
+Pseudo sample frequency (median) is  0.505
+largest tau window is  33.101
 2.61 seconds has passed to complete Weighted Wavelet Z-transform 
-
-*** Starting Weighted Wavelet Z-transform ***
-
-Pseudo sample frequency (median) is  0.505
-largest tau window is  33.101
-2.94 seconds has passed to complete Weighted Wavelet Z-transform 
-
-*** Starting Weighted Wavelet Z-transform ***
-
-Pseudo sample frequency (median) is  0.505
-largest tau window is  33.101
-3.0 seconds has passed to complete Weighted Wavelet Z-transform 
-
-*** Starting Weighted Wavelet Z-transform ***
-
-Pseudo sample frequency (median) is  0.505
-largest tau window is  33.101
-2.98 seconds has passed to complete Weighted Wavelet Z-transform 
-
-*** Starting Weighted Wavelet Z-transform ***
-
-Pseudo sample frequency (median) is  0.505
-largest tau window is  33.101
-Processing 1384177
-PID 7234
-Duration: 4.0 ticks
-12.0 seconds each
-Time so far 48.0s
-
-3.02 seconds has passed to complete Weighted Wavelet Z-transform 
-
-*** Starting Weighted Wavelet Z-transform ***
-
-Pseudo sample frequency (median) is  0.505
-largest tau window is  33.101
-2.98 seconds has passed to complete Weighted Wavelet Z-transform 
-
-*** Starting Weighted Wavelet Z-transform ***
-
-Pseudo sample frequency (median) is  0.505
-largest tau window is  33.101
-2.97 seconds has passed to complete Weighted Wavelet Z-transform 
-
-*** Starting Weighted Wavelet Z-transform ***
-
-Pseudo sample frequency (median) is  0.505
-largest tau window is  33.101
-2.97 seconds has passed to complete Weighted Wavelet Z-transform 
-
-*** Starting Weighted Wavelet Z-transform ***
-
-Pseudo sample frequency (median) is  0.505
-largest tau window is  33.101
-Processing 1384177
-PID 7234
-Duration: 5.0 ticks
-12.0 seconds each
-Time so far 60.0s
-
-2.55 seconds has passed to complete Weighted Wavelet Z-transform 
-
-*** Starting Weighted Wavelet Z-transform ***
-
-Pseudo sample frequency (median) is  0.505
-largest tau window is  33.101
-2.43 seconds has passed to complete Weighted Wavelet Z-transform 
-
-*** Starting Weighted Wavelet Z-transform ***
-
-Pseudo sample frequency (median) is  0.505
-largest tau window is  33.101
-2.4 seconds has passed to complete Weighted Wavelet Z-transform 
-
-*** Starting Weighted Wavelet Z-transform ***
-
-Pseudo sample frequency (median) is  0.505
-largest tau window is  33.101
-2.37 seconds has passed to complete Weighted Wavelet Z-transform 
-
-*** Starting Weighted Wavelet Z-transform ***
-
-Pseudo sample frequency (median) is  0.505
-largest tau window is  33.101
-2.38 seconds has passed to complete Weighted Wavelet Z-transform 
-
-*** Starting Weighted Wavelet Z-transform ***
-
-Pseudo sample frequency (median) is  0.505
-largest tau window is  33.101
-Processing 1384177
-PID 7234
-Duration: 6.0 ticks
-12.0 seconds each
-Time so far 72.0s
-
-2.38 seconds has passed to complete Weighted Wavelet Z-transform 
-
-*** Starting Weighted Wavelet Z-transform ***
-
-Pseudo sample frequency (median) is  0.505
-largest tau window is  33.101
-2.38 seconds has passed to complete Weighted Wavelet Z-transform 
-
-*** Starting Weighted Wavelet Z-transform ***
-
-Pseudo sample frequency (median) is  0.505
-largest tau window is  33.101
-2.36 seconds has passed to complete Weighted Wavelet Z-transform 
-
-*** Starting Weighted Wavelet Z-transform ***
-
-Pseudo sample frequency (median) is  0.505
-largest tau window is  33.101
-2.36 seconds has passed to complete Weighted Wavelet Z-transform 
-
-*** Starting Weighted Wavelet Z-transform ***
-
-Pseudo sample frequency (median) is  0.505
-largest tau window is  33.101
-2.36 seconds has passed to complete Weighted Wavelet Z-transform 
-
-*** Starting Weighted Wavelet Z-transform ***
-
-Pseudo sample frequency (median) is  0.505
-largest tau window is  33.101
-2.35 seconds has passed to complete Weighted Wavelet Z-transform 
-
-*** Starting Weighted Wavelet Z-transform ***
-
-Pseudo sample frequency (median) is  0.505
-largest tau window is  33.101
-Processing 1384177
-PID 7234
-Duration: 7.0 ticks
-12.0 seconds each
-Time so far 84.0s
-
-2.36 seconds has passed to complete Weighted Wavelet Z-transform 
-
-*** Starting Weighted Wavelet Z-transform ***
-
-Pseudo sample frequency (median) is  0.505
-largest tau window is  33.101
-2.42 seconds has passed to complete Weighted Wavelet Z-transform 
-
-*** Starting Weighted Wavelet Z-transform ***
-
-Pseudo sample frequency (median) is  0.505
-largest tau window is  33.101
-2.48 seconds has passed to complete Weighted Wavelet Z-transform 
-
-*** Starting Weighted Wavelet Z-transform ***
-
-Pseudo sample frequency (median) is  0.505
-largest tau window is  33.101
-2.47 seconds has passed to complete Weighted Wavelet Z-transform 
-
-*** Starting Weighted Wavelet Z-transform ***
-
-Pseudo sample frequency (median) is  0.505
-largest tau window is  33.101
-Processing 1384177
-PID 7234
-Duration: 8.0 ticks
-12.0 seconds each
-Time so far 96.0s
-
-2.37 seconds has passed to complete Weighted Wavelet Z-transform 
-
-*** Starting Weighted Wavelet Z-transform ***
-
-Pseudo sample frequency (median) is  0.505
-largest tau window is  33.101
-2.34 seconds has passed to complete Weighted Wavelet Z-transform 
-
-*** Starting Weighted Wavelet Z-transform ***
-
-Pseudo sample frequency (median) is  0.505
-largest tau window is  33.101
-2.32 seconds has passed to complete Weighted Wavelet Z-transform 
-
-*** Starting Weighted Wavelet Z-transform ***
-
-Pseudo sample frequency (median) is  0.505
-largest tau window is  33.101
-2.34 seconds has passed to complete Weighted Wavelet Z-transform 
-
-*** Starting Weighted Wavelet Z-transform ***
-
-Pseudo sample frequency (median) is  0.505
-largest tau window is  33.101
-2.37 seconds has passed to complete Weighted Wavelet Z-transform 
-
-*** Starting Weighted Wavelet Z-transform ***
-
-Pseudo sample frequency (median) is  0.505
-largest tau window is  33.101
-2.33 seconds has passed to complete Weighted Wavelet Z-transform 
-
-*** Starting Weighted Wavelet Z-transform ***
-
-Pseudo sample frequency (median) is  0.505
-largest tau window is  33.101
-Processing 1384177
-PID 7234
-Duration: 9.0 ticks
-12.0 seconds each
-Time so far 108.0s
-
-2.34 seconds has passed to complete Weighted Wavelet Z-transform 
-
-*** Starting Weighted Wavelet Z-transform ***
-
-Pseudo sample frequency (median) is  0.505
-largest tau window is  33.101
-2.35 seconds has passed to complete Weighted Wavelet Z-transform 
-
-*** Starting Weighted Wavelet Z-transform ***
-
-Pseudo sample frequency (median) is  0.505
-largest tau window is  33.101
-2.34 seconds has passed to complete Weighted Wavelet Z-transform 
-
-*** Starting Weighted Wavelet Z-transform ***
-
-Pseudo sample frequency (median) is  0.505
-largest tau window is  33.101
-2.36 seconds has passed to complete Weighted Wavelet Z-transform 
-
-*** Starting Weighted Wavelet Z-transform ***
-
-Pseudo sample frequency (median) is  0.505
-largest tau window is  33.101
-2.37 seconds has passed to complete Weighted Wavelet Z-transform 
-
-*** Starting Weighted Wavelet Z-transform ***
-
-Pseudo sample frequency (median) is  0.505
-largest tau window is  33.101
-Processing 1384177
-PID 7234
-Duration: 10.0 ticks
-12.0 seconds each
-Time so far 120.0s
-
-2.37 seconds has passed to complete Weighted Wavelet Z-transform 
-
-*** Starting Weighted Wavelet Z-transform ***
-
-Pseudo sample frequency (median) is  0.505
-largest tau window is  33.101
-2.37 seconds has passed to complete Weighted Wavelet Z-transform 
-
-*** Starting Weighted Wavelet Z-transform ***
-
-Pseudo sample frequency (median) is  0.505
-largest tau window is  33.101
-2.36 seconds has passed to complete Weighted Wavelet Z-transform 
-
-*** Starting Weighted Wavelet Z-transform ***
-
-Pseudo sample frequency (median) is  0.505
-largest tau window is  33.101
-2.44 seconds has passed to complete Weighted Wavelet Z-transform 
-
-*** Starting Weighted Wavelet Z-transform ***
-
-Pseudo sample frequency (median) is  0.505
-largest tau window is  33.101
-2.45 seconds has passed to complete Weighted Wavelet Z-transform 
-
-*** Starting Weighted Wavelet Z-transform ***
-
-Pseudo sample frequency (median) is  0.505
-largest tau window is  33.101
-Processing 1384177
-PID 7234
-Duration: 11.0 ticks
-12.0 seconds each
-Time so far 132.0s
-
-2.66 seconds has passed to complete Weighted Wavelet Z-transform 
-
-*** Starting Weighted Wavelet Z-transform ***
-
-Pseudo sample frequency (median) is  0.505
-largest tau window is  33.101
-2.59 seconds has passed to complete Weighted Wavelet Z-transform 
-
-*** Starting Weighted Wavelet Z-transform ***
-
-Pseudo sample frequency (median) is  0.505
-largest tau window is  33.101
-2.4 seconds has passed to complete Weighted Wavelet Z-transform 
-
-*** Starting Weighted Wavelet Z-transform ***
-
-Pseudo sample frequency (median) is  0.505
-largest tau window is  33.101
-2.39 seconds has passed to complete Weighted Wavelet Z-transform 
-
-*** Starting Weighted Wavelet Z-transform ***
-
-Pseudo sample frequency (median) is  0.505
-largest tau window is  33.101
-2.42 seconds has passed to complete Weighted Wavelet Z-transform 
-
-*** Starting Weighted Wavelet Z-transform ***
-
-Pseudo sample frequency (median) is  0.505
-largest tau window is  33.101
-Processing 1384177
-PID 7234
-Duration: 12.0 ticks
-12.0 seconds each
-Time so far 144.0s
-
-2.41 seconds has passed to complete Weighted Wavelet Z-transform 
-
-*** Starting Weighted Wavelet Z-transform ***
-
-Pseudo sample frequency (median) is  0.505
-largest tau window is  33.101
-2.38 seconds has passed to complete Weighted Wavelet Z-transform 
-
-*** Starting Weighted Wavelet Z-transform ***
-
-Pseudo sample frequency (median) is  0.505
-largest tau window is  33.101
-2.39 seconds has passed to complete Weighted Wavelet Z-transform 
-
-*** Starting Weighted Wavelet Z-transform ***
-
-Pseudo sample frequency (median) is  0.505
-largest tau window is  33.101
-2.41 seconds has passed to complete Weighted Wavelet Z-transform 
-
-*** Starting Weighted Wavelet Z-transform ***
-
-Pseudo sample frequency (median) is  0.505
-largest tau window is  33.101
-2.39 seconds has passed to complete Weighted Wavelet Z-transform 
-
-*** Starting Weighted Wavelet Z-transform ***
-
-Pseudo sample frequency (median) is  0.505
-largest tau window is  33.101
-Processing 1384177
-PID 7234
-Duration: 13.0 ticks
-12.0 seconds each
-Time so far 156.0s
-
-2.39 seconds has passed to complete Weighted Wavelet Z-transform 
-
-*** Starting Weighted Wavelet Z-transform ***
-
-Pseudo sample frequency (median) is  0.505
-largest tau window is  33.101
-2.43 seconds has passed to complete Weighted Wavelet Z-transform 
-
-*** Starting Weighted Wavelet Z-transform ***
-
-Pseudo sample frequency (median) is  0.505
-largest tau window is  33.101
-2.42 seconds has passed to complete Weighted Wavelet Z-transform 
-
-*** Starting Weighted Wavelet Z-transform ***
-
-Pseudo sample frequency (median) is  0.505
-largest tau window is  33.101
-2.44 seconds has passed to complete Weighted Wavelet Z-transform 
-
-*** Starting Weighted Wavelet Z-transform ***
-
-Pseudo sample frequency (median) is  0.505
-largest tau window is  33.101
-2.38 seconds has passed to complete Weighted Wavelet Z-transform 
-
-*** Starting Weighted Wavelet Z-transform ***
-
-Pseudo sample frequency (median) is  0.505
-largest tau window is  33.101
-Processing 1384177
-PID 7234
-Duration: 14.0 ticks
-12.0 seconds each
-Time so far 168.0s
-
-2.4 seconds has passed to complete Weighted Wavelet Z-transform 
-
-*** Starting Weighted Wavelet Z-transform ***
-
-Pseudo sample frequency (median) is  0.505
-largest tau window is  33.101
-2.39 seconds has passed to complete Weighted Wavelet Z-transform 
-
-*** Starting Weighted Wavelet Z-transform ***
-
-Pseudo sample frequency (median) is  0.505
-largest tau window is  33.101
-2.44 seconds has passed to complete Weighted Wavelet Z-transform 
-
-*** Starting Weighted Wavelet Z-transform ***
-
-Pseudo sample frequency (median) is  0.505
-largest tau window is  33.101
-2.4 seconds has passed to complete Weighted Wavelet Z-transform 
-
-*** Starting Weighted Wavelet Z-transform ***
-
-Pseudo sample frequency (median) is  0.505
-largest tau window is  33.101
-2.38 seconds has passed to complete Weighted Wavelet Z-transform 
-
-*** Starting Weighted Wavelet Z-transform ***
-
-Pseudo sample frequency (median) is  0.505
-largest tau window is  33.101
-Processing 1384177
-PID 7234
-Duration: 15.0 ticks
-12.0 seconds each
-Time so far 180.0s
-
-2.37 seconds has passed to complete Weighted Wavelet Z-transform 
-
-*** Starting Weighted Wavelet Z-transform ***
-
-Pseudo sample frequency (median) is  0.505
-largest tau window is  33.101
-2.38 seconds has passed to complete Weighted Wavelet Z-transform 
-
-*** Starting Weighted Wavelet Z-transform ***
-
-Pseudo sample frequency (median) is  0.505
-largest tau window is  33.101
-2.46 seconds has passed to complete Weighted Wavelet Z-transform 
-
-*** Starting Weighted Wavelet Z-transform ***
-
-Pseudo sample frequency (median) is  0.505
-largest tau window is  33.101
-2.82 seconds has passed to complete Weighted Wavelet Z-transform 
-
-*** Starting Weighted Wavelet Z-transform ***
-
-Pseudo sample frequency (median) is  0.505
-largest tau window is  33.101
-Processing 1384177
-PID 7234
-Duration: 16.0 ticks
-12.0 seconds each
-Time so far 192.0s
-
-2.49 seconds has passed to complete Weighted Wavelet Z-transform 
-
-*** Starting Weighted Wavelet Z-transform ***
-
-Pseudo sample frequency (median) is  0.505
-largest tau window is  33.101
-2.39 seconds has passed to complete Weighted Wavelet Z-transform 
-
-*** Starting Weighted Wavelet Z-transform ***
-
-Pseudo sample frequency (median) is  0.505
-largest tau window is  33.101
-2.41 seconds has passed to complete Weighted Wavelet Z-transform 
-
-*** Starting Weighted Wavelet Z-transform ***
-
-Pseudo sample frequency (median) is  0.505
-largest tau window is  33.101
-2.4 seconds has passed to complete Weighted Wavelet Z-transform 
-
-*** Starting Weighted Wavelet Z-transform ***
-
-Pseudo sample frequency (median) is  0.505
-largest tau window is  33.101
-2.39 seconds has passed to complete Weighted Wavelet Z-transform 
-
-*** Starting Weighted Wavelet Z-transform ***
-
-Pseudo sample frequency (median) is  0.505
-largest tau window is  33.101
-Processing 1384177
-PID 7234
-Duration: 17.0 ticks
-12.0 seconds each
-Time so far 204.0s
-
-2.48 seconds has passed to complete Weighted Wavelet Z-transform 
-
-*** Starting Weighted Wavelet Z-transform ***
-
-Pseudo sample frequency (median) is  0.505
-largest tau window is  33.101
-2.38 seconds has passed to complete Weighted Wavelet Z-transform 
-
-*** Starting Weighted Wavelet Z-transform ***
-
-Pseudo sample frequency (median) is  0.505
-largest tau window is  33.101
-2.39 seconds has passed to complete Weighted Wavelet Z-transform 
-
-*** Starting Weighted Wavelet Z-transform ***
-
-Pseudo sample frequency (median) is  0.505
-largest tau window is  33.101
-2.39 seconds has passed to complete Weighted Wavelet Z-transform 
-
-*** Starting Weighted Wavelet Z-transform ***
-
-Pseudo sample frequency (median) is  0.505
-largest tau window is  33.101
-2.42 seconds has passed to complete Weighted Wavelet Z-transform 
-
-*** Starting Weighted Wavelet Z-transform ***
-
-Pseudo sample frequency (median) is  0.505
-largest tau window is  33.101
-Processing 1384177
-PID 7234
-Duration: 18.0 ticks
-12.0 seconds each
-Time so far 216.0s
-
-2.49 seconds has passed to complete Weighted Wavelet Z-transform 
-
-*** Starting Weighted Wavelet Z-transform ***
-
-Pseudo sample frequency (median) is  0.505
-largest tau window is  33.101
-2.38 seconds has passed to complete Weighted Wavelet Z-transform 
-
-*** Starting Weighted Wavelet Z-transform ***
-
-Pseudo sample frequency (median) is  0.505
-largest tau window is  33.101
-2.41 seconds has passed to complete Weighted Wavelet Z-transform 
-
-*** Starting Weighted Wavelet Z-transform ***
-
-Pseudo sample frequency (median) is  0.505
-largest tau window is  33.101
-2.39 seconds has passed to complete Weighted Wavelet Z-transform 
-
-*** Starting Weighted Wavelet Z-transform ***
-
-Pseudo sample frequency (median) is  0.505
-largest tau window is  33.101
-2.4 seconds has passed to complete Weighted Wavelet Z-transform 
-
-*** Starting Weighted Wavelet Z-transform ***
-
-Pseudo sample frequency (median) is  0.505
-largest tau window is  33.101
-Processing 1384177
-PID 7234
-Duration: 19.0 ticks
-12.0 seconds each
-Time so far 228.0s
-
-2.4 seconds has passed to complete Weighted Wavelet Z-transform 
-
-*** Starting Weighted Wavelet Z-transform ***
-
-Pseudo sample frequency (median) is  0.505
-largest tau window is  33.101
-2.4 seconds has passed to complete Weighted Wavelet Z-transform 
-
-*** Starting Weighted Wavelet Z-transform ***
-
-Pseudo sample frequency (median) is  0.505
-largest tau window is  33.101
-2.39 seconds has passed to complete Weighted Wavelet Z-transform 
-
-*** Starting Weighted Wavelet Z-transform ***
-
-Pseudo sample frequency (median) is  0.505
-largest tau window is  33.101
-2.4 seconds has passed to complete Weighted Wavelet Z-transform 
-
-*** Starting Weighted Wavelet Z-transform ***
-
-Pseudo sample frequency (median) is  0.505
-largest tau window is  33.101
-2.4 seconds has passed to complete Weighted Wavelet Z-transform 
-
-*** Starting Weighted Wavelet Z-transform ***
-
-Pseudo sample frequency (median) is  0.505
-largest tau window is  33.101
-Processing 1384177
-PID 7234
-Duration: 20.0 ticks
-12.0 seconds each
-Time so far 240.0s
-
-2.42 seconds has passed to complete Weighted Wavelet Z-transform 
-
-*** Starting Weighted Wavelet Z-transform ***
-
-Pseudo sample frequency (median) is  0.505
-largest tau window is  33.101
-2.4 seconds has passed to complete Weighted Wavelet Z-transform 
-
-*** Starting Weighted Wavelet Z-transform ***
-
-Pseudo sample frequency (median) is  0.505
-largest tau window is  33.101
-2.42 seconds has passed to complete Weighted Wavelet Z-transform 
-
-*** Starting Weighted Wavelet Z-transform ***
-
-Pseudo sample frequency (median) is  0.505
-largest tau window is  33.101
-2.47 seconds has passed to complete Weighted Wavelet Z-transform 
-
-*** Starting Weighted Wavelet Z-transform ***
-
-Pseudo sample frequency (median) is  0.505
-largest tau window is  33.101
-2.37 seconds has passed to complete Weighted Wavelet Z-transform 
-
-*** Starting Weighted Wavelet Z-transform ***
-
-Pseudo sample frequency (median) is  0.505
-largest tau window is  33.101
-Processing 1384177
-PID 7234
-Duration: 21.0 ticks
-12.0 seconds each
-Time so far 252.0s
-
-2.45 seconds has passed to complete Weighted Wavelet Z-transform 
-
-*** Starting Weighted Wavelet Z-transform ***
-
-Pseudo sample frequency (median) is  0.505
-largest tau window is  33.101
-2.42 seconds has passed to complete Weighted Wavelet Z-transform 
-
-*** Starting Weighted Wavelet Z-transform ***
-
-Pseudo sample frequency (median) is  0.505
-largest tau window is  33.101
-2.42 seconds has passed to complete Weighted Wavelet Z-transform 
-
-*** Starting Weighted Wavelet Z-transform ***
-
-Pseudo sample frequency (median) is  0.505
-largest tau window is  33.101
-2.46 seconds has passed to complete Weighted Wavelet Z-transform 
-
-*** Starting Weighted Wavelet Z-transform ***
-
-Pseudo sample frequency (median) is  0.505
-largest tau window is  33.101
-2.37 seconds has passed to complete Weighted Wavelet Z-transform 
-
-*** Starting Weighted Wavelet Z-transform ***
-
-Pseudo sample frequency (median) is  0.505
-largest tau window is  33.101
-Processing 1384177
-PID 7234
-Duration: 22.0 ticks
-12.0 seconds each
-Time so far 264.0s
-
-2.38 seconds has passed to complete Weighted Wavelet Z-transform 
-
-*** Starting Weighted Wavelet Z-transform ***
-
-Pseudo sample frequency (median) is  0.505
-largest tau window is  33.101
-2.4 seconds has passed to complete Weighted Wavelet Z-transform 
-
-*** Starting Weighted Wavelet Z-transform ***
-
-Pseudo sample frequency (median) is  0.505
-largest tau window is  33.101
-2.38 seconds has passed to complete Weighted Wavelet Z-transform 
-
-*** Starting Weighted Wavelet Z-transform ***
-
-Pseudo sample frequency (median) is  0.505
-largest tau window is  33.101
-2.42 seconds has passed to complete Weighted Wavelet Z-transform 
-
-*** Starting Weighted Wavelet Z-transform ***
-
-Pseudo sample frequency (median) is  0.505
-largest tau window is  33.101
-2.47 seconds has passed to complete Weighted Wavelet Z-transform 
-
-*** Starting Weighted Wavelet Z-transform ***
-
-Pseudo sample frequency (median) is  0.505
-largest tau window is  33.101
-Processing 1384177
-PID 7234
-Duration: 23.0 ticks
-12.0 seconds each
-Time so far 276.0s
-
-2.57 seconds has passed to complete Weighted Wavelet Z-transform 
-
-*** Starting Weighted Wavelet Z-transform ***
-
-Pseudo sample frequency (median) is  0.505
-largest tau window is  33.101
-2.49 seconds has passed to complete Weighted Wavelet Z-transform 
-
-*** Starting Weighted Wavelet Z-transform ***
-
-Pseudo sample frequency (median) is  0.505
-largest tau window is  33.101
-2.39 seconds has passed to complete Weighted Wavelet Z-transform 
 
 *** Starting Weighted Wavelet Z-transform ***
 
@@ -809,25 +1673,55 @@ largest tau window is  33.101
 
 Pseudo sample frequency (median) is  0.505
 largest tau window is  33.101
-2.54 seconds has passed to complete Weighted Wavelet Z-transform 
+2.71 seconds has passed to complete Weighted Wavelet Z-transform 
 
 *** Starting Weighted Wavelet Z-transform ***
 
 Pseudo sample frequency (median) is  0.505
 largest tau window is  33.101
 Processing 1384177
-PID 7234
-Duration: 24.0 ticks
+PID 53868
+Duration: 50.0 ticks
 12.0 seconds each
-Time so far 288.0s
+Time so far 600.0s
 
-2.7 seconds has passed to complete Weighted Wavelet Z-transform 
+2.55 seconds has passed to complete Weighted Wavelet Z-transform 
 
 *** Starting Weighted Wavelet Z-transform ***
 
 Pseudo sample frequency (median) is  0.505
 largest tau window is  33.101
-2.7 seconds has passed to complete Weighted Wavelet Z-transform 
+2.59 seconds has passed to complete Weighted Wavelet Z-transform 
+
+*** Starting Weighted Wavelet Z-transform ***
+
+Pseudo sample frequency (median) is  0.505
+largest tau window is  33.101
+2.62 seconds has passed to complete Weighted Wavelet Z-transform 
+
+*** Starting Weighted Wavelet Z-transform ***
+
+Pseudo sample frequency (median) is  0.505
+largest tau window is  33.101
+2.63 seconds has passed to complete Weighted Wavelet Z-transform 
+
+*** Starting Weighted Wavelet Z-transform ***
+
+Pseudo sample frequency (median) is  0.505
+largest tau window is  33.101
+2.59 seconds has passed to complete Weighted Wavelet Z-transform 
+
+*** Starting Weighted Wavelet Z-transform ***
+
+Pseudo sample frequency (median) is  0.505
+largest tau window is  33.101
+Processing 1384177
+PID 53868
+Duration: 51.0 ticks
+12.0 seconds each
+Time so far 612.0s
+
+2.65 seconds has passed to complete Weighted Wavelet Z-transform 
 
 *** Starting Weighted Wavelet Z-transform ***
 
@@ -845,175 +1739,139 @@ largest tau window is  33.101
 
 Pseudo sample frequency (median) is  0.505
 largest tau window is  33.101
-Processing 1384177
-PID 7234
-Duration: 25.0 ticks
-12.0 seconds each
-Time so far 300.0s
-
-2.6 seconds has passed to complete Weighted Wavelet Z-transform 
-
-*** Starting Weighted Wavelet Z-transform ***
-
-Pseudo sample frequency (median) is  0.505
-largest tau window is  33.101
-2.43 seconds has passed to complete Weighted Wavelet Z-transform 
-
-*** Starting Weighted Wavelet Z-transform ***
-
-Pseudo sample frequency (median) is  0.505
-largest tau window is  33.101
-2.4 seconds has passed to complete Weighted Wavelet Z-transform 
-
-*** Starting Weighted Wavelet Z-transform ***
-
-Pseudo sample frequency (median) is  0.505
-largest tau window is  33.101
-2.41 seconds has passed to complete Weighted Wavelet Z-transform 
-
-*** Starting Weighted Wavelet Z-transform ***
-
-Pseudo sample frequency (median) is  0.505
-largest tau window is  33.101
-2.44 seconds has passed to complete Weighted Wavelet Z-transform 
+2.65 seconds has passed to complete Weighted Wavelet Z-transform 
 
 *** Starting Weighted Wavelet Z-transform ***
 
 Pseudo sample frequency (median) is  0.505
 largest tau window is  33.101
 Processing 1384177
-PID 7234
-Duration: 26.0 ticks
+PID 53868
+Duration: 52.0 ticks
 12.0 seconds each
-Time so far 312.0s
+Time so far 624.0s
 
-2.38 seconds has passed to complete Weighted Wavelet Z-transform 
-
-*** Starting Weighted Wavelet Z-transform ***
-
-Pseudo sample frequency (median) is  0.505
-largest tau window is  33.101
-2.41 seconds has passed to complete Weighted Wavelet Z-transform 
+2.59 seconds has passed to complete Weighted Wavelet Z-transform 
 
 *** Starting Weighted Wavelet Z-transform ***
 
 Pseudo sample frequency (median) is  0.505
 largest tau window is  33.101
-2.53 seconds has passed to complete Weighted Wavelet Z-transform 
+2.58 seconds has passed to complete Weighted Wavelet Z-transform 
 
 *** Starting Weighted Wavelet Z-transform ***
 
 Pseudo sample frequency (median) is  0.505
 largest tau window is  33.101
-2.47 seconds has passed to complete Weighted Wavelet Z-transform 
+2.63 seconds has passed to complete Weighted Wavelet Z-transform 
 
 *** Starting Weighted Wavelet Z-transform ***
 
 Pseudo sample frequency (median) is  0.505
 largest tau window is  33.101
-2.49 seconds has passed to complete Weighted Wavelet Z-transform 
+2.67 seconds has passed to complete Weighted Wavelet Z-transform 
+
+*** Starting Weighted Wavelet Z-transform ***
+
+Pseudo sample frequency (median) is  0.505
+largest tau window is  33.101
+2.54 seconds has passed to complete Weighted Wavelet Z-transform 
 
 *** Starting Weighted Wavelet Z-transform ***
 
 Pseudo sample frequency (median) is  0.505
 largest tau window is  33.101
 Processing 1384177
-PID 7234
-Duration: 27.0 ticks
+PID 53868
+Duration: 53.0 ticks
 12.0 seconds each
-Time so far 324.0s
+Time so far 636.0s
 
-2.47 seconds has passed to complete Weighted Wavelet Z-transform 
-
-*** Starting Weighted Wavelet Z-transform ***
-
-Pseudo sample frequency (median) is  0.505
-largest tau window is  33.101
-2.47 seconds has passed to complete Weighted Wavelet Z-transform 
+2.7 seconds has passed to complete Weighted Wavelet Z-transform 
 
 *** Starting Weighted Wavelet Z-transform ***
 
 Pseudo sample frequency (median) is  0.505
 largest tau window is  33.101
-2.46 seconds has passed to complete Weighted Wavelet Z-transform 
+2.63 seconds has passed to complete Weighted Wavelet Z-transform 
 
 *** Starting Weighted Wavelet Z-transform ***
 
 Pseudo sample frequency (median) is  0.505
 largest tau window is  33.101
-2.43 seconds has passed to complete Weighted Wavelet Z-transform 
-
-*** Starting Weighted Wavelet Z-transform ***
-
-Pseudo sample frequency (median) is  0.505
-largest tau window is  33.101
-2.43 seconds has passed to complete Weighted Wavelet Z-transform 
-
-*** Starting Weighted Wavelet Z-transform ***
-
-Pseudo sample frequency (median) is  0.505
-largest tau window is  33.101
-Processing 1384177
-PID 7234
-Duration: 28.0 ticks
-12.0 seconds each
-Time so far 336.0s
-
-2.4 seconds has passed to complete Weighted Wavelet Z-transform 
-
-*** Starting Weighted Wavelet Z-transform ***
-
-Pseudo sample frequency (median) is  0.505
-largest tau window is  33.101
-2.37 seconds has passed to complete Weighted Wavelet Z-transform 
-
-*** Starting Weighted Wavelet Z-transform ***
-
-Pseudo sample frequency (median) is  0.505
-largest tau window is  33.101
-2.41 seconds has passed to complete Weighted Wavelet Z-transform 
-
-*** Starting Weighted Wavelet Z-transform ***
-
-Pseudo sample frequency (median) is  0.505
-largest tau window is  33.101
-2.42 seconds has passed to complete Weighted Wavelet Z-transform 
-
-*** Starting Weighted Wavelet Z-transform ***
-
-Pseudo sample frequency (median) is  0.505
-largest tau window is  33.101
-2.47 seconds has passed to complete Weighted Wavelet Z-transform 
-
-*** Starting Weighted Wavelet Z-transform ***
-
-Pseudo sample frequency (median) is  0.505
-largest tau window is  33.101
-Processing 1384177
-PID 7234
-Duration: 29.0 ticks
-12.0 seconds each
-Time so far 348.0s
-
-2.43 seconds has passed to complete Weighted Wavelet Z-transform 
-
-*** Starting Weighted Wavelet Z-transform ***
-
-Pseudo sample frequency (median) is  0.505
-largest tau window is  33.101
-2.44 seconds has passed to complete Weighted Wavelet Z-transform 
-
-*** Starting Weighted Wavelet Z-transform ***
-
-Pseudo sample frequency (median) is  0.505
-largest tau window is  33.101
-2.41 seconds has passed to complete Weighted Wavelet Z-transform 
+2.57 seconds has passed to complete Weighted Wavelet Z-transform 
 
 *** Starting Weighted Wavelet Z-transform ***
 
 Pseudo sample frequency (median) is  0.505
 largest tau window is  33.101
 2.52 seconds has passed to complete Weighted Wavelet Z-transform 
+
+*** Starting Weighted Wavelet Z-transform ***
+
+Pseudo sample frequency (median) is  0.505
+largest tau window is  33.101
+2.59 seconds has passed to complete Weighted Wavelet Z-transform 
+
+*** Starting Weighted Wavelet Z-transform ***
+
+Pseudo sample frequency (median) is  0.505
+largest tau window is  33.101
+Processing 1384177
+PID 53868
+Duration: 54.0 ticks
+12.0 seconds each
+Time so far 648.0s
+
+2.63 seconds has passed to complete Weighted Wavelet Z-transform 
+
+*** Starting Weighted Wavelet Z-transform ***
+
+Pseudo sample frequency (median) is  0.505
+largest tau window is  33.101
+2.79 seconds has passed to complete Weighted Wavelet Z-transform 
+
+*** Starting Weighted Wavelet Z-transform ***
+
+Pseudo sample frequency (median) is  0.505
+largest tau window is  33.101
+2.73 seconds has passed to complete Weighted Wavelet Z-transform 
+
+*** Starting Weighted Wavelet Z-transform ***
+
+Pseudo sample frequency (median) is  0.505
+largest tau window is  33.101
+2.52 seconds has passed to complete Weighted Wavelet Z-transform 
+
+*** Starting Weighted Wavelet Z-transform ***
+
+Pseudo sample frequency (median) is  0.505
+largest tau window is  33.101
+Processing 1384177
+PID 53868
+Duration: 55.0 ticks
+12.0 seconds each
+Time so far 660.0s
+
+2.49 seconds has passed to complete Weighted Wavelet Z-transform 
+
+*** Starting Weighted Wavelet Z-transform ***
+
+Pseudo sample frequency (median) is  0.505
+largest tau window is  33.101
+2.55 seconds has passed to complete Weighted Wavelet Z-transform 
+
+*** Starting Weighted Wavelet Z-transform ***
+
+Pseudo sample frequency (median) is  0.505
+largest tau window is  33.101
+2.54 seconds has passed to complete Weighted Wavelet Z-transform 
+
+*** Starting Weighted Wavelet Z-transform ***
+
+Pseudo sample frequency (median) is  0.505
+largest tau window is  33.101
+2.77 seconds has passed to complete Weighted Wavelet Z-transform 
 
 *** Starting Weighted Wavelet Z-transform ***
 
@@ -1026,18 +1884,114 @@ largest tau window is  33.101
 Pseudo sample frequency (median) is  0.505
 largest tau window is  33.101
 Processing 1384177
-PID 7234
-Duration: 30.0 ticks
+PID 53868
+Duration: 56.0 ticks
 12.0 seconds each
-Time so far 360.0s
+Time so far 672.0s
 
-2.84 seconds has passed to complete Weighted Wavelet Z-transform 
+2.61 seconds has passed to complete Weighted Wavelet Z-transform 
 
 *** Starting Weighted Wavelet Z-transform ***
 
 Pseudo sample frequency (median) is  0.505
 largest tau window is  33.101
-2.77 seconds has passed to complete Weighted Wavelet Z-transform 
+2.52 seconds has passed to complete Weighted Wavelet Z-transform 
+
+*** Starting Weighted Wavelet Z-transform ***
+
+Pseudo sample frequency (median) is  0.505
+largest tau window is  33.101
+2.6 seconds has passed to complete Weighted Wavelet Z-transform 
+
+*** Starting Weighted Wavelet Z-transform ***
+
+Pseudo sample frequency (median) is  0.505
+largest tau window is  33.101
+2.63 seconds has passed to complete Weighted Wavelet Z-transform 
+
+*** Starting Weighted Wavelet Z-transform ***
+
+Pseudo sample frequency (median) is  0.505
+largest tau window is  33.101
+Processing 1384177
+PID 53868
+Duration: 57.0 ticks
+12.0 seconds each
+Time so far 684.0s
+
+2.66 seconds has passed to complete Weighted Wavelet Z-transform 
+
+*** Starting Weighted Wavelet Z-transform ***
+
+Pseudo sample frequency (median) is  0.505
+largest tau window is  33.101
+2.59 seconds has passed to complete Weighted Wavelet Z-transform 
+
+*** Starting Weighted Wavelet Z-transform ***
+
+Pseudo sample frequency (median) is  0.505
+largest tau window is  33.101
+2.56 seconds has passed to complete Weighted Wavelet Z-transform 
+
+*** Starting Weighted Wavelet Z-transform ***
+
+Pseudo sample frequency (median) is  0.505
+largest tau window is  33.101
+2.52 seconds has passed to complete Weighted Wavelet Z-transform 
+
+*** Starting Weighted Wavelet Z-transform ***
+
+Pseudo sample frequency (median) is  0.505
+largest tau window is  33.101
+2.61 seconds has passed to complete Weighted Wavelet Z-transform 
+
+*** Starting Weighted Wavelet Z-transform ***
+
+Pseudo sample frequency (median) is  0.505
+largest tau window is  33.101
+Processing 1384177
+PID 53868
+Duration: 58.0 ticks
+12.0 seconds each
+Time so far 696.0s
+
+2.68 seconds has passed to complete Weighted Wavelet Z-transform 
+
+*** Starting Weighted Wavelet Z-transform ***
+
+Pseudo sample frequency (median) is  0.505
+largest tau window is  33.101
+2.69 seconds has passed to complete Weighted Wavelet Z-transform 
+
+*** Starting Weighted Wavelet Z-transform ***
+
+Pseudo sample frequency (median) is  0.505
+largest tau window is  33.101
+2.59 seconds has passed to complete Weighted Wavelet Z-transform 
+
+*** Starting Weighted Wavelet Z-transform ***
+
+Pseudo sample frequency (median) is  0.505
+largest tau window is  33.101
+2.65 seconds has passed to complete Weighted Wavelet Z-transform 
+
+*** Starting Weighted Wavelet Z-transform ***
+
+Pseudo sample frequency (median) is  0.505
+largest tau window is  33.101
+2.55 seconds has passed to complete Weighted Wavelet Z-transform 
+
+*** Starting Weighted Wavelet Z-transform ***
+
+Pseudo sample frequency (median) is  0.505
+largest tau window is  33.101
+Processing 1384177
+PID 53868
+Duration: 59.0 ticks
+12.0 seconds each
+Time so far 708.0s
+
+2.48 seconds has passed to complete Weighted Wavelet Z-transform 
 
 *** Starting Weighted Wavelet Z-transform ***
 
@@ -1049,19 +2003,109 @@ largest tau window is  33.101
 
 Pseudo sample frequency (median) is  0.505
 largest tau window is  33.101
-2.72 seconds has passed to complete Weighted Wavelet Z-transform 
+2.75 seconds has passed to complete Weighted Wavelet Z-transform 
+
+*** Starting Weighted Wavelet Z-transform ***
+
+Pseudo sample frequency (median) is  0.505
+largest tau window is  33.101
+2.67 seconds has passed to complete Weighted Wavelet Z-transform 
 
 *** Starting Weighted Wavelet Z-transform ***
 
 Pseudo sample frequency (median) is  0.505
 largest tau window is  33.101
 Processing 1384177
-PID 7234
-Duration: 31.0 ticks
+PID 53868
+Duration: 60.0 ticks
 12.0 seconds each
-Time so far 372.0s
+Time so far 720.0s
 
-2.77 seconds has passed to complete Weighted Wavelet Z-transform 
+2.76 seconds has passed to complete Weighted Wavelet Z-transform 
+
+*** Starting Weighted Wavelet Z-transform ***
+
+Pseudo sample frequency (median) is  0.505
+largest tau window is  33.101
+2.65 seconds has passed to complete Weighted Wavelet Z-transform 
+
+*** Starting Weighted Wavelet Z-transform ***
+
+Pseudo sample frequency (median) is  0.505
+largest tau window is  33.101
+2.58 seconds has passed to complete Weighted Wavelet Z-transform 
+
+*** Starting Weighted Wavelet Z-transform ***
+
+Pseudo sample frequency (median) is  0.505
+largest tau window is  33.101
+2.91 seconds has passed to complete Weighted Wavelet Z-transform 
+
+*** Starting Weighted Wavelet Z-transform ***
+
+Pseudo sample frequency (median) is  0.505
+largest tau window is  33.101
+2.59 seconds has passed to complete Weighted Wavelet Z-transform 
+
+*** Starting Weighted Wavelet Z-transform ***
+
+Pseudo sample frequency (median) is  0.505
+largest tau window is  33.101
+Processing 1384177
+PID 53868
+Duration: 61.0 ticks
+12.0 seconds each
+Time so far 732.0s
+
+2.65 seconds has passed to complete Weighted Wavelet Z-transform 
+
+*** Starting Weighted Wavelet Z-transform ***
+
+Pseudo sample frequency (median) is  0.505
+largest tau window is  33.101
+2.68 seconds has passed to complete Weighted Wavelet Z-transform 
+
+*** Starting Weighted Wavelet Z-transform ***
+
+Pseudo sample frequency (median) is  0.505
+largest tau window is  33.101
+2.57 seconds has passed to complete Weighted Wavelet Z-transform 
+
+*** Starting Weighted Wavelet Z-transform ***
+
+Pseudo sample frequency (median) is  0.505
+largest tau window is  33.101
+2.59 seconds has passed to complete Weighted Wavelet Z-transform 
+
+*** Starting Weighted Wavelet Z-transform ***
+
+Pseudo sample frequency (median) is  0.505
+largest tau window is  33.101
+Processing 1384177
+PID 53868
+Duration: 62.0 ticks
+12.0 seconds each
+Time so far 744.0s
+
+2.56 seconds has passed to complete Weighted Wavelet Z-transform 
+
+*** Starting Weighted Wavelet Z-transform ***
+
+Pseudo sample frequency (median) is  0.505
+largest tau window is  33.101
+2.59 seconds has passed to complete Weighted Wavelet Z-transform 
+
+*** Starting Weighted Wavelet Z-transform ***
+
+Pseudo sample frequency (median) is  0.505
+largest tau window is  33.101
+2.54 seconds has passed to complete Weighted Wavelet Z-transform 
+
+*** Starting Weighted Wavelet Z-transform ***
+
+Pseudo sample frequency (median) is  0.505
+largest tau window is  33.101
+2.71 seconds has passed to complete Weighted Wavelet Z-transform 
 
 *** Starting Weighted Wavelet Z-transform ***
 
@@ -1073,37 +2117,55 @@ largest tau window is  33.101
 
 Pseudo sample frequency (median) is  0.505
 largest tau window is  33.101
-2.47 seconds has passed to complete Weighted Wavelet Z-transform 
+Processing 1384177
+PID 53868
+Duration: 63.0 ticks
+12.0 seconds each
+Time so far 756.0s
+
+2.7 seconds has passed to complete Weighted Wavelet Z-transform 
 
 *** Starting Weighted Wavelet Z-transform ***
 
 Pseudo sample frequency (median) is  0.505
 largest tau window is  33.101
-2.44 seconds has passed to complete Weighted Wavelet Z-transform 
+2.63 seconds has passed to complete Weighted Wavelet Z-transform 
 
 *** Starting Weighted Wavelet Z-transform ***
 
 Pseudo sample frequency (median) is  0.505
 largest tau window is  33.101
-2.45 seconds has passed to complete Weighted Wavelet Z-transform 
+2.61 seconds has passed to complete Weighted Wavelet Z-transform 
+
+*** Starting Weighted Wavelet Z-transform ***
+
+Pseudo sample frequency (median) is  0.505
+largest tau window is  33.101
+2.63 seconds has passed to complete Weighted Wavelet Z-transform 
 
 *** Starting Weighted Wavelet Z-transform ***
 
 Pseudo sample frequency (median) is  0.505
 largest tau window is  33.101
 Processing 1384177
-PID 7234
-Duration: 32.0 ticks
+PID 53868
+Duration: 64.0 ticks
 12.0 seconds each
-Time so far 384.0s
+Time so far 768.0s
 
-2.45 seconds has passed to complete Weighted Wavelet Z-transform 
+2.64 seconds has passed to complete Weighted Wavelet Z-transform 
 
 *** Starting Weighted Wavelet Z-transform ***
 
 Pseudo sample frequency (median) is  0.505
 largest tau window is  33.101
-2.42 seconds has passed to complete Weighted Wavelet Z-transform 
+2.57 seconds has passed to complete Weighted Wavelet Z-transform 
+
+*** Starting Weighted Wavelet Z-transform ***
+
+Pseudo sample frequency (median) is  0.505
+largest tau window is  33.101
+2.65 seconds has passed to complete Weighted Wavelet Z-transform 
 
 *** Starting Weighted Wavelet Z-transform ***
 
@@ -1115,361 +2177,37 @@ largest tau window is  33.101
 
 Pseudo sample frequency (median) is  0.505
 largest tau window is  33.101
-2.45 seconds has passed to complete Weighted Wavelet Z-transform 
-
-*** Starting Weighted Wavelet Z-transform ***
-
-Pseudo sample frequency (median) is  0.505
-largest tau window is  33.101
-2.43 seconds has passed to complete Weighted Wavelet Z-transform 
+2.51 seconds has passed to complete Weighted Wavelet Z-transform 
 
 *** Starting Weighted Wavelet Z-transform ***
 
 Pseudo sample frequency (median) is  0.505
 largest tau window is  33.101
 Processing 1384177
-PID 7234
-Duration: 33.0 ticks
+PID 53868
+Duration: 65.0 ticks
 12.0 seconds each
-Time so far 396.0s
+Time so far 780.0s
 
-2.42 seconds has passed to complete Weighted Wavelet Z-transform 
-
-*** Starting Weighted Wavelet Z-transform ***
-
-Pseudo sample frequency (median) is  0.505
-largest tau window is  33.101
-2.45 seconds has passed to complete Weighted Wavelet Z-transform 
+2.6 seconds has passed to complete Weighted Wavelet Z-transform 
 
 *** Starting Weighted Wavelet Z-transform ***
 
 Pseudo sample frequency (median) is  0.505
 largest tau window is  33.101
-2.47 seconds has passed to complete Weighted Wavelet Z-transform 
+2.68 seconds has passed to complete Weighted Wavelet Z-transform 
 
 *** Starting Weighted Wavelet Z-transform ***
 
 Pseudo sample frequency (median) is  0.505
 largest tau window is  33.101
-2.44 seconds has passed to complete Weighted Wavelet Z-transform 
+2.7 seconds has passed to complete Weighted Wavelet Z-transform 
 
 *** Starting Weighted Wavelet Z-transform ***
 
 Pseudo sample frequency (median) is  0.505
 largest tau window is  33.101
-2.42 seconds has passed to complete Weighted Wavelet Z-transform 
-
-*** Starting Weighted Wavelet Z-transform ***
-
-Pseudo sample frequency (median) is  0.505
-largest tau window is  33.101
-Processing 1384177
-PID 7234
-Duration: 34.0 ticks
-12.0 seconds each
-Time so far 408.0s
-
-2.42 seconds has passed to complete Weighted Wavelet Z-transform 
-
-*** Starting Weighted Wavelet Z-transform ***
-
-Pseudo sample frequency (median) is  0.505
-largest tau window is  33.101
-2.44 seconds has passed to complete Weighted Wavelet Z-transform 
-
-*** Starting Weighted Wavelet Z-transform ***
-
-Pseudo sample frequency (median) is  0.505
-largest tau window is  33.101
-2.4 seconds has passed to complete Weighted Wavelet Z-transform 
-
-*** Starting Weighted Wavelet Z-transform ***
-
-Pseudo sample frequency (median) is  0.505
-largest tau window is  33.101
-2.4 seconds has passed to complete Weighted Wavelet Z-transform 
-
-*** Starting Weighted Wavelet Z-transform ***
-
-Pseudo sample frequency (median) is  0.505
-largest tau window is  33.101
-2.57 seconds has passed to complete Weighted Wavelet Z-transform 
-
-*** Starting Weighted Wavelet Z-transform ***
-
-Pseudo sample frequency (median) is  0.505
-largest tau window is  33.101
-Processing 1384177
-PID 7234
-Duration: 35.0 ticks
-12.0 seconds each
-Time so far 420.0s
-
-2.45 seconds has passed to complete Weighted Wavelet Z-transform 
-
-*** Starting Weighted Wavelet Z-transform ***
-
-Pseudo sample frequency (median) is  0.505
-largest tau window is  33.101
-2.39 seconds has passed to complete Weighted Wavelet Z-transform 
-
-*** Starting Weighted Wavelet Z-transform ***
-
-Pseudo sample frequency (median) is  0.505
-largest tau window is  33.101
-2.44 seconds has passed to complete Weighted Wavelet Z-transform 
-
-*** Starting Weighted Wavelet Z-transform ***
-
-Pseudo sample frequency (median) is  0.505
-largest tau window is  33.101
-2.45 seconds has passed to complete Weighted Wavelet Z-transform 
-
-*** Starting Weighted Wavelet Z-transform ***
-
-Pseudo sample frequency (median) is  0.505
-largest tau window is  33.101
-2.39 seconds has passed to complete Weighted Wavelet Z-transform 
-
-*** Starting Weighted Wavelet Z-transform ***
-
-Pseudo sample frequency (median) is  0.505
-largest tau window is  33.101
-Processing 1384177
-PID 7234
-Duration: 36.0 ticks
-12.0 seconds each
-Time so far 432.0s
-
-2.46 seconds has passed to complete Weighted Wavelet Z-transform 
-
-*** Starting Weighted Wavelet Z-transform ***
-
-Pseudo sample frequency (median) is  0.505
-largest tau window is  33.101
-2.44 seconds has passed to complete Weighted Wavelet Z-transform 
-
-*** Starting Weighted Wavelet Z-transform ***
-
-Pseudo sample frequency (median) is  0.505
-largest tau window is  33.101
-2.39 seconds has passed to complete Weighted Wavelet Z-transform 
-
-*** Starting Weighted Wavelet Z-transform ***
-
-Pseudo sample frequency (median) is  0.505
-largest tau window is  33.101
-2.42 seconds has passed to complete Weighted Wavelet Z-transform 
-
-*** Starting Weighted Wavelet Z-transform ***
-
-Pseudo sample frequency (median) is  0.505
-largest tau window is  33.101
-2.37 seconds has passed to complete Weighted Wavelet Z-transform 
-
-*** Starting Weighted Wavelet Z-transform ***
-
-Pseudo sample frequency (median) is  0.505
-largest tau window is  33.101
-Processing 1384177
-PID 7234
-Duration: 37.0 ticks
-12.0 seconds each
-Time so far 444.0s
-
-2.38 seconds has passed to complete Weighted Wavelet Z-transform 
-
-*** Starting Weighted Wavelet Z-transform ***
-
-Pseudo sample frequency (median) is  0.505
-largest tau window is  33.101
-2.39 seconds has passed to complete Weighted Wavelet Z-transform 
-
-*** Starting Weighted Wavelet Z-transform ***
-
-Pseudo sample frequency (median) is  0.505
-largest tau window is  33.101
-2.45 seconds has passed to complete Weighted Wavelet Z-transform 
-
-*** Starting Weighted Wavelet Z-transform ***
-
-Pseudo sample frequency (median) is  0.505
-largest tau window is  33.101
-2.4 seconds has passed to complete Weighted Wavelet Z-transform 
-
-*** Starting Weighted Wavelet Z-transform ***
-
-Pseudo sample frequency (median) is  0.505
-largest tau window is  33.101
-2.38 seconds has passed to complete Weighted Wavelet Z-transform 
-
-*** Starting Weighted Wavelet Z-transform ***
-
-Pseudo sample frequency (median) is  0.505
-largest tau window is  33.101
-Processing 1384177
-PID 7234
-Duration: 38.0 ticks
-12.0 seconds each
-Time so far 456.0s
-
-2.42 seconds has passed to complete Weighted Wavelet Z-transform 
-
-*** Starting Weighted Wavelet Z-transform ***
-
-Pseudo sample frequency (median) is  0.505
-largest tau window is  33.101
-2.37 seconds has passed to complete Weighted Wavelet Z-transform 
-
-*** Starting Weighted Wavelet Z-transform ***
-
-Pseudo sample frequency (median) is  0.505
-largest tau window is  33.101
-2.44 seconds has passed to complete Weighted Wavelet Z-transform 
-
-*** Starting Weighted Wavelet Z-transform ***
-
-Pseudo sample frequency (median) is  0.505
-largest tau window is  33.101
-2.4 seconds has passed to complete Weighted Wavelet Z-transform 
-
-*** Starting Weighted Wavelet Z-transform ***
-
-Pseudo sample frequency (median) is  0.505
-largest tau window is  33.101
-2.39 seconds has passed to complete Weighted Wavelet Z-transform 
-
-*** Starting Weighted Wavelet Z-transform ***
-
-Pseudo sample frequency (median) is  0.505
-largest tau window is  33.101
-Processing 1384177
-PID 7234
-Duration: 39.0 ticks
-12.0 seconds each
-Time so far 468.0s
-
-2.36 seconds has passed to complete Weighted Wavelet Z-transform 
-
-*** Starting Weighted Wavelet Z-transform ***
-
-Pseudo sample frequency (median) is  0.505
-largest tau window is  33.101
-2.37 seconds has passed to complete Weighted Wavelet Z-transform 
-
-*** Starting Weighted Wavelet Z-transform ***
-
-Pseudo sample frequency (median) is  0.505
-largest tau window is  33.101
-2.37 seconds has passed to complete Weighted Wavelet Z-transform 
-
-*** Starting Weighted Wavelet Z-transform ***
-
-Pseudo sample frequency (median) is  0.505
-largest tau window is  33.101
-2.4 seconds has passed to complete Weighted Wavelet Z-transform 
-
-*** Starting Weighted Wavelet Z-transform ***
-
-Pseudo sample frequency (median) is  0.505
-largest tau window is  33.101
-2.41 seconds has passed to complete Weighted Wavelet Z-transform 
-
-*** Starting Weighted Wavelet Z-transform ***
-
-Pseudo sample frequency (median) is  0.505
-largest tau window is  33.101
-Processing 1384177
-PID 7234
-Duration: 40.0 ticks
-12.0 seconds each
-Time so far 480.0s
-
-2.43 seconds has passed to complete Weighted Wavelet Z-transform 
-
-*** Starting Weighted Wavelet Z-transform ***
-
-Pseudo sample frequency (median) is  0.505
-largest tau window is  33.101
-2.4 seconds has passed to complete Weighted Wavelet Z-transform 
-
-*** Starting Weighted Wavelet Z-transform ***
-
-Pseudo sample frequency (median) is  0.505
-largest tau window is  33.101
-2.36 seconds has passed to complete Weighted Wavelet Z-transform 
-
-*** Starting Weighted Wavelet Z-transform ***
-
-Pseudo sample frequency (median) is  0.505
-largest tau window is  33.101
-2.37 seconds has passed to complete Weighted Wavelet Z-transform 
-
-*** Starting Weighted Wavelet Z-transform ***
-
-Pseudo sample frequency (median) is  0.505
-largest tau window is  33.101
-2.4 seconds has passed to complete Weighted Wavelet Z-transform 
-
-*** Starting Weighted Wavelet Z-transform ***
-
-Pseudo sample frequency (median) is  0.505
-largest tau window is  33.101
-Processing 1384177
-PID 7234
-Duration: 41.0 ticks
-12.0 seconds each
-Time so far 492.0s
-
-2.37 seconds has passed to complete Weighted Wavelet Z-transform 
-
-*** Starting Weighted Wavelet Z-transform ***
-
-Pseudo sample frequency (median) is  0.505
-largest tau window is  33.101
-2.4 seconds has passed to complete Weighted Wavelet Z-transform 
-
-*** Starting Weighted Wavelet Z-transform ***
-
-Pseudo sample frequency (median) is  0.505
-largest tau window is  33.101
-2.37 seconds has passed to complete Weighted Wavelet Z-transform 
-
-*** Starting Weighted Wavelet Z-transform ***
-
-Pseudo sample frequency (median) is  0.505
-largest tau window is  33.101
-2.37 seconds has passed to complete Weighted Wavelet Z-transform 
-
-*** Starting Weighted Wavelet Z-transform ***
-
-Pseudo sample frequency (median) is  0.505
-largest tau window is  33.101
-2.37 seconds has passed to complete Weighted Wavelet Z-transform 
-
-*** Starting Weighted Wavelet Z-transform ***
-
-Pseudo sample frequency (median) is  0.505
-largest tau window is  33.101
-Processing 1384177
-PID 7234
-Duration: 42.0 ticks
-12.0 seconds each
-Time so far 504.0s
-
-2.38 seconds has passed to complete Weighted Wavelet Z-transform 
-
-*** Starting Weighted Wavelet Z-transform ***
-
-Pseudo sample frequency (median) is  0.505
-largest tau window is  33.101
-2.38 seconds has passed to complete Weighted Wavelet Z-transform 
-
-*** Starting Weighted Wavelet Z-transform ***
-
-Pseudo sample frequency (median) is  0.505
-largest tau window is  33.101
-2.57 seconds has passed to complete Weighted Wavelet Z-transform 
+2.6 seconds has passed to complete Weighted Wavelet Z-transform 
 
 *** Starting Weighted Wavelet Z-transform ***
 
@@ -1477,731 +2215,10 @@ Pseudo sample frequency (median) is  0.505
 largest tau window is  33.101
 2.49 seconds has passed to complete Weighted Wavelet Z-transform 
 
-*** Starting Weighted Wavelet Z-transform ***
-
-Pseudo sample frequency (median) is  0.505
-largest tau window is  33.101
-2.39 seconds has passed to complete Weighted Wavelet Z-transform 
-
-*** Starting Weighted Wavelet Z-transform ***
-
-Pseudo sample frequency (median) is  0.505
-largest tau window is  33.101
-Processing 1384177
-PID 7234
-Duration: 43.0 ticks
-12.0 seconds each
-Time so far 516.0s
-
-2.38 seconds has passed to complete Weighted Wavelet Z-transform 
-
-*** Starting Weighted Wavelet Z-transform ***
-
-Pseudo sample frequency (median) is  0.505
-largest tau window is  33.101
-2.38 seconds has passed to complete Weighted Wavelet Z-transform 
-
-*** Starting Weighted Wavelet Z-transform ***
-
-Pseudo sample frequency (median) is  0.505
-largest tau window is  33.101
-2.38 seconds has passed to complete Weighted Wavelet Z-transform 
-
-*** Starting Weighted Wavelet Z-transform ***
-
-Pseudo sample frequency (median) is  0.505
-largest tau window is  33.101
-2.41 seconds has passed to complete Weighted Wavelet Z-transform 
-
-*** Starting Weighted Wavelet Z-transform ***
-
-Pseudo sample frequency (median) is  0.505
-largest tau window is  33.101
-2.39 seconds has passed to complete Weighted Wavelet Z-transform 
-
-*** Starting Weighted Wavelet Z-transform ***
-
-Pseudo sample frequency (median) is  0.505
-largest tau window is  33.101
-Processing 1384177
-PID 7234
-Duration: 44.0 ticks
-12.0 seconds each
-Time so far 528.0s
-
-2.38 seconds has passed to complete Weighted Wavelet Z-transform 
-
-*** Starting Weighted Wavelet Z-transform ***
-
-Pseudo sample frequency (median) is  0.505
-largest tau window is  33.101
-2.37 seconds has passed to complete Weighted Wavelet Z-transform 
-
-*** Starting Weighted Wavelet Z-transform ***
-
-Pseudo sample frequency (median) is  0.505
-largest tau window is  33.101
-2.36 seconds has passed to complete Weighted Wavelet Z-transform 
-
-*** Starting Weighted Wavelet Z-transform ***
-
-Pseudo sample frequency (median) is  0.505
-largest tau window is  33.101
-2.36 seconds has passed to complete Weighted Wavelet Z-transform 
-
-*** Starting Weighted Wavelet Z-transform ***
-
-Pseudo sample frequency (median) is  0.505
-largest tau window is  33.101
-2.38 seconds has passed to complete Weighted Wavelet Z-transform 
-
-*** Starting Weighted Wavelet Z-transform ***
-
-Pseudo sample frequency (median) is  0.505
-largest tau window is  33.101
-Processing 1384177
-PID 7234
-Duration: 45.0 ticks
-12.0 seconds each
-Time so far 540.0s
-
-2.36 seconds has passed to complete Weighted Wavelet Z-transform 
-
-*** Starting Weighted Wavelet Z-transform ***
-
-Pseudo sample frequency (median) is  0.505
-largest tau window is  33.101
-2.39 seconds has passed to complete Weighted Wavelet Z-transform 
-
-*** Starting Weighted Wavelet Z-transform ***
-
-Pseudo sample frequency (median) is  0.505
-largest tau window is  33.101
-2.35 seconds has passed to complete Weighted Wavelet Z-transform 
-
-*** Starting Weighted Wavelet Z-transform ***
-
-Pseudo sample frequency (median) is  0.505
-largest tau window is  33.101
-2.36 seconds has passed to complete Weighted Wavelet Z-transform 
-
-*** Starting Weighted Wavelet Z-transform ***
-
-Pseudo sample frequency (median) is  0.505
-largest tau window is  33.101
-2.38 seconds has passed to complete Weighted Wavelet Z-transform 
-
-*** Starting Weighted Wavelet Z-transform ***
-
-Pseudo sample frequency (median) is  0.505
-largest tau window is  33.101
-Processing 1384177
-PID 7234
-Duration: 46.0 ticks
-12.0 seconds each
-Time so far 552.0s
-
-2.36 seconds has passed to complete Weighted Wavelet Z-transform 
-
-*** Starting Weighted Wavelet Z-transform ***
-
-Pseudo sample frequency (median) is  0.505
-largest tau window is  33.101
-2.37 seconds has passed to complete Weighted Wavelet Z-transform 
-
-*** Starting Weighted Wavelet Z-transform ***
-
-Pseudo sample frequency (median) is  0.505
-largest tau window is  33.101
-2.36 seconds has passed to complete Weighted Wavelet Z-transform 
-
-*** Starting Weighted Wavelet Z-transform ***
-
-Pseudo sample frequency (median) is  0.505
-largest tau window is  33.101
-2.38 seconds has passed to complete Weighted Wavelet Z-transform 
-
-*** Starting Weighted Wavelet Z-transform ***
-
-Pseudo sample frequency (median) is  0.505
-largest tau window is  33.101
-2.38 seconds has passed to complete Weighted Wavelet Z-transform 
-
-*** Starting Weighted Wavelet Z-transform ***
-
-Pseudo sample frequency (median) is  0.505
-largest tau window is  33.101
-Processing 1384177
-PID 7234
-Duration: 47.0 ticks
-12.0 seconds each
-Time so far 564.0s
-
-2.39 seconds has passed to complete Weighted Wavelet Z-transform 
-
-*** Starting Weighted Wavelet Z-transform ***
-
-Pseudo sample frequency (median) is  0.505
-largest tau window is  33.101
-2.37 seconds has passed to complete Weighted Wavelet Z-transform 
-
-*** Starting Weighted Wavelet Z-transform ***
-
-Pseudo sample frequency (median) is  0.505
-largest tau window is  33.101
-2.35 seconds has passed to complete Weighted Wavelet Z-transform 
-
-*** Starting Weighted Wavelet Z-transform ***
-
-Pseudo sample frequency (median) is  0.505
-largest tau window is  33.101
-2.36 seconds has passed to complete Weighted Wavelet Z-transform 
-
-*** Starting Weighted Wavelet Z-transform ***
-
-Pseudo sample frequency (median) is  0.505
-largest tau window is  33.101
-2.36 seconds has passed to complete Weighted Wavelet Z-transform 
-
-*** Starting Weighted Wavelet Z-transform ***
-
-Pseudo sample frequency (median) is  0.505
-largest tau window is  33.101
-Processing 1384177
-PID 7234
-Duration: 48.0 ticks
-12.0 seconds each
-Time so far 576.0s
-
-2.35 seconds has passed to complete Weighted Wavelet Z-transform 
-
-*** Starting Weighted Wavelet Z-transform ***
-
-Pseudo sample frequency (median) is  0.505
-largest tau window is  33.101
-2.35 seconds has passed to complete Weighted Wavelet Z-transform 
-
-*** Starting Weighted Wavelet Z-transform ***
-
-Pseudo sample frequency (median) is  0.505
-largest tau window is  33.101
-2.35 seconds has passed to complete Weighted Wavelet Z-transform 
-
-*** Starting Weighted Wavelet Z-transform ***
-
-Pseudo sample frequency (median) is  0.505
-largest tau window is  33.101
-2.35 seconds has passed to complete Weighted Wavelet Z-transform 
-
-*** Starting Weighted Wavelet Z-transform ***
-
-Pseudo sample frequency (median) is  0.505
-largest tau window is  33.101
-2.34 seconds has passed to complete Weighted Wavelet Z-transform 
-
-*** Starting Weighted Wavelet Z-transform ***
-
-Pseudo sample frequency (median) is  0.505
-largest tau window is  33.101
-Processing 1384177
-PID 7234
-Duration: 49.0 ticks
-12.0 seconds each
-Time so far 588.0s
-
-2.36 seconds has passed to complete Weighted Wavelet Z-transform 
-
-*** Starting Weighted Wavelet Z-transform ***
-
-Pseudo sample frequency (median) is  0.505
-largest tau window is  33.101
-2.35 seconds has passed to complete Weighted Wavelet Z-transform 
-
-*** Starting Weighted Wavelet Z-transform ***
-
-Pseudo sample frequency (median) is  0.505
-largest tau window is  33.101
-2.35 seconds has passed to complete Weighted Wavelet Z-transform 
-
-*** Starting Weighted Wavelet Z-transform ***
-
-Pseudo sample frequency (median) is  0.505
-largest tau window is  33.101
-2.36 seconds has passed to complete Weighted Wavelet Z-transform 
-
-*** Starting Weighted Wavelet Z-transform ***
-
-Pseudo sample frequency (median) is  0.505
-largest tau window is  33.101
-2.35 seconds has passed to complete Weighted Wavelet Z-transform 
-
-*** Starting Weighted Wavelet Z-transform ***
-
-Pseudo sample frequency (median) is  0.505
-largest tau window is  33.101
-Processing 1384177
-PID 7234
-Duration: 50.0 ticks
-12.0 seconds each
-Time so far 600.0s
-
-2.46 seconds has passed to complete Weighted Wavelet Z-transform 
-
-*** Starting Weighted Wavelet Z-transform ***
-
-Pseudo sample frequency (median) is  0.505
-largest tau window is  33.101
-2.47 seconds has passed to complete Weighted Wavelet Z-transform 
-
-*** Starting Weighted Wavelet Z-transform ***
-
-Pseudo sample frequency (median) is  0.505
-largest tau window is  33.101
-2.36 seconds has passed to complete Weighted Wavelet Z-transform 
-
-*** Starting Weighted Wavelet Z-transform ***
-
-Pseudo sample frequency (median) is  0.505
-largest tau window is  33.101
-2.34 seconds has passed to complete Weighted Wavelet Z-transform 
-
-*** Starting Weighted Wavelet Z-transform ***
-
-Pseudo sample frequency (median) is  0.505
-largest tau window is  33.101
-2.35 seconds has passed to complete Weighted Wavelet Z-transform 
-
-*** Starting Weighted Wavelet Z-transform ***
-
-Pseudo sample frequency (median) is  0.505
-largest tau window is  33.101
-Processing 1384177
-PID 7234
-Duration: 51.0 ticks
-12.0 seconds each
-Time so far 612.0s
-
-2.35 seconds has passed to complete Weighted Wavelet Z-transform 
-
-*** Starting Weighted Wavelet Z-transform ***
-
-Pseudo sample frequency (median) is  0.505
-largest tau window is  33.101
-2.36 seconds has passed to complete Weighted Wavelet Z-transform 
-
-*** Starting Weighted Wavelet Z-transform ***
-
-Pseudo sample frequency (median) is  0.505
-largest tau window is  33.101
-2.34 seconds has passed to complete Weighted Wavelet Z-transform 
-
-*** Starting Weighted Wavelet Z-transform ***
-
-Pseudo sample frequency (median) is  0.505
-largest tau window is  33.101
-2.34 seconds has passed to complete Weighted Wavelet Z-transform 
-
-*** Starting Weighted Wavelet Z-transform ***
-
-Pseudo sample frequency (median) is  0.505
-largest tau window is  33.101
-2.35 seconds has passed to complete Weighted Wavelet Z-transform 
-
-*** Starting Weighted Wavelet Z-transform ***
-
-Pseudo sample frequency (median) is  0.505
-largest tau window is  33.101
-Processing 1384177
-PID 7234
-Duration: 52.0 ticks
-12.0 seconds each
-Time so far 624.0s
-
-2.36 seconds has passed to complete Weighted Wavelet Z-transform 
-
-*** Starting Weighted Wavelet Z-transform ***
-
-Pseudo sample frequency (median) is  0.505
-largest tau window is  33.101
-2.35 seconds has passed to complete Weighted Wavelet Z-transform 
-
-*** Starting Weighted Wavelet Z-transform ***
-
-Pseudo sample frequency (median) is  0.505
-largest tau window is  33.101
-2.37 seconds has passed to complete Weighted Wavelet Z-transform 
-
-*** Starting Weighted Wavelet Z-transform ***
-
-Pseudo sample frequency (median) is  0.505
-largest tau window is  33.101
-2.33 seconds has passed to complete Weighted Wavelet Z-transform 
-
-*** Starting Weighted Wavelet Z-transform ***
-
-Pseudo sample frequency (median) is  0.505
-largest tau window is  33.101
-2.36 seconds has passed to complete Weighted Wavelet Z-transform 
-
-*** Starting Weighted Wavelet Z-transform ***
-
-Pseudo sample frequency (median) is  0.505
-largest tau window is  33.101
-2.39 seconds has passed to complete Weighted Wavelet Z-transform 
-
-*** Starting Weighted Wavelet Z-transform ***
-
-Pseudo sample frequency (median) is  0.505
-largest tau window is  33.101
-Processing 1384177
-PID 7234
-Duration: 53.0 ticks
-12.0 seconds each
-Time so far 636.0s
-
-2.36 seconds has passed to complete Weighted Wavelet Z-transform 
-
-*** Starting Weighted Wavelet Z-transform ***
-
-Pseudo sample frequency (median) is  0.505
-largest tau window is  33.101
-2.41 seconds has passed to complete Weighted Wavelet Z-transform 
-
-*** Starting Weighted Wavelet Z-transform ***
-
-Pseudo sample frequency (median) is  0.505
-largest tau window is  33.101
-2.38 seconds has passed to complete Weighted Wavelet Z-transform 
-
-*** Starting Weighted Wavelet Z-transform ***
-
-Pseudo sample frequency (median) is  0.505
-largest tau window is  33.101
-2.34 seconds has passed to complete Weighted Wavelet Z-transform 
-
-*** Starting Weighted Wavelet Z-transform ***
-
-Pseudo sample frequency (median) is  0.505
-largest tau window is  33.101
-2.34 seconds has passed to complete Weighted Wavelet Z-transform 
-
-*** Starting Weighted Wavelet Z-transform ***
-
-Pseudo sample frequency (median) is  0.505
-largest tau window is  33.101
-Processing 1384177
-PID 7234
-Duration: 54.0 ticks
-12.0 seconds each
-Time so far 648.0s
-
-2.35 seconds has passed to complete Weighted Wavelet Z-transform 
-
-*** Starting Weighted Wavelet Z-transform ***
-
-Pseudo sample frequency (median) is  0.505
-largest tau window is  33.101
-2.35 seconds has passed to complete Weighted Wavelet Z-transform 
-
-*** Starting Weighted Wavelet Z-transform ***
-
-Pseudo sample frequency (median) is  0.505
-largest tau window is  33.101
-2.36 seconds has passed to complete Weighted Wavelet Z-transform 
-
-*** Starting Weighted Wavelet Z-transform ***
-
-Pseudo sample frequency (median) is  0.505
-largest tau window is  33.101
-2.35 seconds has passed to complete Weighted Wavelet Z-transform 
-
-*** Starting Weighted Wavelet Z-transform ***
-
-Pseudo sample frequency (median) is  0.505
-largest tau window is  33.101
-2.35 seconds has passed to complete Weighted Wavelet Z-transform 
-
-*** Starting Weighted Wavelet Z-transform ***
-
-Pseudo sample frequency (median) is  0.505
-largest tau window is  33.101
-Processing 1384177
-PID 7234
-Duration: 55.0 ticks
-12.0 seconds each
-Time so far 660.0s
-
-2.39 seconds has passed to complete Weighted Wavelet Z-transform 
-
-*** Starting Weighted Wavelet Z-transform ***
-
-Pseudo sample frequency (median) is  0.505
-largest tau window is  33.101
-2.34 seconds has passed to complete Weighted Wavelet Z-transform 
-
-*** Starting Weighted Wavelet Z-transform ***
-
-Pseudo sample frequency (median) is  0.505
-largest tau window is  33.101
-2.36 seconds has passed to complete Weighted Wavelet Z-transform 
-
-*** Starting Weighted Wavelet Z-transform ***
-
-Pseudo sample frequency (median) is  0.505
-largest tau window is  33.101
-2.35 seconds has passed to complete Weighted Wavelet Z-transform 
-
-*** Starting Weighted Wavelet Z-transform ***
-
-Pseudo sample frequency (median) is  0.505
-largest tau window is  33.101
-2.36 seconds has passed to complete Weighted Wavelet Z-transform 
-
-*** Starting Weighted Wavelet Z-transform ***
-
-Pseudo sample frequency (median) is  0.505
-largest tau window is  33.101
-Processing 1384177
-PID 7234
-Duration: 56.0 ticks
-12.0 seconds each
-Time so far 672.0s
-
-2.38 seconds has passed to complete Weighted Wavelet Z-transform 
-
-*** Starting Weighted Wavelet Z-transform ***
-
-Pseudo sample frequency (median) is  0.505
-largest tau window is  33.101
-2.42 seconds has passed to complete Weighted Wavelet Z-transform 
-
-*** Starting Weighted Wavelet Z-transform ***
-
-Pseudo sample frequency (median) is  0.505
-largest tau window is  33.101
-2.39 seconds has passed to complete Weighted Wavelet Z-transform 
-
-*** Starting Weighted Wavelet Z-transform ***
-
-Pseudo sample frequency (median) is  0.505
-largest tau window is  33.101
-2.38 seconds has passed to complete Weighted Wavelet Z-transform 
-
-*** Starting Weighted Wavelet Z-transform ***
-
-Pseudo sample frequency (median) is  0.505
-largest tau window is  33.101
-2.39 seconds has passed to complete Weighted Wavelet Z-transform 
-
-*** Starting Weighted Wavelet Z-transform ***
-
-Pseudo sample frequency (median) is  0.505
-largest tau window is  33.101
-Processing 1384177
-PID 7234
-Duration: 57.0 ticks
-12.0 seconds each
-Time so far 684.0s
-
-2.38 seconds has passed to complete Weighted Wavelet Z-transform 
-
-*** Starting Weighted Wavelet Z-transform ***
-
-Pseudo sample frequency (median) is  0.505
-largest tau window is  33.101
-2.37 seconds has passed to complete Weighted Wavelet Z-transform 
-
-*** Starting Weighted Wavelet Z-transform ***
-
-Pseudo sample frequency (median) is  0.505
-largest tau window is  33.101
-2.37 seconds has passed to complete Weighted Wavelet Z-transform 
-
-*** Starting Weighted Wavelet Z-transform ***
-
-Pseudo sample frequency (median) is  0.505
-largest tau window is  33.101
-2.37 seconds has passed to complete Weighted Wavelet Z-transform 
-
-*** Starting Weighted Wavelet Z-transform ***
-
-Pseudo sample frequency (median) is  0.505
-largest tau window is  33.101
-2.37 seconds has passed to complete Weighted Wavelet Z-transform 
-
-*** Starting Weighted Wavelet Z-transform ***
-
-Pseudo sample frequency (median) is  0.505
-largest tau window is  33.101
-Processing 1384177
-PID 7234
-Duration: 58.0 ticks
-12.0 seconds each
-Time so far 696.0s
-
-2.38 seconds has passed to complete Weighted Wavelet Z-transform 
-
-*** Starting Weighted Wavelet Z-transform ***
-
-Pseudo sample frequency (median) is  0.505
-largest tau window is  33.101
-2.34 seconds has passed to complete Weighted Wavelet Z-transform 
-
-*** Starting Weighted Wavelet Z-transform ***
-
-Pseudo sample frequency (median) is  0.505
-largest tau window is  33.101
-2.35 seconds has passed to complete Weighted Wavelet Z-transform 
-
-*** Starting Weighted Wavelet Z-transform ***
-
-Pseudo sample frequency (median) is  0.505
-largest tau window is  33.101
-2.35 seconds has passed to complete Weighted Wavelet Z-transform 
-
-*** Starting Weighted Wavelet Z-transform ***
-
-Pseudo sample frequency (median) is  0.505
-largest tau window is  33.101
-2.37 seconds has passed to complete Weighted Wavelet Z-transform 
-
-*** Starting Weighted Wavelet Z-transform ***
-
-Pseudo sample frequency (median) is  0.505
-largest tau window is  33.101
-Processing 1384177
-PID 7234
-Duration: 59.0 ticks
-12.0 seconds each
-Time so far 708.0s
-
-2.36 seconds has passed to complete Weighted Wavelet Z-transform 
-
-*** Starting Weighted Wavelet Z-transform ***
-
-Pseudo sample frequency (median) is  0.505
-largest tau window is  33.101
-2.35 seconds has passed to complete Weighted Wavelet Z-transform 
-
-*** Starting Weighted Wavelet Z-transform ***
-
-Pseudo sample frequency (median) is  0.505
-largest tau window is  33.101
-2.34 seconds has passed to complete Weighted Wavelet Z-transform 
-
-*** Starting Weighted Wavelet Z-transform ***
-
-Pseudo sample frequency (median) is  0.505
-largest tau window is  33.101
-2.36 seconds has passed to complete Weighted Wavelet Z-transform 
-
-*** Starting Weighted Wavelet Z-transform ***
-
-Pseudo sample frequency (median) is  0.505
-largest tau window is  33.101
-2.36 seconds has passed to complete Weighted Wavelet Z-transform 
-
-*** Starting Weighted Wavelet Z-transform ***
-
-Pseudo sample frequency (median) is  0.505
-largest tau window is  33.101
-Processing 1384177
-PID 7234
-Duration: 60.0 ticks
-12.0 seconds each
-Time so far 720.0s
-
-2.34 seconds has passed to complete Weighted Wavelet Z-transform 
-
-*** Starting Weighted Wavelet Z-transform ***
-
-Pseudo sample frequency (median) is  0.505
-largest tau window is  33.101
-2.35 seconds has passed to complete Weighted Wavelet Z-transform 
-
-*** Starting Weighted Wavelet Z-transform ***
-
-Pseudo sample frequency (median) is  0.505
-largest tau window is  33.101
-2.34 seconds has passed to complete Weighted Wavelet Z-transform 
-
-*** Starting Weighted Wavelet Z-transform ***
-
-Pseudo sample frequency (median) is  0.505
-largest tau window is  33.101
-2.34 seconds has passed to complete Weighted Wavelet Z-transform 
-
-*** Starting Weighted Wavelet Z-transform ***
-
-Pseudo sample frequency (median) is  0.505
-largest tau window is  33.101
-2.34 seconds has passed to complete Weighted Wavelet Z-transform 
-
-*** Starting Weighted Wavelet Z-transform ***
-
-Pseudo sample frequency (median) is  0.505
-largest tau window is  33.101
-Processing 1384177
-PID 7234
-Duration: 61.0 ticks
-12.0 seconds each
-Time so far 732.0s
-
-2.34 seconds has passed to complete Weighted Wavelet Z-transform 
-
-*** Starting Weighted Wavelet Z-transform ***
-
-Pseudo sample frequency (median) is  0.505
-largest tau window is  33.101
-2.34 seconds has passed to complete Weighted Wavelet Z-transform 
-
-*** Starting Weighted Wavelet Z-transform ***
-
-Pseudo sample frequency (median) is  0.505
-largest tau window is  33.101
-2.34 seconds has passed to complete Weighted Wavelet Z-transform 
-
-*** Starting Weighted Wavelet Z-transform ***
-
-Pseudo sample frequency (median) is  0.505
-largest tau window is  33.101
-2.34 seconds has passed to complete Weighted Wavelet Z-transform 
-
-*** Starting Weighted Wavelet Z-transform ***
-
-Pseudo sample frequency (median) is  0.505
-largest tau window is  33.101
-2.34 seconds has passed to complete Weighted Wavelet Z-transform 
-
-*** Starting Weighted Wavelet Z-transform ***
-
-Pseudo sample frequency (median) is  0.505
-largest tau window is  33.101
-Processing 1384177
-PID 7234
-Duration: 62.0 ticks
-12.0 seconds each
-Time so far 744.0s
-
-2.34 seconds has passed to complete Weighted Wavelet Z-transform 
-
-*** Starting Weighted Wavelet Z-transform ***
-
-Pseudo sample frequency (median) is  0.505
-largest tau window is  33.101
-2.34 seconds has passed to complete Weighted Wavelet Z-transform 
-
-*** Starting Weighted Wavelet Z-transform ***
-
-Pseudo sample frequency (median) is  0.505
-largest tau window is  33.101
-2.35 seconds has passed to complete Weighted Wavelet Z-transform 
-
 Processing for set ID 1384177 in mode 'fixed' completed.
 Aggregating results...
 Aggregation complete.
-Result for set ID 1384177 added to results queue.
 Stopping logger.
-End time for ID 1384177 : 2024-11-09 16:49:46.688567
-Total time : 0:12:29.912522
+End time for ID 1384177 : 2024-11-16 13:17:21.503297
+Total time : 0:13:12.478727
 

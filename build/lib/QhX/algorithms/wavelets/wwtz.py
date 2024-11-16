@@ -1,11 +1,11 @@
 from libwwz import wwt as libwwz_wwt
 import numpy as np
-from QhX.utils.correlation import correlation_nd
 import matplotlib.pyplot as plt
 from sklearn.utils import shuffle
 import sys
 import io
 from traitlets.traitlets import Integer
+from QhX.utils.correlation import correlation_nd
 
 
 
@@ -110,7 +110,7 @@ def inp_param(ntau, ngrid, minfq, maxfq, parallel=False, f=2):
 
     # Compute frequency grid parameters
     df, fmin, fmax = compute_frequency_grid(ngrid, minfq, maxfq)
-    
+
     # Set frequency bounds and step for the analysis
     frequency_low = fmin  # Lower bound of frequency range
     frequency_high = fmax  # Upper bound of frequency range
@@ -178,7 +178,7 @@ def hybrid2d(tt, mag, ntau, ngrid, minfq, maxfq, parallel=False, f=2, method='li
     """
     Perform a hybrid 2D analysis involving WWZ (Weighted Wavelet Z-transform) and auto-correlation on light curve data.
 
-    This function computes the WWZ transformation of the input light curve data and then performs an auto-correlation analysis on the result. 
+    This function computes the WWZ transformation of the input light curve data and then performs an auto-correlation analysis on the result.
     The frequency range for the analysis can be specified, as well as the decay constant and interpolation method for WWZ.
 
     Parameters:
@@ -203,7 +203,7 @@ def hybrid2d(tt, mag, ntau, ngrid, minfq, maxfq, parallel=False, f=2, method='li
     Returns:
     --------
     A tuple containing:
-    
+
     - WWZ matrix: The WWZ analysis result.
     - Auto-correlation matrix: The result of auto-correlation analysis.
     - Frequency range extent: The extent of the frequency range for plotting.

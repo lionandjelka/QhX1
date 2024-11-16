@@ -88,11 +88,11 @@
            <div itemprop="articleBody">
              
   <h1>Source code for QhX.light_curve</h1><div class="highlight"><pre>
-<span></span>
-<span class="kn">from</span> <span class="nn">QhX.data_manager</span> <span class="kn">import</span> <span class="n">DataManager</span>
+<span></span><span class="c1"># pylint: disable=R0801</span>
 <span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 <span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
 <span class="kn">from</span> <span class="nn">scipy.interpolate</span> <span class="kn">import</span> <span class="n">interp1d</span>
+<span class="kn">from</span> <span class="nn">QhX.data_manager</span> <span class="kn">import</span> <span class="n">DataManager</span>
 
 
 <div class="viewcode-block" id="outliers">
@@ -100,22 +100,22 @@
 <span class="k">def</span> <span class="nf">outliers</span><span class="p">(</span><span class="n">time</span><span class="p">,</span> <span class="n">flux</span><span class="p">,</span> <span class="n">err_flux</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Identifies and removes outliers from a light curve based on a Z-score threshold.</span>
-<span class="sd">    This function applies a Z-score method to identify and remove outliers from light curve data. </span>
+<span class="sd">    This function applies a Z-score method to identify and remove outliers from light curve data.</span>
 <span class="sd">    If flux error values are provided, the function considers these for a more nuanced outlier detection.</span>
-<span class="sd">    </span>
+
 <span class="sd">    Parameters:</span>
 <span class="sd">    -----------</span>
 <span class="sd">    - time (array): Array of time values.</span>
 <span class="sd">    - flux (array): Array of flux values corresponding to the time values.</span>
-<span class="sd">    - err_flux (array, optional): Array of flux error values. If provided, the function </span>
+<span class="sd">    - err_flux (array, optional): Array of flux error values. If provided, the function</span>
 <span class="sd">      considers error-weighted Z-scores for outlier detection.</span>
 
 <span class="sd">    Returns:</span>
 <span class="sd">    --------</span>
-<span class="sd">    tuple: A tuple consisting of arrays of time and flux values with outliers removed. </span>
-<span class="sd">    If &#39;err_flux&#39; is provided, returns a third array of flux error values with </span>
+<span class="sd">    tuple: A tuple consisting of arrays of time and flux values with outliers removed.</span>
+<span class="sd">    If &#39;err_flux&#39; is provided, returns a third array of flux error values with</span>
 <span class="sd">    outliers removed.</span>
-<span class="sd">    </span>
+
 <span class="sd">    Example:</span>
 <span class="sd">    --------</span>
 <span class="sd">    Assuming `time`, `flux`, and `err_flux` are arrays with light curve data:</span>
@@ -169,18 +169,18 @@
 <span class="sd">      If provided, these values adjust the outlier detection threshold.</span>
 <span class="sd">    - threshold_factor (float, optional): A multiplier used with MAD to set the threshold</span>
 <span class="sd">      for outlier detection. Default is 3.0. Smaller values imply stricter outlier removal.</span>
-<span class="sd">    </span>
+
 <span class="sd">    Returns:</span>
 <span class="sd">    --------</span>
 <span class="sd">    - clean_time (array): Array of time values with outliers removed.</span>
 <span class="sd">    - clean_flux (array): Array of flux values with outliers removed.</span>
 <span class="sd">    - clean_err_flux (array, optional): Array of error flux values with outliers removed,</span>
 <span class="sd">      returned only if `err_flux` is provided.</span>
-<span class="sd">    </span>
+
 <span class="sd">    Example:</span>
 <span class="sd">    --------</span>
 <span class="sd">    Assuming `time`, `flux`, and `err_flux` are arrays with light curve data:</span>
-<span class="sd">    </span>
+
 <span class="sd">    &gt;&gt;&gt; clean_time, clean_flux = outliers_mad(time, flux)</span>
 <span class="sd">    &gt;&gt;&gt; clean_time, clean_flux, clean_err_flux = outliers_mad(time, flux, err_flux)</span>
 <span class="sd">    &quot;&quot;&quot;</span>
@@ -304,7 +304,7 @@
        <span class="c1"># Retrieve the light curve data for the specified set</span>
     <span class="c1"># Retrieve and process the light curve data for the specified set</span>
     <span class="n">demo_lc</span> <span class="o">=</span> <span class="n">data_manager</span><span class="o">.</span><span class="n">fs_gp</span><span class="o">.</span><span class="n">get_group</span><span class="p">(</span><span class="n">set1</span><span class="p">)</span>
- 
+
     <span class="c1"># Process the data for each filter, sort by MJD, drop rows where MJD is 0 or NaN</span>
     <span class="n">d0</span><span class="p">,</span> <span class="n">d1</span><span class="p">,</span> <span class="n">d2</span><span class="p">,</span> <span class="n">d3</span> <span class="o">=</span> <span class="p">[</span>
         <span class="n">demo_lc</span><span class="p">[(</span><span class="n">demo_lc</span><span class="p">[</span><span class="s1">&#39;filter&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="n">f</span><span class="p">)</span> <span class="o">&amp;</span> <span class="p">(</span><span class="n">demo_lc</span><span class="p">[</span><span class="s1">&#39;mjd&#39;</span><span class="p">]</span> <span class="o">!=</span> <span class="mi">0</span><span class="p">)]</span><span class="o">.</span><span class="n">sort_values</span><span class="p">(</span><span class="n">by</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;mjd&#39;</span><span class="p">])</span><span class="o">.</span><span class="n">dropna</span><span class="p">()</span>
@@ -341,7 +341,7 @@
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Process and return light curves with an option to include magnitude errors for a given set ID.</span>
 <span class="sd">    This version is for fixed filters ranging from 0 to 3 and preserves MJD precision.</span>
-<span class="sd">    </span>
+
 <span class="sd">    Parameters:</span>
 <span class="sd">    -----------</span>
 <span class="sd">    - set1 (str): The object ID for which light curves are to be processed.</span>
@@ -355,10 +355,10 @@
     <span class="k">if</span> <span class="n">set1</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">data_manager</span><span class="o">.</span><span class="n">fs_gp</span><span class="o">.</span><span class="n">groups</span><span class="p">:</span>
         <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Set ID </span><span class="si">{</span><span class="n">set1</span><span class="si">}</span><span class="s2"> not found.&quot;</span><span class="p">)</span>
         <span class="k">return</span> <span class="kc">None</span>
-    
+
     <span class="c1"># Fetch data for the given object ID</span>
     <span class="n">demo_lc</span> <span class="o">=</span> <span class="n">data_manager</span><span class="o">.</span><span class="n">fs_gp</span><span class="o">.</span><span class="n">get_group</span><span class="p">(</span><span class="n">set1</span><span class="p">)</span>
-    
+
     <span class="c1"># Initialize containers for time series data and sampling rates</span>
     <span class="n">tt_with_errors</span> <span class="o">=</span> <span class="p">{</span><span class="mi">0</span><span class="p">:</span> <span class="kc">None</span><span class="p">,</span> <span class="mi">1</span><span class="p">:</span> <span class="kc">None</span><span class="p">,</span> <span class="mi">2</span><span class="p">:</span> <span class="kc">None</span><span class="p">,</span> <span class="mi">3</span><span class="p">:</span> <span class="kc">None</span><span class="p">}</span>
     <span class="n">ts_with_errors</span> <span class="o">=</span> <span class="p">{</span><span class="mi">0</span><span class="p">:</span> <span class="kc">None</span><span class="p">,</span> <span class="mi">1</span><span class="p">:</span> <span class="kc">None</span><span class="p">,</span> <span class="mi">2</span><span class="p">:</span> <span class="kc">None</span><span class="p">,</span> <span class="mi">3</span><span class="p">:</span> <span class="kc">None</span><span class="p">}</span>

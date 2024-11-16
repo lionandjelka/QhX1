@@ -34,12 +34,12 @@ def process1tiktok(data_manager,set1, initial_period, damping_factor_amplitude, 
     peaks3, hh3, r_periods3, up3, low3 = periods(int(set1), corr3, 3200, plot=False)
     r_periods01, u01, low01, sig01 = same_periods(r_periods0, r_periods1, up0, low0, up1, low1, peaks0, hh0, tt0, yy0, peaks1, hh1, tt1, yy1, ntau=ntau, ngrid=ngrid, minfq=minfq, maxfq=maxfq)
     print(set1)
-    if r_periods01.size > 0 and u01.size > 0 and low01.size > 0 and sig01.size > 0: 
+    if r_periods01.size > 0 and u01.size > 0 and low01.size > 0 and sig01.size > 0:
         for j in range(len(r_periods01.ravel())):
             det_periods.append([int(set1), sampling0, sampling1, r_periods01[j], u01[j], low01[j], sig01[j], 12])
     elif r_periods01.size == 0:
         det_periods.append([int(set1), 0, 0, 0, 0, 0, 0, 12])
-   
+
     r_periods02, u02, low02, sig02 = same_periods(r_periods0, r_periods2, up0, low0, up2, low2, peaks0, hh0, tt0, yy0, peaks2, hh2, tt2, yy2, ntau=ntau, ngrid=ngrid, minfq=minfq, maxfq=maxfq)
     if r_periods02.size > 0 and u02.size > 0 and low02.size > 0 and sig02.size > 0:
         for j in range(len(r_periods02.ravel())):
@@ -49,25 +49,21 @@ def process1tiktok(data_manager,set1, initial_period, damping_factor_amplitude, 
     r_periods03, u03, low03, sig03 = same_periods(r_periods0, r_periods3, up0, low0, up3, low3, peaks0, hh0, tt0, yy0, peaks3, hh3, tt3, yy3, ntau=ntau, ngrid=ngrid, minfq=minfq, maxfq=maxfq)
     if r_periods03.size > 0 and u03.size > 0 and low03.size > 0 and sig03.size > 0:
         for j in range(len(r_periods03.ravel())):
-            det_periods.append([int(set1), sampling0, sampling3, r_periods03[j], u03[j], low03[j], sig03[j], 14]) 
+            det_periods.append([int(set1), sampling0, sampling3, r_periods03[j], u03[j], low03[j], sig03[j], 14])
     elif r_periods03.size == 0:
         det_periods.append([int(set1), 0, 0, 0, 0, 0, 0, 14])
     return np.array(det_periods)
 
 
-
 def process1_new(data_manager, set1, ntau=None, ngrid=None, provided_minfq=None, provided_maxfq=None, include_errors=True, parallel=False):
     """
     Processes and analyzes light curve data from a single object to detect common periods across different bands.
-
     The process involves:
-    
     - Verifying the existence of the dataset.
     - Retrieving and processing light curve data for different bands.
     - Applying hybrid wavelet techniques to each band's light curve data.
     - Comparing periods detected in different bands to find common periods, if they do not differ more than 10%.
     - Compiling the results, including period values, errors, and significance, into a structured format.
-
     Parameters
     ----------
     set1 : int
@@ -77,16 +73,15 @@ def process1_new(data_manager, set1, ntau=None, ngrid=None, provided_minfq=None,
     ngrid : int, optional
         Number of grid points in the wavelet analysis.
     provided_minfq : float, optional
-        Period correspondig to the Minimum frequency for analysis, default is calculated from data.
+        Period corresponding to the Minimum frequency for analysis, default is calculated from data.
     provided_maxfq : float, optional
         Period corresponding to the Maximum frequency for analysis, default is calculated from data.
     include_errors : bool, optional
         Include magnitude errors in analysis. Defaults to True.
- 
     Returns
     -------
     A list of dictionaries representing the results of the analysis performed on light curve data. Each dictionary contains:
-    
+
         - objectid (int): Identifier of the object ID.
         - sampling_i (float): Mean sampling rate in the first band of the pair where a common period is detected.
         - sampling_j (float): Mean sampling rate in the second band in the pair.
@@ -95,44 +90,39 @@ def process1_new(data_manager, set1, ntau=None, ngrid=None, provided_minfq=None,
         - lower_error (float): Lower error of the detected period. NaN if no period is detected.
         - significance (float): Measure of the statistical significance of the detected period. NaN if no period is detected.
         - label (str): Label identifying the pair of bands where the period was detected (e.g., '0-1', '1-2').
-
-    Example Usage
-    -------------
-    # results = process1_new(data_manager, '1384142', ntau=80, ngrid=800, provided_minfq=2000, provided_maxfq=10, include_errors=False)
-    # df = pd.DataFrame(results)
-    # df.to_csv('light_curve_analysis.csv', index=False)
     """
-    
+    # Check if set1 exists
     if set1 not in data_manager.fs_gp.groups:
         print(f"Set ID {set1} not found.")
         return None
-
+    # Retrieve light curves for different bands
     light_curves_data = get_lc22(data_manager, set1, include_errors)
     if any(len(data) == 0 for data in light_curves_data if isinstance(data, np.ndarray)):
         print(f"Insufficient data for set ID {set1}.")
         return None
-
+    # Unpack light curve data and sampling rates
     tt0, yy0, tt1, yy1, tt2, yy2, tt3, yy3, sampling0, sampling1, sampling2, sampling3 = light_curves_data
     results = []
+    # Process each band's light curve with hybrid2d and collect periods
     for tt, yy in [(tt0, yy0), (tt1, yy1), (tt2, yy2), (tt3, yy3)]:
         wwz_matrix, corr, extent = hybrid2d(tt, yy, ntau=ntau, ngrid=ngrid, minfq=provided_minfq, maxfq=provided_maxfq, parallel=parallel)
         peaks, hh, r_periods, up, low = periods(set1, corr, ngrid=ngrid, plot=False, minfq=provided_minfq, maxfq=provided_maxfq)
         results.append((r_periods, up, low, peaks, hh))
-
+    # Define sampling rates and labels for bands
     sampling_rates = [sampling0, sampling1, sampling2, sampling3]
     light_curve_labels = ['0', '1', '2', '3']
-
     det_periods = []
+    # Loop through all pairs of filters, ensuring no redundancy
     for i in range(len(results)):
-        for j in range(i + 1, len(results)):
+        for j in range(i + 1, len(results)):  # i + 1 ensures no redundant comparisons like '0-1' vs '0-1'
             r_periods_i, up_i, low_i, peaks_i, hh_i = results[i]
             r_periods_j, up_j, low_j, peaks_j, hh_j = results[j]
-
+            # Compare periods between two bands and find common ones
             r_periods_common, u_common, low_common, sig_common = same_periods(
                 r_periods_i, r_periods_j, up_i, low_i, up_j, low_j, peaks_i, hh_i, tt0, yy0, peaks_j, hh_j, tt1, yy1,
                 ntau=ntau, ngrid=ngrid, minfq=provided_minfq, maxfq=provided_maxfq
             )
-
+            # Append results
             if len(r_periods_common) == 0:
                 det_periods.append({
                     "objectid": set1,
@@ -153,10 +143,9 @@ def process1_new(data_manager, set1, ntau=None, ngrid=None, provided_minfq=None,
                         "period": r_periods_common[k],
                         "upper_error": u_common[k],
                         "lower_error": low_common[k],
-                        "significance": sig_common[k],
+                        "significance": round(sig_common[k], 2),  # Ensure two decimal places for significance
                         "label": f"{light_curve_labels[i]}-{light_curve_labels[j]}"
                     })
-
     return det_periods
 
 
@@ -191,7 +180,7 @@ def process1(data_manager, set1, ntau=None, ngrid=None, provided_minfq=None, pro
     Notes
     -----
     The function involves several steps:
-    
+
     - Verifying the existence of the dataset.
     - Retrieving and processing light curve data from different bands.
     - Applying hybrid wavelet techniques to each band's data.
@@ -211,7 +200,7 @@ def process1(data_manager, set1, ntau=None, ngrid=None, provided_minfq=None, pro
     tt0, yy0, tt1, yy1, tt2, yy2, tt3, yy3, sampling0, sampling1, sampling2, sampling3 = light_curves_data
     det_periods = []
 
- #   # TODO CHECK THIS FUNCTION AS IT IS NOT USED YETFunction to get or calculate minfq and maxfq
+ #   Function to get or calculate minfq and maxfq
  #   def get_or_estimate_freq(tt, known_minfq, known_maxfq):
  #       if known_minfq is None or known_maxfq is None:
  #           _, fmin, fmax = estimate_wavelet_periods(tt, ngrid)
@@ -243,7 +232,7 @@ def process1(data_manager, set1, ntau=None, ngrid=None, provided_minfq=None, pro
             if len(r_periods_common) > 0:
                 for k in range(len(r_periods_common)):
                     det_periods.append([
-                        set1, r_periods_common[k], u_common[k], low_common[k], sig_common[k], 
+                        set1, r_periods_common[k], u_common[k], low_common[k], sig_common[k],
                         f"{light_curve_labels[i]}-{light_curve_labels[j]}"
                     ])
 
@@ -252,56 +241,14 @@ def process1(data_manager, set1, ntau=None, ngrid=None, provided_minfq=None, pro
 
 
 
-def same_periods(r_periods0, r_periods1, up0, low0, up1, low1, peaks0, hh0, tt0, yy0, peaks1, hh1, tt1, yy1, ntau, ngrid,minfq,maxfq):
+def same_periods(r_periods0, r_periods1, up0, low0, up1, low1, peaks0, hh0, tt0, yy0, peaks1, hh1, tt1, yy1, ntau, ngrid, minfq, maxfq):
     """
-    Analyzes and identifies common periods between two sets of light curve data, 
+    Analyzes and identifies common periods between two sets of light curve data,
     assessing their consistency and statistical significance based on a relative tolerance.
-    Compares detected periods from two different light curve datasets to identify periods 
-    consistently observed in both, using a specified relative tolerance level for similarity judgment.
-
-    Parameters
-    ----------
-    r_periods0 : list
-        Arrays of detected periods from the first light curve dataset.
-    r_periods1 : list
-        Arrays of detected periods from the second light curve dataset.
-    up0 : list
-        Arrays of upper error bounds for detected periods in the first dataset.
-    low0 : list
-        Arrays of lower error bounds for detected periods in the first dataset.
-    up1 : list
-        Arrays of upper error bounds for detected periods in the second dataset.
-    low1 : list
-        Arrays of lower error bounds for detected periods in the second dataset.
-    peaks0, hh0, tt0, yy0 : list
-        Supplementary data including peak information, correlation matrices, and time and magnitude arrays for the first dataset.
-    peaks1, hh1, tt1, yy1 : list
-        Supplementary data including peak information, correlation matrices, and time and magnitude arrays for the second dataset.
-    ntau : int
-        Number of time divisions for wavelet analysis.
-    ngrid : int
-        Grid size (frequency resolution) for the analysis.
-    minfq : float
-        Minimum frequency for the analysis.
-    maxfq : float
-        Maximum frequency for the analysis.
-
-    Returns
-    -------
-    A tuple containing arrays of common periods and their associated statistical data:
-
-        - r_periods_common (np.ndarray): Detected periods common to both datasets, determined within a 10% relative tolerance.
-        - up_common, low_common (np.ndarray): Upper and lower error bounds for these common periods, indicating uncertainty ranges.
-        - sig_common (np.ndarray): Significance values for each common period, assessed against shuffled data.
-
-    Notes
-    -----
-    The function compares each period in one dataset against periods in the other dataset, using a relative tolerance of 10%. 
-    This tolerance level allows for minor variations in period detection between datasets. The significance of each common period 
-    is evaluated to determine if it is an intrinsic feature of the astronomical object or a result of random fluctuations.
     """
-        # Convert inputs to numpy arrays for efficient computation
+
     try:
+        # Convert inputs to numpy arrays for efficient computation
         r_periods0, r_periods1 = np.array(r_periods0), np.array(r_periods1)
         up0, low0, up1, low1 = np.array(up0), np.array(low0), np.array(up1), np.array(low1)
     except Exception as e:
@@ -310,8 +257,9 @@ def same_periods(r_periods0, r_periods1, up0, low0, up1, low1, peaks0, hh0, tt0,
     number_of_lcs = 50  # Number of LCs used for a simulation
 
     # Function to find common periods and calculate significance
-    def find_common_periods_and_significance(rp0, rp1, up, low, peaks, hh, tt, yy, ntau, ngrid, minfq,maxfq):
-        common_indices = np.where(np.isclose(rp0, rp1, rtol=1e-01))[0]
+    def find_common_periods_and_significance(rp0, rp1, up, low, peaks, hh, tt, yy, ntau, ngrid, minfq, maxfq):
+        # Find common periods using np.isclose, handling NaN values safely
+        common_indices = np.where(np.isclose(rp0, rp1, rtol=1e-01, equal_nan=True))[0]
         r_periods = np.take(rp0, common_indices)
         up, low = np.take(up, common_indices), np.take(low, common_indices)
         sig = []
@@ -319,18 +267,20 @@ def same_periods(r_periods0, r_periods1, up0, low0, up1, low1, peaks0, hh0, tt0,
         if len(r_periods) > 0:
             for peak_of_interest in common_indices:
                 try:
+                    # Calculate significance using the 'signif_johnson' function
                     _, _, _, siger = signif_johnson(number_of_lcs, peak_of_interest, peaks, hh, tt, yy, ntau=ntau, ngrid=ngrid, f=2, peakHeight=0.6, minfq=minfq, maxfq=maxfq)
-                    sig.append(1. - siger)
+                    sig_value = 1. - siger if siger is not None else np.nan
+                    sig.append(sig_value)
                 except Exception as e:
                     print(f"Error in significance calculation: {e}")
-                    sig.append(np.nan)  # Append NaN to indicate a failed calculation
+                    sig.append(np.nan)  # Propagate NaN on failed significance calculation
 
         return np.array(r_periods), np.array(up), np.array(low), np.array(sig)
 
     # Ensure the return values from the function are numpy arrays
     if len(r_periods0) == len(r_periods1):
-        return find_common_periods_and_significance(r_periods0, r_periods1, up0, low0, peaks0, hh0, tt0, yy0, ntau, ngrid, minfq,maxfq)
+        return find_common_periods_and_significance(r_periods0, r_periods1, up0, low0, peaks0, hh0, tt0, yy0, ntau, ngrid, minfq, maxfq)
     elif len(r_periods0) < len(r_periods1):
-        return find_common_periods_and_significance(np.resize(r_periods0, len(r_periods1)), r_periods1, up1, low1, peaks1, hh1, tt1, yy1, ntau, ngrid, minfq,maxfq)
+        return find_common_periods_and_significance(np.resize(r_periods0, len(r_periods1)), r_periods1, up1, low1, peaks1, hh1, tt1, yy1, ntau, ngrid, minfq, maxfq)
     else:
-        return find_common_periods_and_significance(np.resize(r_periods1, len(r_periods0)), r_periods0, up0, low0, peaks0, hh0, tt0, yy0, ntau, ngrid, minfq,maxfq)
+        return find_common_periods_and_significance(np.resize(r_periods1, len(r_periods0)), r_periods0, up0, low0, peaks0, hh0, tt0, yy0, ntau, ngrid, minfq, maxfq)

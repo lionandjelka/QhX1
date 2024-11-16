@@ -90,12 +90,12 @@
   <h1>Source code for QhX.algorithms.wavelets.wwtz</h1><div class="highlight"><pre>
 <span></span><span class="kn">from</span> <span class="nn">libwwz</span> <span class="kn">import</span> <span class="n">wwt</span> <span class="k">as</span> <span class="n">libwwz_wwt</span>
 <span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
-<span class="kn">from</span> <span class="nn">QhX.utils.correlation</span> <span class="kn">import</span> <span class="n">correlation_nd</span>
 <span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
 <span class="kn">from</span> <span class="nn">sklearn.utils</span> <span class="kn">import</span> <span class="n">shuffle</span>
 <span class="kn">import</span> <span class="nn">sys</span>
 <span class="kn">import</span> <span class="nn">io</span>
 <span class="kn">from</span> <span class="nn">traitlets.traitlets</span> <span class="kn">import</span> <span class="n">Integer</span>
+<span class="kn">from</span> <span class="nn">QhX.utils.correlation</span> <span class="kn">import</span> <span class="n">correlation_nd</span>
 
 
 
@@ -208,7 +208,7 @@
 
     <span class="c1"># Compute frequency grid parameters</span>
     <span class="n">df</span><span class="p">,</span> <span class="n">fmin</span><span class="p">,</span> <span class="n">fmax</span> <span class="o">=</span> <span class="n">compute_frequency_grid</span><span class="p">(</span><span class="n">ngrid</span><span class="p">,</span> <span class="n">minfq</span><span class="p">,</span> <span class="n">maxfq</span><span class="p">)</span>
-    
+
     <span class="c1"># Set frequency bounds and step for the analysis</span>
     <span class="n">frequency_low</span> <span class="o">=</span> <span class="n">fmin</span>  <span class="c1"># Lower bound of frequency range</span>
     <span class="n">frequency_high</span> <span class="o">=</span> <span class="n">fmax</span>  <span class="c1"># Upper bound of frequency range</span>
@@ -282,7 +282,7 @@
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Perform a hybrid 2D analysis involving WWZ (Weighted Wavelet Z-transform) and auto-correlation on light curve data.</span>
 
-<span class="sd">    This function computes the WWZ transformation of the input light curve data and then performs an auto-correlation analysis on the result. </span>
+<span class="sd">    This function computes the WWZ transformation of the input light curve data and then performs an auto-correlation analysis on the result.</span>
 <span class="sd">    The frequency range for the analysis can be specified, as well as the decay constant and interpolation method for WWZ.</span>
 
 <span class="sd">    Parameters:</span>
@@ -307,7 +307,7 @@
 <span class="sd">    Returns:</span>
 <span class="sd">    --------</span>
 <span class="sd">    A tuple containing:</span>
-<span class="sd">    </span>
+
 <span class="sd">    - WWZ matrix: The WWZ analysis result.</span>
 <span class="sd">    - Auto-correlation matrix: The result of auto-correlation analysis.</span>
 <span class="sd">    - Frequency range extent: The extent of the frequency range for plotting.</span>

@@ -104,3 +104,98 @@ This example demonstrates how to use the `DataManagerDynamical` class and the `p
 
 .. note::
     Ensure the file `GaiaQSOcandsLCNobsGgt900.pqt` is placed correctly in the `data` folder of the package and is accessible for loading.
+
+LSST AGN Data Challenge Example
+================================
+
+
+Imports
+-------
+
+Start by importing the required components from the `QhX` package:
+
+.. code-block:: python
+
+    from QhX import DataManagerDynamical, get_lc_dyn, process1_new_dyn
+
+Setup and Configuration
+-----------------------
+
+Define the column mappings and filter mappings for the AGN dataset. This configuration allows you to map specific columns and filters to your own naming conventions.
+
+.. code-block:: python
+
+    agn_dc_mapping = {
+         'column_mapping': {'flux': 'psMag', 'time': 'mjd', 'band': 'filter'},  # Map AGN DC columns
+         'group_by_key': 'objectId',  # Group by objectId for AGN DC
+         'filter_mapping': {0: 0, 1: 1, 2: 2, 3: 3}  # Map AGN DC filters
+     }
+
+Initialize DataManager
+----------------------
+
+Create an instance of `DataManagerDynamical` with the defined mappings. This instance will handle loading, grouping, and managing data dynamically.
+
+.. code-block:: python
+
+    data_manager_agn_dc = DataManagerDynamical(
+         column_mapping=agn_dc_mapping['column_mapping'],
+         group_by_key=agn_dc_mapping['group_by_key'],
+         filter_mapping=agn_dc_mapping['filter_mapping']
+    )
+
+Load the Data
+-------------
+
+Load data from a specified source, in this case, a Parquet file available on Zenodo.
+
+.. code-block:: python
+
+    data_manager_agn_dc.load_data('https://zenodo.org/record/6878414/files/ForcedSourceTable.parquet')
+
+This will output a message indicating successful data loading and display a sample of the loaded data:
+
+.. code-block:: text
+
+    INFO:root:Data loaded and processed successfully.
+             objectId       mjd      psMag      psDiffFlux  psDiffFluxErr  filter
+    0         1377887  52959.13  23.269028       839.39703     1350.93301       1
+    1         1377887  54379.29        NaN      -954.89032     1570.26164       1
+    ...
+    48974244  0271385  53677.24  16.134792   -282308.87500    57260.80691       5
+
+Group the Data
+--------------
+
+Group the data by the specified key (`objectId` in this case) for further analysis.
+
+.. code-block:: python
+
+    data_manager_agn_dc.group_data()
+
+This outputs a message confirming the data has been grouped:
+
+.. code-block:: text
+
+    INFO:root:Data grouped by objectId successfully.
+
+Process the Data
+----------------
+
+Finally, process the data using the `process1_new` and `process1_new_dyn` functions. The example below shows how to apply these functions to analyze data for a specific object ID.
+
+.. code-block:: python
+
+    # For AGN DC
+    process1_results = process1_new(data_manager_agn_dc, '1384142', ntau=80, ngrid=800, provided_minfq=2000, provided_maxfq=10, include_errors=False)
+    process1_results = process1_new_dyn(data_manager_agn_dc, '1384142', ntau=80, ngrid=800, provided_minfq=2000, provided_maxfq=10, include_errors=False)
+
+process1_new_dyn function can be used either in fixed or dynamical mode.
+
+Additional Notes
+----------------
+
+- Ensure that the `column_mapping` and `filter_mapping` dictionaries are configured to match the structure of your dataset.
+- Adjust `ntau`, `ngrid`, `provided_minfq`, `provided_maxfq`, and `include_errors` as needed for your specific analysis.
+
+

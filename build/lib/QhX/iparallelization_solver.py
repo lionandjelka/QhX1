@@ -1,7 +1,7 @@
 """
-The `iparallelization_solver` interface is designed for parallel execution of an input function. 
+The `iparallelization_solver` interface is designed for parallel execution of an input function.
 
-This module defines the `IParallelSolver` class, which orchestrates the parallel execution of a 
+This module defines the `IParallelSolver` class, which orchestrates the parallel execution of a
 general processing function on a data set consisting of multiple independent data subsets, here reffered to as set IDs.
 It also declares a logging method (intended to start a separate logging thread).
 
@@ -21,26 +21,26 @@ DEFAULT_NUM_WORKERS = 4
 class IParallelSolver():
     """
     A class to manage parallel execution of data processing functions.
-    
+
     Attributes:
         num_workers (int): Number of worker processes to spawn.
-    """    
+    """
     def __init__(self,
                  num_workers = DEFAULT_NUM_WORKERS,
                 ):
         """Initialize the ParallelSolver with the specified configuration."""
 
         self.num_workers = num_workers
-    
+
     def process_wrapper(self):
         """
         Wrapper for the process function to integrate logging and result handling.
         """
 
-        
+
         # Event used for stopping background log thread
         stopper_event = None
-        
+
         # Go through unprocessed sets
         while not self.set_ids_.empty():
             # Safely pop from queue
@@ -58,7 +58,7 @@ class IParallelSolver():
 
                 # Call main processing function
                 result = self.get_process_function_result(set_id)
-                
+
                 # Get results into formatted string
                 res_string = self.aggregate_process_function_result(result)
 
@@ -76,8 +76,8 @@ class IParallelSolver():
                     self.maybe_save_local_results(set_id, res_string)
                 except Exception as e:
                     print('Error stopping logs : ' + str(e))
-        
-    def process_ids(self, set_ids, results_file = None):	
+
+    def process_ids(self, set_ids, results_file = None):
         """
         Processes a list of set IDs using the configured process function in parallel.
 
@@ -100,7 +100,7 @@ class IParallelSolver():
         # Fill input queue
         for id in set_ids:
             self.set_ids_.put(id)
-        
+
         # Generate and start processes
         processes = [Process(target = self.process_wrapper) for i in range(self.num_workers)]
         for p in processes:
@@ -119,7 +119,7 @@ class IParallelSolver():
 
     def maybe_begin_logging(self, set_id):
         pass
-    
+
     def maybe_stop_logging(self):
         pass
 

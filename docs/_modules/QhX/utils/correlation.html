@@ -88,24 +88,32 @@
            <div itemprop="articleBody">
              
   <h1>Source code for QhX.utils.correlation</h1><div class="highlight"><pre>
-<span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span></span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">This module provides functions for calculating correlations between n-dimensional arrays.</span>
+<span class="sd">&quot;&quot;&quot;</span>
 
-
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 
 <div class="viewcode-block" id="correlation_nd">
 <a class="viewcode-back" href="../../../correlation.html#QhX.utils.correlation.correlation_nd">[docs]</a>
 <span class="k">def</span> <span class="nf">correlation_nd</span><span class="p">(</span><span class="n">A</span><span class="p">,</span> <span class="n">B</span><span class="p">):</span>
-   
-    <span class="c1"># Rowwise mean of input arrays &amp; subtract from input arrays themeselves</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Computes the correlation between two n-dimensional arrays, A and B.</span>
+
+<span class="sd">    Parameters:</span>
+<span class="sd">        A (ndarray): First input array with shape (n, m).</span>
+<span class="sd">        B (ndarray): Second input array with shape (n, m).</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        ndarray: The correlation matrix between A and B.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="c1"># Row-wise mean of input arrays &amp; subtract from input arrays themselves</span>
     <span class="n">A_mA</span> <span class="o">=</span> <span class="n">A</span> <span class="o">-</span> <span class="n">A</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="mi">1</span><span class="p">)[:,</span> <span class="kc">None</span><span class="p">]</span>
     <span class="n">B_mB</span> <span class="o">=</span> <span class="n">B</span> <span class="o">-</span> <span class="n">B</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="mi">1</span><span class="p">)[:,</span> <span class="kc">None</span><span class="p">]</span>
 
-    <span class="c1"># Sum of squares across rows</span>
-    <span class="n">ssA</span> <span class="o">=</span> <span class="p">(</span><span class="n">A_mA</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
-    <span class="n">ssB</span> <span class="o">=</span> <span class="p">(</span><span class="n">B_mB</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
-
-  
-    <span class="k">return</span> <span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">A_mA</span><span class="p">,</span> <span class="n">B_mB</span><span class="o">.</span><span class="n">T</span><span class="p">))</span> </div>
+    <span class="c1"># Compute and return the correlation matrix</span>
+    <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">A_mA</span><span class="p">,</span> <span class="n">B_mB</span><span class="o">.</span><span class="n">T</span><span class="p">)</span></div>
 
 </pre></div>
 

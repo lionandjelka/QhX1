@@ -108,10 +108,10 @@
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Performs Superlet Transform (SLT) on time-series data.</span>
 
-<span class="sd">    This function computes either a multiplicative SLT or a fractional adaptive SLT (FASLT), </span>
-<span class="sd">    based on the &#39;adaptive&#39; flag. Multiplicative SLT is recommended for analysis within a narrow </span>
-<span class="sd">    frequency band, while FASLT is suitable for a broader range of frequencies. The transform </span>
-<span class="sd">    combines multiple Morlet wavelets with varying cycles to achieve super-resolution in </span>
+<span class="sd">    This function computes either a multiplicative SLT or a fractional adaptive SLT (FASLT),</span>
+<span class="sd">    based on the &#39;adaptive&#39; flag. Multiplicative SLT is recommended for analysis within a narrow</span>
+<span class="sd">    frequency band, while FASLT is suitable for a broader range of frequencies. The transform</span>
+<span class="sd">    combines multiple Morlet wavelets with varying cycles to achieve super-resolution in</span>
 <span class="sd">    time-frequency analysis.</span>
 
 <span class="sd">    Parameters</span>
@@ -137,7 +137,7 @@
 
 <span class="sd">    References</span>
 <span class="sd">    ----------</span>
-<span class="sd">    </span>
+
 <span class="sd">    - `Moca, Vasile V., et al. 2021,Time-frequency super-resolution with superlets, Nat. Comm. 12.1, 1-18 &lt;https://www.nature.com/articles/s41467-020-20539-9&gt;`_.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="c1"># Function implementation...</span>
@@ -308,7 +308,7 @@
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Represents a Morlet wavelet used in Superlet Transform.</span>
 
-<span class="sd">        The Morlet wavelet in Superlet formulation has a specific number of cycles within </span>
+<span class="sd">        The Morlet wavelet in Superlet formulation has a specific number of cycles within</span>
 <span class="sd">        its Gaussian envelope, influencing its time and frequency resolution.</span>
 
 <span class="sd">        Parameters</span>
@@ -476,7 +476,7 @@
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Computes the superlet order for given frequencies in the Fractional Adaptive SLT.</span>
 
-<span class="sd">    This is a linear mapping between the minimal and maximal order onto the </span>
+<span class="sd">    This is a linear mapping between the minimal and maximal order onto the</span>
 <span class="sd">    respective minimal and maximal frequencies.</span>
 
 <span class="sd">    Parameters</span>
@@ -516,9 +516,9 @@
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Generates test data for superlet analysis, consisting of harmonic superpositions.</span>
 
-<span class="sd">    This function creates a signal composed of multiple oscillations with specified </span>
-<span class="sd">    frequencies. Each oscillation is a few-cycle harmonic with an optional addition </span>
-<span class="sd">    of white noise. It is useful for demonstrating and testing superlet transform </span>
+<span class="sd">    This function creates a signal composed of multiple oscillations with specified</span>
+<span class="sd">    frequencies. Each oscillation is a few-cycle harmonic with an optional addition</span>
+<span class="sd">    of white noise. It is useful for demonstrating and testing superlet transform</span>
 <span class="sd">    functionality.</span>
 
 <span class="sd">    Parameters</span>
@@ -539,12 +539,12 @@
 
 <span class="sd">    Examples</span>
 <span class="sd">    --------</span>
-<span class="sd">    </span>
+
 <span class="sd">    &gt;&gt;&gt; import numpy as np</span>
 <span class="sd">    &gt;&gt;&gt; from mymodule import gen_superlet_testdata</span>
 <span class="sd">    &gt;&gt;&gt; signal = gen_superlet_testdata(freqs=[20, 40, 60], cycles=10, fs=1000, eps=0.1)</span>
 <span class="sd">    &quot;&quot;&quot;</span>
-  
+
     <span class="c1"># Function implementation...</span>
 
     <span class="n">signal</span> <span class="o">=</span> <span class="p">[]</span>
@@ -585,7 +585,7 @@
     <span class="n">fs</span> <span class="o">=</span> <span class="mi">1000</span>  <span class="c1"># sampling frequency</span>
     <span class="n">A</span> <span class="o">=</span> <span class="mi">10</span> <span class="c1"># amplitude</span>
     <span class="n">signal</span> <span class="o">=</span> <span class="n">A</span> <span class="o">*</span> <span class="n">gen_superlet_testdata</span><span class="p">(</span><span class="n">fs</span><span class="o">=</span><span class="n">fs</span><span class="p">,</span> <span class="n">eps</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>  <span class="c1"># 20Hz, 40Hz and 60Hz</span>
-    
+
     <span class="c1"># frequencies of interest in Hz</span>
     <span class="n">foi</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">100</span><span class="p">,</span> <span class="mi">50</span><span class="p">)</span>
     <span class="n">scales</span> <span class="o">=</span> <span class="n">scale_from_period</span><span class="p">(</span><span class="mi">1</span> <span class="o">/</span> <span class="n">foi</span><span class="p">)</span>
@@ -610,18 +610,18 @@
 
     <span class="n">ax1</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">signal</span><span class="o">.</span><span class="n">size</span><span class="p">)</span> <span class="o">/</span> <span class="n">fs</span><span class="p">,</span> <span class="n">signal</span><span class="p">,</span> <span class="n">c</span><span class="o">=</span><span class="s1">&#39;cornflowerblue&#39;</span><span class="p">)</span>
     <span class="n">ax1</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;signal (a.u.)&#39;</span><span class="p">)</span>
-    
+
     <span class="n">extent</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">signal</span><span class="p">)</span> <span class="o">/</span> <span class="n">fs</span><span class="p">,</span> <span class="n">foi</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">foi</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]]</span>
     <span class="n">im</span> <span class="o">=</span> <span class="n">ax2</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">ampls</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="s2">&quot;magma&quot;</span><span class="p">,</span> <span class="n">aspect</span><span class="o">=</span><span class="s2">&quot;auto&quot;</span><span class="p">,</span> <span class="n">extent</span><span class="o">=</span><span class="n">extent</span><span class="p">,</span> <span class="n">origin</span><span class="o">=</span><span class="s1">&#39;lower&#39;</span><span class="p">)</span>
-    
+
     <span class="n">ppl</span><span class="o">.</span><span class="n">colorbar</span><span class="p">(</span><span class="n">im</span><span class="p">,</span><span class="n">ax</span> <span class="o">=</span> <span class="n">ax2</span><span class="p">,</span> <span class="n">orientation</span><span class="o">=</span><span class="s1">&#39;horizontal&#39;</span><span class="p">,</span>
                  <span class="n">shrink</span><span class="o">=</span><span class="mf">0.7</span><span class="p">,</span> <span class="n">pad</span><span class="o">=</span><span class="mf">0.2</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;amplitude (a.u.)&#39;</span><span class="p">)</span>
-    
+
     <span class="n">ax2</span><span class="o">.</span><span class="n">plot</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">signal</span><span class="p">)</span> <span class="o">/</span> <span class="n">fs</span><span class="p">],</span> <span class="p">[</span><span class="mi">20</span><span class="p">,</span> <span class="mi">20</span><span class="p">],</span> <span class="s2">&quot;--&quot;</span><span class="p">,</span> <span class="n">c</span><span class="o">=</span><span class="s1">&#39;0.5&#39;</span><span class="p">)</span>
     <span class="n">ax2</span><span class="o">.</span><span class="n">plot</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">signal</span><span class="p">)</span> <span class="o">/</span> <span class="n">fs</span><span class="p">],</span> <span class="p">[</span><span class="mi">40</span><span class="p">,</span> <span class="mi">40</span><span class="p">],</span> <span class="s2">&quot;--&quot;</span><span class="p">,</span> <span class="n">c</span><span class="o">=</span><span class="s1">&#39;0.5&#39;</span><span class="p">)</span>
     <span class="n">ax2</span><span class="o">.</span><span class="n">plot</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">signal</span><span class="p">)</span> <span class="o">/</span> <span class="n">fs</span><span class="p">],</span> <span class="p">[</span><span class="mi">60</span><span class="p">,</span> <span class="mi">60</span><span class="p">],</span> <span class="s2">&quot;--&quot;</span><span class="p">,</span> <span class="n">c</span><span class="o">=</span><span class="s1">&#39;0.5&#39;</span><span class="p">)</span>
-    
-    <span class="n">ax2</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s2">&quot;time (s)&quot;</span><span class="p">)</span>    
+
+    <span class="n">ax2</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s2">&quot;time (s)&quot;</span><span class="p">)</span>
     <span class="n">ax2</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s2">&quot;frequency (Hz)&quot;</span><span class="p">)</span>
 
     <span class="n">fig</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>

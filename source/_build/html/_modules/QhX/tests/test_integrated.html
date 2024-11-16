@@ -90,58 +90,58 @@
   <h1>Source code for QhX.tests.test_integrated</h1><div class="highlight"><pre>
 <span></span><span class="kn">import</span> <span class="nn">unittest</span>
 <span class="kn">from</span> <span class="nn">QhX.utils.mock_lc</span> <span class="kn">import</span> <span class="n">simple_mock_lc</span>
-<span class="kn">from</span> <span class="nn">QhX.utils</span> <span class="kn">import</span>  <span class="n">correlation</span>
-<span class="kn">from</span> <span class="nn">QhX.algorithms.wavelets.wwtz</span> <span class="kn">import</span> <span class="o">*</span>  
-<span class="c1">#from QhX.algorithms.wavelets.wwt import hybrid2d, inp_param,estimate_wavelet_periods</span>
-<span class="kn">from</span> <span class="nn">QhX.calculation</span> <span class="kn">import</span> <span class="n">periods</span><span class="p">,</span> <span class="n">signif_johnson</span>  
-<span class="kn">from</span> <span class="nn">QhX.plots.reg</span> <span class="kn">import</span> <span class="n">plt_freq_heatmap</span><span class="p">,</span> <span class="n">fig_plot</span>
-
+<span class="kn">from</span> <span class="nn">QhX.algorithms.wavelets.wwtz</span> <span class="kn">import</span> <span class="n">hybrid2d</span>  <span class="c1"># Only import what you need</span>
+<span class="kn">from</span> <span class="nn">QhX.calculation</span> <span class="kn">import</span> <span class="n">periods</span><span class="p">,</span> <span class="n">signif_johnson</span>
 
 <div class="viewcode-block" id="TestIntegratedLightCurveProcessing">
 <a class="viewcode-back" href="../../../test_integrated.html#QhX.tests.test_integrated.TestIntegratedLightCurveProcessing">[docs]</a>
 <span class="k">class</span> <span class="nc">TestIntegratedLightCurveProcessing</span><span class="p">(</span><span class="n">unittest</span><span class="o">.</span><span class="n">TestCase</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Test suite for integrated light curve processing using wavelet</span>
+<span class="sd">    transformation and period detection functions.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
 
 <div class="viewcode-block" id="TestIntegratedLightCurveProcessing.test_light_curve_processing">
 <a class="viewcode-back" href="../../../test_integrated.html#QhX.tests.test_integrated.TestIntegratedLightCurveProcessing.test_light_curve_processing">[docs]</a>
     <span class="k">def</span> <span class="nf">test_light_curve_processing</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="c1"># Generate mock light curve</span>
-        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Running integrated  test on simulation of single light curve, and functionalities of modules&quot;</span><span class="p">)</span>
-        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot; for Wavelet matrix coefficients calculations and period and its significance calculation. This may take time about 500-800 seconds...&quot;</span><span class="p">)</span>
-        
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Tests the generation and processing of a mock light curve, including</span>
+<span class="sd">        wavelet matrix coefficient calculations and period/significance calculation.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Running integrated test on single light curve simulation.&quot;</span><span class="p">)</span>
+
+        <span class="c1"># Generate mock light curve data</span>
         <span class="n">period</span> <span class="o">=</span> <span class="mi">100</span>  <span class="c1"># days</span>
         <span class="n">amplitude</span> <span class="o">=</span> <span class="mf">0.3</span>
         <span class="n">tt</span><span class="p">,</span> <span class="n">yy</span> <span class="o">=</span> <span class="n">simple_mock_lc</span><span class="p">(</span><span class="n">time_interval</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">num_points</span><span class="o">=</span><span class="mi">1000</span><span class="p">,</span> <span class="n">frequency</span><span class="o">=</span><span class="n">period</span><span class="p">,</span> <span class="n">amplitude</span><span class="o">=</span><span class="n">amplitude</span><span class="p">,</span> <span class="n">percent</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span> <span class="n">magnitude</span><span class="o">=</span><span class="mi">22</span><span class="p">)</span>
-        <span class="c1">#fig_plot(tt, yy)</span>
+
         <span class="c1"># Process with hybrid2d</span>
-      
-        <span class="n">wwz_matrix</span><span class="p">,</span> <span class="n">corr</span><span class="p">,</span> <span class="n">extent</span> <span class="o">=</span> <span class="n">hybrid2d</span><span class="p">(</span><span class="n">tt</span><span class="p">,</span> <span class="n">yy</span><span class="p">,</span> <span class="mi">80</span><span class="p">,</span> <span class="mi">800</span><span class="p">,</span> <span class="n">minfq</span><span class="o">=</span><span class="mi">2000</span><span class="p">,</span><span class="n">maxfq</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
-      
-        
-        <span class="c1"># Assuming the use of a function like signif_johnson (though not explicitly found in the provided notebook cells)</span>
-        <span class="n">numlc1</span> <span class="o">=</span><span class="mi">10</span>  <span class="c1"># Example Object ID</span>
-        <span class="n">numlc</span><span class="o">=</span><span class="mi">10</span> <span class="c1">#number of lc for johnson method</span>
+        <span class="n">wwz_matrix</span><span class="p">,</span> <span class="n">corr</span><span class="p">,</span> <span class="n">_</span> <span class="o">=</span> <span class="n">hybrid2d</span><span class="p">(</span><span class="n">tt</span><span class="p">,</span> <span class="n">yy</span><span class="p">,</span> <span class="mi">80</span><span class="p">,</span> <span class="mi">800</span><span class="p">,</span> <span class="n">minfq</span><span class="o">=</span><span class="mi">2000</span><span class="p">,</span> <span class="n">maxfq</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
+
+        <span class="c1"># Define example parameters for testing</span>
+        <span class="n">numlc</span> <span class="o">=</span> <span class="mi">10</span>  <span class="c1"># Number of light curves for Johnson method</span>
         <span class="n">peak</span> <span class="o">=</span> <span class="mi">0</span>  <span class="c1"># Example peak position</span>
         <span class="n">idx_peaks</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">]</span>  <span class="c1"># Example index of peak, assuming a single peak</span>
-        <span class="c1"># Extract periods</span>
-        <span class="c1"># Detect periods in the correlation matrix and store results in peaks0, hh0, r_periods0, up0, low0</span>
-        <span class="n">peaks0</span><span class="p">,</span> <span class="n">hh0</span><span class="p">,</span> <span class="n">r_periods0</span><span class="p">,</span> <span class="n">up0</span><span class="p">,</span> <span class="n">low0</span> <span class="o">=</span> <span class="n">periods</span><span class="p">(</span><span class="n">numlc1</span><span class="p">,</span> <span class="n">corr</span><span class="p">,</span> <span class="mi">800</span><span class="p">,</span> <span class="n">plot</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">minfq</span><span class="o">=</span><span class="mi">2000</span><span class="p">,</span> <span class="n">maxfq</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
-    
-        <span class="n">yax</span> <span class="o">=</span> <span class="n">corr</span><span class="o">.</span><span class="n">flatten</span><span class="p">()</span>  <span class="c1"># Example correlation of oscillation patterns</span>
-        <span class="n">bins</span><span class="p">,</span> <span class="n">bins11</span><span class="p">,</span> <span class="n">sig</span><span class="p">,</span> <span class="n">siger</span> <span class="o">=</span> <span class="n">signif_johnson</span><span class="p">(</span><span class="n">numlc</span><span class="p">,</span><span class="n">peak</span><span class="p">,</span> <span class="n">idx_peaks</span><span class="p">,</span> <span class="n">hh0</span><span class="p">,</span> <span class="n">tt</span><span class="p">,</span> <span class="n">yy</span><span class="p">,</span> <span class="n">ntau</span><span class="o">=</span><span class="mi">80</span><span class="p">,</span> <span class="n">ngrid</span><span class="o">=</span><span class="mi">800</span><span class="p">,</span> <span class="n">f</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">peakHeight</span><span class="o">=</span><span class="mf">0.6</span><span class="p">,</span> <span class="n">minfq</span><span class="o">=</span><span class="mi">2000</span><span class="p">,</span> <span class="n">maxfq</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
 
-        <span class="c1"># Assertions to verify the integration of functions</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">assertTrue</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">tt</span><span class="p">)</span> <span class="o">==</span> <span class="nb">len</span><span class="p">(</span><span class="n">yy</span><span class="p">))</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">assertIsNotNone</span><span class="p">(</span><span class="n">wwz_matrix</span><span class="p">)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">assertIsNotNone</span><span class="p">(</span><span class="n">r_periods0</span><span class="p">)</span>
-        <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;results of individual testings of modules for period detection and significance&#39;</span><span class="p">)</span>
-        <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;simulated period in days&#39;</span><span class="p">,</span> <span class="n">period</span><span class="p">)</span>
-        <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;list of periods in days&#39;</span><span class="p">,</span><span class="n">r_periods0</span><span class="p">)</span>
-        <span class="nb">print</span> <span class="p">(</span><span class="s1">&#39;upper and lower errors in days&#39;</span><span class="p">,</span> <span class="n">up0</span><span class="p">,</span> <span class="n">low0</span><span class="p">)</span>
-        <span class="c1"># Uncomment and modify the following line based on actual implementation of signif_johnson</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">assertIsNotNone</span><span class="p">(</span><span class="n">sig</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>  <span class="c1"># Example condition, should be between 0 and 1</span>
-        <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;number of simulated shuffled light curves&#39;</span><span class="p">,</span> <span class="n">numlc</span><span class="p">)</span>
-        <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;experimental significance&#39;</span><span class="p">,</span> <span class="n">sig</span><span class="p">)</span></div>
+        <span class="c1"># Detect periods in the correlation matrix</span>
+        <span class="n">_</span><span class="p">,</span> <span class="n">_</span><span class="p">,</span> <span class="n">r_periods0</span><span class="p">,</span> <span class="n">up0</span><span class="p">,</span> <span class="n">low0</span> <span class="o">=</span> <span class="n">periods</span><span class="p">(</span><span class="n">numlc</span><span class="p">,</span> <span class="n">corr</span><span class="p">,</span> <span class="mi">800</span><span class="p">,</span> <span class="n">plot</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">minfq</span><span class="o">=</span><span class="mi">2000</span><span class="p">,</span> <span class="n">maxfq</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
+
+        <span class="c1"># Calculate significance</span>
+        <span class="n">_</span><span class="p">,</span> <span class="n">_</span><span class="p">,</span> <span class="n">sig</span><span class="p">,</span> <span class="n">_</span> <span class="o">=</span> <span class="n">signif_johnson</span><span class="p">(</span><span class="n">numlc</span><span class="p">,</span> <span class="n">peak</span><span class="p">,</span> <span class="n">idx_peaks</span><span class="p">,</span> <span class="p">[],</span> <span class="n">tt</span><span class="p">,</span> <span class="n">yy</span><span class="p">,</span> <span class="n">ntau</span><span class="o">=</span><span class="mi">80</span><span class="p">,</span> <span class="n">ngrid</span><span class="o">=</span><span class="mi">800</span><span class="p">,</span> <span class="n">f</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">peakHeight</span><span class="o">=</span><span class="mf">0.6</span><span class="p">,</span> <span class="n">minfq</span><span class="o">=</span><span class="mi">2000</span><span class="p">,</span> <span class="n">maxfq</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
+
+        <span class="c1"># Assertions to verify integration of functions</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">assertEqual</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">tt</span><span class="p">),</span> <span class="nb">len</span><span class="p">(</span><span class="n">yy</span><span class="p">),</span> <span class="s2">&quot;Time and signal arrays should be the same length&quot;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">assertIsNotNone</span><span class="p">(</span><span class="n">wwz_matrix</span><span class="p">,</span> <span class="s2">&quot;Wavelet matrix calculation failed&quot;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">assertIsNotNone</span><span class="p">(</span><span class="n">r_periods0</span><span class="p">,</span> <span class="s2">&quot;Period detection failed&quot;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">assertGreaterEqual</span><span class="p">(</span><span class="n">sig</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="s2">&quot;Significance should be non-negative&quot;</span><span class="p">)</span>
+
+        <span class="c1"># Print results for visual verification</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Simulated period (days):&#39;</span><span class="p">,</span> <span class="n">period</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Detected periods (days):&#39;</span><span class="p">,</span> <span class="n">r_periods0</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Upper and lower error bounds (days):&#39;</span><span class="p">,</span> <span class="n">up0</span><span class="p">,</span> <span class="n">low0</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Significance of detected period:&#39;</span><span class="p">,</span> <span class="n">sig</span><span class="p">)</span></div>
 </div>
+
 
 <span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s1">&#39;__main__&#39;</span><span class="p">:</span>
     <span class="n">unittest</span><span class="o">.</span><span class="n">main</span><span class="p">()</span>
