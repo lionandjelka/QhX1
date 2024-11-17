@@ -118,3 +118,4 @@ dmypy.json
 *.swo
 *.swn
 .Trash/
+.DS_Store
