@@ -10,7 +10,7 @@ You can install the package directly from PyPI  using the following command:
 
 .. code-block:: bash
 
-    pip install QhX
+    pip install QhX==0.2.0
 
 Users can install QhX by cloning its repository and installing it manually:
 
