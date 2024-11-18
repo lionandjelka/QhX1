@@ -1,7 +1,6 @@
 LICENSE.txt
 README.md
 pyproject.toml
-setup.py
 QhX/__init__.py
 QhX/batch_processor.py
 QhX/calculation.py

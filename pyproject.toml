@@ -5,7 +5,7 @@ build-backend = "setuptools.build_meta"
 [project]
 name = "QhX"  # Update this if necessary
 version = "0.2.0"           # Increment the version for new releases
-description = "QhX_new_dynamical: New package with dynamic mode for light curve analysis"
+description = "QhX: New package with dynamic mode for light curve analysis"
 readme = "README.md"
 requires-python = ">=3.0"
 license = { file = "LICENSE.txt" }
@@ -46,7 +46,7 @@ dependencies = [
 ]
 
 [project.urls]
-Documentation = "https://lionandjelka.github.io/QhX_new_dynamical"
+Documentation = "https://lionandjelka.github.io/QhX1/"
 
 [tool.setuptools]
 packages = ["QhX"]  # Keep internal module names as QhX to maintain backward compatibility

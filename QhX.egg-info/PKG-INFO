@@ -1,9 +1,7 @@
 Metadata-Version: 2.1
 Name: QhX
 Version: 0.2.0
-Summary: QhX_new_dynamical: New package with dynamic mode for light curve analysis
-Home-page: https://github.com/LSST-SER-SAG-S1/QhX1
-Author: Andjelka Kovacevic
+Summary: QhX: New package with dynamic mode for light curve analysis
 Author-email: Andjelka Kovacevic <andjelka.kovacevic@matf.bg.ac.rs>
 License: MIT License
         
@@ -28,7 +26,7 @@ License: MIT License
             SOFTWARE.
         
         
-Project-URL: Documentation, https://lionandjelka.github.io/QhX_new_dynamical
+Project-URL: Documentation, https://lionandjelka.github.io/QhX1/
 Keywords: astronomy,data analysis,light curves,dynamic mode
 Classifier: Development Status :: 3 - Alpha
 Classifier: Intended Audience :: Science/Research
