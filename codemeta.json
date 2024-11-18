@@ -1,0 +1,23 @@
+{
+  "@context": "https://raw.githubusercontent.com/codemeta/codemeta/master/codemeta.jsonld",
+  "@type": "Code",
+  "author": [
+    {
+      "@id": "http://orcid.org/0000-0001-5139-1978",
+      "@type": "Person",
+      "email": "andjelka.kovacevic@matf.bg.ac.rs",
+      "name": "lionandjelka",
+      "affiliation": "University of Belgrade-Faculty of Mathematics"
+    }
+  ],
+  "identifier": "",
+  "codeRepository": "https://github.com/lionandjelka/QhX1",
+  "datePublished": "2024-11-18",
+  "dateModified": "2024-11-18",
+  "dateCreated": "2024-11-18",
+  "description": "QhX is a Python-based package for detecting periodic signals in red noise time series data (such as quasars), designed for applications like the Vera C. Rubin Observatory's LSST and other astronomical surveys. Using a 2D Hybrid method—cross-correlating wavelet transforms in a period-period phase space—QhX identifies and statistically vets periodicities, producing a catalog of detected periods with visualization across photometric bands.",
+  "keywords": "LSST, quasar, red noise, periodicity",
+  "license": "MIT",
+  "title": "QhX-Quasar harmonic eXplorer",
+  "version": "0.2.0"
+}
