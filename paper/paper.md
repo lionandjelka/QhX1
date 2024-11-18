@@ -78,7 +78,7 @@ The third feature of `QhX` introduces a novel approach beyond traditional period
 # QhX structure
 
 
-![Schematic representation of the QhX package architecture.  \label{fig:QhXscheme}](QhXdiag.pdf)
+![Schematic representation of the QhX package architecture.  \label{fig:QhXscheme}](qhxdiag.pdf)
 
 
 The `QhX` package is a modular and extensible API (see Figure \ref{fig:QhXscheme}) designed for efficient detection and analysis of periodic signals in astronomical time series data, particularly for projects like LSST. Given that astronomical data analysis often requires rapid prototyping and experimentation with various algorithms, the modular design of `QhX`  enables users to easily swap or modify functions, supporting diverse research needs without the constraints of a fixed class structure.
