@@ -1,42 +1,19 @@
 Important Note
 ==============
 
-Distinction between QhX Version 0.1.1 and   Version 0.2.0
--------------------------------------------------------------------------
 
-Both versions are standalone and can be used independently, depending on your dataset and computational requirements.
-
-In this documentation, we will refer to **QhX Version 0.2.0** as **QhX_dynamical** for brevity. Any references to `QhX_dynamical` indicate features and updates specific to Version 0.2.0 and onward.
-
-
-**QhX Version 0.1.1**
------------------------
-- Focused on analyzing datasets with consistent filter configurations.
-- Ideal for static time-domain surveys where filter sets remain unchanged across observations.
-- Includes tools for:
-  - Photometric reverberation mapping.
-  - Multi-periodicity detection within red noise environments.
-
-**QhX Version 0.2.0 (`QhX_dynamical`)**
----------------------------------------
-- Extends the capabilities of `QhX` to support datasets with dynamic filter changes across observations.
-- Fully supports fixed-mode functionalities when the mode is set to 'fixed', making it versatile for both dynamic and static datasets.
-- Integrates a parallel processing solver (`ParallelSolver`) for efficient computation and handling of large datasets.
-- Includes an advanced seeding mechanism for reproducibility, especially for datasets with large object IDs.
-
-Usage Recommendations
----------------------
-- **Use `QhX (0.1.1)`**: When your dataset has consistent filters across all observations and does not require dynamic processing.
-- **Use `QhX_dynamical`**: For flexible handling of datasets that may have variable filters or for when you prefer the option to switch between dynamic and fixed modes seamlessly.
+QhX Version 0.2.0 
+-------------------------------------
+- Fully supports datasets with dynamic filter changes across observations. `dynamical_mode`  module  handles both dynamic and fixed configurations, enabling more complex workflows. Combining both modes in a single module allows easier upgrades if workflows evolve from fixed to dynamic or need to accommodate hybrid datasets.
+- Some service modules outside `dynamical_mode` are dedicated to fixed-only workflows, providing less overhead in performance while retaining efficiency. 
+- Integrates a parallel processing solver (``ParallelSolver``) to efficiently handle large datasets and computationally intensive tasks.
+- Includes an advanced seeding mechanism for reproducibility, particularly for datasets with large object IDs.
 
 Examples and Support for Both Modes
 -----------------------------------
-The usage examples in the documentation showcase how to implement both dynamic and fixed modes with `QhX_dynamical`.  Example for the **dynamical mode** of the package is given in :ref:`dynamical_mode`.
-
-When using the fixed mode with `QhX_dynamical`, all functionalities from `QhX` (version 0.1.1) are available, providing complete compatibility and functionality in a single package.
+This documentation provides examples demonstrating the usage of both **dynamic** and **fixed** modes of ``QhX_dynamical``. For an example of the **dynamic mode**, refer to :ref:`dynamical_mode`.
 
 License and Open-Source Information
 -----------------------------------
-Both `QhX` and `QhX_dynamical` are open-source projects licensed under the MIT License. You are free to use, modify, and distribute them under the terms of this license.
-
+``QhX`` is an open-source project licensed under the **MIT License**. You are free to use, modify, and distribute it in accordance with the terms of this license.
 

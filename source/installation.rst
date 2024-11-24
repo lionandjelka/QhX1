@@ -3,15 +3,6 @@ Installation
 
 The QhX package can be installed along with its necessary dependencies using pip. Ensure that you have Python and pip installed on your system before proceeding.
 
-Installing with pip
--------------------
-
-You can install the package directly from PyPI  using the following command:
-
-.. code-block:: bash
-
-    pip install QhX==0.2.0
-
 Users can install QhX by cloning its repository and installing it manually:
 
 .. code-block:: bash

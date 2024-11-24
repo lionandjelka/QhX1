@@ -6,13 +6,7 @@ Getting started with QhX is simple. Follow the steps below to begin analyzing qu
 Step 1: Installation
 --------------------
 
-First, install the QhX package if you have not already. You can do this using pip:
-
-.. code-block:: bash
-
-    pip install QhX
-
-Or, if you are installing from the source:
+First, install the QhX package if you have not already. 
 
 .. code-block:: bash
 
@@ -187,8 +181,8 @@ Once QhX is installed, and you have confirmed that the tests pass, you can impor
 .. code-block:: python
 
     import QhX
-	import numpy as np
-	import pandas as pd
+    import numpy as np
+    import pandas as pd
 
 Step 4: Loading Data
 --------------------
@@ -198,9 +192,9 @@ Load your light curve data into QhX. For example importing parquet LSST AGN Data
 .. code-block:: python
 
     from QhX.data_manager import DataManager
-	data_manager = DataManager()
-	fs_df = data_manager.load_fs_df('https://zenodo.org/record/6878414/files/ForcedSourceTable.parquet')
-	fs_gp = data_manager.group_fs_df()
+    data_manager = DataManager()
+    fs_df = data_manager.load_fs_df('https://zenodo.org/record/6878414/files/ForcedSourceTable.parquet')
+    fs_gp = data_manager.group_fs_df()
 
 You should see the message like this, indicating that parquet is loaded
 
@@ -222,11 +216,11 @@ You should see the message like this, indicating that parquet is loaded
 .. code-block:: text
 
   	##FIND quasars indices and transform to arrays
-	setindexnew=data_manager.get_qso(setindexqso)
-	setindexnew=np.array(setindexnew)
-	df = pd.DataFrame({'objectId': setindexnew})
-	df.set_index('objectId', inplace=True)
-	setidnew=df.index
+    setindexnew=data_manager.get_qso(setindexqso)
+    setindexnew=np.array(setindexnew)
+    df = pd.DataFrame({'objectId': setindexnew})
+    df.set_index('objectId', inplace=True)
+    setidnew=df.index
 
 Importing light curve of one object ID=1384142
 
@@ -318,8 +312,8 @@ Finally, examine the results of your analysis. Important that process1_results w
 
     from QhX.output import classify_periods, classify_period
     outt=classify_periods([process1_results])
-	outt['classification'] =outt.apply(classify_period, axis=1)
-	print(outt)
+    outt['classification'] =outt.apply(classify_period, axis=1)
+    print(outt)
 
 This will print the detected periods, their errors, significance levels, iou metric, difference among detected periods, flags.
 
@@ -346,4 +340,4 @@ This table shows an example of the output from the QhX package after analyzing l
 Further Exploration
 -------------------
 
-Now that you've had a taste of what QhX can do, explore the documentation to learn more about the available modules and functions. You can also check out the Examples section for more detailed use cases and advanced features.
+Now that you have had a taste of what QhX can do, explore the documentation to learn more about the available modules and functions. You can also check out the Examples section for more detailed use cases and advanced features.

@@ -139,3 +139,6 @@ Makefileold
 .DS_Store
 1384177
 0458387
+paper/
+codemeta.json
+generate_codemeta.rb

@@ -51,10 +51,7 @@
               <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
 <ul class="current">
 <li class="toctree-l1 current"><a class="current reference internal" href="#">Important Note</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="#distinction-between-qhx-version-0-1-1-and-version-0-2-0">Distinction between QhX Version 0.1.1 and   Version 0.2.0</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#qhx-version-0-1-1"><strong>QhX Version 0.1.1</strong></a></li>
-<li class="toctree-l2"><a class="reference internal" href="#qhx-version-0-2-0-qhx-dynamical"><strong>QhX Version 0.2.0 (`QhX_dynamical`)</strong></a></li>
-<li class="toctree-l2"><a class="reference internal" href="#usage-recommendations">Usage Recommendations</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#qhx-version-0-2-0">QhX Version 0.2.0</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#examples-and-support-for-both-modes">Examples and Support for Both Modes</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#license-and-open-source-information">License and Open-Source Information</a></li>
 </ul>
@@ -100,45 +97,22 @@
              
   <section id="important-note">
 <h1>Important Note<a class="headerlink" href="#important-note" title="Link to this heading"></a></h1>
-<section id="distinction-between-qhx-version-0-1-1-and-version-0-2-0">
-<h2>Distinction between QhX Version 0.1.1 and   Version 0.2.0<a class="headerlink" href="#distinction-between-qhx-version-0-1-1-and-version-0-2-0" title="Link to this heading"></a></h2>
-<p>Both versions are standalone and can be used independently, depending on your dataset and computational requirements.</p>
-<p>In this documentation, we will refer to <strong>QhX Version 0.2.0</strong> as <strong>QhX_dynamical</strong> for brevity. Any references to <cite>QhX_dynamical</cite> indicate features and updates specific to Version 0.2.0 and onward.</p>
-</section>
-<section id="qhx-version-0-1-1">
-<h2><strong>QhX Version 0.1.1</strong><a class="headerlink" href="#qhx-version-0-1-1" title="Link to this heading"></a></h2>
+<section id="qhx-version-0-2-0">
+<h2>QhX Version 0.2.0<a class="headerlink" href="#qhx-version-0-2-0" title="Link to this heading"></a></h2>
 <ul class="simple">
-<li><p>Focused on analyzing datasets with consistent filter configurations.</p></li>
-<li><p>Ideal for static time-domain surveys where filter sets remain unchanged across observations.</p></li>
-<li><p>Includes tools for:
-- Photometric reverberation mapping.
-- Multi-periodicity detection within red noise environments.</p></li>
-</ul>
-</section>
-<section id="qhx-version-0-2-0-qhx-dynamical">
-<h2><strong>QhX Version 0.2.0 (`QhX_dynamical`)</strong><a class="headerlink" href="#qhx-version-0-2-0-qhx-dynamical" title="Link to this heading"></a></h2>
-<ul class="simple">
-<li><p>Extends the capabilities of <cite>QhX</cite> to support datasets with dynamic filter changes across observations.</p></li>
-<li><p>Fully supports fixed-mode functionalities when the mode is set to ‘fixed’, making it versatile for both dynamic and static datasets.</p></li>
-<li><p>Integrates a parallel processing solver (<cite>ParallelSolver</cite>) for efficient computation and handling of large datasets.</p></li>
-<li><p>Includes an advanced seeding mechanism for reproducibility, especially for datasets with large object IDs.</p></li>
-</ul>
-</section>
-<section id="usage-recommendations">
-<h2>Usage Recommendations<a class="headerlink" href="#usage-recommendations" title="Link to this heading"></a></h2>
-<ul class="simple">
-<li><p><strong>Use `QhX (0.1.1)`</strong>: When your dataset has consistent filters across all observations and does not require dynamic processing.</p></li>
-<li><p><strong>Use `QhX_dynamical`</strong>: For flexible handling of datasets that may have variable filters or for when you prefer the option to switch between dynamic and fixed modes seamlessly.</p></li>
+<li><p>Fully supports datasets with dynamic filter changes across observations. <cite>dynamical_mode</cite>  module  handles both dynamic and fixed configurations, enabling more complex workflows. Combining both modes in a single module allows easier upgrades if workflows evolve from fixed to dynamic or need to accommodate hybrid datasets.</p></li>
+<li><p>Some service modules outside <cite>dynamical_mode</cite> are dedicated to fixed-only workflows, providing less overhead in performance while retaining efficiency.</p></li>
+<li><p>Integrates a parallel processing solver (<code class="docutils literal notranslate"><span class="pre">ParallelSolver</span></code>) to efficiently handle large datasets and computationally intensive tasks.</p></li>
+<li><p>Includes an advanced seeding mechanism for reproducibility, particularly for datasets with large object IDs.</p></li>
 </ul>
 </section>
 <section id="examples-and-support-for-both-modes">
 <h2>Examples and Support for Both Modes<a class="headerlink" href="#examples-and-support-for-both-modes" title="Link to this heading"></a></h2>
-<p>The usage examples in the documentation showcase how to implement both dynamic and fixed modes with <cite>QhX_dynamical</cite>.  Example for the <strong>dynamical mode</strong> of the package is given in <a class="reference internal" href="dynamical_mode.html#dynamical-mode"><span class="std std-ref">Dynamical Mode Module</span></a>.</p>
-<p>When using the fixed mode with <cite>QhX_dynamical</cite>, all functionalities from <cite>QhX</cite> (version 0.1.1) are available, providing complete compatibility and functionality in a single package.</p>
+<p>This documentation provides examples demonstrating the usage of both <strong>dynamic</strong> and <strong>fixed</strong> modes of <code class="docutils literal notranslate"><span class="pre">QhX_dynamical</span></code>. For an example of the <strong>dynamic mode</strong>, refer to <a class="reference internal" href="dynamical_mode.html#dynamical-mode"><span class="std std-ref">Dynamical Mode Module</span></a>.</p>
 </section>
 <section id="license-and-open-source-information">
 <h2>License and Open-Source Information<a class="headerlink" href="#license-and-open-source-information" title="Link to this heading"></a></h2>
-<p>Both <cite>QhX</cite> and <cite>QhX_dynamical</cite> are open-source projects licensed under the MIT License. You are free to use, modify, and distribute them under the terms of this license.</p>
+<p><code class="docutils literal notranslate"><span class="pre">QhX</span></code> is an open-source project licensed under the <strong>MIT License</strong>. You are free to use, modify, and distribute it in accordance with the terms of this license.</p>
 </section>
 </section>
 

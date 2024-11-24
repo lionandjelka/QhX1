@@ -104,11 +104,7 @@
 <p>Getting started with QhX is simple. Follow the steps below to begin analyzing quasar light curves.</p>
 <section id="step-1-installation">
 <h2>Step 1: Installation<a class="headerlink" href="#step-1-installation" title="Link to this heading"></a></h2>
-<p>First, install the QhX package if you have not already. You can do this using pip:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>pip<span class="w"> </span>install<span class="w"> </span>QhX
-</pre></div>
-</div>
-<p>Or, if you are installing from the source:</p>
+<p>First, install the QhX package if you have not already.</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>git<span class="w"> </span>clone<span class="w"> </span>https://github.com/lionandjelka/QhX1.git
 <span class="nb">cd</span><span class="w"> </span>QhX
 pip<span class="w"> </span>install<span class="w"> </span>.
@@ -245,8 +241,8 @@ Merged result file content correct.
 <h2>Step 3: Importing the Package<a class="headerlink" href="#step-3-importing-the-package" title="Link to this heading"></a></h2>
 <p>Once QhX is installed, and you have confirmed that the tests pass, you can import it into your Python script or interactive session:</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">QhX</span>
-    <span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
-    <span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
 </pre></div>
 </div>
 </section>
@@ -254,9 +250,9 @@ Merged result file content correct.
 <h2>Step 4: Loading Data<a class="headerlink" href="#step-4-loading-data" title="Link to this heading"></a></h2>
 <p>Load your light curve data into QhX. For example importing parquet LSST AGN Data Challange:</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">QhX.data_manager</span> <span class="kn">import</span> <span class="n">DataManager</span>
-    <span class="n">data_manager</span> <span class="o">=</span> <span class="n">DataManager</span><span class="p">()</span>
-    <span class="n">fs_df</span> <span class="o">=</span> <span class="n">data_manager</span><span class="o">.</span><span class="n">load_fs_df</span><span class="p">(</span><span class="s1">&#39;https://zenodo.org/record/6878414/files/ForcedSourceTable.parquet&#39;</span><span class="p">)</span>
-    <span class="n">fs_gp</span> <span class="o">=</span> <span class="n">data_manager</span><span class="o">.</span><span class="n">group_fs_df</span><span class="p">()</span>
+<span class="n">data_manager</span> <span class="o">=</span> <span class="n">DataManager</span><span class="p">()</span>
+<span class="n">fs_df</span> <span class="o">=</span> <span class="n">data_manager</span><span class="o">.</span><span class="n">load_fs_df</span><span class="p">(</span><span class="s1">&#39;https://zenodo.org/record/6878414/files/ForcedSourceTable.parquet&#39;</span><span class="p">)</span>
+<span class="n">fs_gp</span> <span class="o">=</span> <span class="n">data_manager</span><span class="o">.</span><span class="n">group_fs_df</span><span class="p">()</span>
 </pre></div>
 </div>
 <p>You should see the message like this, indicating that parquet is loaded</p>
@@ -272,7 +268,7 @@ Forced source data grouped successfully.
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>Object data loaded and processed successfully.
 </pre></div>
 </div>
-<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>##FIND quasars indices and transform to arrays
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>    ##FIND quasars indices and transform to arrays
 setindexnew=data_manager.get_qso(setindexqso)
 setindexnew=np.array(setindexnew)
 df = pd.DataFrame({&#39;objectId&#39;: setindexnew})
@@ -361,8 +357,8 @@ setidnew=df.index
 <p>Finally, examine the results of your analysis. Important that process1_results will be suplied as a list of dictionaries:</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">QhX.output</span> <span class="kn">import</span> <span class="n">classify_periods</span><span class="p">,</span> <span class="n">classify_period</span>
 <span class="n">outt</span><span class="o">=</span><span class="n">classify_periods</span><span class="p">([</span><span class="n">process1_results</span><span class="p">])</span>
-    <span class="n">outt</span><span class="p">[</span><span class="s1">&#39;classification&#39;</span><span class="p">]</span> <span class="o">=</span><span class="n">outt</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="n">classify_period</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
-    <span class="nb">print</span><span class="p">(</span><span class="n">outt</span><span class="p">)</span>
+<span class="n">outt</span><span class="p">[</span><span class="s1">&#39;classification&#39;</span><span class="p">]</span> <span class="o">=</span><span class="n">outt</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="n">classify_period</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">outt</span><span class="p">)</span>
 </pre></div>
 </div>
 <p>This will print the detected periods, their errors, significance levels, iou metric, difference among detected periods, flags.</p>
@@ -449,7 +445,7 @@ setidnew=df.index
 </section>
 <section id="further-exploration">
 <h2>Further Exploration<a class="headerlink" href="#further-exploration" title="Link to this heading"></a></h2>
-<p>Now that you’ve had a taste of what QhX can do, explore the documentation to learn more about the available modules and functions. You can also check out the Examples section for more detailed use cases and advanced features.</p>
+<p>Now that you have had a taste of what QhX can do, explore the documentation to learn more about the available modules and functions. You can also check out the Examples section for more detailed use cases and advanced features.</p>
 </section>
 </section>
 
