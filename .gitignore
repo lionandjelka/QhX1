@@ -1,0 +1,9 @@
+# Ignore everything
+*
+
+# Allow the paper folder
+!/paper/
+!/paper/**
+
+# Allow workflows
+!/.github/workflows/
