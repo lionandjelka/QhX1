@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Large Test Data Setup Guide &mdash; QhX1 0.2.0 documentation</title>
+      <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="_static/jquery.js?v=5d32c60e"></script>
+        <script src="_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script src="_static/documentation_options.js?v=938c9ccc"></script>
+        <script src="_static/doctools.js?v=888ff710"></script>
+        <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+        <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+        <script src="https://unpkg.com/@jupyter-widgets/html-manager@^0.20.0/dist/embed-amd.js"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Installation" href="installation.html" />
+    <link rel="prev" title="Important Note" href="important_note.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search"  style="background: white" >
+
+          
+          
+          <a href="index.html" class="icon icon-home">
+            QhX1
+              <img src="_static/logo.png" class="logo" alt="Logo"/>
+          </a>
+              <div class="version">
+                0.2.0
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="important_note.html">Important Note</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Large Test Data Setup Guide</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#download-the-data-files">Download the Data Files</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#setting-up-the-data-directory">Setting Up the Data Directory</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#automated-setup-script-optional">Automated Setup Script (Optional)</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="installation.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="quick_start.html">Quick Start Tutorial</a></li>
+<li class="toctree-l1"><a class="reference internal" href="test_integrated.html">test_integrated</a></li>
+<li class="toctree-l1"><a class="reference internal" href="examples.html">Examples</a></li>
+<li class="toctree-l1"><a class="reference internal" href="introduction.html">Motivation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="introduction.html#theoretical-background">Theoretical background</a></li>
+<li class="toctree-l1"><a class="reference internal" href="introduction.html#qhx-project-history">QhX Project History</a></li>
+<li class="toctree-l1"><a class="reference internal" href="introduction.html#qhx-package-overview">QhX Package Overview</a></li>
+<li class="toctree-l1"><a class="reference internal" href="package.html">Package Modules</a></li>
+<li class="toctree-l1"><a class="reference internal" href="faq.html">Frequently Asked Questions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="license.html">License</a></li>
+<li class="toctree-l1"><a class="reference internal" href="support_and_contact.html">Support and Contact Information</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu"  style="background: white" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">QhX1</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Large Test Data Setup Guide</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="_sources/LargeData.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="large-test-data-setup-guide">
+<h1>Large Test Data Setup Guide<a class="headerlink" href="#large-test-data-setup-guide" title="Link to this heading"></a></h1>
+<p>Some test data files required by this package are too large to store in the GitHub repository. Follow the instructions below to download these files from Google Drive and set them up locally.</p>
+<section id="download-the-data-files">
+<h2>Download the Data Files<a class="headerlink" href="#download-the-data-files" title="Link to this heading"></a></h2>
+<p>Download each of the following files:</p>
+<ul class="simple">
+<li><p><strong>GaiaQSOcandsLCNobsGgt900.pqt</strong>: Download from [Google Drive link](<a class="reference external" href="https://drive.google.com/file/d/1lNMh2TW8Vo1keJG4NTd67rMmNRymnEwW/view?usp=sharing">https://drive.google.com/file/d/1lNMh2TW8Vo1keJG4NTd67rMmNRymnEwW/view?usp=sharing</a>)</p></li>
+<li><p><strong>qhx-batch.zip</strong>: Download from [Google Drive link](<a class="reference external" href="https://drive.google.com/file/d/16lSiNCNS3pX2raATTBl9CjIcechfXWvs/view?usp=sharing">https://drive.google.com/file/d/16lSiNCNS3pX2raATTBl9CjIcechfXWvs/view?usp=sharing</a>)</p></li>
+</ul>
+</section>
+<section id="setting-up-the-data-directory">
+<h2>Setting Up the Data Directory<a class="headerlink" href="#setting-up-the-data-directory" title="Link to this heading"></a></h2>
+<ol class="arabic">
+<li><p><strong>Locate the `data/` Directory</strong></p>
+<p>In your local clone of the repository, navigate to the main package directory where you should see a folder named <cite>data/</cite>. If the folder doesn’t exist, create it using:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>mkdir<span class="w"> </span>data
+</pre></div>
+</div>
+</li>
+<li><p><strong>Move the Downloaded Files</strong></p>
+<p>After downloading, move the files to the <cite>data/</cite> directory. For example:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>mv<span class="w"> </span>/path/to/Downloads/GaiaQSOcandsLCNobsGgt900.pqt<span class="w"> </span>data/
+mv<span class="w"> </span>/path/to/Downloads/qhx-batch.zip<span class="w"> </span>data/
+</pre></div>
+</div>
+</li>
+<li><p><strong>Verify the Files</strong></p>
+<p>Confirm that the files are in the correct location by listing the contents of the <cite>data/</cite> directory:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>ls<span class="w"> </span>data/
+</pre></div>
+</div>
+<p>You should see:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>GaiaQSOcandsLCNobsGgt900.pqt
+qhx-batch.zip
+</pre></div>
+</div>
+</li>
+</ol>
+</section>
+<section id="automated-setup-script-optional">
+<h2>Automated Setup Script (Optional)<a class="headerlink" href="#automated-setup-script-optional" title="Link to this heading"></a></h2>
+<p>Also, you can use a script to automate this setup process. Save the following as <cite>download_data.sh</cite> in your package directory, then run it to download the files directly into the <cite>data/</cite> directory.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="ch">#!/bin/bash</span>
+
+<span class="c1"># Create data directory if it doesn&#39;t exist</span>
+mkdir<span class="w"> </span>-p<span class="w"> </span>data
+
+<span class="c1"># Download files from Google Drive</span>
+curl<span class="w"> </span>-L<span class="w"> </span>-o<span class="w"> </span>data/GaiaQSOcandsLCNobsGgt900.pqt<span class="w"> </span><span class="s2">&quot;https://drive.google.com/file/d/1lNMh2TW8Vo1keJG4NTd67rMmNRymnEwW/view?usp=sharing&quot;</span>
+curl<span class="w"> </span>-L<span class="w"> </span>-o<span class="w"> </span>data/qhx-batch.zip<span class="w"> </span><span class="s2">&quot;https://drive.google.com/file/d/16lSiNCNS3pX2raATTBl9CjIcechfXWvs/view?usp=sharing&quot;</span>
+
+<span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;Files downloaded and placed in the data/ directory.&quot;</span>
+</pre></div>
+</div>
+<p>Run the script:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>bash<span class="w"> </span>download_data.sh
+</pre></div>
+</div>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="important_note.html" class="btn btn-neutral float-left" title="Important Note" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="installation.html" class="btn btn-neutral float-right" title="Installation" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2023, Andjelka Kovacevic.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+    <!-- Theme Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'G-XXXXXXXXXX', {
+          'anonymize_ip': false,
+      });
+    </script> 
+
+</body>
+</html>

@@ -1,0 +1,398 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>QhX.calculation &mdash; QhX1 0.2.0 documentation</title>
+      <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="../../_static/jquery.js?v=5d32c60e"></script>
+        <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script src="../../_static/documentation_options.js?v=938c9ccc"></script>
+        <script src="../../_static/doctools.js?v=888ff710"></script>
+        <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+        <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+        <script src="https://unpkg.com/@jupyter-widgets/html-manager@^0.20.0/dist/embed-amd.js"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search"  style="background: white" >
+
+          
+          
+          <a href="../../index.html" class="icon icon-home">
+            QhX1
+              <img src="../../_static/logo.png" class="logo" alt="Logo"/>
+          </a>
+              <div class="version">
+                0.2.0
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../important_note.html">Important Note</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../LargeData.html">Large Test Data Setup Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../installation.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../quick_start.html">Quick Start Tutorial</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../test_integrated.html">test_integrated</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../examples.html">Examples</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../introduction.html">Motivation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../introduction.html#theoretical-background">Theoretical background</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../introduction.html#qhx-project-history">QhX Project History</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../introduction.html#qhx-package-overview">QhX Package Overview</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../package.html">Package Modules</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../faq.html">Frequently Asked Questions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../license.html">License</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../support_and_contact.html">Support and Contact Information</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu"  style="background: white" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">QhX1</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../index.html">Module code</a></li>
+      <li class="breadcrumb-item active">QhX.calculation</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <h1>Source code for QhX.calculation</h1><div class="highlight"><pre>
+<span></span><span class="kn">from</span> <span class="nn">libwwz</span> <span class="kn">import</span> <span class="n">wwt</span> <span class="k">as</span> <span class="n">libwwz_wwt</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">from</span> <span class="nn">scipy.stats.mstats</span> <span class="kn">import</span> <span class="n">mquantiles</span>
+<span class="kn">from</span> <span class="nn">scipy</span> <span class="kn">import</span> <span class="n">interpolate</span><span class="p">,</span> <span class="n">optimize</span>
+<span class="kn">from</span> <span class="nn">scipy.signal</span> <span class="kn">import</span> <span class="n">find_peaks</span>
+<span class="kn">from</span> <span class="nn">sklearn.utils</span> <span class="kn">import</span> <span class="n">shuffle</span>
+<span class="kn">from</span> <span class="nn">QhX.algorithms.wavelets.wwtz</span> <span class="kn">import</span> <span class="o">*</span>
+<span class="kn">from</span> <span class="nn">QhX.utils.correlation</span> <span class="kn">import</span> <span class="n">correlation_nd</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+
+
+
+
+<div class="viewcode-block" id="get_full_width">
+<a class="viewcode-back" href="../../calculation.html#QhX.calculation.get_full_width">[docs]</a>
+<span class="k">def</span> <span class="nf">get_full_width</span><span class="p">(</span><span class="n">x</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">,</span> <span class="n">y</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">,</span> <span class="n">peak</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">,</span> <span class="n">height</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">0.5</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">tuple</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Calculate the error of the determined period using the FWHM method and determine quantiles.</span>
+<span class="sd">    This function calculates the error of the determined period using the Full Width at Half Maximum (FWHM) method.</span>
+<span class="sd">    It is part of a post-mortem analysis to estimate the period uncertainty based on the Mean Noise Power Level (MNPL) in the vicinity of the peak.</span>
+<span class="sd">    The function detects the FWHM of a peak and then calculates the points between the 25th and 75th quantile to find MNPL.</span>
+
+<span class="sd">    Parameters:</span>
+<span class="sd">    -----------</span>
+<span class="sd">    - x (np.ndarray): An array containing the x-axis values (e.g., time).</span>
+<span class="sd">    - y (np.ndarray): An array containing the corresponding y-axis values (e.g., intensity).</span>
+<span class="sd">    - peak (np.ndarray): An array containing the indices of determined peaks.</span>
+<span class="sd">    - height (float, optional): The fraction of the peak&#39;s maximum height to define the FWHM. Default is 0.5.</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">    --------</span>
+<span class="sd">    tuple: A tuple containing six arrays of results:</span>
+
+<span class="sd">    - er1: An array of lower x-values for quantiles.</span>
+<span class="sd">    - er3: An array of upper x-values for quantiles.</span>
+<span class="sd">    - quantiles: An array of quantiles (25th and 75th percentile) calculated from peak data.</span>
+<span class="sd">    - phmax: An array of half the peak&#39;s maximum height.</span>
+<span class="sd">    - x_lows: An array of lower x-values corresponding to the FWHM.</span>
+<span class="sd">    - x_highs: An array of upper x-values corresponding to the FWHM.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">er1</span><span class="p">,</span> <span class="n">er3</span><span class="p">,</span> <span class="n">quantiles</span><span class="p">,</span> <span class="n">phmax</span><span class="p">,</span> <span class="n">x_lows</span><span class="p">,</span> <span class="n">x_highs</span> <span class="o">=</span> <span class="p">[],</span> <span class="p">[],</span> <span class="p">[],</span> <span class="p">[],</span> <span class="p">[],</span> <span class="p">[]</span>
+
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">peak</span><span class="p">)):</span>
+        <span class="n">height_half_max</span> <span class="o">=</span> <span class="n">y</span><span class="p">[</span><span class="n">peak</span><span class="p">[</span><span class="n">i</span><span class="p">]]</span> <span class="o">*</span> <span class="n">height</span>
+        <span class="n">index_max</span> <span class="o">=</span> <span class="n">peak</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
+
+        <span class="c1"># Find lower and upper bounds for the FWHM</span>
+        <span class="n">x_low</span><span class="p">,</span> <span class="n">x_high</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span>
+        <span class="n">tmp</span> <span class="o">=</span> <span class="n">index_max</span>
+        <span class="k">while</span> <span class="n">tmp</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="n">tmp</span> <span class="o">-=</span> <span class="mi">1</span>
+            <span class="k">if</span> <span class="p">(</span><span class="n">y</span><span class="p">[</span><span class="n">tmp</span><span class="p">]</span> <span class="o">-</span> <span class="n">height_half_max</span><span class="p">)</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">:</span>
+                <span class="n">x_low</span> <span class="o">=</span> <span class="n">x</span><span class="p">[</span><span class="n">tmp</span> <span class="o">+</span> <span class="mi">1</span><span class="p">]</span>
+                <span class="k">break</span>
+
+        <span class="n">tmp</span> <span class="o">=</span> <span class="n">index_max</span>
+        <span class="k">while</span> <span class="n">tmp</span> <span class="o">&lt;</span> <span class="nb">len</span><span class="p">(</span><span class="n">y</span><span class="p">)</span> <span class="o">-</span> <span class="mi">1</span><span class="p">:</span>
+            <span class="n">tmp</span> <span class="o">+=</span> <span class="mi">1</span>
+            <span class="k">if</span> <span class="p">(</span><span class="n">y</span><span class="p">[</span><span class="n">tmp</span><span class="p">]</span> <span class="o">-</span> <span class="n">height_half_max</span><span class="p">)</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">:</span>
+                <span class="n">x_high</span> <span class="o">=</span> <span class="n">x</span><span class="p">[</span><span class="n">tmp</span> <span class="o">-</span> <span class="mi">1</span><span class="p">]</span>
+                <span class="k">break</span>
+
+        <span class="c1"># Calculate quantiles</span>
+        <span class="n">q25</span><span class="p">,</span> <span class="n">q75</span><span class="p">,</span> <span class="n">xer1</span><span class="p">,</span> <span class="n">xer3</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span>
+        <span class="k">if</span> <span class="n">index_max</span> <span class="o">-</span> <span class="mi">5</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="n">arr</span> <span class="o">=</span> <span class="n">y</span><span class="p">[(</span><span class="n">x</span> <span class="o">&gt;=</span> <span class="n">x_low</span><span class="p">)</span> <span class="o">&amp;</span> <span class="p">(</span><span class="n">x</span> <span class="o">&lt;=</span> <span class="n">x_high</span><span class="p">)]</span>
+            <span class="n">q25</span><span class="p">,</span> <span class="n">q75</span> <span class="o">=</span> <span class="n">mquantiles</span><span class="p">(</span><span class="n">arr</span><span class="p">,</span> <span class="p">[</span><span class="mf">0.25</span><span class="p">,</span> <span class="mf">0.75</span><span class="p">])</span>
+
+            <span class="c1"># Interpolate to find x-values corresponding to quantiles</span>
+            <span class="n">inv_func</span> <span class="o">=</span> <span class="n">interpolate</span><span class="o">.</span><span class="n">interp1d</span><span class="p">(</span><span class="n">y</span><span class="p">[</span><span class="n">index_max</span> <span class="o">-</span> <span class="mi">5</span><span class="p">:</span><span class="n">index_max</span><span class="p">],</span> <span class="n">x</span><span class="p">[</span><span class="n">index_max</span> <span class="o">-</span> <span class="mi">5</span><span class="p">:</span><span class="n">index_max</span><span class="p">],</span> <span class="n">kind</span><span class="o">=</span><span class="s1">&#39;cubic&#39;</span><span class="p">,</span> <span class="n">fill_value</span><span class="o">=</span><span class="s2">&quot;extrapolate&quot;</span><span class="p">)</span>
+            <span class="n">inv_func2</span> <span class="o">=</span> <span class="n">interpolate</span><span class="o">.</span><span class="n">interp1d</span><span class="p">(</span><span class="n">y</span><span class="p">[</span><span class="n">index_max</span><span class="p">:</span><span class="n">index_max</span> <span class="o">+</span> <span class="mi">5</span><span class="p">],</span> <span class="n">x</span><span class="p">[</span><span class="n">index_max</span><span class="p">:</span><span class="n">index_max</span> <span class="o">+</span> <span class="mi">5</span><span class="p">],</span> <span class="n">kind</span><span class="o">=</span><span class="s1">&#39;cubic&#39;</span><span class="p">,</span> <span class="n">fill_value</span><span class="o">=</span><span class="s2">&quot;extrapolate&quot;</span><span class="p">)</span>
+            <span class="n">xer1</span> <span class="o">=</span> <span class="n">inv_func</span><span class="p">(</span><span class="n">q25</span><span class="p">)</span>
+            <span class="n">xer3</span> <span class="o">=</span> <span class="n">inv_func2</span><span class="p">(</span><span class="n">q75</span><span class="p">)</span>
+
+        <span class="c1"># Append results to respective lists</span>
+        <span class="n">er1</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">xer1</span><span class="p">)</span>
+        <span class="n">er3</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">xer3</span><span class="p">)</span>
+        <span class="n">quantiles</span><span class="o">.</span><span class="n">append</span><span class="p">([</span><span class="n">q25</span><span class="p">,</span> <span class="n">q75</span><span class="p">])</span>
+        <span class="n">phmax</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">height_half_max</span><span class="p">)</span>
+        <span class="n">x_lows</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">x_low</span><span class="p">)</span>
+        <span class="n">x_highs</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">x_high</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">er1</span><span class="p">,</span> <span class="n">er3</span><span class="p">,</span> <span class="n">quantiles</span><span class="p">,</span> <span class="n">phmax</span><span class="p">,</span> <span class="n">x_lows</span><span class="p">,</span> <span class="n">x_highs</span></div>
+
+
+<div class="viewcode-block" id="periods">
+<a class="viewcode-back" href="../../calculation.html#QhX.calculation.periods">[docs]</a>
+<span class="k">def</span> <span class="nf">periods</span><span class="p">(</span><span class="n">lcID</span><span class="p">,</span> <span class="n">data</span><span class="p">,</span> <span class="n">ngrid</span><span class="p">,</span> <span class="n">plot</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">save</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">peakHeight</span><span class="o">=</span><span class="mf">0.6</span><span class="p">,</span> <span class="n">prominence</span><span class="o">=</span><span class="mf">0.7</span><span class="p">,</span> <span class="n">minfq</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">maxfq</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">xlim</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Perform period determination for the output of hybrid2d data.</span>
+<span class="sd">    This function analyzes correlation data to determine periods of a light curve.</span>
+
+<span class="sd">    Parameters:</span>
+<span class="sd">    -----------</span>
+<span class="sd">    - lcID (int): ID of the light curve.</span>
+<span class="sd">    - data (numpy.ndarray): Auto-correlation matrix.</span>
+<span class="sd">    - ngrid (int): Number of values for controlling WWZ execution (see inp_param function).</span>
+<span class="sd">    - plot (bool): True if a plot is desired, False otherwise.</span>
+<span class="sd">    - save (bool): True to save the plot, False otherwise.</span>
+<span class="sd">    - peakHeight (float): Maximum peak height for peak detection.</span>
+<span class="sd">    - prominence (float): Prominence threshold for peak determination.</span>
+<span class="sd">    - minfq (float, optional): Minimum frequency for analysis. Default is None.</span>
+<span class="sd">    - maxfq (float, optional): Maximum frequency for analysis. Default is None.</span>
+<span class="sd">    - xlim (tuple, optional): Set the x-axis limits for the plot. Default is None.</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">    --------</span>
+<span class="sd">    A tuple containing:</span>
+
+<span class="sd">    - idx_peaks (list): Indices of detected peaks.</span>
+<span class="sd">    - yax (numpy.ndarray): Processed data.</span>
+<span class="sd">    - r_peaks (list): Detected periods.</span>
+<span class="sd">    - r_peaks_err_upper (list): Upper errors of corresponding periods.</span>
+<span class="sd">    - r_peaks_err_lower (list): Lower errors of corresponding periods.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="c1"># Existing implementation remains unchanged...</span>
+    <span class="n">hh1</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">rot90</span><span class="p">(</span><span class="n">data</span><span class="p">)</span><span class="o">.</span><span class="n">T</span> <span class="o">/</span> <span class="n">np</span><span class="o">.</span><span class="n">rot90</span><span class="p">(</span><span class="n">data</span><span class="p">)</span><span class="o">.</span><span class="n">T</span><span class="o">.</span><span class="n">max</span><span class="p">()</span>
+    <span class="n">hh1arr</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">rot90</span><span class="p">(</span><span class="n">hh1</span><span class="o">.</span><span class="n">T</span><span class="p">)</span>
+    <span class="n">hh1arr1</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">hh1arr</span><span class="p">)</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span> <span class="o">/</span> <span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">hh1arr</span><span class="p">)</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">max</span><span class="p">()</span>
+
+    <span class="c1"># Calculate frequency parameters</span>
+    <span class="n">fmin</span> <span class="o">=</span> <span class="mi">1</span> <span class="o">/</span> <span class="n">minfq</span>
+    <span class="n">fmax</span> <span class="o">=</span> <span class="mi">1</span> <span class="o">/</span> <span class="n">maxfq</span>
+    <span class="n">df</span> <span class="o">=</span> <span class="p">(</span><span class="n">fmax</span> <span class="o">-</span> <span class="n">fmin</span><span class="p">)</span> <span class="o">/</span> <span class="n">ngrid</span>
+
+    <span class="c1"># Interpolate data to obtain more points</span>
+    <span class="n">osax</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">start</span><span class="o">=</span><span class="n">fmin</span><span class="p">,</span> <span class="n">stop</span><span class="o">=</span><span class="n">fmax</span> <span class="o">+</span> <span class="n">df</span><span class="p">,</span> <span class="n">step</span><span class="o">=</span><span class="n">df</span><span class="p">)</span>
+    <span class="n">xax</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">start</span><span class="o">=</span><span class="n">fmin</span><span class="p">,</span> <span class="n">stop</span><span class="o">=</span><span class="n">fmax</span> <span class="o">+</span> <span class="n">df</span><span class="p">,</span> <span class="n">step</span><span class="o">=</span><span class="n">df</span> <span class="o">/</span> <span class="mi">2</span><span class="p">)</span>
+    <span class="kn">from</span> <span class="nn">scipy</span> <span class="kn">import</span> <span class="n">interpolate</span>
+    <span class="n">f</span> <span class="o">=</span> <span class="n">interpolate</span><span class="o">.</span><span class="n">interp1d</span><span class="p">(</span><span class="n">osax</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">hh1arr1</span><span class="p">),</span> <span class="n">fill_value</span><span class="o">=</span><span class="s2">&quot;extrapolate&quot;</span><span class="p">)</span>
+    <span class="n">yax</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="k">for</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">xax</span><span class="p">:</span>
+        <span class="n">yax</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="nb">float</span><span class="p">(</span><span class="n">f</span><span class="p">(</span><span class="n">v</span><span class="p">)))</span>
+    <span class="n">yax</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">yax</span><span class="p">)</span>
+
+    <span class="c1"># Finding peaks</span>
+    <span class="n">peaks</span><span class="p">,</span> <span class="n">_</span> <span class="o">=</span> <span class="n">find_peaks</span><span class="p">(</span><span class="n">yax</span><span class="p">,</span> <span class="n">peakHeight</span><span class="p">,</span> <span class="n">prominence</span><span class="o">=</span><span class="n">prominence</span><span class="p">)</span>
+
+    <span class="c1"># Plotting if needed</span>
+    <span class="k">if</span> <span class="n">plot</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">xlim</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">plt</span><span class="o">.</span><span class="n">xlim</span><span class="p">(</span><span class="n">xlim</span><span class="p">)</span>
+        <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">xax</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">yax</span><span class="p">))</span>
+        <span class="n">plt</span><span class="o">.</span><span class="n">axvline</span><span class="p">(</span><span class="n">xax</span><span class="p">[</span><span class="n">peaks</span><span class="p">[</span><span class="mi">0</span><span class="p">]],</span> <span class="n">ymin</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">ymax</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">linestyle</span><span class="o">=</span><span class="s1">&#39;--&#39;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;k&#39;</span><span class="p">)</span>
+        <span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">lcID</span><span class="p">))</span>
+        <span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;Frequency [day$^{-1}$]&#39;</span><span class="p">)</span>
+        <span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="sa">r</span><span class="s2">&quot;correlation&quot;</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">save</span><span class="p">:</span>
+            <span class="n">plt</span><span class="o">.</span><span class="n">savefig</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">lcID</span><span class="p">)</span> <span class="o">+</span> <span class="s1">&#39;stackd_h2d.png&#39;</span><span class="p">)</span>
+
+    <span class="c1"># Get error estimates for each peak (period)</span>
+    <span class="n">error_upper</span><span class="p">,</span> <span class="n">error_lower</span><span class="p">,</span> <span class="n">quantiles</span><span class="p">,</span> <span class="n">halfmax</span><span class="p">,</span> <span class="n">x_lows</span><span class="p">,</span> <span class="n">x_highs</span> <span class="o">=</span> <span class="n">get_full_width</span><span class="p">(</span><span class="n">xax</span><span class="p">,</span> <span class="n">yax</span><span class="p">,</span> <span class="n">peaks</span><span class="p">)</span>
+
+    <span class="k">if</span> <span class="n">plot</span><span class="p">:</span>
+        <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">xax</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">yax</span><span class="p">))</span>
+        <span class="k">if</span> <span class="n">xlim</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">plt</span><span class="o">.</span><span class="n">xlim</span><span class="p">(</span><span class="n">xlim</span><span class="p">)</span>
+        <span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">lcID</span><span class="p">))</span>
+        <span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;Frequency [day$^{-1}$]&#39;</span><span class="p">)</span>
+        <span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="sa">r</span><span class="s2">&quot;correlation&quot;</span><span class="p">)</span>
+
+        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">peaks</span><span class="p">)):</span>
+            <span class="n">plt</span><span class="o">.</span><span class="n">axvline</span><span class="p">(</span><span class="n">xax</span><span class="p">[</span><span class="n">peaks</span><span class="p">[</span><span class="n">i</span><span class="p">]],</span> <span class="n">ymin</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">ymax</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">linestyle</span><span class="o">=</span><span class="s1">&#39;--&#39;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;black&#39;</span><span class="p">)</span>
+            <span class="n">plt</span><span class="o">.</span><span class="n">axhline</span><span class="p">(</span><span class="n">quantiles</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="mi">0</span><span class="p">],</span> <span class="n">linestyle</span><span class="o">=</span><span class="s1">&#39;--&#39;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;green&#39;</span><span class="p">)</span>
+            <span class="n">plt</span><span class="o">.</span><span class="n">axhline</span><span class="p">(</span><span class="n">quantiles</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="mi">1</span><span class="p">],</span> <span class="n">linestyle</span><span class="o">=</span><span class="s1">&#39;--&#39;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;red&#39;</span><span class="p">)</span>
+            <span class="n">plt</span><span class="o">.</span><span class="n">axvline</span><span class="p">(</span><span class="n">x_lows</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="n">ymin</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">ymax</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">linestyle</span><span class="o">=</span><span class="s1">&#39;--&#39;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;blue&#39;</span><span class="p">)</span>
+            <span class="n">plt</span><span class="o">.</span><span class="n">axvline</span><span class="p">(</span><span class="n">x_highs</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="n">ymin</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">ymax</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">linestyle</span><span class="o">=</span><span class="s1">&#39;--&#39;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;blue&#39;</span><span class="p">)</span>
+            <span class="n">plt</span><span class="o">.</span><span class="n">axhline</span><span class="p">(</span><span class="n">halfmax</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="n">linestyle</span><span class="o">=</span><span class="s1">&#39;--&#39;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;purple&#39;</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="n">save</span><span class="p">:</span>
+            <span class="n">plt</span><span class="o">.</span><span class="n">savefig</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">lcID</span><span class="p">)</span> <span class="o">+</span> <span class="s1">&#39;stackd_h2d_peaks.png&#39;</span><span class="p">)</span>
+
+    <span class="c1"># Prepare the output</span>
+    <span class="n">r_peaks</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="n">r_peaks_err_upper</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="n">r_peaks_err_lower</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="n">idx_peaks</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">peaks</span><span class="p">)):</span>
+        <span class="n">r_peaks</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="mi">1</span> <span class="o">/</span> <span class="n">xax</span><span class="p">[</span><span class="n">peaks</span><span class="p">[</span><span class="n">i</span><span class="p">]])</span>
+        <span class="n">idx_peaks</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">peaks</span><span class="p">[</span><span class="n">i</span><span class="p">])</span>
+        <span class="k">if</span> <span class="n">error_upper</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="n">r_peaks_err_upper</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">r_peaks_err_upper</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="mi">1</span> <span class="o">/</span> <span class="n">xax</span><span class="p">[</span><span class="n">peaks</span><span class="p">[</span><span class="n">i</span><span class="p">]]</span> <span class="o">-</span> <span class="p">(</span><span class="mi">1</span> <span class="o">/</span> <span class="n">error_upper</span><span class="p">[</span><span class="n">i</span><span class="p">])))</span>
+        <span class="k">if</span> <span class="n">error_lower</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="n">r_peaks_err_lower</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">r_peaks_err_lower</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="mi">1</span> <span class="o">/</span> <span class="n">xax</span><span class="p">[</span><span class="n">peaks</span><span class="p">[</span><span class="n">i</span><span class="p">]]</span> <span class="o">-</span> <span class="p">(</span><span class="mi">1</span> <span class="o">/</span> <span class="n">error_lower</span><span class="p">[</span><span class="n">i</span><span class="p">])))</span>
+
+    <span class="k">return</span> <span class="n">idx_peaks</span><span class="p">,</span> <span class="n">yax</span><span class="p">,</span> <span class="n">r_peaks</span><span class="p">,</span> <span class="n">r_peaks_err_upper</span><span class="p">,</span> <span class="n">r_peaks_err_lower</span></div>
+
+
+
+
+<div class="viewcode-block" id="signif_johnson">
+<a class="viewcode-back" href="../../calculation.html#QhX.calculation.signif_johnson">[docs]</a>
+<span class="k">def</span> <span class="nf">signif_johnson</span><span class="p">(</span><span class="n">numlc</span><span class="p">,</span> <span class="n">peak</span><span class="p">,</span> <span class="n">idx_peaks</span><span class="p">,</span> <span class="n">yax</span><span class="p">,</span> <span class="n">tt</span><span class="p">,</span> <span class="n">yy</span><span class="p">,</span> <span class="n">ntau</span><span class="p">,</span> <span class="n">ngrid</span><span class="p">,</span> <span class="n">f</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">peakHeight</span><span class="o">=</span><span class="mf">0.6</span><span class="p">,</span> <span class="n">minfq</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">maxfq</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">algorithm</span><span class="o">=</span><span class="s1">&#39;wwz&#39;</span><span class="p">,</span> <span class="n">method</span><span class="o">=</span><span class="s1">&#39;linear&#39;</span><span class="p">,</span> <span class="n">use_mag_errors</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">err_mag</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Assess the significance of detected peaks in light curve data using the Johnson method,</span>
+<span class="sd">    with an option to incorporate magnitude errors into the analysis.</span>
+
+<span class="sd">    Parameters and returns are the same as described before.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="c1"># Interpolation parameters</span>
+    <span class="n">fmin</span> <span class="o">=</span> <span class="mi">1</span> <span class="o">/</span> <span class="n">minfq</span>
+    <span class="n">fmax</span> <span class="o">=</span> <span class="mi">1</span> <span class="o">/</span> <span class="n">maxfq</span>
+    <span class="n">df</span> <span class="o">=</span> <span class="p">(</span><span class="n">fmax</span> <span class="o">-</span> <span class="n">fmin</span><span class="p">)</span> <span class="o">/</span> <span class="n">ngrid</span>
+    <span class="n">osax</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">start</span><span class="o">=</span><span class="n">fmin</span><span class="p">,</span> <span class="n">stop</span><span class="o">=</span><span class="n">fmax</span> <span class="o">+</span> <span class="n">df</span><span class="p">,</span> <span class="n">step</span><span class="o">=</span><span class="n">df</span><span class="p">)</span>
+    <span class="n">xax</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">start</span><span class="o">=</span><span class="n">fmin</span><span class="p">,</span> <span class="n">stop</span><span class="o">=</span><span class="n">fmax</span> <span class="o">+</span> <span class="n">df</span><span class="p">,</span> <span class="n">step</span><span class="o">=</span><span class="n">df</span> <span class="o">/</span> <span class="mi">2</span><span class="p">)</span>
+
+    <span class="n">idxrep</span> <span class="o">=</span> <span class="n">idx_peaks</span><span class="p">[</span><span class="n">peak</span><span class="p">]</span>
+    <span class="n">count</span> <span class="o">=</span> <span class="mf">0.</span>  <span class="c1"># Peak power larger than red noise peak power</span>
+    <span class="n">count11</span> <span class="o">=</span> <span class="mf">0.</span>  <span class="c1"># Peak power of red noise larger than observed peak power</span>
+    <span class="n">bins11</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="n">bins</span> <span class="o">=</span> <span class="p">[]</span>
+
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">numlc</span><span class="p">):</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">use_mag_errors</span><span class="p">:</span>
+                <span class="k">if</span> <span class="n">err_mag</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+                    <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;Magnitude errors (err_mag) must be provided if use_mag_errors is True&quot;</span><span class="p">)</span>
+                <span class="c1"># Shuffle magnitudes and errors</span>
+                <span class="n">mag_err_combined</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">column_stack</span><span class="p">((</span><span class="n">yy</span><span class="p">,</span> <span class="n">err_mag</span><span class="p">))</span>
+                <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">shuffle</span><span class="p">(</span><span class="n">mag_err_combined</span><span class="p">)</span>
+                <span class="n">shuffled_yy</span><span class="p">,</span> <span class="n">shuffled_err_mag</span> <span class="o">=</span> <span class="n">mag_err_combined</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">],</span> <span class="n">mag_err_combined</span><span class="p">[:,</span> <span class="mi">1</span><span class="p">]</span>
+                <span class="n">y</span> <span class="o">=</span> <span class="n">shuffled_yy</span> <span class="o">+</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">normal</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">shuffled_err_mag</span><span class="p">)</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">y</span> <span class="o">=</span> <span class="n">shuffle</span><span class="p">(</span><span class="n">yy</span><span class="p">)</span>
+
+            <span class="c1"># WWZ analysis or other algorithm using &#39;y&#39;</span>
+            <span class="n">ntau</span><span class="p">,</span> <span class="n">params</span><span class="p">,</span> <span class="n">decay_constant</span><span class="p">,</span> <span class="n">parallel</span> <span class="o">=</span> <span class="n">inp_param</span><span class="p">(</span><span class="n">ntau</span><span class="o">=</span><span class="n">ntau</span><span class="p">,</span> <span class="n">ngrid</span><span class="o">=</span><span class="n">ngrid</span><span class="p">,</span> <span class="n">f</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">minfq</span><span class="o">=</span><span class="n">minfq</span><span class="p">,</span> <span class="n">maxfq</span><span class="o">=</span><span class="n">maxfq</span><span class="p">)</span>
+            <span class="k">if</span> <span class="n">algorithm</span> <span class="o">==</span> <span class="s1">&#39;wwz&#39;</span><span class="p">:</span>
+                <span class="n">wwt_removedx</span> <span class="o">=</span> <span class="n">libwwz_wwt</span><span class="p">(</span><span class="n">timestamps</span><span class="o">=</span><span class="n">tt</span><span class="p">,</span> <span class="n">magnitudes</span><span class="o">=</span><span class="n">y</span><span class="p">,</span> <span class="n">time_divisions</span><span class="o">=</span><span class="n">ntau</span><span class="p">,</span> <span class="n">freq_params</span><span class="o">=</span><span class="n">params</span><span class="p">,</span> <span class="n">decay_constant</span><span class="o">=</span><span class="n">decay_constant</span><span class="p">,</span> <span class="n">method</span><span class="o">=</span><span class="s1">&#39;linear&#39;</span><span class="p">,</span> <span class="n">parallel</span><span class="o">=</span><span class="n">parallel</span><span class="p">)</span>
+
+            <span class="n">corr1x</span> <span class="o">=</span> <span class="n">correlation_nd</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">rot90</span><span class="p">(</span><span class="n">wwt_removedx</span><span class="p">[</span><span class="mi">2</span><span class="p">]),</span> <span class="n">np</span><span class="o">.</span><span class="n">rot90</span><span class="p">(</span><span class="n">wwt_removedx</span><span class="p">[</span><span class="mi">2</span><span class="p">]))</span>
+            <span class="n">hhx</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">rot90</span><span class="p">(</span><span class="n">corr1x</span><span class="p">)</span><span class="o">.</span><span class="n">T</span> <span class="o">/</span> <span class="n">corr1x</span><span class="o">.</span><span class="n">max</span><span class="p">()</span>
+            <span class="n">hh1x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">rot90</span><span class="p">(</span><span class="n">hhx</span><span class="o">.</span><span class="n">T</span><span class="p">)</span>
+            <span class="n">hh1xarr</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">hh1x</span><span class="p">)</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span> <span class="o">/</span> <span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">hh1x</span><span class="p">)</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">max</span><span class="p">()</span>
+
+            <span class="c1"># Interpolate hh1xarr over osax</span>
+            <span class="n">f</span> <span class="o">=</span> <span class="n">interpolate</span><span class="o">.</span><span class="n">interp1d</span><span class="p">(</span><span class="n">osax</span><span class="p">,</span> <span class="n">hh1xarr</span><span class="p">,</span> <span class="n">fill_value</span><span class="o">=</span><span class="s2">&quot;extrapolate&quot;</span><span class="p">)</span>
+            <span class="n">interpolated_hh1xarr</span> <span class="o">=</span> <span class="n">f</span><span class="p">(</span><span class="n">xax</span><span class="p">)</span>
+
+            <span class="c1"># Ensure idxrep is within bounds</span>
+            <span class="k">if</span> <span class="n">idxrep</span> <span class="o">&gt;=</span> <span class="nb">len</span><span class="p">(</span><span class="n">interpolated_hh1xarr</span><span class="p">):</span>
+                <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Index </span><span class="si">{</span><span class="n">idxrep</span><span class="si">}</span><span class="s2"> out of bounds for interpolated_hh1xarr with size </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">interpolated_hh1xarr</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+                <span class="k">continue</span>
+
+            <span class="c1"># Append original yax value at idxrep</span>
+            <span class="n">bins</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">yax</span><span class="p">[</span><span class="n">idxrep</span><span class="p">])</span>
+
+            <span class="c1"># Compare original yax value against interpolated hh1xarr</span>
+            <span class="k">if</span> <span class="n">yax</span><span class="p">[</span><span class="n">idxrep</span><span class="p">]</span> <span class="o">/</span> <span class="n">interpolated_hh1xarr</span><span class="p">[</span><span class="n">idxrep</span><span class="p">]</span> <span class="o">&gt;</span> <span class="mf">1.</span><span class="p">:</span>
+                <span class="n">count</span> <span class="o">+=</span> <span class="mf">1.</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">count11</span> <span class="o">+=</span> <span class="mf">1.</span>
+                <span class="n">bins11</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">interpolated_hh1xarr</span><span class="p">[</span><span class="n">idxrep</span><span class="p">])</span>
+
+        <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+            <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Error during significance calculation for iteration </span><span class="si">{</span><span class="n">i</span><span class="si">}</span><span class="s2">: </span><span class="si">{</span><span class="n">e</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+            <span class="n">bins</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">nan</span><span class="p">)</span>  <span class="c1"># Append NaN in case of an error</span>
+            <span class="n">count</span> <span class="o">+=</span> <span class="mf">0.</span>  <span class="c1"># Handle the case by not contributing to the significance</span>
+
+    <span class="k">return</span> <span class="n">bins</span><span class="p">,</span> <span class="n">bins11</span><span class="p">,</span> <span class="n">count</span> <span class="o">/</span> <span class="n">numlc</span><span class="p">,</span> <span class="n">count11</span> <span class="o">/</span> <span class="n">numlc</span></div>
+
+</pre></div>
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2023, Andjelka Kovacevic.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+    <!-- Theme Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'G-XXXXXXXXXX', {
+          'anonymize_ip': false,
+      });
+    </script> 
+
+</body>
+</html>

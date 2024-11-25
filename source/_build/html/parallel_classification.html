@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Parallel Classification Module &mdash; QhX1 0.2.0 documentation</title>
+      <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="_static/jquery.js?v=5d32c60e"></script>
+        <script src="_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script src="_static/documentation_options.js?v=938c9ccc"></script>
+        <script src="_static/doctools.js?v=888ff710"></script>
+        <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+        <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+        <script src="https://unpkg.com/@jupyter-widgets/html-manager@^0.20.0/dist/embed-amd.js"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="output_parallel" href="output_parallel.html" />
+    <link rel="prev" title="merge_batch_csv Module" href="merge_batch_csv.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search"  style="background: white" >
+
+          
+          
+          <a href="index.html" class="icon icon-home">
+            QhX1
+              <img src="_static/logo.png" class="logo" alt="Logo"/>
+          </a>
+              <div class="version">
+                0.2.0
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="important_note.html">Important Note</a></li>
+<li class="toctree-l1"><a class="reference internal" href="LargeData.html">Large Test Data Setup Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="installation.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="quick_start.html">Quick Start Tutorial</a></li>
+<li class="toctree-l1"><a class="reference internal" href="test_integrated.html">test_integrated</a></li>
+<li class="toctree-l1"><a class="reference internal" href="examples.html">Examples</a></li>
+<li class="toctree-l1"><a class="reference internal" href="introduction.html">Motivation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="introduction.html#theoretical-background">Theoretical background</a></li>
+<li class="toctree-l1"><a class="reference internal" href="introduction.html#qhx-project-history">QhX Project History</a></li>
+<li class="toctree-l1"><a class="reference internal" href="introduction.html#qhx-package-overview">QhX Package Overview</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="package.html">Package Modules</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="data_manager.html">data_manager</a></li>
+<li class="toctree-l2"><a class="reference internal" href="dynamical_mode.html">Dynamical Mode Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="dynamical_mode.html#lsst-agn-data-challenge-example">LSST AGN Data Challenge Example</a></li>
+<li class="toctree-l2"><a class="reference internal" href="light_curve.html">light_curve</a></li>
+<li class="toctree-l2"><a class="reference internal" href="calculation.html">calculation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="detection.html">detection</a></li>
+<li class="toctree-l2"><a class="reference internal" href="wwtz.html">wwtz</a></li>
+<li class="toctree-l2"><a class="reference internal" href="superlet.html">superlet module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="superlets.html">superlets</a></li>
+<li class="toctree-l2"><a class="reference internal" href="correlation.html">correlation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="reg.html">reg</a></li>
+<li class="toctree-l2"><a class="reference internal" href="output.html">output</a></li>
+<li class="toctree-l2"><a class="reference internal" href="interactive_plt.html">interactive_plt</a></li>
+<li class="toctree-l2"><a class="reference internal" href="iparallelization_solver.html">iparallelization_solver module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="parallelization_solver.html">Parallelization Solver module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="batch_processor.html">Batch Processor Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="merge_batch_csv.html">merge_batch_csv Module</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Parallel Classification Module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#parallel_classification.process_csv_in_chunks"><code class="docutils literal notranslate"><span class="pre">process_csv_in_chunks()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="output_parallel.html">output_parallel</a></li>
+<li class="toctree-l2"><a class="reference internal" href="interactive_plot_large_files.html">Interactive Plot Large Files Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="processing_utils.html">processing_utils module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="test_integrated.html">test_integrated</a></li>
+<li class="toctree-l2"><a class="reference internal" href="test_logger.html">test_logger</a></li>
+<li class="toctree-l2"><a class="reference internal" href="test_parallel_solver.html">test_parallel_solver</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mock_lc.html">mock_lc</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="faq.html">Frequently Asked Questions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="license.html">License</a></li>
+<li class="toctree-l1"><a class="reference internal" href="support_and_contact.html">Support and Contact Information</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu"  style="background: white" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">QhX1</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="package.html">Package Modules</a></li>
+      <li class="breadcrumb-item active">Parallel Classification Module</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="_sources/parallel_classification.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="module-parallel_classification">
+<span id="parallel-classification-module"></span><h1>Parallel Classification Module<a class="headerlink" href="#module-parallel_classification" title="Link to this heading"></a></h1>
+<dl class="py function">
+<dt class="sig sig-object py" id="parallel_classification.process_csv_in_chunks">
+<span class="sig-prename descclassname"><span class="pre">parallel_classification.</span></span><span class="sig-name descname"><span class="pre">process_csv_in_chunks</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">csv_file_path</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">chunk_size</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">10000</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">output_file_path</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'classified_periods.csv'</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/parallel_classification.html#process_csv_in_chunks"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#parallel_classification.process_csv_in_chunks" title="Link to this definition"></a></dt>
+<dd><p>Processes a CSV file in chunks, classifying periods for each chunk.</p>
+<p>Reads the specified CSV file in chunks of a specified size, applies
+classification to each chunk using the <cite>classify_periods</cite> function, further
+classifies each period within the chunk using <cite>classify_period</cite>, and
+compiles the results into a single DataFrame. The final DataFrame is then
+saved to a new CSV file.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>csv_file_path</strong> (<em>str</em>) – The path to the CSV file to be processed.</p></li>
+<li><p><strong>chunk_size</strong> (<em>int</em><em>, </em><em>optional</em>) – The number of rows per chunk to read from the CSV. Defaults to 10000.</p></li>
+<li><p><strong>output_file_path</strong> (<em>str</em><em>, </em><em>optional</em>) – Path where the fully processed and classified CSV file will be saved.
+Defaults to ‘classified_periods.csv’.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>This function does not return a value. It saves the processed and classified
+data directly to a CSV file specified by <cite>output_file_path</cite>.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>None</p>
+</dd>
+</dl>
+<p class="rubric">Example</p>
+<p>Below is an example of how to use the <cite>process_csv_in_chunks</cite> function:</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">csv_file_path</span> <span class="o">=</span> <span class="s1">&#39;path/to/your/large_csv_file.csv&#39;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">output_file_path</span> <span class="o">=</span> <span class="s1">&#39;path/to/save/classified_periods.csv&#39;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">process_csv_in_chunks</span><span class="p">(</span><span class="n">csv_file_path</span><span class="p">,</span> <span class="n">chunk_size</span><span class="o">=</span><span class="mi">10000</span><span class="p">,</span> <span class="n">output_file_path</span><span class="o">=</span><span class="n">output_file_path</span><span class="p">)</span>
+<span class="go">Processed and classified data saved to path/to/save/classified_periods.csv</span>
+</pre></div>
+</div>
+</dd></dl>
+
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="merge_batch_csv.html" class="btn btn-neutral float-left" title="merge_batch_csv Module" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="output_parallel.html" class="btn btn-neutral float-right" title="output_parallel" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2023, Andjelka Kovacevic.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+    <!-- Theme Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'G-XXXXXXXXXX', {
+          'anonymize_ip': false,
+      });
+    </script> 
+
+</body>
+</html>

@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Batch Processor Module &mdash; QhX1 0.2.0 documentation</title>
+      <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="_static/jquery.js?v=5d32c60e"></script>
+        <script src="_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script src="_static/documentation_options.js?v=938c9ccc"></script>
+        <script src="_static/doctools.js?v=888ff710"></script>
+        <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+        <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+        <script src="https://unpkg.com/@jupyter-widgets/html-manager@^0.20.0/dist/embed-amd.js"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="merge_batch_csv Module" href="merge_batch_csv.html" />
+    <link rel="prev" title="Parallelization Solver module" href="parallelization_solver.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search"  style="background: white" >
+
+          
+          
+          <a href="index.html" class="icon icon-home">
+            QhX1
+              <img src="_static/logo.png" class="logo" alt="Logo"/>
+          </a>
+              <div class="version">
+                0.2.0
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="important_note.html">Important Note</a></li>
+<li class="toctree-l1"><a class="reference internal" href="LargeData.html">Large Test Data Setup Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="installation.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="quick_start.html">Quick Start Tutorial</a></li>
+<li class="toctree-l1"><a class="reference internal" href="test_integrated.html">test_integrated</a></li>
+<li class="toctree-l1"><a class="reference internal" href="examples.html">Examples</a></li>
+<li class="toctree-l1"><a class="reference internal" href="introduction.html">Motivation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="introduction.html#theoretical-background">Theoretical background</a></li>
+<li class="toctree-l1"><a class="reference internal" href="introduction.html#qhx-project-history">QhX Project History</a></li>
+<li class="toctree-l1"><a class="reference internal" href="introduction.html#qhx-package-overview">QhX Package Overview</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="package.html">Package Modules</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="data_manager.html">data_manager</a></li>
+<li class="toctree-l2"><a class="reference internal" href="dynamical_mode.html">Dynamical Mode Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="dynamical_mode.html#lsst-agn-data-challenge-example">LSST AGN Data Challenge Example</a></li>
+<li class="toctree-l2"><a class="reference internal" href="light_curve.html">light_curve</a></li>
+<li class="toctree-l2"><a class="reference internal" href="calculation.html">calculation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="detection.html">detection</a></li>
+<li class="toctree-l2"><a class="reference internal" href="wwtz.html">wwtz</a></li>
+<li class="toctree-l2"><a class="reference internal" href="superlet.html">superlet module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="superlets.html">superlets</a></li>
+<li class="toctree-l2"><a class="reference internal" href="correlation.html">correlation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="reg.html">reg</a></li>
+<li class="toctree-l2"><a class="reference internal" href="output.html">output</a></li>
+<li class="toctree-l2"><a class="reference internal" href="interactive_plt.html">interactive_plt</a></li>
+<li class="toctree-l2"><a class="reference internal" href="iparallelization_solver.html">iparallelization_solver module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="parallelization_solver.html">Parallelization Solver module</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Batch Processor Module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#overview">Overview</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#functions">Functions</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#QhX.batch_processor.process_batches"><code class="docutils literal notranslate"><span class="pre">process_batches()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#usage">Usage</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#installation-and-requirements">Installation and Requirements</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#see-also">See Also</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="merge_batch_csv.html">merge_batch_csv Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="parallel_classification.html">Parallel Classification Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="output_parallel.html">output_parallel</a></li>
+<li class="toctree-l2"><a class="reference internal" href="interactive_plot_large_files.html">Interactive Plot Large Files Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="processing_utils.html">processing_utils module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="test_integrated.html">test_integrated</a></li>
+<li class="toctree-l2"><a class="reference internal" href="test_logger.html">test_logger</a></li>
+<li class="toctree-l2"><a class="reference internal" href="test_parallel_solver.html">test_parallel_solver</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mock_lc.html">mock_lc</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="faq.html">Frequently Asked Questions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="license.html">License</a></li>
+<li class="toctree-l1"><a class="reference internal" href="support_and_contact.html">Support and Contact Information</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu"  style="background: white" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">QhX1</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="package.html">Package Modules</a></li>
+      <li class="breadcrumb-item active">Batch Processor Module</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="_sources/batch_processor.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="module-QhX.batch_processor">
+<span id="batch-processor-module"></span><h1>Batch Processor Module<a class="headerlink" href="#module-QhX.batch_processor" title="Link to this heading"></a></h1>
+<p>The <code class="docutils literal notranslate"><span class="pre">batch_processor</span></code> module is part of the QhX package, designed for processing large datasets in parallel batches. It uses <code class="docutils literal notranslate"><span class="pre">DataManager</span></code> for data loading and preprocessing, and the <code class="docutils literal notranslate"><span class="pre">ParallelSolver</span></code> for executing data processing tasks in parallel.</p>
+<section id="overview">
+<h2>Overview<a class="headerlink" href="#overview" title="Link to this heading"></a></h2>
+<p>The module allows for the processing of data in specified batch sizes using a predetermined number of parallel workers. It aims to enhance processing efficiency when dealing with large datasets.</p>
+</section>
+<section id="functions">
+<h2>Functions<a class="headerlink" href="#functions" title="Link to this heading"></a></h2>
+<dl class="py function">
+<dt class="sig sig-object py" id="QhX.batch_processor.process_batches">
+<span class="sig-prename descclassname"><span class="pre">QhX.batch_processor.</span></span><span class="sig-name descname"><span class="pre">process_batches</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">batch_size</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">num_workers</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">25</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">start_i</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/QhX/batch_processor.html#process_batches"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#QhX.batch_processor.process_batches" title="Link to this definition"></a></dt>
+<dd><p>Processes data in batches using parallel processing.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>batch_size</strong> (<em>int</em>) – The number of data points to process in each batch.</p></li>
+<li><p><strong>num_workers</strong> (<em>int</em><em>, </em><em>optional</em>) – The number of parallel workers to use for processing. Defaults to 25.</p></li>
+<li><p><strong>start_i</strong> (<em>int</em><em>, </em><em>optional</em>) – The index from which to start processing the dataset. Defaults to 0.</p></li>
+</ul>
+</dd>
+</dl>
+<p>This function loads a dataset, groups the data as necessary, and then processes it in batches.
+Each batch is processed in a new directory to keep the results organized.</p>
+</dd></dl>
+
+<p>This function is responsible for orchestrating the batch processing workflow. It involves loading and optionally grouping the dataset, splitting it into batches, and processing each batch in parallel.</p>
+</section>
+<section id="usage">
+<h2>Usage<a class="headerlink" href="#usage" title="Link to this heading"></a></h2>
+<p>The module can be used as a standalone script or imported into other scripts or modules within the QhX package. When executed as a script, it requires the batch size as a mandatory argument, with optional arguments for the number of workers and the starting index for processing.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>python<span class="w"> </span>-m<span class="w"> </span>QhX.batch_processor<span class="w"> </span><span class="m">100</span><span class="w"> </span><span class="m">25</span><span class="w"> </span><span class="m">0</span>
+</pre></div>
+</div>
+<p>This command processes the dataset in batches of 100 using 25 parallel workers, starting from the first record.</p>
+</section>
+<section id="installation-and-requirements">
+<h2>Installation and Requirements<a class="headerlink" href="#installation-and-requirements" title="Link to this heading"></a></h2>
+<p>Ensure that the QhX package is properly installed and configured in your environment. The <code class="docutils literal notranslate"><span class="pre">batch_processor</span></code> module depends on other components of the QhX package, such as <code class="docutils literal notranslate"><span class="pre">DataManager</span></code> and <code class="docutils literal notranslate"><span class="pre">ParallelSolver</span></code>.</p>
+</section>
+<section id="see-also">
+<h2>See Also<a class="headerlink" href="#see-also" title="Link to this heading"></a></h2>
+<ul class="simple">
+<li><p><a class="reference internal" href="data_manager.html"><span class="doc">data_manager</span></a></p></li>
+<li><p><a class="reference internal" href="parallelization_solver.html"><span class="doc">Parallelization Solver module</span></a></p></li>
+</ul>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="parallelization_solver.html" class="btn btn-neutral float-left" title="Parallelization Solver module" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="merge_batch_csv.html" class="btn btn-neutral float-right" title="merge_batch_csv Module" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2023, Andjelka Kovacevic.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+    <!-- Theme Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'G-XXXXXXXXXX', {
+          'anonymize_ip': false,
+      });
+    </script> 
+
+</body>
+</html>

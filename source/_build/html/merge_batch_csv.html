@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>merge_batch_csv Module &mdash; QhX1 0.2.0 documentation</title>
+      <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="_static/jquery.js?v=5d32c60e"></script>
+        <script src="_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script src="_static/documentation_options.js?v=938c9ccc"></script>
+        <script src="_static/doctools.js?v=888ff710"></script>
+        <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+        <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+        <script src="https://unpkg.com/@jupyter-widgets/html-manager@^0.20.0/dist/embed-amd.js"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Parallel Classification Module" href="parallel_classification.html" />
+    <link rel="prev" title="Batch Processor Module" href="batch_processor.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search"  style="background: white" >
+
+          
+          
+          <a href="index.html" class="icon icon-home">
+            QhX1
+              <img src="_static/logo.png" class="logo" alt="Logo"/>
+          </a>
+              <div class="version">
+                0.2.0
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="important_note.html">Important Note</a></li>
+<li class="toctree-l1"><a class="reference internal" href="LargeData.html">Large Test Data Setup Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="installation.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="quick_start.html">Quick Start Tutorial</a></li>
+<li class="toctree-l1"><a class="reference internal" href="test_integrated.html">test_integrated</a></li>
+<li class="toctree-l1"><a class="reference internal" href="examples.html">Examples</a></li>
+<li class="toctree-l1"><a class="reference internal" href="introduction.html">Motivation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="introduction.html#theoretical-background">Theoretical background</a></li>
+<li class="toctree-l1"><a class="reference internal" href="introduction.html#qhx-project-history">QhX Project History</a></li>
+<li class="toctree-l1"><a class="reference internal" href="introduction.html#qhx-package-overview">QhX Package Overview</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="package.html">Package Modules</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="data_manager.html">data_manager</a></li>
+<li class="toctree-l2"><a class="reference internal" href="dynamical_mode.html">Dynamical Mode Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="dynamical_mode.html#lsst-agn-data-challenge-example">LSST AGN Data Challenge Example</a></li>
+<li class="toctree-l2"><a class="reference internal" href="light_curve.html">light_curve</a></li>
+<li class="toctree-l2"><a class="reference internal" href="calculation.html">calculation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="detection.html">detection</a></li>
+<li class="toctree-l2"><a class="reference internal" href="wwtz.html">wwtz</a></li>
+<li class="toctree-l2"><a class="reference internal" href="superlet.html">superlet module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="superlets.html">superlets</a></li>
+<li class="toctree-l2"><a class="reference internal" href="correlation.html">correlation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="reg.html">reg</a></li>
+<li class="toctree-l2"><a class="reference internal" href="output.html">output</a></li>
+<li class="toctree-l2"><a class="reference internal" href="interactive_plt.html">interactive_plt</a></li>
+<li class="toctree-l2"><a class="reference internal" href="iparallelization_solver.html">iparallelization_solver module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="parallelization_solver.html">Parallelization Solver module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="batch_processor.html">Batch Processor Module</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">merge_batch_csv Module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#QhX.merge_batch_csv.check_endings"><code class="docutils literal notranslate"><span class="pre">check_endings()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#QhX.merge_batch_csv.merge_batch_csv"><code class="docutils literal notranslate"><span class="pre">merge_batch_csv()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#usage">Usage</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#parameters">Parameters</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="parallel_classification.html">Parallel Classification Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="output_parallel.html">output_parallel</a></li>
+<li class="toctree-l2"><a class="reference internal" href="interactive_plot_large_files.html">Interactive Plot Large Files Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="processing_utils.html">processing_utils module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="test_integrated.html">test_integrated</a></li>
+<li class="toctree-l2"><a class="reference internal" href="test_logger.html">test_logger</a></li>
+<li class="toctree-l2"><a class="reference internal" href="test_parallel_solver.html">test_parallel_solver</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mock_lc.html">mock_lc</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="faq.html">Frequently Asked Questions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="license.html">License</a></li>
+<li class="toctree-l1"><a class="reference internal" href="support_and_contact.html">Support and Contact Information</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu"  style="background: white" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">QhX1</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="package.html">Package Modules</a></li>
+      <li class="breadcrumb-item active">merge_batch_csv Module</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="_sources/merge_batch_csv.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="merge-batch-csv-module">
+<h1>merge_batch_csv Module<a class="headerlink" href="#merge-batch-csv-module" title="Link to this heading"></a></h1>
+<p>The <code class="docutils literal notranslate"><span class="pre">merge_batch_csv</span></code> module provides functionality for merging CSV files generated from batch processes into a single consolidated CSV file. This is particularly useful for analyzing results that are split across multiple batch output files.</p>
+<p id="module-QhX.merge_batch_csv">This module provides functionality to merge CSV files named ‘result.csv’ found in directories
+with specific batch sizes (e.g., folders ending in ‘sz100’, ‘sz200’). The merged result is saved
+to a specified output file.</p>
+<dl class="py function">
+<dt class="sig sig-object py" id="QhX.merge_batch_csv.check_endings">
+<span class="sig-prename descclassname"><span class="pre">QhX.merge_batch_csv.</span></span><span class="sig-name descname"><span class="pre">check_endings</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">root</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">all_sizes</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/QhX/merge_batch_csv.html#check_endings"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#QhX.merge_batch_csv.check_endings" title="Link to this definition"></a></dt>
+<dd><p>Checks if a directory path ends with any of the specified batch size suffixes.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>root</strong> (<em>str</em>) – The directory path to check.</p></li>
+<li><p><strong>all_sizes</strong> (<em>list</em><em> of </em><em>int</em>) – The list of batch sizes to look for in directory endings.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>True if the directory ends with one of the specified sizes, False otherwise.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>bool</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="QhX.merge_batch_csv.merge_batch_csv">
+<span class="sig-prename descclassname"><span class="pre">QhX.merge_batch_csv.</span></span><span class="sig-name descname"><span class="pre">merge_batch_csv</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">all_sizes</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">directory</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'.'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">output_file</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'merged_result.csv'</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/QhX/merge_batch_csv.html#merge_batch_csv"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#QhX.merge_batch_csv.merge_batch_csv" title="Link to this definition"></a></dt>
+<dd><p>Merges CSV files named ‘result.csv’ found in directories ending with szX, where X is a number
+from all_sizes, into a single CSV file.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>all_sizes</strong> (<em>list</em><em> of </em><em>int</em><em>, </em><em>optional</em>) – List of all batch sizes whose folders we need to merge.
+Defaults to [100, 200].</p></li>
+<li><p><strong>directory</strong> (<em>str</em>) – The root directory to search for CSV files. Defaults to the current directory.</p></li>
+<li><p><strong>output_file</strong> (<em>str</em>) – The name of the output file where the merged results will be saved.
+Defaults to ‘merged_result.csv’.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>The number of files successfully merged.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>int</p>
+</dd>
+</dl>
+</dd></dl>
+
+<section id="usage">
+<h2>Usage<a class="headerlink" href="#usage" title="Link to this heading"></a></h2>
+<p>The <code class="docutils literal notranslate"><span class="pre">merge_batch_csv</span></code> function can be executed directly as a standalone script or imported into another Python script.</p>
+<p><strong>As a Standalone Script:</strong></p>
+<p>Navigate to the package directory and execute:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">cd</span><span class="w"> </span>path/to/QhX
+python<span class="w"> </span>-m<span class="w"> </span>merge_batch_csv
+</pre></div>
+</div>
+<p><strong>Importing in Python Scripts:</strong></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">QhX.merge_batch_csv</span> <span class="kn">import</span> <span class="n">merge_batch_csv</span>
+
+<span class="n">directory_to_search</span> <span class="o">=</span> <span class="s2">&quot;./data&quot;</span>
+<span class="n">output_file_name</span> <span class="o">=</span> <span class="s2">&quot;final_merged_results.csv&quot;</span>
+
+<span class="n">merge_batch_csv</span><span class="p">(</span><span class="n">directory</span><span class="o">=</span><span class="n">directory_to_search</span><span class="p">,</span> <span class="n">output_file</span><span class="o">=</span><span class="n">output_file_name</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;CSV files have been merged successfully.&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="parameters">
+<h2>Parameters<a class="headerlink" href="#parameters" title="Link to this heading"></a></h2>
+<ul class="simple">
+<li><p><strong>directory</strong> (str): The root directory to search for CSV files. Defaults to the current directory.</p></li>
+<li><p><strong>output_file</strong> (str): The filename for the merged CSV. Defaults to ‘merged_result.csv’.</p></li>
+</ul>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="batch_processor.html" class="btn btn-neutral float-left" title="Batch Processor Module" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="parallel_classification.html" class="btn btn-neutral float-right" title="Parallel Classification Module" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2023, Andjelka Kovacevic.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+    <!-- Theme Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'G-XXXXXXXXXX', {
+          'anonymize_ip': false,
+      });
+    </script> 
+
+</body>
+</html>

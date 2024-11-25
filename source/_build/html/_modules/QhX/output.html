@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>QhX.output &mdash; QhX1 0.2.0 documentation</title>
+      <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="../../_static/jquery.js?v=5d32c60e"></script>
+        <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script src="../../_static/documentation_options.js?v=938c9ccc"></script>
+        <script src="../../_static/doctools.js?v=888ff710"></script>
+        <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+        <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+        <script src="https://unpkg.com/@jupyter-widgets/html-manager@^0.20.0/dist/embed-amd.js"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search"  style="background: white" >
+
+          
+          
+          <a href="../../index.html" class="icon icon-home">
+            QhX1
+              <img src="../../_static/logo.png" class="logo" alt="Logo"/>
+          </a>
+              <div class="version">
+                0.2.0
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../important_note.html">Important Note</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../LargeData.html">Large Test Data Setup Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../installation.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../quick_start.html">Quick Start Tutorial</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../test_integrated.html">test_integrated</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../examples.html">Examples</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../introduction.html">Motivation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../introduction.html#theoretical-background">Theoretical background</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../introduction.html#qhx-project-history">QhX Project History</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../introduction.html#qhx-package-overview">QhX Package Overview</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../package.html">Package Modules</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../faq.html">Frequently Asked Questions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../license.html">License</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../support_and_contact.html">Support and Contact Information</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu"  style="background: white" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">QhX1</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../index.html">Module code</a></li>
+      <li class="breadcrumb-item active">QhX.output</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <h1>Source code for QhX.output</h1><div class="highlight"><pre>
+<span></span><span class="c1"># pylint: disable=R0801</span>
+<span class="kn">import</span> <span class="nn">math</span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+
+
+
+
+
+<div class="viewcode-block" id="flatten_detected_periods">
+<a class="viewcode-back" href="../../output.html#QhX.output.flatten_detected_periods">[docs]</a>
+<span class="k">def</span> <span class="nf">flatten_detected_periods</span><span class="p">(</span><span class="n">detected_periods</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Flatten the nested list of dictionaries and insert NaN for empty lists.&quot;&quot;&quot;</span>
+    <span class="n">flat_list</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="k">for</span> <span class="n">sublist</span> <span class="ow">in</span> <span class="n">detected_periods</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">sublist</span><span class="p">:</span>  <span class="c1"># Check if the sublist is not empty</span>
+            <span class="n">flat_list</span><span class="o">.</span><span class="n">extend</span><span class="p">(</span><span class="n">sublist</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="c1"># Append a dictionary with NaN values if the sublist is empty</span>
+            <span class="n">flat_list</span><span class="o">.</span><span class="n">append</span><span class="p">({</span><span class="n">key</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">nan</span> <span class="k">for</span> <span class="n">key</span> <span class="ow">in</span> <span class="p">[</span><span class="s1">&#39;objectid&#39;</span><span class="p">,</span> <span class="s1">&#39;sampling_i&#39;</span><span class="p">,</span> <span class="s1">&#39;sampling_j&#39;</span><span class="p">,</span> <span class="s1">&#39;period&#39;</span><span class="p">,</span> <span class="s1">&#39;upper_error&#39;</span><span class="p">,</span> <span class="s1">&#39;lower_error&#39;</span><span class="p">,</span> <span class="s1">&#39;significance&#39;</span><span class="p">,</span> <span class="s1">&#39;label&#39;</span><span class="p">]})</span>
+    <span class="k">return</span> <span class="n">flat_list</span></div>
+
+
+
+<div class="viewcode-block" id="classify_periods">
+<a class="viewcode-back" href="../../output.html#QhX.output.classify_periods">[docs]</a>
+<span class="k">def</span> <span class="nf">classify_periods</span><span class="p">(</span><span class="n">detected_periods</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Calculates IoU and compile other metrics (low errors,  upper errors, significance of detected period, and band pairs) for each quasar ID.</span>
+<span class="sd">    It computes Intersection Over Union (IoU) and other relevant metrics for each quasar ID based</span>
+<span class="sd">    on detected periods in different band pairs, while preserving NaN values.</span>
+
+<span class="sd">    Parameters:</span>
+<span class="sd">    -----------</span>
+<span class="sd">    detected_periods (list of dict): List of dictionaries containing detected period data.</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">    --------</span>
+<span class="sd">    pd.DataFrame: DataFrame containing the classification results.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="c1"># Flatten the list of dictionaries</span>
+    <span class="n">flat_list</span> <span class="o">=</span> <span class="n">flatten_detected_periods</span><span class="p">(</span><span class="n">detected_periods</span><span class="p">)</span>
+
+    <span class="c1"># Convert flattened list to DataFrame</span>
+    <span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">flat_list</span><span class="p">)</span>
+    <span class="k">def</span> <span class="nf">calculate_iou</span><span class="p">(</span><span class="n">radius1</span><span class="p">,</span> <span class="n">radius2</span><span class="p">,</span> <span class="n">distance</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Calculates the Intersection over Union (IoU) for two circles given their radii and the distance between their centers.</span>
+
+<span class="sd">        Parameters:</span>
+<span class="sd">        -----------</span>
+<span class="sd">        radius1 (float): Radius of the first circle.</span>
+<span class="sd">        radius2 (float): Radius of the second circle.</span>
+<span class="sd">        distance (float): Distance between the centers of the two circles.</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">        --------</span>
+<span class="sd">        float: IoU value.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="n">distance</span> <span class="o">&gt;</span> <span class="p">(</span><span class="n">radius1</span> <span class="o">+</span> <span class="n">radius2</span><span class="p">):</span>
+            <span class="k">return</span> <span class="mi">0</span>
+        <span class="k">elif</span> <span class="n">distance</span> <span class="o">&lt;=</span> <span class="nb">abs</span><span class="p">(</span><span class="n">radius1</span> <span class="o">-</span> <span class="n">radius2</span><span class="p">):</span>
+            <span class="k">return</span> <span class="mi">1</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">area1</span> <span class="o">=</span> <span class="n">math</span><span class="o">.</span><span class="n">pi</span> <span class="o">*</span> <span class="n">radius1</span><span class="o">**</span><span class="mi">2</span>
+            <span class="n">area2</span> <span class="o">=</span> <span class="n">math</span><span class="o">.</span><span class="n">pi</span> <span class="o">*</span> <span class="n">radius2</span><span class="o">**</span><span class="mi">2</span>
+            <span class="n">d</span> <span class="o">=</span> <span class="n">distance</span>
+
+            <span class="c1"># Calculate intersection area</span>
+            <span class="n">part1</span> <span class="o">=</span> <span class="n">math</span><span class="o">.</span><span class="n">acos</span><span class="p">((</span><span class="n">radius1</span><span class="o">**</span><span class="mi">2</span> <span class="o">+</span> <span class="n">d</span><span class="o">**</span><span class="mi">2</span> <span class="o">-</span> <span class="n">radius2</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span> <span class="o">/</span> <span class="p">(</span><span class="mi">2</span> <span class="o">*</span> <span class="n">radius1</span> <span class="o">*</span> <span class="n">d</span><span class="p">))</span>
+            <span class="n">part2</span> <span class="o">=</span> <span class="n">math</span><span class="o">.</span><span class="n">acos</span><span class="p">((</span><span class="n">radius2</span><span class="o">**</span><span class="mi">2</span> <span class="o">+</span> <span class="n">d</span><span class="o">**</span><span class="mi">2</span> <span class="o">-</span> <span class="n">radius1</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span> <span class="o">/</span> <span class="p">(</span><span class="mi">2</span> <span class="o">*</span> <span class="n">radius2</span> <span class="o">*</span> <span class="n">d</span><span class="p">))</span>
+            <span class="n">intersection</span> <span class="o">=</span> <span class="n">part1</span> <span class="o">*</span> <span class="n">radius1</span><span class="o">**</span><span class="mi">2</span> <span class="o">+</span> <span class="n">part2</span> <span class="o">*</span> <span class="n">radius2</span><span class="o">**</span><span class="mi">2</span> <span class="o">-</span> <span class="mf">0.5</span> <span class="o">*</span> <span class="p">(</span><span class="n">radius1</span><span class="o">**</span><span class="mi">2</span> <span class="o">*</span> <span class="n">math</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="mi">2</span> <span class="o">*</span> <span class="n">part1</span><span class="p">)</span> <span class="o">+</span> <span class="n">radius2</span><span class="o">**</span><span class="mi">2</span> <span class="o">*</span> <span class="n">math</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="mi">2</span> <span class="o">*</span> <span class="n">part2</span><span class="p">))</span>
+
+            <span class="n">union</span> <span class="o">=</span> <span class="n">area1</span> <span class="o">+</span> <span class="n">area2</span> <span class="o">-</span> <span class="n">intersection</span>
+            <span class="k">return</span> <span class="n">intersection</span> <span class="o">/</span> <span class="n">union</span>
+
+    <span class="c1"># Initialize list to hold DataFrame rows</span>
+    <span class="n">rows_list</span> <span class="o">=</span> <span class="p">[]</span>
+
+    <span class="c1"># Process each unique quasar ID</span>
+    <span class="k">for</span> <span class="n">name</span> <span class="ow">in</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;objectid&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">unique</span><span class="p">():</span>
+        <span class="n">quasar_data</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;objectid&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="n">name</span><span class="p">]</span>
+
+        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">quasar_data</span><span class="p">)):</span>
+            <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">i</span> <span class="o">+</span> <span class="mi">1</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">quasar_data</span><span class="p">)):</span>
+                <span class="n">row_i</span> <span class="o">=</span> <span class="n">quasar_data</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
+                <span class="n">row_j</span> <span class="o">=</span> <span class="n">quasar_data</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="n">j</span><span class="p">]</span>
+
+                <span class="c1"># Initialize IoU and period difference</span>
+                <span class="n">iou</span><span class="p">,</span> <span class="n">period_diff</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">nan</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">nan</span>
+
+                <span class="c1"># Check if all necessary values are present to calculate IoU and period difference</span>
+                <span class="k">if</span> <span class="ow">not</span> <span class="n">pd</span><span class="o">.</span><span class="n">isna</span><span class="p">(</span><span class="n">row_i</span><span class="p">[</span><span class="s1">&#39;period&#39;</span><span class="p">])</span> <span class="ow">and</span> <span class="ow">not</span> <span class="n">pd</span><span class="o">.</span><span class="n">isna</span><span class="p">(</span><span class="n">row_j</span><span class="p">[</span><span class="s1">&#39;period&#39;</span><span class="p">])</span> <span class="ow">and</span> <span class="ow">not</span> <span class="n">pd</span><span class="o">.</span><span class="n">isna</span><span class="p">(</span><span class="n">row_i</span><span class="p">[</span><span class="s1">&#39;upper_error&#39;</span><span class="p">])</span> <span class="ow">and</span> <span class="ow">not</span> <span class="n">pd</span><span class="o">.</span><span class="n">isna</span><span class="p">(</span><span class="n">row_i</span><span class="p">[</span><span class="s1">&#39;lower_error&#39;</span><span class="p">])</span> <span class="ow">and</span> <span class="ow">not</span> <span class="n">pd</span><span class="o">.</span><span class="n">isna</span><span class="p">(</span><span class="n">row_j</span><span class="p">[</span><span class="s1">&#39;upper_error&#39;</span><span class="p">])</span> <span class="ow">and</span> <span class="ow">not</span> <span class="n">pd</span><span class="o">.</span><span class="n">isna</span><span class="p">(</span><span class="n">row_j</span><span class="p">[</span><span class="s1">&#39;lower_error&#39;</span><span class="p">]):</span>
+                    <span class="c1"># Calculate relative difference in detected periods</span>
+                    <span class="n">period_diff</span> <span class="o">=</span> <span class="nb">abs</span><span class="p">(</span><span class="n">row_i</span><span class="p">[</span><span class="s1">&#39;period&#39;</span><span class="p">]</span> <span class="o">-</span> <span class="n">row_j</span><span class="p">[</span><span class="s1">&#39;period&#39;</span><span class="p">])</span> <span class="o">/</span> <span class="n">row_i</span><span class="p">[</span><span class="s1">&#39;period&#39;</span><span class="p">]</span>
+
+                    <span class="k">if</span> <span class="n">period_diff</span> <span class="o">&lt;=</span> <span class="mf">0.1</span><span class="p">:</span>
+                        <span class="c1"># Calculate IoU</span>
+                        <span class="n">radius_i</span> <span class="o">=</span> <span class="p">(</span><span class="n">row_i</span><span class="p">[</span><span class="s1">&#39;upper_error&#39;</span><span class="p">]</span> <span class="o">+</span> <span class="n">row_i</span><span class="p">[</span><span class="s1">&#39;lower_error&#39;</span><span class="p">])</span> <span class="o">/</span> <span class="mi">2</span>
+                        <span class="n">radius_j</span> <span class="o">=</span> <span class="p">(</span><span class="n">row_j</span><span class="p">[</span><span class="s1">&#39;upper_error&#39;</span><span class="p">]</span> <span class="o">+</span> <span class="n">row_j</span><span class="p">[</span><span class="s1">&#39;lower_error&#39;</span><span class="p">])</span> <span class="o">/</span> <span class="mi">2</span>
+                        <span class="n">distance</span> <span class="o">=</span> <span class="nb">abs</span><span class="p">(</span><span class="n">row_i</span><span class="p">[</span><span class="s1">&#39;period&#39;</span><span class="p">]</span> <span class="o">-</span> <span class="n">row_j</span><span class="p">[</span><span class="s1">&#39;period&#39;</span><span class="p">])</span>
+                        <span class="n">iou</span> <span class="o">=</span> <span class="n">calculate_iou</span><span class="p">(</span><span class="n">radius_i</span><span class="p">,</span> <span class="n">radius_j</span><span class="p">,</span> <span class="n">distance</span><span class="p">)</span>
+
+                <span class="c1"># Add row to list</span>
+                <span class="n">rows_list</span><span class="o">.</span><span class="n">append</span><span class="p">({</span>
+                    <span class="s1">&#39;objectid&#39;</span><span class="p">:</span> <span class="n">name</span><span class="p">,</span>
+                    <span class="s1">&#39;m3&#39;</span><span class="p">:</span> <span class="n">row_i</span><span class="p">[</span><span class="s1">&#39;period&#39;</span><span class="p">],</span>
+                    <span class="s1">&#39;m4&#39;</span><span class="p">:</span> <span class="n">row_i</span><span class="p">[</span><span class="s1">&#39;lower_error&#39;</span><span class="p">],</span>
+                    <span class="s1">&#39;m5&#39;</span><span class="p">:</span> <span class="n">row_i</span><span class="p">[</span><span class="s1">&#39;upper_error&#39;</span><span class="p">],</span>
+                    <span class="s1">&#39;m6&#39;</span><span class="p">:</span> <span class="n">row_i</span><span class="p">[</span><span class="s1">&#39;significance&#39;</span><span class="p">],</span>
+                    <span class="s1">&#39;m7_1&#39;</span><span class="p">:</span> <span class="n">row_i</span><span class="p">[</span><span class="s1">&#39;label&#39;</span><span class="p">],</span>
+                    <span class="s1">&#39;m7_2&#39;</span><span class="p">:</span> <span class="n">row_j</span><span class="p">[</span><span class="s1">&#39;label&#39;</span><span class="p">],</span>
+                    <span class="s1">&#39;period_diff&#39;</span><span class="p">:</span> <span class="n">period_diff</span><span class="p">,</span>
+                    <span class="s1">&#39;iou&#39;</span><span class="p">:</span> <span class="n">iou</span>
+                <span class="p">})</span>
+
+    <span class="c1"># Convert list of rows to DataFrame</span>
+    <span class="n">output_df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">rows_list</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">output_df</span></div>
+
+
+<div class="viewcode-block" id="classify_period">
+<a class="viewcode-back" href="../../output.html#QhX.output.classify_period">[docs]</a>
+<span class="k">def</span> <span class="nf">classify_period</span><span class="p">(</span><span class="n">row</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Classify the detected period as &#39;reliable&#39;, &#39;medium reliable&#39;, &#39;poor&#39;, or &#39;NAN&#39;</span>
+<span class="sd">    based on the significance of the detected period, the relative lower and upper errors,</span>
+<span class="sd">    and the IoU of the error circles provided in function classify_periods.</span>
+
+<span class="sd">    Parameters:</span>
+<span class="sd">    -----------</span>
+<span class="sd">    row (pd.Series): A row from the DataFrame containing detected period data.</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">    --------</span>
+<span class="sd">    str: Classification of the period (&#39;reliable&#39;, &#39;medium reliable&#39;, &#39;poor&#39;, &#39;NAN&#39;).</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="c1"># Check for NaN values</span>
+    <span class="k">if</span> <span class="n">pd</span><span class="o">.</span><span class="n">isna</span><span class="p">(</span><span class="n">row</span><span class="p">[</span><span class="s1">&#39;m3&#39;</span><span class="p">])</span> <span class="ow">or</span> <span class="n">pd</span><span class="o">.</span><span class="n">isna</span><span class="p">(</span><span class="n">row</span><span class="p">[</span><span class="s1">&#39;m4&#39;</span><span class="p">])</span> <span class="ow">or</span> <span class="n">pd</span><span class="o">.</span><span class="n">isna</span><span class="p">(</span><span class="n">row</span><span class="p">[</span><span class="s1">&#39;m5&#39;</span><span class="p">])</span> <span class="ow">or</span> <span class="n">pd</span><span class="o">.</span><span class="n">isna</span><span class="p">(</span><span class="n">row</span><span class="p">[</span><span class="s1">&#39;m6&#39;</span><span class="p">])</span> <span class="ow">or</span> <span class="n">pd</span><span class="o">.</span><span class="n">isna</span><span class="p">(</span><span class="n">row</span><span class="p">[</span><span class="s1">&#39;iou&#39;</span><span class="p">]):</span>
+        <span class="k">return</span> <span class="s1">&#39;NAN&#39;</span>
+
+    <span class="c1"># Check if m3 (period) is zero to avoid division by zero</span>
+    <span class="k">if</span> <span class="n">row</span><span class="p">[</span><span class="s1">&#39;m3&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+        <span class="k">return</span> <span class="s1">&#39;NAN&#39;</span>
+
+    <span class="c1"># Calculate relative errors</span>
+    <span class="n">rel_error_lower</span> <span class="o">=</span> <span class="n">row</span><span class="p">[</span><span class="s1">&#39;m4&#39;</span><span class="p">]</span> <span class="o">/</span> <span class="n">row</span><span class="p">[</span><span class="s1">&#39;m3&#39;</span><span class="p">]</span>
+    <span class="n">rel_error_upper</span> <span class="o">=</span> <span class="n">row</span><span class="p">[</span><span class="s1">&#39;m5&#39;</span><span class="p">]</span> <span class="o">/</span> <span class="n">row</span><span class="p">[</span><span class="s1">&#39;m3&#39;</span><span class="p">]</span>
+
+    <span class="c1"># Classify based on criteria</span>
+    <span class="k">if</span> <span class="n">row</span><span class="p">[</span><span class="s1">&#39;m6&#39;</span><span class="p">]</span> <span class="o">&gt;=</span> <span class="mf">0.99</span> <span class="ow">and</span> <span class="n">rel_error_lower</span> <span class="o">&lt;=</span> <span class="mf">0.1</span> <span class="ow">and</span> <span class="n">rel_error_upper</span> <span class="o">&lt;=</span> <span class="mf">0.1</span> <span class="ow">and</span> <span class="n">row</span><span class="p">[</span><span class="s1">&#39;iou&#39;</span><span class="p">]</span> <span class="o">&gt;=</span> <span class="mf">0.99</span><span class="p">:</span>
+        <span class="k">return</span> <span class="s1">&#39;reliable&#39;</span>
+    <span class="k">elif</span> <span class="mf">0.5</span> <span class="o">&lt;=</span> <span class="n">row</span><span class="p">[</span><span class="s1">&#39;m6&#39;</span><span class="p">]</span> <span class="o">&lt;</span> <span class="mf">0.99</span> <span class="ow">and</span> <span class="mf">0.1</span> <span class="o">&lt;</span> <span class="n">rel_error_lower</span> <span class="o">&lt;=</span> <span class="mf">0.3</span> <span class="ow">and</span> <span class="mf">0.1</span> <span class="o">&lt;</span> <span class="n">rel_error_upper</span> <span class="o">&lt;=</span> <span class="mf">0.3</span> <span class="ow">and</span> <span class="mf">0.8</span> <span class="o">&lt;=</span> <span class="n">row</span><span class="p">[</span><span class="s1">&#39;iou&#39;</span><span class="p">]</span> <span class="o">&lt;</span> <span class="mf">0.99</span><span class="p">:</span>
+        <span class="k">return</span> <span class="s1">&#39;medium reliable&#39;</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="k">return</span> <span class="s1">&#39;poor&#39;</span></div>
+
+
+</pre></div>
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2023, Andjelka Kovacevic.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+    <!-- Theme Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'G-XXXXXXXXXX', {
+          'anonymize_ip': false,
+      });
+    </script> 
+
+</body>
+</html>

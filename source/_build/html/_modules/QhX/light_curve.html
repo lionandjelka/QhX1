@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>QhX.light_curve &mdash; QhX1 0.2.0 documentation</title>
+      <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="../../_static/jquery.js?v=5d32c60e"></script>
+        <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script src="../../_static/documentation_options.js?v=938c9ccc"></script>
+        <script src="../../_static/doctools.js?v=888ff710"></script>
+        <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+        <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+        <script src="https://unpkg.com/@jupyter-widgets/html-manager@^0.20.0/dist/embed-amd.js"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search"  style="background: white" >
+
+          
+          
+          <a href="../../index.html" class="icon icon-home">
+            QhX1
+              <img src="../../_static/logo.png" class="logo" alt="Logo"/>
+          </a>
+              <div class="version">
+                0.2.0
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../important_note.html">Important Note</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../LargeData.html">Large Test Data Setup Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../installation.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../quick_start.html">Quick Start Tutorial</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../test_integrated.html">test_integrated</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../examples.html">Examples</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../introduction.html">Motivation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../introduction.html#theoretical-background">Theoretical background</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../introduction.html#qhx-project-history">QhX Project History</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../introduction.html#qhx-package-overview">QhX Package Overview</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../package.html">Package Modules</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../faq.html">Frequently Asked Questions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../license.html">License</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../support_and_contact.html">Support and Contact Information</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu"  style="background: white" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">QhX1</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../index.html">Module code</a></li>
+      <li class="breadcrumb-item active">QhX.light_curve</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <h1>Source code for QhX.light_curve</h1><div class="highlight"><pre>
+<span></span><span class="c1"># pylint: disable=R0801</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">from</span> <span class="nn">scipy.interpolate</span> <span class="kn">import</span> <span class="n">interp1d</span>
+<span class="kn">from</span> <span class="nn">QhX.data_manager</span> <span class="kn">import</span> <span class="n">DataManager</span>
+
+
+<div class="viewcode-block" id="outliers">
+<a class="viewcode-back" href="../../light_curve.html#QhX.light_curve.outliers">[docs]</a>
+<span class="k">def</span> <span class="nf">outliers</span><span class="p">(</span><span class="n">time</span><span class="p">,</span> <span class="n">flux</span><span class="p">,</span> <span class="n">err_flux</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Identifies and removes outliers from a light curve based on a Z-score threshold.</span>
+<span class="sd">    This function applies a Z-score method to identify and remove outliers from light curve data.</span>
+<span class="sd">    If flux error values are provided, the function considers these for a more nuanced outlier detection.</span>
+
+<span class="sd">    Parameters:</span>
+<span class="sd">    -----------</span>
+<span class="sd">    - time (array): Array of time values.</span>
+<span class="sd">    - flux (array): Array of flux values corresponding to the time values.</span>
+<span class="sd">    - err_flux (array, optional): Array of flux error values. If provided, the function</span>
+<span class="sd">      considers error-weighted Z-scores for outlier detection.</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">    --------</span>
+<span class="sd">    tuple: A tuple consisting of arrays of time and flux values with outliers removed.</span>
+<span class="sd">    If &#39;err_flux&#39; is provided, returns a third array of flux error values with</span>
+<span class="sd">    outliers removed.</span>
+
+<span class="sd">    Example:</span>
+<span class="sd">    --------</span>
+<span class="sd">    Assuming `time`, `flux`, and `err_flux` are arrays with light curve data:</span>
+<span class="sd">    &gt;&gt;&gt; clean_time, clean_flux = outliers(time, flux)</span>
+<span class="sd">    &gt;&gt;&gt; clean_time, clean_flux, clean_err_flux = outliers(time, flux, err_flux)</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="c1"># Function implementation remains unchanged...</span>
+    <span class="k">if</span> <span class="n">err_flux</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="c1"># Compute the error-weighted Z-Score for each point in the light curve</span>
+        <span class="n">z_scores_flux</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">((</span><span class="n">flux</span> <span class="o">-</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">flux</span><span class="p">))</span> <span class="o">/</span> <span class="n">err_flux</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">z_scores_flux</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">flux</span><span class="p">))</span>
+
+    <span class="c1"># Compute the Z-Score for each point in the flux values</span>
+    <span class="n">z_scores</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">((</span><span class="n">flux</span> <span class="o">-</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">flux</span><span class="p">))</span> <span class="o">/</span> <span class="n">np</span><span class="o">.</span><span class="n">std</span><span class="p">(</span><span class="n">flux</span><span class="p">))</span>
+
+    <span class="c1"># Define a threshold for outlier detection</span>
+    <span class="n">threshold</span> <span class="o">=</span> <span class="mf">3.0</span>
+
+    <span class="c1"># Find the indices of the non-outlier points</span>
+    <span class="n">good_indices</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">where</span><span class="p">((</span><span class="n">z_scores</span> <span class="o">&lt;=</span> <span class="n">threshold</span><span class="p">)</span> <span class="o">&amp;</span> <span class="p">(</span><span class="n">z_scores_flux</span> <span class="o">&lt;=</span> <span class="n">threshold</span><span class="p">))[</span><span class="mi">0</span><span class="p">]</span>
+
+    <span class="c1"># Create new arrays with only the non-outlier points</span>
+    <span class="n">clean_flux</span> <span class="o">=</span> <span class="n">flux</span><span class="p">[</span><span class="n">good_indices</span><span class="p">]</span>
+    <span class="n">clean_time</span> <span class="o">=</span> <span class="n">time</span><span class="p">[</span><span class="n">good_indices</span><span class="p">]</span>
+
+    <span class="c1"># Conditionally return the error flux</span>
+    <span class="k">if</span> <span class="n">err_flux</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">clean_err_flux</span> <span class="o">=</span> <span class="n">err_flux</span><span class="p">[</span><span class="n">good_indices</span><span class="p">]</span>
+        <span class="k">return</span> <span class="n">clean_time</span><span class="p">,</span> <span class="n">clean_flux</span><span class="p">,</span> <span class="n">clean_err_flux</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">clean_time</span><span class="p">,</span> <span class="n">clean_flux</span></div>
+
+
+
+
+<div class="viewcode-block" id="outliers_mad">
+<a class="viewcode-back" href="../../light_curve.html#QhX.light_curve.outliers_mad">[docs]</a>
+<span class="k">def</span> <span class="nf">outliers_mad</span><span class="p">(</span><span class="n">time</span><span class="p">,</span> <span class="n">flux</span><span class="p">,</span> <span class="n">err_flux</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">threshold_factor</span><span class="o">=</span><span class="mf">3.0</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Identifies and removes outliers from a light curve data set using Median Absolute Deviation (MAD).</span>
+<span class="sd">    This function applies the MAD method to identify and remove outliers in light curve data. It can optionally</span>
+<span class="sd">    consider errors in flux measurements for a more nuanced outlier detection. The outlier detection threshold</span>
+<span class="sd">    is determined as a multiple of the MAD, with an optional inclusion of median error for adjustment.</span>
+
+<span class="sd">    Parameters:</span>
+<span class="sd">    -----------</span>
+<span class="sd">    - time (array): Array of time values corresponding to light curve measurements.</span>
+<span class="sd">    - flux (array): Array of flux values corresponding to the light curve.</span>
+<span class="sd">    - err_flux (array, optional): Array of errors associated with flux measurements.</span>
+<span class="sd">      If provided, these values adjust the outlier detection threshold.</span>
+<span class="sd">    - threshold_factor (float, optional): A multiplier used with MAD to set the threshold</span>
+<span class="sd">      for outlier detection. Default is 3.0. Smaller values imply stricter outlier removal.</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">    --------</span>
+<span class="sd">    - clean_time (array): Array of time values with outliers removed.</span>
+<span class="sd">    - clean_flux (array): Array of flux values with outliers removed.</span>
+<span class="sd">    - clean_err_flux (array, optional): Array of error flux values with outliers removed,</span>
+<span class="sd">      returned only if `err_flux` is provided.</span>
+
+<span class="sd">    Example:</span>
+<span class="sd">    --------</span>
+<span class="sd">    Assuming `time`, `flux`, and `err_flux` are arrays with light curve data:</span>
+
+<span class="sd">    &gt;&gt;&gt; clean_time, clean_flux = outliers_mad(time, flux)</span>
+<span class="sd">    &gt;&gt;&gt; clean_time, clean_flux, clean_err_flux = outliers_mad(time, flux, err_flux)</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="c1"># Function implementation remains unchanged...</span>
+    <span class="n">median_flux</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">median</span><span class="p">(</span><span class="n">flux</span><span class="p">)</span>
+    <span class="n">mad</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">median</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">flux</span> <span class="o">-</span> <span class="n">median_flux</span><span class="p">))</span>
+    <span class="n">threshold</span> <span class="o">=</span> <span class="n">threshold_factor</span> <span class="o">*</span> <span class="n">mad</span>
+
+    <span class="c1"># Conditionally adjust threshold based on error in flux</span>
+    <span class="k">if</span> <span class="n">err_flux</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">threshold</span> <span class="o">+=</span> <span class="n">np</span><span class="o">.</span><span class="n">median</span><span class="p">(</span><span class="n">err_flux</span><span class="p">)</span>
+
+    <span class="c1"># Identify non-outlier indices</span>
+    <span class="n">good_indices</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">flux</span> <span class="o">-</span> <span class="n">median_flux</span><span class="p">)</span> <span class="o">&lt;=</span> <span class="n">threshold</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
+
+    <span class="c1"># Create new arrays with only the non-outlier points</span>
+    <span class="n">clean_flux</span> <span class="o">=</span> <span class="n">flux</span><span class="p">[</span><span class="n">good_indices</span><span class="p">]</span>
+    <span class="n">clean_time</span> <span class="o">=</span> <span class="n">time</span><span class="p">[</span><span class="n">good_indices</span><span class="p">]</span>
+
+    <span class="c1"># Conditionally return the error flux</span>
+    <span class="k">if</span> <span class="n">err_flux</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">clean_err_flux</span> <span class="o">=</span> <span class="n">err_flux</span><span class="p">[</span><span class="n">good_indices</span><span class="p">]</span>
+        <span class="k">return</span> <span class="n">clean_time</span><span class="p">,</span> <span class="n">clean_flux</span><span class="p">,</span> <span class="n">clean_err_flux</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">clean_time</span><span class="p">,</span> <span class="n">clean_flux</span></div>
+
+
+<span class="c1"># Example usage:</span>
+<span class="c1"># clean_time, clean_flux = outliers(tt, yy)</span>
+<span class="c1"># clean_time, clean_flux, clean_err_flux = outliers(tt, yy, err_flux=yy_err)</span>
+
+
+<div class="viewcode-block" id="get_lc22">
+<a class="viewcode-back" href="../../light_curve.html#QhX.light_curve.get_lc22">[docs]</a>
+<span class="k">def</span> <span class="nf">get_lc22</span><span class="p">(</span><span class="n">data_manager</span><span class="p">,</span> <span class="n">set1</span><span class="p">,</span> <span class="n">include_errors</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Process and return light curves with an option to include magnitude errors for a given set ID.</span>
+<span class="sd">    This version is for fixed filters ranging from 0 to 3 and preserves MJD precision.</span>
+
+<span class="sd">    Parameters:</span>
+<span class="sd">    -----------</span>
+<span class="sd">    - set1 (str): The object ID for which light curves are to be processed.</span>
+<span class="sd">    - include_errors (bool, optional): Flag to include magnitude errors in the time series. Defaults to True.</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">    --------</span>
+<span class="sd">    tuple: Contains the processed time series with or without magnitude errors for each filter (0 to 3),</span>
+<span class="sd">           along with their respective sampling rates.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">if</span> <span class="n">set1</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">data_manager</span><span class="o">.</span><span class="n">fs_gp</span><span class="o">.</span><span class="n">groups</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Set ID </span><span class="si">{</span><span class="n">set1</span><span class="si">}</span><span class="s2"> not found.&quot;</span><span class="p">)</span>
+        <span class="k">return</span> <span class="kc">None</span>
+
+    <span class="c1"># Fetch data for the given object ID</span>
+    <span class="n">demo_lc</span> <span class="o">=</span> <span class="n">data_manager</span><span class="o">.</span><span class="n">fs_gp</span><span class="o">.</span><span class="n">get_group</span><span class="p">(</span><span class="n">set1</span><span class="p">)</span>
+
+    <span class="c1"># Initialize containers for time series data and sampling rates</span>
+    <span class="n">tt_with_errors</span> <span class="o">=</span> <span class="p">{</span><span class="mi">0</span><span class="p">:</span> <span class="kc">None</span><span class="p">,</span> <span class="mi">1</span><span class="p">:</span> <span class="kc">None</span><span class="p">,</span> <span class="mi">2</span><span class="p">:</span> <span class="kc">None</span><span class="p">,</span> <span class="mi">3</span><span class="p">:</span> <span class="kc">None</span><span class="p">}</span>
+    <span class="n">ts_with_errors</span> <span class="o">=</span> <span class="p">{</span><span class="mi">0</span><span class="p">:</span> <span class="kc">None</span><span class="p">,</span> <span class="mi">1</span><span class="p">:</span> <span class="kc">None</span><span class="p">,</span> <span class="mi">2</span><span class="p">:</span> <span class="kc">None</span><span class="p">,</span> <span class="mi">3</span><span class="p">:</span> <span class="kc">None</span><span class="p">}</span>
+    <span class="n">sampling_rates</span> <span class="o">=</span> <span class="p">{</span><span class="mi">0</span><span class="p">:</span> <span class="kc">None</span><span class="p">,</span> <span class="mi">1</span><span class="p">:</span> <span class="kc">None</span><span class="p">,</span> <span class="mi">2</span><span class="p">:</span> <span class="kc">None</span><span class="p">,</span> <span class="mi">3</span><span class="p">:</span> <span class="kc">None</span><span class="p">}</span>
+
+    <span class="k">for</span> <span class="n">filter_value</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">4</span><span class="p">):</span>  <span class="c1"># Fixed filters from 0 to 3</span>
+        <span class="n">d</span> <span class="o">=</span> <span class="n">demo_lc</span><span class="p">[</span><span class="n">demo_lc</span><span class="p">[</span><span class="s1">&#39;filter&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="n">filter_value</span><span class="p">]</span><span class="o">.</span><span class="n">sort_values</span><span class="p">(</span><span class="n">by</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;mjd&#39;</span><span class="p">])</span><span class="o">.</span><span class="n">dropna</span><span class="p">()</span>
+        <span class="k">if</span> <span class="n">d</span><span class="o">.</span><span class="n">empty</span> <span class="ow">or</span> <span class="p">(</span><span class="s1">&#39;psMagErr&#39;</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">d</span><span class="o">.</span><span class="n">columns</span> <span class="ow">and</span> <span class="n">include_errors</span><span class="p">):</span>
+            <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;No data or &#39;psMagErr&#39; column not found for filter </span><span class="si">{</span><span class="n">filter_value</span><span class="si">}</span><span class="s2"> in set </span><span class="si">{</span><span class="n">set1</span><span class="si">}</span><span class="s2">.&quot;</span><span class="p">)</span>
+            <span class="k">continue</span>
+
+        <span class="c1"># Extract MJD, magnitude, and errors</span>
+        <span class="n">tt</span><span class="p">,</span> <span class="n">yy</span> <span class="o">=</span> <span class="n">d</span><span class="p">[</span><span class="s1">&#39;mjd&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">to_numpy</span><span class="p">(),</span> <span class="n">d</span><span class="p">[</span><span class="s1">&#39;psMag&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">to_numpy</span><span class="p">()</span>
+        <span class="n">err_mag</span> <span class="o">=</span> <span class="n">d</span><span class="p">[</span><span class="s1">&#39;psMagErr&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">to_numpy</span><span class="p">()</span> <span class="k">if</span> <span class="s1">&#39;psMagErr&#39;</span> <span class="ow">in</span> <span class="n">d</span><span class="o">.</span><span class="n">columns</span> <span class="ow">and</span> <span class="n">include_errors</span> <span class="k">else</span> <span class="kc">None</span>
+
+        <span class="c1"># Handle outliers</span>
+        <span class="k">if</span> <span class="n">include_errors</span> <span class="ow">and</span> <span class="n">err_mag</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">tt</span><span class="p">,</span> <span class="n">yy</span><span class="p">,</span> <span class="n">err_mag</span> <span class="o">=</span> <span class="n">outliers_mad</span><span class="p">(</span><span class="n">tt</span><span class="p">,</span> <span class="n">yy</span><span class="p">,</span> <span class="n">err_mag</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">tt</span><span class="p">,</span> <span class="n">yy</span> <span class="o">=</span> <span class="n">outliers_mad</span><span class="p">(</span><span class="n">tt</span><span class="p">,</span> <span class="n">yy</span><span class="p">)</span>
+
+        <span class="c1"># Create the time series with or without errors</span>
+        <span class="n">ts_with_or_without_errors</span> <span class="o">=</span> <span class="n">yy</span>
+        <span class="k">if</span> <span class="n">include_errors</span> <span class="ow">and</span> <span class="n">err_mag</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">ts_with_or_without_errors</span> <span class="o">+=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">normal</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">err_mag</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">tt</span><span class="p">))</span>
+
+        <span class="c1"># Store time series and sampling rates</span>
+        <span class="n">tt_with_errors</span><span class="p">[</span><span class="n">filter_value</span><span class="p">]</span> <span class="o">=</span> <span class="n">tt</span>
+        <span class="n">ts_with_errors</span><span class="p">[</span><span class="n">filter_value</span><span class="p">]</span> <span class="o">=</span> <span class="n">ts_with_or_without_errors</span>
+        <span class="n">sampling_rates</span><span class="p">[</span><span class="n">filter_value</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">diff</span><span class="p">(</span><span class="n">tt</span><span class="p">))</span> <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">tt</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">1</span> <span class="k">else</span> <span class="mi">0</span>
+
+    <span class="k">return</span> <span class="n">tt_with_errors</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">ts_with_errors</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">tt_with_errors</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">ts_with_errors</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> \
+           <span class="n">tt_with_errors</span><span class="p">[</span><span class="mi">2</span><span class="p">],</span> <span class="n">ts_with_errors</span><span class="p">[</span><span class="mi">2</span><span class="p">],</span> <span class="n">tt_with_errors</span><span class="p">[</span><span class="mi">3</span><span class="p">],</span> <span class="n">ts_with_errors</span><span class="p">[</span><span class="mi">3</span><span class="p">],</span> \
+           <span class="n">sampling_rates</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">sampling_rates</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">sampling_rates</span><span class="p">[</span><span class="mi">2</span><span class="p">],</span> <span class="n">sampling_rates</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span></div>
+
+</pre></div>
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2023, Andjelka Kovacevic.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+    <!-- Theme Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'G-XXXXXXXXXX', {
+          'anonymize_ip': false,
+      });
+    </script> 
+
+</body>
+</html>
