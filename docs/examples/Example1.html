@@ -24,7 +24,7 @@
     <script src="../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="Educative example of parallel processing using threading on local computer, QSO from LSST AGN Data Challenge database" href="Example2.html" />
+    <link rel="next" title="Parallel processing using threading on personal computer" href="Example2.html" />
     <link rel="prev" title="Examples" href="../examples.html" /> 
 </head>
 
@@ -61,10 +61,10 @@
 <li class="toctree-l1 current"><a class="reference internal" href="../examples.html">Examples</a><ul class="current">
 <li class="toctree-l2 current"><a class="reference internal" href="../examples.html#notebook-examples-and-data-files">Notebook examples and data files</a><ul class="current">
 <li class="toctree-l3 current"><a class="current reference internal" href="#">SIMPLE TUTORIAL WITH MOCK LIGHT CURVE</a></li>
-<li class="toctree-l3"><a class="reference internal" href="Example2.html">Educative example of parallel processing using threading on local computer, QSO from LSST AGN Data Challenge database</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Example2.html">Parallel processing using threading on personal computer</a></li>
 <li class="toctree-l3"><a class="reference internal" href="Example3.html">Example of using Parallelization module</a></li>
 <li class="toctree-l3"><a class="reference internal" href="Example3.html#Solver-Modes:-Fixed-and-Dynamical">Solver Modes: Fixed and Dynamical</a></li>
-<li class="toctree-l3"><a class="reference internal" href="Example4.html">MERGER OF LARGE FILES</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Example4.html">Merger of large files</a></li>
 <li class="toctree-l3"><a class="reference internal" href="Example5.html">Example of visualisation of large files obtained from HPC</a></li>
 </ul>
 </li>
@@ -109,38 +109,6 @@
   <p><img alt="Open In Colab" src="https://colab.research.google.com/assets/colab-badge.svg" /></p>
 <section id="SIMPLE-TUTORIAL-WITH-MOCK-LIGHT-CURVE">
 <h1>SIMPLE TUTORIAL WITH MOCK LIGHT CURVE<a class="headerlink" href="#SIMPLE-TUTORIAL-WITH-MOCK-LIGHT-CURVE" title="Link to this heading"></a></h1>
-<div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[1]:
-</pre></div>
-</div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">!</span>mkdir<span class="w"> </span>period
-</pre></div>
-</div>
-</div>
-<div class="nboutput nblast docutils container">
-<div class="prompt empty docutils container">
-</div>
-<div class="output_area docutils container">
-<div class="highlight"><pre>
-mkdir: period: File exists
-</pre></div></div>
-</div>
-<div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[2]:
-</pre></div>
-</div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="k">cd</span> period
-</pre></div>
-</div>
-</div>
-<div class="nboutput nblast docutils container">
-<div class="prompt empty docutils container">
-</div>
-<div class="output_area docutils container">
-<div class="highlight"><pre>
-/Users/andjelka/Documents/QhX12/source/examples/period
-</pre></div></div>
-</div>
 <p><strong>Import libraries and create artifical LC to test the module</strong></p>
 <div class="nbinput docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[1]:
@@ -2165,22 +2133,6 @@ roTBs2RqAAAAAElFTkSuQmCC'
 
 </div></div>
 </div>
-<div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[2]:
-</pre></div>
-</div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">!</span>pwd
-</pre></div>
-</div>
-</div>
-<div class="nboutput nblast docutils container">
-<div class="prompt empty docutils container">
-</div>
-<div class="output_area docutils container">
-<div class="highlight"><pre>
-/Users/andjelka/Documents/QhX3/QhX1/source/examples
-</pre></div></div>
-</div>
 <div class="nbinput nblast docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[8]:
 </pre></div>
@@ -2268,7 +2220,7 @@ roTBs2RqAAAAAElFTkSuQmCC'
 <div class="prompt empty docutils container">
 </div>
 <div class="output_area docutils container">
-<img alt="../_images/examples_Example1_14_0.png" src="../_images/examples_Example1_14_0.png" />
+<img alt="../_images/examples_Example1_10_0.png" src="../_images/examples_Example1_10_0.png" />
 </div>
 </div>
 <p>** Periodicity determination using WWZ ✨WWZ-Weighted Wavelet Z-transform** **</p>
@@ -2324,7 +2276,7 @@ largest tau window is  46.124
 <div class="prompt empty docutils container">
 </div>
 <div class="output_area docutils container">
-<img alt="../_images/examples_Example1_19_0.png" src="../_images/examples_Example1_19_0.png" />
+<img alt="../_images/examples_Example1_15_0.png" src="../_images/examples_Example1_15_0.png" />
 </div>
 </div>
 <p><strong>Finding the error of the detected period</strong> Reference: Schwarzenberg-Czerny, A., 1991, Mon. Not. R. astr. Soc., 253, 198-206</p>
@@ -2370,7 +2322,7 @@ largest tau window is  46.124
 <div class="prompt empty docutils container">
 </div>
 <div class="output_area docutils container">
-<img alt="../_images/examples_Example1_23_0.png" src="../_images/examples_Example1_23_0.png" />
+<img alt="../_images/examples_Example1_19_0.png" src="../_images/examples_Example1_19_0.png" />
 </div>
 </div>
 <div class="nbinput docutils container">
@@ -2497,7 +2449,7 @@ Text(0.5, 1.0, &#39;correlation peak for artificial curves&#39;)
 <div class="prompt empty docutils container">
 </div>
 <div class="output_area docutils container">
-<img alt="../_images/examples_Example1_28_1.png" src="../_images/examples_Example1_28_1.png" />
+<img alt="../_images/examples_Example1_24_1.png" src="../_images/examples_Example1_24_1.png" />
 </div>
 </div>
 </section>
@@ -2507,7 +2459,7 @@ Text(0.5, 1.0, &#39;correlation peak for artificial curves&#39;)
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
         <a href="../examples.html" class="btn btn-neutral float-left" title="Examples" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
-        <a href="Example2.html" class="btn btn-neutral float-right" title="Educative example of parallel processing using threading on local computer, QSO from LSST AGN Data Challenge database" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="Example2.html" class="btn btn-neutral float-right" title="Parallel processing using threading on personal computer" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
   <hr/>

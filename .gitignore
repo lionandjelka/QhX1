@@ -142,3 +142,4 @@ Makefileold
 paper/
 codemeta.json
 generate_codemeta.rb
+setup.py

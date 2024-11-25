@@ -1,7 +1,7 @@
 # detection.py
 
 import numpy as np
-from QhX.light_curve import get_lctiktok, get_lc22
+from QhX.light_curve import  get_lc22
 # Ensure to import or define other necessary functions like hybrid2d, periods, same_periods, etc.
 from QhX.algorithms.wavelets.wwtz import *
 from QhX.calculation import *
@@ -16,44 +16,6 @@ DEFAULT_PROVIDED_MINFQ = 2000
 DEFAULT_PROVIDED_MAXFQ = 10
 
 #from QhX.algorithms.wavelets.wwt import estimate_wavelet_periods
-
-def process1tiktok(data_manager,set1, initial_period, damping_factor_amplitude, damping_factor_frequency, snr=None, inject_signal=False, ntau=None, ngrid=None, minfq=None, maxfq=None, parallel = False):
-    if set1 not in data_manager.fs_gp.groups:
-        print(f"Set ID {set1} not found.")
-        return None
-
-    det_periods = []
-    tt0, yy0, tt1, yy1, tt2, yy2, tt3, yy3, sampling0, sampling1, sampling2, sampling3, tik0, tik1, tik2, tik3 = get_lctiktok(data_manager,set1, initial_period, damping_factor_amplitude, damping_factor_frequency, snr, inject_signal)
-    wwz_matrx0, corr0, extent0 = hybrid2d(tt0, yy0, 120, 3200, minfq=1500., maxfq=10., parallel=parallel)
-    peaks0, hh0, r_periods0, up0, low0 = periods(int(set1), corr0, 3200, plot=False)
-    wwzmatrx1, corr1, extent1 = hybrid2d(tt1, yy1, 120, 3200, minfq=1500., maxfq=10., parallel=parallel)
-    peaks1, hh1, r_periods1, up1, low1 = periods(int(set1), corr1, 3200, plot=False)
-    wwz_matrx2, corr2, extent2 = hybrid2d(tt2, yy2, 120, 3200, minfq=1500., maxfq=10., parallel=parallel)
-    peaks2, hh2, r_periods2, up2, low2 = periods(int(set1), corr2, 3200, plot=False)
-    wwzmatrx3, corr3, extent3 = hybrid2d(tt3, yy3, 120, 3200, minfq=1500., maxfq=10., parallel=parallel)
-    peaks3, hh3, r_periods3, up3, low3 = periods(int(set1), corr3, 3200, plot=False)
-    r_periods01, u01, low01, sig01 = same_periods(r_periods0, r_periods1, up0, low0, up1, low1, peaks0, hh0, tt0, yy0, peaks1, hh1, tt1, yy1, ntau=ntau, ngrid=ngrid, minfq=minfq, maxfq=maxfq)
-    print(set1)
-    if r_periods01.size > 0 and u01.size > 0 and low01.size > 0 and sig01.size > 0:
-        for j in range(len(r_periods01.ravel())):
-            det_periods.append([int(set1), sampling0, sampling1, r_periods01[j], u01[j], low01[j], sig01[j], 12])
-    elif r_periods01.size == 0:
-        det_periods.append([int(set1), 0, 0, 0, 0, 0, 0, 12])
-
-    r_periods02, u02, low02, sig02 = same_periods(r_periods0, r_periods2, up0, low0, up2, low2, peaks0, hh0, tt0, yy0, peaks2, hh2, tt2, yy2, ntau=ntau, ngrid=ngrid, minfq=minfq, maxfq=maxfq)
-    if r_periods02.size > 0 and u02.size > 0 and low02.size > 0 and sig02.size > 0:
-        for j in range(len(r_periods02.ravel())):
-            det_periods.append([int(set1), sampling0, sampling2, r_periods02[j], u02[j], low02[j], sig02[j], 13])
-    elif r_periods02.size == 0:
-        det_periods.append([int(set1), 0, 0, 0, 0, 0, 0, 13])
-    r_periods03, u03, low03, sig03 = same_periods(r_periods0, r_periods3, up0, low0, up3, low3, peaks0, hh0, tt0, yy0, peaks3, hh3, tt3, yy3, ntau=ntau, ngrid=ngrid, minfq=minfq, maxfq=maxfq)
-    if r_periods03.size > 0 and u03.size > 0 and low03.size > 0 and sig03.size > 0:
-        for j in range(len(r_periods03.ravel())):
-            det_periods.append([int(set1), sampling0, sampling3, r_periods03[j], u03[j], low03[j], sig03[j], 14])
-    elif r_periods03.size == 0:
-        det_periods.append([int(set1), 0, 0, 0, 0, 0, 0, 14])
-    return np.array(det_periods)
-
 
 def process1_new(data_manager, set1, ntau=None, ngrid=None, provided_minfq=None, provided_maxfq=None, include_errors=True, parallel=False):
     """

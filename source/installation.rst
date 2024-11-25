@@ -8,7 +8,7 @@ Users can install QhX by cloning its repository and installing it manually:
 .. code-block:: bash
 
     git clone https://github.com/lionandjelka/QhX1.git
-    cd QhX
+    cd QhX1
     pip install .
 
 Requirements

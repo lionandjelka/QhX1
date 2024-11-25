@@ -11,7 +11,7 @@ First, install the QhX package if you have not already.
 .. code-block:: bash
 
     git clone https://github.com/lionandjelka/QhX1.git
-    cd QhX
+    cd QhX1
     pip install .
 
 Step 2: Running Tests
@@ -74,10 +74,10 @@ This will provide more information about each test that is executed.
 
 .. code-block:: bash
 
-    python -m pytest -s QhX/tests/test_integrated.py
+    python -m pytest -v -s QhX/tests/test_integrated.py
 
 
-You should see output similar to the following, indicating that the tests have passed:
+You should see output similar to the following, where each entry displays the calculation of the wavelet Z-transform for each (of 100) artificially simulated light curve, assessing period significance and confirming that the tests have passed
 
 .. code-block:: text
 
@@ -187,7 +187,8 @@ Once QhX is installed, and you have confirmed that the tests pass, you can impor
 Step 4: Loading Data
 --------------------
 
-Load your light curve data into QhX. For example importing parquet LSST AGN Data Challange:
+Load your light curve data into QhX. For example importing parquet from ` LSST AGN Data Challenge <https://github.com/RichardsGroup/AGN_DataChallenge>`_ 
+:
 
 .. code-block:: python
 
@@ -242,6 +243,7 @@ With the data loaded, you can start analyzing the light curve:
    from QhX.algorithms.wavelets.wwtz import *
    process1_results = process1_new(data_manager, '1384142', ntau=80, ngrid=800, provided_minfq=2000, provided_maxfq=10, include_errors=True)
 
+During the execution of the above function, you will see verbose output assessing the significance of periods based on the Johnson et al. approach. For more details, refer to the `Theoretical Background` section and the subsection on `Detection and Calculation`.
 The output dictionary `process1_results` contains:
 
 .. code-block:: text
