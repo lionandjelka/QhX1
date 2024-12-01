@@ -204,9 +204,10 @@ a Creative Commons Attribution 4.0 International License (CC BY
   al., 1991</xref>). Non-stationary signals and unfavorable sampling
   (<xref alt="Brandt et al., 2018" rid="ref-2018Br" ref-type="bibr">Brandt
   et al., 2018</xref>;
-  <xref alt="2023arXiv231016896D?" rid="ref-2023arXiv231016896D" ref-type="bibr"><bold>2023arXiv231016896D?</bold></xref>)
-  further obscure coherent patterns. Traditional time-frequency methods,
-  constrained by the Fourier uncertainty principle (i.e., Gabor limit,
+  <xref alt="D’Orazio &amp; Charisi, 2023" rid="ref-2023arXiv231016896D" ref-type="bibr">D’Orazio
+  &amp; Charisi, 2023</xref>) further obscure coherent patterns.
+  Traditional time-frequency methods, constrained by the Fourier
+  uncertainty principle (i.e., Gabor limit,
   <xref alt="Gabor, 1947" rid="ref-gabor47" ref-type="bibr">Gabor,
   1947</xref>), often fail with such complex signals, highlighting the
   need for nonlinear approaches
@@ -290,9 +291,10 @@ a Creative Commons Attribution 4.0 International License (CC BY
           <p><monospace>detection</monospace> module identifies
           candidate periodic signals and assesses their validity using
           statistical measures (significance and upper and lower error
-          (<xref alt="2019J?" rid="ref-2019J" ref-type="bibr"><bold>2019J?</bold></xref>)).
-          The Intersection over Union (IoU) metric identifies
-          overlapping periods across bands and objects.</p>
+          (<xref alt="Johnson et al., 2019" rid="ref-2019J" ref-type="bibr">Johnson
+          et al., 2019</xref>)). The Intersection over Union (IoU)
+          metric identifies overlapping periods across bands and
+          objects.</p>
         </list-item>
         <list-item>
           <p>Statistical vetting categorizes detected periods for each
@@ -1502,6 +1504,43 @@ a Creative Commons Attribution 4.0 International License (CC BY
       <pub-id pub-id-type="doi">10.3847/1538-4365/ac88ce</pub-id>
       <fpage>49</fpage>
       <lpage></lpage>
+    </element-citation>
+  </ref>
+  <ref id="ref-2023arXiv231016896D">
+    <element-citation publication-type="article-journal">
+      <person-group person-group-type="author">
+        <name><surname>D’Orazio</surname><given-names>Daniel J.</given-names></name>
+        <name><surname>Charisi</surname><given-names>Maria</given-names></name>
+      </person-group>
+      <article-title>Observational Signatures of Supermassive Black Hole Binaries</article-title>
+      <source>arXiv e-prints</source>
+      <year iso-8601-date="2023-10">2023</year><month>10</month>
+      <uri>https://arxiv.org/abs/2310.16896</uri>
+      <pub-id pub-id-type="doi">10.48550/arXiv.2310.16896</pub-id>
+      <fpage>arXiv:2310.16896</fpage>
+      <lpage></lpage>
+    </element-citation>
+  </ref>
+  <ref id="ref-2019J">
+    <element-citation publication-type="article-journal">
+      <person-group person-group-type="author">
+        <name><surname>Johnson</surname><given-names>Michael A. C.</given-names></name>
+        <name><surname>Gandhi</surname><given-names>Poshak</given-names></name>
+        <name><surname>Chapman</surname><given-names>Adriane P.</given-names></name>
+        <name><surname>Moreau</surname><given-names>Luc</given-names></name>
+        <name><surname>Charles</surname><given-names>Philip A.</given-names></name>
+        <name><surname>Clarkson</surname><given-names>William I.</given-names></name>
+        <name><surname>Hill</surname><given-names>Adam B.</given-names></name>
+      </person-group>
+      <article-title>Prospecting for periods with LSST - low-mass X-ray binaries as a test case</article-title>
+      <source>Monthly Notices of the Royal Astronomical Society</source>
+      <year iso-8601-date="2019-03">2019</year><month>03</month>
+      <volume>484</volume>
+      <issue>1</issue>
+      <uri>https://arxiv.org/abs/1809.09141</uri>
+      <pub-id pub-id-type="doi">10.1093/mnras/sty3466</pub-id>
+      <fpage>19</fpage>
+      <lpage>30</lpage>
     </element-citation>
   </ref>
   <ref id="ref-Kasliwal">
