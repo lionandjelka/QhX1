@@ -294,7 +294,10 @@ a Creative Commons Attribution 4.0 International License (CC BY
           (<xref alt="Johnson et al., 2019" rid="ref-2019J" ref-type="bibr">Johnson
           et al., 2019</xref>)). The Intersection over Union (IoU)
           metric identifies overlapping periods across bands and
-          objects.</p>
+          objects. To our knowledge, this is the first application of
+          the Intersection-over-Union (IoU) metric to quantify the
+          overlap between detected and reference periods in astronomical
+          time-series analysis.</p>
         </list-item>
         <list-item>
           <p>Statistical vetting categorizes detected periods for each
@@ -305,6 +308,13 @@ a Creative Commons Attribution 4.0 International License (CC BY
     <list-item>
       <p><bold>Data Management</bold>:</p>
       <list list-type="bullet">
+        <list-item>
+          <p><monospace>QhX</monospace> assumes input time-series data
+          in a simple tabular format containing time, flux (or
+          magnitude), and associated uncertainties. Examples in the
+          documentation illustrate how to map data from other commonly
+          used formats into this structure.</p>
+        </list-item>
         <list-item>
           <p><monospace>data_manager</monospace> and
           <monospace>data_manager_dynamical</monospace> modules manage
@@ -353,20 +363,85 @@ a Creative Commons Attribution 4.0 International License (CC BY
 </sec>
 <sec id="representative-applications">
   <title>Representative Applications</title>
-  <p>The <monospace>QhX</monospace> method has been applied to:</p>
-  <p>-Quasar periodicity detection
-  (<xref alt="Fatović et al., 2023" rid="ref-2023AJF" ref-type="bibr">Fatović
-  et al., 2023</xref>;
-  <xref alt="Kovačević et al., 2018" rid="ref-2018MNRASK" ref-type="bibr">Kovačević
-  et al., 2018</xref>,
-  <xref alt="2019" rid="ref-2019ApJK" ref-type="bibr">2019</xref>;
-  <xref alt="Kovačević, Popović, et al., 2020" rid="ref-2020OAstK" ref-type="bibr">Kovačević,
-  Popović, et al., 2020</xref>). -Quasi-Periodic Oscillations detection
+  <p><monospace>QhX</monospace> has been benchmarked with respect to
+  widely used periodicity detection software across multiple domains. In
+  Fatović et al.
+  (<xref alt="2023" rid="ref-2023AJF" ref-type="bibr">2023</xref>),
+  applying <monospace>QhX</monospace> to SDSS J2320$+$0024 yielded a
+  period of <inline-formula><alternatives>
+  <tex-math><![CDATA[278.36^{+57.34}_{-25.21}]]></tex-math>
+  <mml:math display="inline" xmlns:mml="http://www.w3.org/1998/Math/MathML"><mml:msubsup><mml:mn>278.36</mml:mn><mml:mrow><mml:mi>−</mml:mi><mml:mn>25.21</mml:mn></mml:mrow><mml:mrow><mml:mi>+</mml:mi><mml:mn>57.34</mml:mn></mml:mrow></mml:msubsup></mml:math></alternatives></inline-formula>
+  days, with a significance above 99% measured via the shuffling method,
+  and a 90% significance from the Generalized Extreme Value (GEV)
+  approach. A Lomb–Scargle periodogram applied to the same dataset
+  produced a consistent period of 278~days at the same significance
+  level. In Kovačević et al.
+  (<xref alt="2019" rid="ref-2019ApJK" ref-type="bibr">2019</xref>),<monospace>QhX</monospace>
+  detected periods of <inline-formula><alternatives>
+  <tex-math><![CDATA[1972 \pm 254]]></tex-math>
+  <mml:math display="inline" xmlns:mml="http://www.w3.org/1998/Math/MathML"><mml:mrow><mml:mn>1972</mml:mn><mml:mo>±</mml:mo><mml:mn>254</mml:mn></mml:mrow></mml:math></alternatives></inline-formula>~days
+  (observed light curve) and <inline-formula><alternatives>
+  <tex-math><![CDATA[1873 \pm 250]]></tex-math>
+  <mml:math display="inline" xmlns:mml="http://www.w3.org/1998/Math/MathML"><mml:mrow><mml:mn>1873</mml:mn><mml:mo>±</mml:mo><mml:mn>250</mml:mn></mml:mrow></mml:math></alternatives></inline-formula>
+  days (modeled light curve) for PG~1302–102, both within
+  <inline-formula><alternatives>
+  <tex-math><![CDATA[1\sigma]]></tex-math>
+  <mml:math display="inline" xmlns:mml="http://www.w3.org/1998/Math/MathML"><mml:mrow><mml:mn>1</mml:mn><mml:mi>σ</mml:mi></mml:mrow></mml:math></alternatives></inline-formula>
+  of the <inline-formula><alternatives>
+  <tex-math><![CDATA[1884 \pm 88]]></tex-math>
+  <mml:math display="inline" xmlns:mml="http://www.w3.org/1998/Math/MathML"><mml:mrow><mml:mn>1884</mml:mn><mml:mo>±</mml:mo><mml:mn>88</mml:mn></mml:mrow></mml:math></alternatives></inline-formula>
+  day period reported by Graham et al.
+  (<xref alt="2015" rid="ref-Graham2015" ref-type="bibr">2015</xref>)
+  using generalized Lomb–Scargle, wavelet, and autocorrelation methods;
+  a Bayesian reanalysis by Zhu &amp; Thrane
+  (<xref alt="2020" rid="ref-Zhu2020" ref-type="bibr">2020</xref>) on an
+  extended dataset for PG~1302–102 yielded a comparable quasi-period of
+  5.6 yr, interpreted as quasiperiodic oscillations. In the case of Mrk
+  231
   (<xref alt="Kovačević, Yi, et al., 2020" rid="ref-2020MNRASK" ref-type="bibr">Kovačević,
-  Yi, et al., 2020</xref>). -Very Low-Frequency (VLF) signals
-  variability in the vicinity of earthquakes
+  Yi, et al., 2020</xref>), the 2D hybrid method identified a
+  characteristic period of <inline-formula><alternatives>
+  <tex-math><![CDATA[403]]></tex-math>
+  <mml:math display="inline" xmlns:mml="http://www.w3.org/1998/Math/MathML"><mml:mn>403</mml:mn></mml:math></alternatives></inline-formula>
+  days with a significance greater than 99.7%, in agreement with a
+  Lomb–Scargle periodogram result of <inline-formula><alternatives>
+  <tex-math><![CDATA[413]]></tex-math>
+  <mml:math display="inline" xmlns:mml="http://www.w3.org/1998/Math/MathML"><mml:mn>413</mml:mn></mml:math></alternatives></inline-formula>
+  days at a significance above 95%; the slightly larger uncertainty in
+  the <monospace>QhX</monospace>-derived period reflects the temporal
+  variation of the periodicity, while the average oscillation power is
+  comparable between the two methods. The method has also been validated
+  in the context of damped oscillations in the changing-look quasar NGC
+  3516
+  (<xref alt="Kovačević, Popović, et al., 2020" rid="ref-2020OAstK" ref-type="bibr">Kovačević,
+  Popović, et al., 2020</xref>), where experimental results demonstrated
+  robustness against the combined effects of red noise and complex
+  time-series structure. Beyond astrophysical applications, QhX has been
+  applied to Very Low Frequency (VLF) signal analysis for pre- and
+  post-earthquake intervals
   (<xref alt="Kovačević, Nina, et al., 2022" rid="ref-mathKovacevic" ref-type="bibr">Kovačević,
-  Nina, et al., 2022</xref>). -<monospace>QhX</monospace> is
+  Nina, et al., 2022</xref>). In the no-earthquake scenario (same date
+  one year earlier), the topology of QhX 2D hybrid maps exhibited
+  distinct correlation cluster patterns compared to earthquake-day
+  records, with detected periods below 111 s in most intervals and a
+  <inline-formula><alternatives>
+  <tex-math><![CDATA[\sim 140]]></tex-math>
+  <mml:math display="inline" xmlns:mml="http://www.w3.org/1998/Math/MathML"><mml:mrow><mml:mo>∼</mml:mo><mml:mn>140</mml:mn></mml:mrow></mml:math></alternatives></inline-formula>
+  s signal in the <inline-formula><alternatives>
+  <tex-math><![CDATA[-2]]></tex-math>
+  <mml:math display="inline" xmlns:mml="http://www.w3.org/1998/Math/MathML"><mml:mrow><mml:mi>−</mml:mi><mml:mn>2</mml:mn></mml:mrow></mml:math></alternatives></inline-formula>
+  h segment, closely matching a 147 s signal detected during the
+  earthquake event. Comparison with Fast Fourier Transform (FFT) results
+  (<xref alt="Nina et al., 2020" rid="ref-nina2020" ref-type="bibr">Nina
+  et al., 2020</xref>) showed strong agreement before the earthquake for
+  periods below 1.5 min, and convergence of both methods to similar
+  values in subsequent intervals. Post-earthquake periods obtained with
+  QhX were also consistent with the <inline-formula><alternatives>
+  <tex-math><![CDATA[<10]]></tex-math>
+  <mml:math display="inline" xmlns:mml="http://www.w3.org/1998/Math/MathML"><mml:mrow><mml:mo>&lt;</mml:mo><mml:mn>10</mml:mn></mml:mrow></mml:math></alternatives></inline-formula>s
+  to few-hundred-second range reported in
+  (<xref alt="Ohya et al., 2018" rid="ref-oh2018" ref-type="bibr">Ohya
+  et al., 2018</xref>). <monospace>QhX</monospace> is
   <ext-link ext-link-type="uri" xlink:href="https://www.lsst.org/scientists/international-drh-list">the
   LSST directable software in-kind contribution</ext-link>.</p>
 </sec>
@@ -1604,6 +1679,87 @@ a Creative Commons Attribution 4.0 International License (CC BY
       <pub-id pub-id-type="doi">10.1051/0004-6361/202450886</pub-id>
       <fpage>A365</fpage>
       <lpage></lpage>
+    </element-citation>
+  </ref>
+  <ref id="ref-Graham2015">
+    <element-citation publication-type="article-journal">
+      <person-group person-group-type="author">
+        <name><surname>Graham</surname><given-names>Matthew J.</given-names></name>
+        <name><surname>Djorgovski</surname><given-names>S. G.</given-names></name>
+        <name><surname>Stern</surname><given-names>Daniel</given-names></name>
+        <name><surname>Glikman</surname><given-names>Eilat</given-names></name>
+        <name><surname>Drake</surname><given-names>Andrew J.</given-names></name>
+        <name><surname>Mahabal</surname><given-names>Ashish A.</given-names></name>
+        <name><surname>Donalek</surname><given-names>Ciro</given-names></name>
+        <name><surname>Larson</surname><given-names>Steve</given-names></name>
+        <name><surname>Christensen</surname><given-names>Eric</given-names></name>
+      </person-group>
+      <article-title>A possible close supermassive black-hole binary in a quasar with optical periodicity</article-title>
+      <source></source>
+      <year iso-8601-date="2015-02">2015</year><month>02</month>
+      <volume>518</volume>
+      <issue>7537</issue>
+      <uri>https://arxiv.org/abs/1501.01375</uri>
+      <pub-id pub-id-type="doi">10.1038/nature14143</pub-id>
+      <fpage>74</fpage>
+      <lpage>76</lpage>
+    </element-citation>
+  </ref>
+  <ref id="ref-Zhu2020">
+    <element-citation publication-type="article-journal">
+      <person-group person-group-type="author">
+        <name><surname>Zhu</surname><given-names>Xing-Jiang</given-names></name>
+        <name><surname>Thrane</surname><given-names>Eric</given-names></name>
+      </person-group>
+      <article-title>Toward the Unambiguous Identification of Supermassive Binary Black Holes through Bayesian Inference</article-title>
+      <source></source>
+      <year iso-8601-date="2020-09">2020</year><month>09</month>
+      <volume>900</volume>
+      <issue>2</issue>
+      <uri>https://arxiv.org/abs/2004.10944</uri>
+      <pub-id pub-id-type="doi">10.3847/1538-4357/abac5a</pub-id>
+      <fpage>117</fpage>
+      <lpage></lpage>
+    </element-citation>
+  </ref>
+  <ref id="ref-nina2020">
+    <element-citation publication-type="article-journal">
+      <person-group person-group-type="author">
+        <name><surname>Nina</surname><given-names>Aleksandra</given-names></name>
+        <name><surname>Pulinets</surname><given-names>Sergey</given-names></name>
+        <name><surname>Biagi</surname><given-names>Pier Francesco</given-names></name>
+        <name><surname>Nico</surname><given-names>Giovanni</given-names></name>
+        <name><surname>Mitrović</surname><given-names>Sran T</given-names></name>
+        <name><surname>Radovanović</surname><given-names>Milan</given-names></name>
+        <name><surname>Popović</surname><given-names>Luka Č</given-names></name>
+      </person-group>
+      <article-title>Variation in natural short-period ionospheric noise, and acoustic and gravity waves revealed by the amplitude analysis of a VLF radio signal on the occasion of the kraljevo earthquake (mw= 5.4)</article-title>
+      <source>Science of the Total Environment</source>
+      <publisher-name>Elsevier</publisher-name>
+      <year iso-8601-date="2020">2020</year>
+      <volume>710</volume>
+      <fpage>136406</fpage>
+      <lpage></lpage>
+    </element-citation>
+  </ref>
+  <ref id="ref-oh2018">
+    <element-citation publication-type="article-journal">
+      <person-group person-group-type="author">
+        <name><surname>Ohya</surname><given-names>Hiroyo</given-names></name>
+        <name><surname>Tsuchiya</surname><given-names>Fuminori</given-names></name>
+        <name><surname>Takishita</surname><given-names>Yuta</given-names></name>
+        <name><surname>Shinagawa</surname><given-names>Hiroyuki</given-names></name>
+        <name><surname>Nozaki</surname><given-names>Kenro</given-names></name>
+        <name><surname>Shiokawa</surname><given-names>Kazuo</given-names></name>
+      </person-group>
+      <article-title>Periodic oscillations in the d region ionosphere after the 2011 tohoku earthquake using LF standard radio waves</article-title>
+      <source>Journal of Geophysical Research: Space Physics</source>
+      <publisher-name>Wiley Online Library</publisher-name>
+      <year iso-8601-date="2018">2018</year>
+      <volume>123</volume>
+      <issue>6</issue>
+      <fpage>5261</fpage>
+      <lpage>5270</lpage>
     </element-citation>
   </ref>
 </ref-list>

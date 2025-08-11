@@ -86,11 +86,13 @@ The package is organized as follows:
    - `correlation` function within the `utils` module supports the 2D Hybrid method by converting light curve data into wavelet matrices and performing (auto)correlation, creating correlation density.
 
 2. **Signal Detection and Validation**:
-   - `detection` module identifies candidate periodic signals and assesses their validity using statistical measures (significance and upper and lower  error [@2019J]). The Intersection over Union (IoU) metric identifies overlapping periods across bands and objects.
+   - `detection` module identifies candidate periodic signals and assesses their validity using statistical measures (significance and upper and lower  error [@2019J]). The Intersection over Union (IoU) metric identifies overlapping periods across bands and objects. To our knowledge, this is the first application of the Intersection-over-Union (IoU) metric to quantify the overlap between detected and reference periods in astronomical time-series analysis.
    - Statistical vetting categorizes detected periods for each object and band as reliable, medium, or poor.
    
 
 3. **Data Management**:
+   - `QhX` assumes input time-series data in a simple tabular format containing time, flux (or magnitude), and associated uncertainties. Examples in the documentation illustrate how to map data from other commonly used formats into this structure.
+
    - `data_manager` and `data_manager_dynamical` modules manage data flow, data loading, outlier removal, and format compatibility. 
    - `batch_processor` and `parallelization_solver` modules optimize task distribution across multiple processors.
 
@@ -104,12 +106,8 @@ The package is organized as follows:
 
 # Representative Applications
 
-The `QhX` method has been applied to:
-
--Quasar periodicity detection [@2018MNRASK; @2019ApJK; @2020OAstK; @2023AJF].
--Quasi-Periodic Oscillations detection [@2020MNRASK].
--Very Low-Frequency (VLF) signals variability in the vicinity of earthquakes [@mathKovacevic].
--`QhX` is [the LSST directable software in-kind contribution](https://www.lsst.org/scientists/international-drh-list).
+`QhX` has been benchmarked with respect to widely used periodicity detection software across multiple domains. In  @2023AJF, applying  `QhX` to SDSS J2320$+$0024 yielded a period of $278.36^{+57.34}_{-25.21}$ days, with a significance above 99\% measured via the shuffling method, and a 90\% significance from the Generalized Extreme Value (GEV) approach. A Lomb--Scargle periodogram applied to the same dataset produced a consistent period of 278~days at the same significance level. In @2019ApJK,`QhX` detected periods of $1972 \pm 254$~days (observed light curve) and $1873 \pm 250$ days (modeled light curve) for PG~1302--102, both within $1\sigma$ of the $1884 \pm 88$ day period reported by @Graham2015 using generalized Lomb--Scargle, wavelet, and autocorrelation methods; a Bayesian reanalysis by @Zhu2020 on an extended dataset for PG~1302--102 yielded a comparable quasi-period of 5.6 yr, interpreted as quasiperiodic oscillations. In the case of Mrk 231 [@2020MNRASK], the 2D hybrid method identified a characteristic period of $403$ days with a significance greater than 99.7\%, in agreement with a Lomb--Scargle periodogram result of $413$ days at a significance above 95\%; the slightly larger uncertainty in the `QhX`-derived period reflects the temporal variation of the periodicity, while the average oscillation power is comparable between the two methods. The method has also been validated in the context of damped oscillations in the changing-look quasar NGC 3516 [@2020OAstK], where experimental results demonstrated robustness against the combined effects of red noise and complex time-series structure. Beyond astrophysical applications, QhX has been applied to Very Low Frequency (VLF) signal analysis for pre- and post-earthquake intervals [@mathKovacevic]. In the no-earthquake scenario (same date one year earlier), the topology of QhX 2D hybrid maps exhibited distinct correlation cluster patterns compared to earthquake-day records, with detected periods below 111 s in most intervals and a $\sim 140$ s signal in the $-2$ h segment, closely matching a 147 s signal detected during the earthquake event. Comparison with Fast Fourier Transform (FFT) results [@nina2020] showed strong agreement before the earthquake for periods below 1.5 min, and convergence of both methods to similar values in subsequent intervals. Post-earthquake periods obtained with QhX were also consistent with the $<10$s to few-hundred-second range reported in [@oh2018]. 
+`QhX` is [the LSST directable software in-kind contribution](https://www.lsst.org/scientists/international-drh-list).
 
 
 
