@@ -23,11 +23,14 @@ Each notebook uses specific data files that are included in the package. You can
    :maxdepth: 2
    :caption: Notebook Examples
 
+
+
    examples/Example1
    examples/Example2
    examples/Example3
    examples/Example4
    examples/Example5
+
 
 Data Files Used in Notebooks
 ----------------------------

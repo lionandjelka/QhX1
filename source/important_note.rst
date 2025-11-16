@@ -2,7 +2,7 @@ Important Note
 ==============
 
 
-QhX Version 0.2.0 
+QhX Version 0.2.1 
 -------------------------------------
 - Fully supports datasets with dynamic filter changes across observations. `dynamical_mode`  module  handles both dynamic and fixed configurations, enabling more complex workflows. Combining both modes in a single module allows easier upgrades if workflows evolve from fixed to dynamic or need to accommodate hybrid datasets.
 - Some service modules outside `dynamical_mode` are dedicated to fixed-only workflows, providing less overhead in performance while retaining efficiency. 

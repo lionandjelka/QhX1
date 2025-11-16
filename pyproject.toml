@@ -4,10 +4,10 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "QhX"  # Update this if necessary
-version = "0.2.0"           # Increment the version for new releases
+version = "0.2.1"           # Increment the version for new releases
 description = "QhX: New package with dynamic mode for light curve analysis"
 readme = "README.md"
-requires-python = ">=3.0"
+requires-python = ">=3.7"
 license = { file = "LICENSE.txt" }
 authors = [
     { name = "Andjelka Kovacevic", email = "andjelka.kovacevic@matf.bg.ac.rs" }
@@ -48,8 +48,14 @@ dependencies = [
 [project.urls]
 Documentation = "https://lionandjelka.github.io/QhX1/"
 
+# --------- IMPORTANT PART: packaging all subpackages ---------
 [tool.setuptools]
-packages = ["QhX"]  # Keep internal module names as QhX to maintain backward compatibility
+include-package-data = true
+
+[tool.setuptools.packages.find]
+where = ["."]
+include = ["QhX*"]
+# -------------------------------------------------------------
 
 [tool.setuptools.package-data]
 QhX = ["data/*.csv"]  # Ensure necessary data files are included
