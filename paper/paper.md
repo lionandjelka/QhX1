@@ -124,6 +124,14 @@ Beyond astrophysical applications, QhX has been applied to very low frequency (V
 
 Funding was provided by the University of Belgrade - Faculty of Mathematics (the contract 451-03-66/2024-03/200104), Faculty of Sciences University of Kragujevac (451-03-65/2024-03/200122), and Astronomical Observatory Belgrade (contract 451-03-66/2024-
 03/200002), through grants by the Ministry of Education, Science, and Technological Development of the Republic of Serbia. 
+QhX makes extensive use of several open-source scientific Python libraries.
+Core numerical operations and statistical routines rely on NumPy [@numpy]
+and SciPy [@scipy].
+The Weighted Wavelet Z-transform calculations are performed using the libwwz
+library [@libwwz].
+Interactive visualization and exploratory analysis are implemented using
+HoloViews [@holoviews] with Bokeh [@bokeh] as the plotting backend.
+We gratefully acknowledge the developers and maintainers of these packages.
 
 
 
