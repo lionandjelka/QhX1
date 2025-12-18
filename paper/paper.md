@@ -23,31 +23,33 @@ authors:
     affiliation: "2"
   - name: Aman Raju
     orcid: 0000-0001-9339-0789
-    affiliation: "1"
+    affiliation: "3"
   - name: Mladen Nikolić
     orcid: 0009-0002-8943-2709
     affiliation: "1"
   - name: Saša Simić
     orcid: 0000-0001-7453-2016
-    affiliation: "3"
+    affiliation: "4"
   - name: Iva Čvorović Hajdinjak
     orcid: 0000-0001-9208-6574
     affiliation: "1"
   - name: Luka Č. Popović
     orcid: 0000-0003-2398-7664
-    affiliation: "4"
+    affiliation: "5"
 
 affiliations:
   - name: University of Belgrade-Faculty of Mathematics, Studentski trg 16, Belgrade, Serbia
     index: "1"
-  - name: Mathematical Institute of Serbian Academy of Science and Arts, Serbia
+  - name: Rubin Observatory Project Oﬃce, 950 N. Cherry Ave., Tucson, AZ 85719, USA
     index: "2"
-  - name: Faculty of sciences, University of Kragujevac, Radoja Domanovića 12, Serbia
+  - name: DARK, Niels Bohr Institute, University of Copenhagen, Jagtvej 155, Copenhagen N, 2200, Denmark
     index: "3"
-  - name: Astronomical Observatory, Belgrade, Serbia
+  - name: Faculty of sciences, University of Kragujevac, Radoja Domanovića 12, Serbia
     index: "4"
+  - name: Astronomical Observatory, Belgrade, Volgina 7, 11000 Belgrade, Serbia
+    index: "5"
 
-date: 14 November 2024
+date: 18 December 2025
 bibliography: paper.bib
 ---
 
