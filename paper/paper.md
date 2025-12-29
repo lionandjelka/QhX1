@@ -31,7 +31,7 @@ authors:
     orcid: 0000-0001-7453-2016
     affiliation: "4"
   - given-names: Iva
-    surname: Čvorović Hajdinjak
+    surname: Čvorović-Hajdinjak
     orcid: 0000-0001-9208-6574
     affiliation: "1"
   - name: Luka Č. Popović
